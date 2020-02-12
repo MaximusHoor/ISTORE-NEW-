@@ -45,20 +45,27 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\admin\\.nuget\\packages\\": {}
+    "C:\\Users\\Юлия\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\admin\\Pictures\\ISTORE\\src\\BusinessLogic\\Business.csproj",
+      "projectUniqueName": "C:\\Users\\Юлия\\Source\\Repos\\ISTORE-NEW\\src\\BusinessLogic\\Business.csproj",
       "projectName": "Business",
-      "projectPath": "C:\\Users\\admin\\Pictures\\ISTORE\\src\\BusinessLogic\\Business.csproj",
-      "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\admin\\Pictures\\ISTORE\\src\\BusinessLogic\\obj\\",
+      "projectPath": "C:\\Users\\Юлия\\Source\\Repos\\ISTORE-NEW\\src\\BusinessLogic\\Business.csproj",
+      "packagesPath": "C:\\Users\\Юлия\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Юлия\\Source\\Repos\\ISTORE-NEW\\src\\BusinessLogic\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Microsoft\\Xamarin\\NuGet\\",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\Юлия\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -70,8 +77,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\admin\\Pictures\\ISTORE\\src\\DataAccess\\DataAccess.csproj": {
-              "projectPath": "C:\\Users\\admin\\Pictures\\ISTORE\\src\\DataAccess\\DataAccess.csproj"
+            "C:\\Users\\Юлия\\Source\\Repos\\ISTORE-NEW\\src\\DataAccess\\DataAccess.csproj": {
+              "projectPath": "C:\\Users\\Юлия\\Source\\Repos\\ISTORE-NEW\\src\\DataAccess\\DataAccess.csproj"
             }
           }
         }

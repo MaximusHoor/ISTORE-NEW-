@@ -6,6 +6,13 @@ namespace Domain.EF_Models
 {
     class Product
     {
+        public Product()
+        {
+            Images = new List<Image>();
+            GroupCharacteristics = new List<GroupCharacteristic>();
+            Comments = new List<Comment>();
+            Equipment = new List<string>();
+        }
         public int Id { get; set; }
         public int Title { get; set; }
         public string Type { get; set; }
@@ -16,19 +23,19 @@ namespace Domain.EF_Models
         public Brand Brand { get; set; }
         public double RetailPrice { get; set; }
         public string PreviewImage { get; set; }
-        public List<Image> Images { get; set; }
+        public ICollection<Image> Images { get; set; }
         public int CategoryId { get; set; }
         public Category Category { get; set; }
         public int PackageId { get; set; }
         public Package Package { get; set; }
-        public List<GroupCharacteristic> GroupCharacteristics { get; set; }
-        public List<Comment> Comments { get; set; }
+        public ICollection<GroupCharacteristic> GroupCharacteristics { get; set; }
+        public ICollection<Comment> Comments { get; set; }
         public int CountInStorage { get; set; }
         public int Rating { get; set; }
         public int WarrantyMonth { get; set; }
 
         //public string Color { get; set; } ?
-        public List<string> Equipment { get; set; }
+        public ICollection<string> Equipment { get; set; }
         public string Series { get; set; }
         public string Model { get; set; }
     }

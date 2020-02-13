@@ -6,10 +6,15 @@ namespace Domain.EF_Models
 {
     class Category
     {
+        public Category()
+        {
+            Products = new List<Product>();
+            Subcategories = new List<Category>();
+        }
         public int Id { get; set; }
         public string Title { get; set; }
         public string PreviewImage { get; set; }
-        public List<Product> Products { get; set; }
-        public List<Category> Subcategories { get; set; }
+        public ICollection<Product> Products { get; set; }
+        public ICollection<Category> Subcategories { get; set; }
     }
 }

@@ -11,6 +11,7 @@ namespace Domain.EF_Models
             Products = new List<OrderDetails>();
         }
         public int Id { get; set; }
+        public string Number { get; set; }
         public DateTime Date { get; set; }
         public double Total { get; set; }
         public ICollection<OrderDetails> Products { get; set; }
@@ -18,6 +19,7 @@ namespace Domain.EF_Models
         public User User { get; set; }
         public int? DeliveryId { get; set; }
         public Delivery Delivery { get; set; }
-        public string Status { get; set; }
+        public string DeliveryStatus { get; set; }
+        public string PaymentStatus { get; set; }
     }
 }

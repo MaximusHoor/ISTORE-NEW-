@@ -9,8 +9,6 @@ namespace Domain.EF_Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Type { get; set; }
-        public string BranchNumber { get; set; }
-        public int AddressId { get; set; }
-        public Address Adddress { get; set; }
+        
     }
 }

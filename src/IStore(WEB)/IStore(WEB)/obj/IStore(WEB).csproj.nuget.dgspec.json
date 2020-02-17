@@ -1,21 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\admin\\Pictures\\ISTORE\\src\\IStore(WEB)\\IStore(WEB)\\IStore(WEB).csproj": {}
+    "C:\\Users\\Юлия\\Source\\Repos\\ISTORE-NEW\\src\\IStore(WEB)\\IStore(WEB)\\IStore(WEB).csproj": {}
   },
   "projects": {
-    "C:\\Users\\admin\\Pictures\\ISTORE\\src\\BusinessLogic\\Business.csproj": {
+    "C:\\Users\\Юлия\\Source\\Repos\\ISTORE-NEW\\src\\BusinessLogic\\Business.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\admin\\Pictures\\ISTORE\\src\\BusinessLogic\\Business.csproj",
+        "projectUniqueName": "C:\\Users\\Юлия\\Source\\Repos\\ISTORE-NEW\\src\\BusinessLogic\\Business.csproj",
         "projectName": "Business",
-        "projectPath": "C:\\Users\\admin\\Pictures\\ISTORE\\src\\BusinessLogic\\Business.csproj",
-        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\admin\\Pictures\\ISTORE\\src\\BusinessLogic\\obj\\",
+        "projectPath": "C:\\Users\\Юлия\\Source\\Repos\\ISTORE-NEW\\src\\BusinessLogic\\Business.csproj",
+        "packagesPath": "C:\\Users\\Юлия\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Юлия\\Source\\Repos\\ISTORE-NEW\\src\\BusinessLogic\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Юлия\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -27,8 +32,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\admin\\Pictures\\ISTORE\\src\\DataAccess\\DataAccess.csproj": {
-                "projectPath": "C:\\Users\\admin\\Pictures\\ISTORE\\src\\DataAccess\\DataAccess.csproj"
+              "C:\\Users\\Юлия\\Source\\Repos\\ISTORE-NEW\\src\\DataAccess\\DataAccess.csproj": {
+                "projectPath": "C:\\Users\\Юлия\\Source\\Repos\\ISTORE-NEW\\src\\DataAccess\\DataAccess.csproj"
               }
             }
           }
@@ -60,18 +65,23 @@
         }
       }
     },
-    "C:\\Users\\admin\\Pictures\\ISTORE\\src\\DataAccess\\DataAccess.csproj": {
+    "C:\\Users\\Юлия\\Source\\Repos\\ISTORE-NEW\\src\\DataAccess\\DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\admin\\Pictures\\ISTORE\\src\\DataAccess\\DataAccess.csproj",
+        "projectUniqueName": "C:\\Users\\Юлия\\Source\\Repos\\ISTORE-NEW\\src\\DataAccess\\DataAccess.csproj",
         "projectName": "DataAccess",
-        "projectPath": "C:\\Users\\admin\\Pictures\\ISTORE\\src\\DataAccess\\DataAccess.csproj",
-        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\admin\\Pictures\\ISTORE\\src\\DataAccess\\obj\\",
+        "projectPath": "C:\\Users\\Юлия\\Source\\Repos\\ISTORE-NEW\\src\\DataAccess\\DataAccess.csproj",
+        "packagesPath": "C:\\Users\\Юлия\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Юлия\\Source\\Repos\\ISTORE-NEW\\src\\DataAccess\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Юлия\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -83,8 +93,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\admin\\Pictures\\ISTORE\\src\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\admin\\Pictures\\ISTORE\\src\\Domain\\Domain.csproj"
+              "C:\\Users\\Юлия\\Source\\Repos\\ISTORE-NEW\\src\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\Юлия\\Source\\Repos\\ISTORE-NEW\\src\\Domain\\Domain.csproj"
               }
             }
           }
@@ -116,18 +126,23 @@
         }
       }
     },
-    "C:\\Users\\admin\\Pictures\\ISTORE\\src\\Domain\\Domain.csproj": {
+    "C:\\Users\\Юлия\\Source\\Repos\\ISTORE-NEW\\src\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\admin\\Pictures\\ISTORE\\src\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Юлия\\Source\\Repos\\ISTORE-NEW\\src\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\admin\\Pictures\\ISTORE\\src\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\admin\\Pictures\\ISTORE\\src\\Domain\\obj\\",
+        "projectPath": "C:\\Users\\Юлия\\Source\\Repos\\ISTORE-NEW\\src\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\Юлия\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Юлия\\Source\\Repos\\ISTORE-NEW\\src\\Domain\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Юлия\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -168,18 +183,23 @@
         }
       }
     },
-    "C:\\Users\\admin\\Pictures\\ISTORE\\src\\IStore(WEB)\\IStore(WEB)\\IStore(WEB).csproj": {
+    "C:\\Users\\Юлия\\Source\\Repos\\ISTORE-NEW\\src\\IStore(WEB)\\IStore(WEB)\\IStore(WEB).csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\admin\\Pictures\\ISTORE\\src\\IStore(WEB)\\IStore(WEB)\\IStore(WEB).csproj",
+        "projectUniqueName": "C:\\Users\\Юлия\\Source\\Repos\\ISTORE-NEW\\src\\IStore(WEB)\\IStore(WEB)\\IStore(WEB).csproj",
         "projectName": "IStore(WEB)",
-        "projectPath": "C:\\Users\\admin\\Pictures\\ISTORE\\src\\IStore(WEB)\\IStore(WEB)\\IStore(WEB).csproj",
-        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\admin\\Pictures\\ISTORE\\src\\IStore(WEB)\\IStore(WEB)\\obj\\",
+        "projectPath": "C:\\Users\\Юлия\\Source\\Repos\\ISTORE-NEW\\src\\IStore(WEB)\\IStore(WEB)\\IStore(WEB).csproj",
+        "packagesPath": "C:\\Users\\Юлия\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Юлия\\Source\\Repos\\ISTORE-NEW\\src\\IStore(WEB)\\IStore(WEB)\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Юлия\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -191,8 +211,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\admin\\Pictures\\ISTORE\\src\\BusinessLogic\\Business.csproj": {
-                "projectPath": "C:\\Users\\admin\\Pictures\\ISTORE\\src\\BusinessLogic\\Business.csproj"
+              "C:\\Users\\Юлия\\Source\\Repos\\ISTORE-NEW\\src\\BusinessLogic\\Business.csproj": {
+                "projectPath": "C:\\Users\\Юлия\\Source\\Repos\\ISTORE-NEW\\src\\BusinessLogic\\Business.csproj"
               }
             }
           }

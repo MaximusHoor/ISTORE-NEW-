@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Domain.EF_Models
 {
-    class Image
+  public  class Image
     {
         public int Id { get; set; }
         public string FilePath { get; set; }

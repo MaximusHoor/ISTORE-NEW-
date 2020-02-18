@@ -1,14 +1,13 @@
-using Domain.Context;
 using NUnit.Framework;
 
-namespace DomainTest
+namespace DataAccessTest
 {
-    public class DITest
+    public class Tests
     {
         [SetUp]
         public void Setup()
         {
-            StoreContext 
+             
         }
 
         [Test]
@@ -16,5 +15,7 @@ namespace DomainTest
         {
 
         }
+
+        
     }
 }

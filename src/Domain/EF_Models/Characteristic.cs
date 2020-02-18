@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Domain.EF_Models
 {
-    class Characteristic
+   public class Characteristic
     {
         public int Id { get; set; }
         public string Title { get; set; }

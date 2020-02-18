@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Domain.Context;
 using Domain.EF_Models;
 using Domain.Repository.Interfaces;
-
 namespace Domain.Repository
 {
     public class UserRepository: BaseRepository<User>,IUserRepository
@@ -17,7 +16,7 @@ namespace Domain.Repository
 
         public async Task<IEnumerable<User>> GetAllUsers()
         {
-            return await FindAllAsync();
+            return  FindAll();
         }
     }
 }

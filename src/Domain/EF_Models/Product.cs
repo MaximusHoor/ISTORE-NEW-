@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Domain.EF_Models
 {
-    class Product
+  public  class Product
     {
         public Product()
         {

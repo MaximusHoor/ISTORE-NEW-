@@ -19,29 +19,29 @@ namespace Domain.Repository.Interfaces
         }
 
       
-        public async Task<IQueryable<T>> FindAllAsync()
+        public IQueryable<T> FindAll()
         {
             return _StoreContext.Set<T>().AsNoTracking();
         }
 
-        public async Task<IQueryable<T>> FindByConditionAsync(Expression<Func<T, bool>> predicat)
+        public IQueryable<T> FindByCondition(Expression<Func<T, bool>> predicat)
         {
-            return _StoreContext.Set<T>().Where(predicat).AsNoTracking();
+            return  _StoreContext.Set<T>().Where(predicat);
         }
 
-        public async Task<OperationDetail> Create(T entity)
+        public OperationDetail Create(T entity)
         {
             _StoreContext.Set<T>().Add(entity);
             return  new OperationDetail(){Message = "Created"};
         }
 
-        public async Task<OperationDetail> Update(T entity)
+        public OperationDetail Update(T entity)
         {
             _StoreContext.Set<T>().Update(entity);
             return new OperationDetail() { Message = "Updated" };
         }
 
-        public async Task<OperationDetail> Delete(T entity)
+        public OperationDetail Delete(T entity)
         {
             _StoreContext.Set<T>().Remove(entity);
             return new OperationDetail() { Message = "Deleted" };

@@ -9,5 +9,6 @@ namespace Domain.Infrastructure
         public int Id { get; set; }
         public string Message { get; set; }
         public Exception ex { get; set; }
+        public bool IsError { get; set; }
     }
 }

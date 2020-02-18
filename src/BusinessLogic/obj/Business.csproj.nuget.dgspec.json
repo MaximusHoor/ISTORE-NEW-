@@ -1,26 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Юлия\\Source\\Repos\\ISTORE-NEW\\src\\BusinessLogic\\Business.csproj": {}
+    "C:\\Users\\sivorka\\Source\\Repos\\ISTORE-NEW-\\src\\BusinessLogic\\Business.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Юлия\\Source\\Repos\\ISTORE-NEW\\src\\BusinessLogic\\Business.csproj": {
+    "C:\\Users\\sivorka\\Source\\Repos\\ISTORE-NEW-\\src\\BusinessLogic\\Business.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Юлия\\Source\\Repos\\ISTORE-NEW\\src\\BusinessLogic\\Business.csproj",
+        "projectUniqueName": "C:\\Users\\sivorka\\Source\\Repos\\ISTORE-NEW-\\src\\BusinessLogic\\Business.csproj",
         "projectName": "Business",
-        "projectPath": "C:\\Users\\Юлия\\Source\\Repos\\ISTORE-NEW\\src\\BusinessLogic\\Business.csproj",
-        "packagesPath": "C:\\Users\\Юлия\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Юлия\\Source\\Repos\\ISTORE-NEW\\src\\BusinessLogic\\obj\\",
+        "projectPath": "C:\\Users\\sivorka\\Source\\Repos\\ISTORE-NEW-\\src\\BusinessLogic\\Business.csproj",
+        "packagesPath": "C:\\Users\\sivorka\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\sivorka\\Source\\Repos\\ISTORE-NEW-\\src\\BusinessLogic\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Юлия\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\sivorka\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -32,8 +30,11 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\Юлия\\Source\\Repos\\ISTORE-NEW\\src\\DataAccess\\DataAccess.csproj": {
-                "projectPath": "C:\\Users\\Юлия\\Source\\Repos\\ISTORE-NEW\\src\\DataAccess\\DataAccess.csproj"
+              "C:\\Users\\sivorka\\Source\\Repos\\ISTORE-NEW-\\src\\DataAccess\\DataAccess.csproj": {
+                "projectPath": "C:\\Users\\sivorka\\Source\\Repos\\ISTORE-NEW-\\src\\DataAccess\\DataAccess.csproj"
+              },
+              "C:\\Users\\sivorka\\Source\\Repos\\ISTORE-NEW-\\src\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\sivorka\\Source\\Repos\\ISTORE-NEW-\\src\\Domain\\Domain.csproj"
               }
             }
           }
@@ -46,6 +47,12 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -65,23 +72,21 @@
         }
       }
     },
-    "C:\\Users\\Юлия\\Source\\Repos\\ISTORE-NEW\\src\\DataAccess\\DataAccess.csproj": {
+    "C:\\Users\\sivorka\\Source\\Repos\\ISTORE-NEW-\\src\\DataAccess\\DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Юлия\\Source\\Repos\\ISTORE-NEW\\src\\DataAccess\\DataAccess.csproj",
+        "projectUniqueName": "C:\\Users\\sivorka\\Source\\Repos\\ISTORE-NEW-\\src\\DataAccess\\DataAccess.csproj",
         "projectName": "DataAccess",
-        "projectPath": "C:\\Users\\Юлия\\Source\\Repos\\ISTORE-NEW\\src\\DataAccess\\DataAccess.csproj",
-        "packagesPath": "C:\\Users\\Юлия\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Юлия\\Source\\Repos\\ISTORE-NEW\\src\\DataAccess\\obj\\",
+        "projectPath": "C:\\Users\\sivorka\\Source\\Repos\\ISTORE-NEW-\\src\\DataAccess\\DataAccess.csproj",
+        "packagesPath": "C:\\Users\\sivorka\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\sivorka\\Source\\Repos\\ISTORE-NEW-\\src\\DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Юлия\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\sivorka\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -93,8 +98,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\Юлия\\Source\\Repos\\ISTORE-NEW\\src\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\Юлия\\Source\\Repos\\ISTORE-NEW\\src\\Domain\\Domain.csproj"
+              "C:\\Users\\sivorka\\Source\\Repos\\ISTORE-NEW-\\src\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\sivorka\\Source\\Repos\\ISTORE-NEW-\\src\\Domain\\Domain.csproj"
               }
             }
           }
@@ -107,6 +112,12 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -126,23 +137,21 @@
         }
       }
     },
-    "C:\\Users\\Юлия\\Source\\Repos\\ISTORE-NEW\\src\\Domain\\Domain.csproj": {
+    "C:\\Users\\sivorka\\Source\\Repos\\ISTORE-NEW-\\src\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Юлия\\Source\\Repos\\ISTORE-NEW\\src\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\sivorka\\Source\\Repos\\ISTORE-NEW-\\src\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\Юлия\\Source\\Repos\\ISTORE-NEW\\src\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\Юлия\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Юлия\\Source\\Repos\\ISTORE-NEW\\src\\Domain\\obj\\",
+        "projectPath": "C:\\Users\\sivorka\\Source\\Repos\\ISTORE-NEW-\\src\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\sivorka\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\sivorka\\Source\\Repos\\ISTORE-NEW-\\src\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Юлия\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\sivorka\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -164,6 +173,16 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

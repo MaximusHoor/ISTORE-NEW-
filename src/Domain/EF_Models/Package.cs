@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Domain.EF_Models
 {
-    class Package
+   public class Package
     {
         public int Id { get; set; }
         public int CountInPackage { get; set; }

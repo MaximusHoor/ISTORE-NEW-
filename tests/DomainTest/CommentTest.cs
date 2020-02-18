@@ -1,20 +1,25 @@
-using Domain.Context;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace DomainTest
 {
-    public class DITest
+    class CommentTest
     {
         [SetUp]
         public void Setup()
         {
-            StoreContext 
+            
         }
 
         [Test]
         public void CreateDb()
         {
 
+           
+
         }
     }
 }
+ 

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Domain.EF_Models
 {
-    class Order
+  public  class Order
     {
         public Order()
         {

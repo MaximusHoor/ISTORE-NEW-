@@ -10,10 +10,10 @@ namespace Domain.Repository.Interfaces
 {
     public interface IRepository<T>
     {
-        Task<IQueryable<T>> FindAllAsync();
-        Task<IQueryable<T>> FindByConditionAsync(Expression<Func<T,bool>> predicat);
-        Task<OperationDetail> Create(T entity);
-        Task<OperationDetail> Update(T entity);
-        Task<OperationDetail> Delete(T entity);
+        IQueryable<T> FindAll();
+        IQueryable<T> FindByCondition(Expression<Func<T,bool>> predicat);
+        OperationDetail Create(T entity);
+        OperationDetail Update(T entity);
+        OperationDetail Delete(T entity);
     }
 }

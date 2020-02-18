@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Domain.EF_Models
 {
-    class OrderDetails
+    public class OrderDetails
     {
         public int Id { get; set; }
         public int OrderId { get; set; }

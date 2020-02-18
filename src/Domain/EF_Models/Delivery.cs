@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Domain.EF_Models
 {
-    class Delivery
+   public class Delivery
     {
         public int Id { get; set; }
         public string DeliveryNote { get; set; }

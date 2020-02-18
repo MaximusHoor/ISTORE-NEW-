@@ -14,6 +14,6 @@ namespace Domain.EF_Models
         public double Price { get; set; }
         public string BranchDeliveryService { get; set; }
         public int? AddressId { get; set; }
-        public Address AdddressDelivery { get; set; }
+        public Address AddressDelivery { get; set; }
     }
 }

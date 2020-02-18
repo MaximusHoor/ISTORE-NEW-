@@ -1,3 +1,5 @@
+using Business.Infrastructure;
+using Business.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -18,7 +20,9 @@ namespace IStore_WEB_
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {
+        { 
+            BusinessConfiguration.ConfigureServices(services,Configuration);
+            services.AddTransient(typeof(UserSerive));
             services.AddControllersWithViews();
         }
 

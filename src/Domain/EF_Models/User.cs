@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Domain.EF_Models
 {
-    class User/*: IdentityUser*/
+    public class User/*: IdentityUser*/
     {
         public int Id { get; set; }
         public string FirstName { get; set; }

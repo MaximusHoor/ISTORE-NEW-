@@ -15,6 +15,14 @@ namespace DataAccess.Repository
     {
         public CommentRepository(StoreContext context) : base(context)
         {
+        }        
+        public async Task<IEnumerable<Comment>> FindAllCommentsAsync()
+        {
+            return await FindAll().ToListAsync();
+        }
+        public async Task<IEnumerable<Comment>> FindCommentByConditionAsync(Expression<Func<Comment, bool>> predicate)
+        {
+            return await FindByCondition(predicate).ToListAsync();
         }
         public OperationDetail CreateComment(Comment comment)
         {
@@ -23,14 +31,6 @@ namespace DataAccess.Repository
         public OperationDetail DeleteComment(Comment comment)
         {
             return Delete(comment);
-        }
-        public async Task<IEnumerable<Comment>> FindAllCommentsAsync()
-        {
-            return await FindAll().ToListAsync();
-        }
-        public async Task<IEnumerable<Comment>> FindCommentByConditionAsync(Expression<Func<Comment, bool>> predicate)
-        {
-            return await FindByCondition(predicate).ToListAsync();
         }
         public OperationDetail UpdateComment(Comment comment)
         {

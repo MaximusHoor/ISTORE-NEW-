@@ -9,5 +9,7 @@ namespace Domain.Context
         {
         }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<Package> Packages { get; set; }
+        public DbSet<OrderDetails> OrderDetails { get; set; }
     }
 }

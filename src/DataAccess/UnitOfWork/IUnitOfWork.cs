@@ -6,6 +6,7 @@ namespace DataAccess.UnitOfWork
     public interface IUnitOfWork
     {
         ICommentRepository CommentRepository { get; }
+        ICategoryRepository CategoryRepository { get; }
         Task SaveChangesAsync();
     }
 }

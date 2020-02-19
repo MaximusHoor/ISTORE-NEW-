@@ -1,21 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\BusinessLogic\\Business.csproj": {}
+    "C:\\Users\\Crystal\\Source\\Repos\\MaximusHoor\\ISTORE-NEW-\\src\\BusinessLogic\\Business.csproj": {}
   },
   "projects": {
-    "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\BusinessLogic\\Business.csproj": {
+    "C:\\Users\\Crystal\\Source\\Repos\\MaximusHoor\\ISTORE-NEW-\\src\\BusinessLogic\\Business.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\BusinessLogic\\Business.csproj",
+        "projectUniqueName": "C:\\Users\\Crystal\\Source\\Repos\\MaximusHoor\\ISTORE-NEW-\\src\\BusinessLogic\\Business.csproj",
         "projectName": "Business",
-        "projectPath": "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\BusinessLogic\\Business.csproj",
-        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\BusinessLogic\\obj\\",
+        "projectPath": "C:\\Users\\Crystal\\Source\\Repos\\MaximusHoor\\ISTORE-NEW-\\src\\BusinessLogic\\Business.csproj",
+        "packagesPath": "C:\\Users\\Crystal\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Crystal\\Source\\Repos\\MaximusHoor\\ISTORE-NEW-\\src\\BusinessLogic\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Crystal\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -27,11 +32,11 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\DataAccess\\DataAccess.csproj": {
-                "projectPath": "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\DataAccess\\DataAccess.csproj"
+              "C:\\Users\\Crystal\\Source\\Repos\\MaximusHoor\\ISTORE-NEW-\\src\\DataAccess\\DataAccess.csproj": {
+                "projectPath": "C:\\Users\\Crystal\\Source\\Repos\\MaximusHoor\\ISTORE-NEW-\\src\\DataAccess\\DataAccess.csproj"
               },
-              "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\Domain\\Domain.csproj"
+              "C:\\Users\\Crystal\\Source\\Repos\\MaximusHoor\\ISTORE-NEW-\\src\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\Crystal\\Source\\Repos\\MaximusHoor\\ISTORE-NEW-\\src\\Domain\\Domain.csproj"
               }
             }
           }
@@ -65,22 +70,27 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.102\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\DataAccess\\DataAccess.csproj": {
+    "C:\\Users\\Crystal\\Source\\Repos\\MaximusHoor\\ISTORE-NEW-\\src\\DataAccess\\DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\DataAccess\\DataAccess.csproj",
+        "projectUniqueName": "C:\\Users\\Crystal\\Source\\Repos\\MaximusHoor\\ISTORE-NEW-\\src\\DataAccess\\DataAccess.csproj",
         "projectName": "DataAccess",
-        "projectPath": "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\DataAccess\\DataAccess.csproj",
-        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\DataAccess\\obj\\",
+        "projectPath": "C:\\Users\\Crystal\\Source\\Repos\\MaximusHoor\\ISTORE-NEW-\\src\\DataAccess\\DataAccess.csproj",
+        "packagesPath": "C:\\Users\\Crystal\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Crystal\\Source\\Repos\\MaximusHoor\\ISTORE-NEW-\\src\\DataAccess\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Crystal\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -92,8 +102,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\Domain\\Domain.csproj"
+              "C:\\Users\\Crystal\\Source\\Repos\\MaximusHoor\\ISTORE-NEW-\\src\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\Crystal\\Source\\Repos\\MaximusHoor\\ISTORE-NEW-\\src\\Domain\\Domain.csproj"
               }
             }
           }
@@ -131,22 +141,27 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.102\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\Domain\\Domain.csproj": {
+    "C:\\Users\\Crystal\\Source\\Repos\\MaximusHoor\\ISTORE-NEW-\\src\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Crystal\\Source\\Repos\\MaximusHoor\\ISTORE-NEW-\\src\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\Domain\\obj\\",
+        "projectPath": "C:\\Users\\Crystal\\Source\\Repos\\MaximusHoor\\ISTORE-NEW-\\src\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\Crystal\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Crystal\\Source\\Repos\\MaximusHoor\\ISTORE-NEW-\\src\\Domain\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Crystal\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -193,7 +208,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.102\\RuntimeIdentifierGraph.json"
         }
       }
     }

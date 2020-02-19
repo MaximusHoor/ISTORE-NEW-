@@ -24,19 +24,19 @@ namespace DataAccess.Repository
             return await FindAll().ToListAsync();
         }
 
-        public async Task<IEnumerable<OrderDetails>> FindOrderDetailsByConditionAsync(Expression<Func<Package, bool>> predicate)
+        public async Task<IEnumerable<OrderDetails>> FindOrderDetailsByConditionAsync(Expression<Func<OrderDetails, bool>> predicate)
         {
             Log.Information($"{DateTime.Now} - FindOrderDetailsByConditionAsync");
-            return await FindAll().ToListAsync();
+            return await FindByCondition(predicate).ToListAsync();
         }
 
-        public async Task<Order> GetOrderByOrderDetails(OrderDetails orderDetails)
+        public async Task<Order> GetOrderByOrderDetailsAsync(OrderDetails orderDetails)
         {
             Log.Information($"{DateTime.Now} - GetOrderByOrderDetails");
             return (await FindByCondition(x => x.Id == orderDetails.Id).FirstOrDefaultAsync()).Order;
         }
 
-        public async Task<Product> GetProductByOrderDetails(OrderDetails orderDetails)
+        public async Task<Product> GetProductByOrderDetailsAsync(OrderDetails orderDetails)
         {
             Log.Information($"{DateTime.Now} - GetProductByOrderDetails");
             return (await FindByCondition(x => x.Id == orderDetails.Id).FirstOrDefaultAsync()).Product;

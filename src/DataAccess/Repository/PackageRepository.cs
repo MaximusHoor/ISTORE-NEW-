@@ -1,6 +1,7 @@
 ﻿using DataAccess.Repository.Interfaces;
 using Domain.Context;
 using Domain.EF_Models;
+using Domain.Infrastructure;
 using Domain.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
@@ -18,6 +19,16 @@ namespace DataAccess.Repository
         {
         }
 
+        public OperationDetail CreatePackage(Package package)
+        {
+            return Create(package);
+        }
+
+        public OperationDetail DeletePackage(Package package)
+        {
+            return Delete(package);
+        }
+
         public async Task<IEnumerable<Package>> FindAllPackagesAsync()
         {
             Log.Information($"{DateTime.Now} - FindAllPackagesAsync");
@@ -28,6 +39,11 @@ namespace DataAccess.Repository
         {
             Log.Information($"{DateTime.Now} - FindPackageByConditionAsync");
             return await FindByCondition(predicate).ToListAsync();
+        }
+
+        public OperationDetail UpdatePackage(Package package)
+        {
+            return Update(package);
         }
     }
 }

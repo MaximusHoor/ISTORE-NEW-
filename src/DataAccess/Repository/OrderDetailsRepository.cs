@@ -1,6 +1,7 @@
 ﻿using DataAccess.Repository.Interfaces;
 using Domain.Context;
 using Domain.EF_Models;
+using Domain.Infrastructure;
 using Domain.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
@@ -16,6 +17,16 @@ namespace DataAccess.Repository
     {
         public OrderDetailsRepository(StoreContext context) : base(context)
         {
+        }
+
+        public OperationDetail CreateOrderDetails(OrderDetails orderDetails)
+        {
+            return Create(orderDetails);
+        }
+
+        public OperationDetail DeleteOrderDetails(OrderDetails orderDetails)
+        {
+            return Delete(orderDetails);
         }
 
         public async Task<IEnumerable<OrderDetails>> FindAllOrderDetailsAsync()
@@ -40,6 +51,11 @@ namespace DataAccess.Repository
         {
             Log.Information($"{DateTime.Now} - GetProductByOrderDetails");
             return (await FindByCondition(x => x.Id == orderDetails.Id).FirstOrDefaultAsync()).Product;
+        }
+
+        public OperationDetail UpdateOrderDetails(OrderDetails orderDetails)
+        {
+            return Update(orderDetails);
         }
     }
 }

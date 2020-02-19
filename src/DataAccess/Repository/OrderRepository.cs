@@ -62,5 +62,20 @@ namespace DataAccess.Repository
             (await FindByCondition(x => x.Id == order.Id).FirstOrDefaultAsync()).Products.Remove(orderDetails);
             return new OperationDetail() { IsError = false, Message = "RemoveOrderDetailsOfOrderAsync is OK" };
         }
+
+        public OperationDetail CreateOrder(Order order)
+        {
+            return Create(order);
+        }
+
+        public OperationDetail UpdateOrder(Order order)
+        {
+            return Update(order);
+        }
+
+        public OperationDetail DeleteOrder(Order order)
+        {
+            return Delete(order);
+        }
     }
 }

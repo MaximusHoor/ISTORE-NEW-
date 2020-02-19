@@ -13,6 +13,9 @@ namespace DataAccess.Repository.Interfaces
     {
         Task<IEnumerable<Order>> FindAllOrdersAsync();
         Task<IEnumerable<Order>> FindOrdersByConditionAsync(Expression<Func<Order, bool>> predicate);
+        OperationDetail CreateOrder(Order order);
+        OperationDetail UpdateOrder(Order order);
+        OperationDetail DeleteOrder(Order order);
         Task<User> GetUserByOrderAsync(Order order);
         Task<Delivery> GetDeliveryByOrderAsync(Order order);
         Task<ICollection<OrderDetails>> GetProductsByOrderAsync(Order order);

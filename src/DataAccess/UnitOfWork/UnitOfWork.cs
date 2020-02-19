@@ -22,6 +22,7 @@ namespace DataAccess.UnitOfWork
         public ICommentRepository CommentRepository { get; }
 
         public IPackageRepository PackageRepository { get; }
+        public IOrderDetailsRepository OrderDetailsRepository { get; }
 
         public async Task SaveChangesAsync()
         {

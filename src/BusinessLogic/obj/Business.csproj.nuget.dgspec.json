@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\a\\Source\\Repos\\ISTORE-NEW-200219\\src\\BusinessLogic\\Business.csproj": {}
+    "C:\\Users\\student.ITSTEP1\\Documents\\Sin\\src\\BusinessLogic\\Business.csproj": {}
   },
   "projects": {
-    "C:\\Users\\a\\Source\\Repos\\ISTORE-NEW-200219\\src\\BusinessLogic\\Business.csproj": {
+    "C:\\Users\\student.ITSTEP1\\Documents\\Sin\\src\\BusinessLogic\\Business.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\a\\Source\\Repos\\ISTORE-NEW-200219\\src\\BusinessLogic\\Business.csproj",
+        "projectUniqueName": "C:\\Users\\student.ITSTEP1\\Documents\\Sin\\src\\BusinessLogic\\Business.csproj",
         "projectName": "Business",
-        "projectPath": "C:\\Users\\a\\Source\\Repos\\ISTORE-NEW-200219\\src\\BusinessLogic\\Business.csproj",
-        "packagesPath": "C:\\Users\\a\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\a\\Source\\Repos\\ISTORE-NEW-200219\\src\\BusinessLogic\\obj\\",
+        "projectPath": "C:\\Users\\student.ITSTEP1\\Documents\\Sin\\src\\BusinessLogic\\Business.csproj",
+        "packagesPath": "C:\\Users\\student.ITSTEP1\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\student.ITSTEP1\\Documents\\Sin\\src\\BusinessLogic\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\a\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\student.ITSTEP1\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -27,11 +30,11 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\a\\Source\\Repos\\ISTORE-NEW-200219\\src\\DataAccess\\DataAccess.csproj": {
-                "projectPath": "C:\\Users\\a\\Source\\Repos\\ISTORE-NEW-200219\\src\\DataAccess\\DataAccess.csproj"
+              "C:\\Users\\student.ITSTEP1\\Documents\\Sin\\src\\DataAccess\\DataAccess.csproj": {
+                "projectPath": "C:\\Users\\student.ITSTEP1\\Documents\\Sin\\src\\DataAccess\\DataAccess.csproj"
               },
-              "C:\\Users\\a\\Source\\Repos\\ISTORE-NEW-200219\\src\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\a\\Source\\Repos\\ISTORE-NEW-200219\\src\\Domain\\Domain.csproj"
+              "C:\\Users\\student.ITSTEP1\\Documents\\Sin\\src\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\student.ITSTEP1\\Documents\\Sin\\src\\Domain\\Domain.csproj"
               }
             }
           }
@@ -69,17 +72,20 @@
         }
       }
     },
-    "C:\\Users\\a\\Source\\Repos\\ISTORE-NEW-200219\\src\\DataAccess\\DataAccess.csproj": {
+    "C:\\Users\\student.ITSTEP1\\Documents\\Sin\\src\\DataAccess\\DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\a\\Source\\Repos\\ISTORE-NEW-200219\\src\\DataAccess\\DataAccess.csproj",
+        "projectUniqueName": "C:\\Users\\student.ITSTEP1\\Documents\\Sin\\src\\DataAccess\\DataAccess.csproj",
         "projectName": "DataAccess",
-        "projectPath": "C:\\Users\\a\\Source\\Repos\\ISTORE-NEW-200219\\src\\DataAccess\\DataAccess.csproj",
-        "packagesPath": "C:\\Users\\a\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\a\\Source\\Repos\\ISTORE-NEW-200219\\src\\DataAccess\\obj\\",
+        "projectPath": "C:\\Users\\student.ITSTEP1\\Documents\\Sin\\src\\DataAccess\\DataAccess.csproj",
+        "packagesPath": "C:\\Users\\student.ITSTEP1\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\student.ITSTEP1\\Documents\\Sin\\src\\DataAccess\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\a\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\student.ITSTEP1\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -92,8 +98,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\a\\Source\\Repos\\ISTORE-NEW-200219\\src\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\a\\Source\\Repos\\ISTORE-NEW-200219\\src\\Domain\\Domain.csproj"
+              "C:\\Users\\student.ITSTEP1\\Documents\\Sin\\src\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\student.ITSTEP1\\Documents\\Sin\\src\\Domain\\Domain.csproj"
               }
             }
           }
@@ -135,17 +141,20 @@
         }
       }
     },
-    "C:\\Users\\a\\Source\\Repos\\ISTORE-NEW-200219\\src\\Domain\\Domain.csproj": {
+    "C:\\Users\\student.ITSTEP1\\Documents\\Sin\\src\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\a\\Source\\Repos\\ISTORE-NEW-200219\\src\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\student.ITSTEP1\\Documents\\Sin\\src\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\a\\Source\\Repos\\ISTORE-NEW-200219\\src\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\a\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\a\\Source\\Repos\\ISTORE-NEW-200219\\src\\Domain\\obj\\",
+        "projectPath": "C:\\Users\\student.ITSTEP1\\Documents\\Sin\\src\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\student.ITSTEP1\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\student.ITSTEP1\\Documents\\Sin\\src\\Domain\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\a\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\student.ITSTEP1\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

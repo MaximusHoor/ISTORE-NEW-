@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Domain.Infrastructure
+namespace Domain.Infrastructure //DataAccess?
 {
     public class OperationDetail
     {

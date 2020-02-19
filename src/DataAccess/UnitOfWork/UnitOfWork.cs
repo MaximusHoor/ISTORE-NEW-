@@ -20,6 +20,7 @@ namespace DataAccess.UnitOfWork
         }
 
         public ICommentRepository CommentRepository { get; }
+        public IDeliveryRepository DeliveryRepository { get; }
 
         public async Task SaveChangesAsync()
         {

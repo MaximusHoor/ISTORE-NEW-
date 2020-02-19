@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Domain.EF_Models
+﻿namespace Domain.EF_Models
 {
-  public  class Image
+    public class Image
     {
         public int Id { get; set; }
         public string FilePath { get; set; }

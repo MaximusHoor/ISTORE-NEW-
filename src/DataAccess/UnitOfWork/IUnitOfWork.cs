@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using Domain.Repository.Interfaces;
+﻿using System.Threading.Tasks;
+using DataAccess.Repository.Interfaces;
 
 namespace DataAccess.UnitOfWork
 {
     public interface IUnitOfWork
     {
-        IUserRepository UserRepository { get; }
+        ICommentRepository CommentRepository { get; }
         Task SaveChangesAsync();
-    } 
+    }
 }

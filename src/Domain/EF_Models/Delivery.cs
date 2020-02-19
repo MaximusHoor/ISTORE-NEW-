@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Domain.EF_Models
 {
-   public class Delivery
+    public class Delivery
     {
         public int Id { get; set; }
         public string DeliveryNote { get; set; }

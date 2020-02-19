@@ -1,20 +1,19 @@
-﻿using Domain.Repository.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using Domain.EF_Models;
-using System.Threading.Tasks;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
+using Domain.EF_Models;
 using Domain.Infrastructure;
+using Domain.Repository.Interfaces;
 
 namespace DataAccess.Repository.Interfaces
 {
-    public interface ICommentRepository:IRepository<Comment>
+    public interface ICommentRepository : IRepository<Comment>
     {
         Task<IEnumerable<Comment>> FindAllCommentsAsync();
         Task<IEnumerable<Comment>> FindCommentByConditionAsync(Expression<Func<Comment, bool>> predicate);
-        Task<OperationDetail> CreateCommentAsync(Comment comment);
-        Task<OperationDetail> UpdateCommentAsync(Comment comment);
-        Task<OperationDetail> DeleteCommentAsync(Comment comment);
+        OperationDetail CreateComment(Comment comment);
+        OperationDetail UpdateComment(Comment comment);
+        OperationDetail DeleteComment(Comment comment);
     }
 }

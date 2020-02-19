@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Domain.EF_Models
 {
-  public  class Order
+    public class Order
     {
         public Order()
         {
             Products = new List<OrderDetails>();
         }
+
         public int Id { get; set; }
         public string Number { get; set; }
         public DateTime Date { get; set; }

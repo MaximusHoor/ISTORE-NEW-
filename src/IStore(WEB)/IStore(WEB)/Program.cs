@@ -15,8 +15,8 @@ namespace IStore_WEB_
         public static IHostBuilder CreateHostBuilder(string[] args)
         {
             Log.Logger = new LoggerConfiguration().MinimumLevel.Debug().WriteTo
-                .RollingFile("Logs/log-{Date}.txt", LogEventLevel.Debug).WriteTo.Seq("http://localhost:5341").CreateLogger();
-
+                .RollingFile("Logs/log-{Date}.txt", LogEventLevel.Debug).WriteTo.Seq("http://localhost:5341")
+                .CreateLogger();
 
 
             return Host.CreateDefaultBuilder(args)
@@ -24,6 +24,6 @@ namespace IStore_WEB_
         }
 
 
-       //http://localhost:5341/
+        //http://localhost:5341/
     }
 }

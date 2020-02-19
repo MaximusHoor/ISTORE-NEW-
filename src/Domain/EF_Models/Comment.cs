@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Domain.EF_Models
 {
-   public class Comment
+    public class Comment
     {
         public Comment()
         {
             Answers = new List<Comment>();
         }
+
         public int Id { get; set; }
         public DateTime Date { get; set; }
         public string Text { get; set; }

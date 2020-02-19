@@ -1,24 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
+using DataAccess.Repository.Interfaces;
 using Domain.Context;
-using Domain.Repository.Interfaces;
 
 namespace DataAccess.UnitOfWork
 {
-    public class UnitOfWork :IUnitOfWork
+    public class UnitOfWork : IUnitOfWork, IDisposable
     {
-        public UnitOfWork(StoreContext storeContext, IUserRepository userRepository)
+        public UnitOfWork(StoreContext storeContext)
         {
             _storeContext = storeContext;
-            UserRepository = userRepository;
         }
-        private StoreContext _storeContext { get; set; }
-        public IUserRepository UserRepository { get; }
+
+        private StoreContext _storeContext { get; }
+
+        public void Dispose()
+        {
+            _storeContext?.Dispose();
+        }
+
+        public ICommentRepository CommentRepository { get; }
+
         public async Task SaveChangesAsync()
         {
-           await _storeContext.SaveChangesAsync();
+            await _storeContext.SaveChangesAsync();
         }
     }
 }

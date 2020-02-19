@@ -4987,19 +4987,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\admin\\.nuget\\packages\\": {}
+    "C:\\Users\\a\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\BusinessLogic\\Business.csproj",
+      "projectUniqueName": "C:\\Users\\a\\Source\\Repos\\ISTORE-NEW-200219\\src\\BusinessLogic\\Business.csproj",
       "projectName": "Business",
-      "projectPath": "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\BusinessLogic\\Business.csproj",
-      "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\BusinessLogic\\obj\\",
+      "projectPath": "C:\\Users\\a\\Source\\Repos\\ISTORE-NEW-200219\\src\\BusinessLogic\\Business.csproj",
+      "packagesPath": "C:\\Users\\a\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\a\\Source\\Repos\\ISTORE-NEW-200219\\src\\BusinessLogic\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\a\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5012,11 +5012,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\DataAccess\\DataAccess.csproj": {
-              "projectPath": "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\DataAccess\\DataAccess.csproj"
+            "C:\\Users\\a\\Source\\Repos\\ISTORE-NEW-200219\\src\\DataAccess\\DataAccess.csproj": {
+              "projectPath": "C:\\Users\\a\\Source\\Repos\\ISTORE-NEW-200219\\src\\DataAccess\\DataAccess.csproj"
             },
-            "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\Domain\\Domain.csproj"
+            "C:\\Users\\a\\Source\\Repos\\ISTORE-NEW-200219\\src\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\a\\Source\\Repos\\ISTORE-NEW-200219\\src\\Domain\\Domain.csproj"
             }
           }
         }

@@ -4,6 +4,7 @@ using Domain.EF_Models;
 using Domain.Infrastructure;
 using Domain.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace DataAccess.Repository
         }
 
         public async Task<OperationDetail> CreateDeliveryAsync(Delivery delivery)
-        {
+        {         
             return this.Create(delivery);
         }
 

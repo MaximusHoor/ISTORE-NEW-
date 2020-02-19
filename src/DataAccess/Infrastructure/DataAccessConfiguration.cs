@@ -12,6 +12,8 @@ namespace DataAccess.Infrastructure
         public static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
             services.AddTransient(typeof(ICommentRepository), typeof(CommentRepository));
+            services.AddTransient(typeof(IImageRepository), typeof(ImageRepository));
+            services.AddTransient(typeof(IGroupCharacteristicRepository), typeof(GroupCharacteristicRepository));
             services.AddDbContext<StoreContext>(option =>
                 option.UseSqlServer(configuration.GetConnectionString("myconn")));
         }

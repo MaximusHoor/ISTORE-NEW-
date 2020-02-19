@@ -21,6 +21,10 @@ namespace DataAccess.UnitOfWork
 
         public ICommentRepository CommentRepository { get; }
 
+        public IImageRepository ImageRepository { get; }
+
+        public IGroupCharacteristicRepository GroupCharacteristicRepository { get; }
+
         public async Task SaveChangesAsync()
         {
             await _storeContext.SaveChangesAsync();

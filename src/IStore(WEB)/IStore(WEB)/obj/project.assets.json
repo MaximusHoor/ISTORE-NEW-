@@ -7584,19 +7584,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\admin\\.nuget\\packages\\": {}
+    "C:\\Users\\a\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\IStore(WEB)\\IStore(WEB)\\IStore(WEB).csproj",
+      "projectUniqueName": "C:\\Users\\a\\Source\\Repos\\ISTORE-NEW-200219\\src\\IStore(WEB)\\IStore(WEB)\\IStore(WEB).csproj",
       "projectName": "IStore(WEB)",
-      "projectPath": "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\IStore(WEB)\\IStore(WEB)\\IStore(WEB).csproj",
-      "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\IStore(WEB)\\IStore(WEB)\\obj\\",
+      "projectPath": "C:\\Users\\a\\Source\\Repos\\ISTORE-NEW-200219\\src\\IStore(WEB)\\IStore(WEB)\\IStore(WEB).csproj",
+      "packagesPath": "C:\\Users\\a\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\a\\Source\\Repos\\ISTORE-NEW-200219\\src\\IStore(WEB)\\IStore(WEB)\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\a\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7609,8 +7609,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\BusinessLogic\\Business.csproj": {
-              "projectPath": "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\BusinessLogic\\Business.csproj"
+            "C:\\Users\\a\\Source\\Repos\\ISTORE-NEW-200219\\src\\BusinessLogic\\Business.csproj": {
+              "projectPath": "C:\\Users\\a\\Source\\Repos\\ISTORE-NEW-200219\\src\\BusinessLogic\\Business.csproj"
             }
           }
         }

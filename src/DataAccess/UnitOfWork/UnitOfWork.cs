@@ -21,6 +21,8 @@ namespace DataAccess.UnitOfWork
 
         public ICommentRepository CommentRepository { get; }
 
+        public IPackageRepository PackageRepository { get; }
+
         public async Task SaveChangesAsync()
         {
             await _storeContext.SaveChangesAsync();

@@ -23,6 +23,7 @@ namespace DataAccess.UnitOfWork
 
         public IPackageRepository PackageRepository { get; }
         public IOrderDetailsRepository OrderDetailsRepository { get; }
+        public IOrderRepository OrderRepository { get; }
 
         public async Task SaveChangesAsync()
         {

@@ -133,7 +133,7 @@ namespace DataAccessTest.Repository
 
             var updatedDelivery = _repository.FindByCondition(x => x.Id == delivery.Id).FirstOrDefault();
 
-            // Assert
+            // Assert 
             Assert.AreEqual("DHL", updatedDelivery.Name, "Record is not updated.");
             Assert.AreEqual(_date.AddDays(-40), updatedDelivery.Date, "Record is not updated.");
             Assert.AreEqual("To branch", updatedDelivery.Type, "Record is not updated.");
@@ -144,7 +144,7 @@ namespace DataAccessTest.Repository
         {
             var delivery = Create();
             Delete(delivery);
-
+            
             delivery = Create();
             GetAll();
 

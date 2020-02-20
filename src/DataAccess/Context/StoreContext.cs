@@ -11,5 +11,6 @@ namespace Domain.Context
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Image> Images { get; set; }
         public DbSet<GroupCharacteristic> GroupCharacteristics { get; set; }
+        public DbSet<Characteristic> Characteristics { get; set; }
     }
 }

@@ -8,6 +8,8 @@ namespace DataAccess.UnitOfWork
         ICommentRepository CommentRepository { get; }
         IImageRepository ImageRepository { get; }
         IGroupCharacteristicRepository GroupCharacteristicRepository { get; }
+        ICharacteristicRepository CharacteristicRepository { get; }
+
         Task SaveChangesAsync();
     }
 }

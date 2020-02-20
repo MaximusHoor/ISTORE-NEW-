@@ -12,5 +12,6 @@ namespace Domain.Context
         public DbSet<Image> Images { get; set; }
         public DbSet<GroupCharacteristic> GroupCharacteristics { get; set; }
         public DbSet<Product> Product { get; set; }
+        public DbSet<Delivery> Deliveries { get; set; }
     }
 }

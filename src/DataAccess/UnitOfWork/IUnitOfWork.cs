@@ -6,6 +6,7 @@ namespace DataAccess.UnitOfWork
     public interface IUnitOfWork
     {
         ICommentRepository CommentRepository { get; }
+        IDeliveryRepository DeliveryRepository { get; }
         IImageRepository ImageRepository { get; }
         IGroupCharacteristicRepository GroupCharacteristicRepository { get; }
         IProductRepository ProductRepository { get; }

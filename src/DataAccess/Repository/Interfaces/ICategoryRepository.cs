@@ -15,7 +15,7 @@ namespace DataAccess.Repository.Interfaces
         Task<IEnumerable<Category>> FindCategoryByConditionAsync(Expression<Func<Category, bool>> predicate);
         OperationDetail CreateCategory(Category category);
         OperationDetail UpdateCategory(Category сategory);
-        OperationDetail DeleteCategory(Category сategory);
+        OperationDetail DeleteCategory(Category сategory); 
 
 
         //Task<OperationDetail> AddProductAsync(Product product);

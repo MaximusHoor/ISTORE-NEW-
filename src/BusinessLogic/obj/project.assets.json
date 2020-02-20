@@ -4993,11 +4993,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\student.ITSTEP1\\Source\\Repos\\ISTORE-NEW-\\src\\BusinessLogic\\Business.csproj",
+      "projectUniqueName": "C:\\Users\\student.ITSTEP1\\source\\repos\\ISTORE-NEW-\\src\\BusinessLogic\\Business.csproj",
       "projectName": "Business",
-      "projectPath": "C:\\Users\\student.ITSTEP1\\Source\\Repos\\ISTORE-NEW-\\src\\BusinessLogic\\Business.csproj",
+      "projectPath": "C:\\Users\\student.ITSTEP1\\source\\repos\\ISTORE-NEW-\\src\\BusinessLogic\\Business.csproj",
       "packagesPath": "C:\\Users\\student.ITSTEP1\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\student.ITSTEP1\\Source\\Repos\\ISTORE-NEW-\\src\\BusinessLogic\\obj\\",
+      "outputPath": "C:\\Users\\student.ITSTEP1\\source\\repos\\ISTORE-NEW-\\src\\BusinessLogic\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -5016,11 +5016,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\student.ITSTEP1\\Source\\Repos\\ISTORE-NEW-\\src\\DataAccess\\DataAccess.csproj": {
-              "projectPath": "C:\\Users\\student.ITSTEP1\\Source\\Repos\\ISTORE-NEW-\\src\\DataAccess\\DataAccess.csproj"
+            "C:\\Users\\student.ITSTEP1\\source\\repos\\ISTORE-NEW-\\src\\DataAccess\\DataAccess.csproj": {
+              "projectPath": "C:\\Users\\student.ITSTEP1\\source\\repos\\ISTORE-NEW-\\src\\DataAccess\\DataAccess.csproj"
             },
-            "C:\\Users\\student.ITSTEP1\\Source\\Repos\\ISTORE-NEW-\\src\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\student.ITSTEP1\\Source\\Repos\\ISTORE-NEW-\\src\\Domain\\Domain.csproj"
+            "C:\\Users\\student.ITSTEP1\\source\\repos\\ISTORE-NEW-\\src\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\student.ITSTEP1\\source\\repos\\ISTORE-NEW-\\src\\Domain\\Domain.csproj"
             }
           }
         }

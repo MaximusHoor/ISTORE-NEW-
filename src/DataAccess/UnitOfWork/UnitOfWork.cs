@@ -20,7 +20,7 @@ namespace DataAccess.UnitOfWork
         }
 
         public ICommentRepository CommentRepository { get; }
-
+        public IBrandRepository BrandRepository { get; }
         public async Task SaveChangesAsync()
         {
             await _storeContext.SaveChangesAsync();

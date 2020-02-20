@@ -16,6 +16,7 @@ namespace Business.Service
         public GroupCharacteristicService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
+
         }
 
         public OperationDetail AddGroupCharacteristic(GroupCharacteristic groupCharacteristic)

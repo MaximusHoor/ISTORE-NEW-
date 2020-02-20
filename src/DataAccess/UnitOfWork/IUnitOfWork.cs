@@ -7,6 +7,6 @@ namespace DataAccess.UnitOfWork
     {
         ICommentRepository CommentRepository { get; }
         IBrandRepository BrandRepository { get; }
-        Task SaveChangesAsync();
+        Task SaveChangesAsync(); 
     }
 }

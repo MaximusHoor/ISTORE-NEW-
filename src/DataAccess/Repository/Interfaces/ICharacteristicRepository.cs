@@ -15,7 +15,7 @@ namespace DataAccess.Repository.Interfaces
         Task<IEnumerable<Characteristic>> FindCharacteristicByConditionAsync(Expression<Func<Characteristic, bool>> predicate);
         OperationDetail CreateCharacteristic(Characteristic characteristic);
         OperationDetail UpdateCharacteristic(Characteristic characteristic);
-        OperationDetail DeleteCharacteristic(Characteristic characteristic);
+        OperationDetail DeleteCharacteristic(Characteristic characteristic); 
     }
     
     

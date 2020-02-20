@@ -20,6 +20,7 @@ namespace DataAccess.UnitOfWork
         }
 
         public ICommentRepository CommentRepository { get; }
+        public ICategoryRepository CategoryRepository { get; }
 
         public IImageRepository ImageRepository { get; }
 

@@ -61,7 +61,7 @@ namespace DataAccessTest.Repository
                 // Arrange
                 var product = new Product
                 {
-                   
+                       
                     Id = _id,
                     Title=_Title,
                     Type=_Type,

@@ -16,7 +16,7 @@ namespace DataAccess.Repository.Interfaces
         OperationDetail CreateCategory(Category category);
         OperationDetail UpdateCategory(Category сategory);
         OperationDetail DeleteCategory(Category сategory); 
-
+         
 
         //Task<OperationDetail> AddProductAsync(Product product);
         //Task<OperationDetail> AddSubcategoryAsync(Category category);

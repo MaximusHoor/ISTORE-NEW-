@@ -13,7 +13,7 @@ namespace DataAccessTest.Repository
     [TestFixture]
     public class CategoryRepositoryTest
     {
-        [SetUp]
+        [SetUp] 
         public void Setup()
         {
             InitialiseParameters();

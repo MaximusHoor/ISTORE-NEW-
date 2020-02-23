@@ -17,6 +17,7 @@ namespace DataAccess.Infrastructure
             services.AddTransient(typeof(IGroupCharacteristicRepository), typeof(GroupCharacteristicRepository));
             services.AddTransient(typeof(ICharacteristicRepository), typeof(CharacteristicRepository));
             services.AddTransient(typeof(IAddressRepository), typeof(AddressRepository));
+            services.AddTransient(typeof(IBrandRepository), typeof(BrandRepository));
 
             services.AddDbContext<StoreContext>(option =>
                 option.UseSqlServer(configuration.GetConnectionString("myconn")));

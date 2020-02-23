@@ -1,6 +1,7 @@
 ﻿using DataAccess.Repository;
 using DataAccess.Repository.Interfaces;
 using Domain.Context;
+using Domain.EF_Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,6 +19,8 @@ namespace DataAccess.Infrastructure
             services.AddTransient(typeof(ICharacteristicRepository), typeof(CharacteristicRepository));
             services.AddTransient(typeof(IAddressRepository), typeof(AddressRepository));
             services.AddTransient(typeof(IBrandRepository), typeof(BrandRepository));
+
+            
 
             services.AddDbContext<StoreContext>(option =>
                 option.UseSqlServer(configuration.GetConnectionString("myconn")));

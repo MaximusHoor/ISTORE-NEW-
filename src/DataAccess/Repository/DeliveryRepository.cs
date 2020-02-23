@@ -18,12 +18,12 @@ namespace DataAccess.Repository.Interfaces
 
         }
 
-        public OperationDetail CreateDelivery(Delivery delivery)
+        public async Task<OperationDetail> CreateDelivery(Delivery delivery)
         {
             return Create(delivery);
         }
 
-        public OperationDetail DeleteDelivery(Delivery delivery)
+        public async Task<OperationDetail> DeleteDelivery(Delivery delivery)
         {
             return Delete(delivery);
         }
@@ -38,7 +38,7 @@ namespace DataAccess.Repository.Interfaces
             return await FindByCondition(predicate).ToListAsync();
         }
 
-        public OperationDetail UpdateDelivery(Delivery delivery)
+        public async Task<OperationDetail> UpdateDelivery(Delivery delivery)
         {
             return Update(delivery);
         }

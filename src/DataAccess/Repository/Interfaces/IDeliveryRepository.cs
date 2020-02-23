@@ -13,8 +13,8 @@ namespace DataAccess.Repository.Interfaces
     {
         Task<IEnumerable<Delivery>> FindAllDeliveriesAsync();
         Task<IEnumerable<Delivery>> FindDeliveryByConditionAsync(Expression<Func<Delivery, bool>> predicate);
-        OperationDetail CreateDelivery(Delivery delivery);
-        OperationDetail UpdateDelivery(Delivery delivery);
-        OperationDetail DeleteDelivery(Delivery delivery);
+        Task<OperationDetail> CreateDelivery(Delivery delivery);
+        Task<OperationDetail> UpdateDelivery(Delivery delivery);
+        Task<OperationDetail> DeleteDelivery(Delivery delivery);
     }
 }

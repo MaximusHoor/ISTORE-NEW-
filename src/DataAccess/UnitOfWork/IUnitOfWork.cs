@@ -9,6 +9,8 @@ namespace DataAccess.UnitOfWork
         IDeliveryRepository DeliveryRepository { get; }
         IImageRepository ImageRepository { get; }
         IGroupCharacteristicRepository GroupCharacteristicRepository { get; }
+
+        ICategoryRepository CategoryRepository { get; }
         IProductRepository ProductRepository { get; }
         Task SaveChangesAsync();
     }

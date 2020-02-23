@@ -13,6 +13,7 @@ namespace DataAccess.Infrastructure
         {
             services.AddTransient(typeof(ICommentRepository), typeof(CommentRepository));
             services.AddTransient(typeof(IImageRepository), typeof(ImageRepository));
+            services.AddTransient(typeof(IDeliveryRepository), typeof(DeliveryRepository));
             services.AddTransient(typeof(IGroupCharacteristicRepository), typeof(GroupCharacteristicRepository));
             services.AddTransient(typeof(ICharacteristicRepository), typeof(CharacteristicRepository));
             

@@ -25,8 +25,13 @@ namespace DataAccess.UnitOfWork
         public IImageRepository ImageRepository { get; }
 
         public IGroupCharacteristicRepository GroupCharacteristicRepository { get; }
+
+        public ICharacteristicRepository CharacteristicRepository { get; }
+
+
         public IProductRepository ProductRepository { get; }
         public IDeliveryRepository DeliveryRepository { get; }
+
 
         public async Task SaveChangesAsync()
         {

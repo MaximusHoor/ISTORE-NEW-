@@ -6,7 +6,6 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace DataAccessTest.Repository
 {
@@ -26,7 +25,7 @@ namespace DataAccessTest.Repository
         string _name;
         string _country;
         string _description;
-       
+
         private void InitialiseParameters()
         {
             _id = new Random().Next(0, int.MaxValue);
@@ -40,10 +39,10 @@ namespace DataAccessTest.Repository
             // Arrange
             var brand = new Brand
             {
-               Id=_id,
-               Country = _country,
-               Name = _name,
-               Description =_description
+                Id = _id,
+                Country = _country,
+                Name = _name,
+                Description = _description
             };
             // Act
             _repository.CreateBrand(brand);
@@ -93,7 +92,7 @@ namespace DataAccessTest.Repository
             Assert.AreEqual(_country, brand.Country);
             Assert.AreEqual(_description, brand.Description);
             Assert.AreEqual(_name, brand.Name);
-          
+
         }
 
         private void Delete(int id)

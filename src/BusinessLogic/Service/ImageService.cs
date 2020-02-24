@@ -4,12 +4,11 @@ using Domain.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Business.Service
 {
-    public class ImageService
+    public class ImageService : IImageService
     {
         private readonly IUnitOfWork _unitOfWork;
 
@@ -18,28 +17,28 @@ namespace Business.Service
             _unitOfWork = unitOfWork;
         }
 
-        public OperationDetail AddImage(Image image)
+        public async Task<OperationDetail> AddImageAsync(Image image)
         {
             var res = _unitOfWork.ImageRepository.Create(image);
-            _unitOfWork.SaveChangesAsync();
+            await _unitOfWork.SaveChangesAsync();
             return res;
         }
 
-        public OperationDetail DeleteImage(Image image)
+        public async Task<OperationDetail> DeleteImageAsync(Image image)
         {
             var res = _unitOfWork.ImageRepository.DeleteImage(image);
-            _unitOfWork.SaveChangesAsync();
+            await _unitOfWork.SaveChangesAsync().ConfigureAwait(false);
             return res;
         }
 
-        public OperationDetail UpdateImage(Image image)
+        public async Task<OperationDetail> UpdateImageAsync(Image image)
         {
             var res = _unitOfWork.ImageRepository.UpdateImage(image);
-            _unitOfWork.SaveChangesAsync();
+            await _unitOfWork.SaveChangesAsync();
             return res;
         }
 
-        public async Task<IEnumerable<Image>> GetImage(Expression<Func<Image, bool>> predicate)
+        public async Task<IEnumerable<Image>> GetImageAsync(Expression<Func<Image, bool>> predicate)
         {
             var images = await _unitOfWork.ImageRepository.FindImageByConditionAsync(predicate);
             return images;

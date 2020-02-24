@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using DataAccess.Repository.Interfaces;
+﻿using DataAccess.Repository.Interfaces;
+using System.Threading.Tasks;
 
 namespace DataAccess.UnitOfWork
 {

@@ -1,7 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
-using DataAccess.Repository.Interfaces;
+﻿using DataAccess.Repository.Interfaces;
 using Domain.Context;
+using System;
+using System.Threading.Tasks;
 
 namespace DataAccess.UnitOfWork
 {

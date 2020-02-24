@@ -6,7 +6,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DataAccess.Repository.Interfaces
@@ -15,30 +14,24 @@ namespace DataAccess.Repository.Interfaces
     {
         public DeliveryRepository(StoreContext context) : base(context)
         {
-
         }
-
-        public async Task<OperationDetail> CreateDelivery(Delivery delivery)
+        public OperationDetail CreateDelivery(Delivery delivery)
         {
             return Create(delivery);
         }
-
-        public async Task<OperationDetail> DeleteDelivery(Delivery delivery)
+        public OperationDetail DeleteDelivery(Delivery delivery)
         {
             return Delete(delivery);
         }
-
         public async Task<IEnumerable<Delivery>> FindAllDeliveriesAsync()
         {
-            return await FindAll().ToListAsync();
+            return await FindAll().ToListAsync().ConfigureAwait(false);
         }
-
         public async Task<IEnumerable<Delivery>> FindDeliveryByConditionAsync(Expression<Func<Delivery, bool>> predicate)
         {
-            return await FindByCondition(predicate).ToListAsync();
+            return await FindByCondition(predicate).ToListAsync().ConfigureAwait(false);
         }
-
-        public async Task<OperationDetail> UpdateDelivery(Delivery delivery)
+        public OperationDetail UpdateDelivery(Delivery delivery)
         {
             return Update(delivery);
         }

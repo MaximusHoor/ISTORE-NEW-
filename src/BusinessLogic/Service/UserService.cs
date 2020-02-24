@@ -2,14 +2,12 @@
 using DataAccess.UnitOfWork;
 using Domain.EF_Models;
 using Domain.Infrastructure;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Business.Service
 {
-    public class UserService:IUserService
+    public class UserService : IUserService
     {
         public UserService(IUnitOfWork unitOfWork) { this._unitOfWork = unitOfWork; }
         private readonly IUnitOfWork _unitOfWork;
@@ -21,8 +19,8 @@ namespace Business.Service
 
         public async Task<User> GetUserAsync(int id)
         {
-            var user= await _unitOfWork.UserRepository.GetUserByConditionAsync(x=>x.Id==id);
-            // user.Address = await _unitOfWork.AddressRepository.GetAddressByCondition(x => x.Id == user.AddressId);
+            var user = await _unitOfWork.UserRepository.GetUserByConditionAsync(x => x.Id == id);
+
             user.Comments = await _unitOfWork.CommentRepository.FindCommentsByConditionAsync(x => x.UserId == user.Id);
             return user;
         }
@@ -43,7 +41,7 @@ namespace Business.Service
 
         public async Task<OperationDetail> DeleteUserAsync(User user)
         {
-            var operationResult = _unitOfWork.UserRepository.Delete (user);
+            var operationResult = _unitOfWork.UserRepository.Delete(user);
             await _unitOfWork.SaveChangesAsync();
             return operationResult;
         }

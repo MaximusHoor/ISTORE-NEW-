@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Domain.EF_Models;
+using Domain.Infrastructure;
+using Domain.Repository.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Domain.EF_Models;
-using Domain.Infrastructure;
-using Domain.Repository.Interfaces;
 
 namespace DataAccess.Repository.Interfaces
 {

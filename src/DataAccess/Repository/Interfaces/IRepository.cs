@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Domain.Infrastructure;
+using System;
 using System.Linq;
 using System.Linq.Expressions;
-using Domain.Infrastructure;
 
 namespace Domain.Repository.Interfaces
 {

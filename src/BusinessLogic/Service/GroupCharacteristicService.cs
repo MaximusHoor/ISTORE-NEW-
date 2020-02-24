@@ -1,15 +1,16 @@
-﻿using DataAccess.UnitOfWork;
+﻿using Business.Service.Interfaces;
+using DataAccess.UnitOfWork;
 using Domain.EF_Models;
 using Domain.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Business.Service
 {
-    public class GroupCharacteristicService
+
+    public class GroupCharacteristicService : IGroupCharacteristicService
     {
         private readonly IUnitOfWork _unitOfWork;
 
@@ -18,29 +19,28 @@ namespace Business.Service
             _unitOfWork = unitOfWork;
 
         }
-
-        public OperationDetail AddGroupCharacteristic(GroupCharacteristic groupCharacteristic)
+        public async Task<OperationDetail> AddGroupCharacteristicAsync(GroupCharacteristic groupCharacteristic)
         {
             var res = _unitOfWork.GroupCharacteristicRepository.CreateGroupCharacteristic(groupCharacteristic);
-            _unitOfWork.SaveChangesAsync();
+            await _unitOfWork.SaveChangesAsync();
             return res;
         }
 
-        public OperationDetail DeleteGroupCharacteristic(GroupCharacteristic groupCharacteristic)
+        public async Task<OperationDetail> DeleteGroupCharacteristicAsync(GroupCharacteristic groupCharacteristic)
         {
             var res = _unitOfWork.GroupCharacteristicRepository.DeleteGroupCharacteristic(groupCharacteristic);
-            _unitOfWork.SaveChangesAsync();
+            await _unitOfWork.SaveChangesAsync();
             return res;
         }
 
-        public OperationDetail UpdateGroupCharacteristic(GroupCharacteristic groupCharacteristic)
+        public async Task<OperationDetail> UpdateGroupCharacteristicAsync(GroupCharacteristic groupCharacteristic)
         {
             var res = _unitOfWork.GroupCharacteristicRepository.UpdateGroupCharacteristic(groupCharacteristic);
-            _unitOfWork.SaveChangesAsync();
+            await _unitOfWork.SaveChangesAsync();
             return res;
         }
 
-        public async Task<IEnumerable<GroupCharacteristic>> GetImage(Expression<Func<GroupCharacteristic, bool>> predicate)
+        public async Task<IEnumerable<GroupCharacteristic>> GetGroupCharacteristicAsync(Expression<Func<GroupCharacteristic, bool>> predicate)
         {
             var groupCharacteristics = await _unitOfWork.GroupCharacteristicRepository.FindGroupCharacteristicByConditionAsync(predicate);
             return groupCharacteristics;

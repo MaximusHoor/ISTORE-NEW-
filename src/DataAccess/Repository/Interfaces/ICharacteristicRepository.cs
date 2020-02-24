@@ -4,7 +4,6 @@ using Domain.Repository.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DataAccess.Repository.Interfaces
@@ -15,8 +14,8 @@ namespace DataAccess.Repository.Interfaces
         Task<IEnumerable<Characteristic>> FindCharacteristicByConditionAsync(Expression<Func<Characteristic, bool>> predicate);
         OperationDetail CreateCharacteristic(Characteristic characteristic);
         OperationDetail UpdateCharacteristic(Characteristic characteristic);
-        OperationDetail DeleteCharacteristic(Characteristic characteristic); 
+        OperationDetail DeleteCharacteristic(Characteristic characteristic);
     }
-    
-    
+
+
 }

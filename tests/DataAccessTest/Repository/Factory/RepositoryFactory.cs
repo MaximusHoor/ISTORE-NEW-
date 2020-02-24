@@ -6,7 +6,7 @@ namespace DataAccessTest.Repository.Factory
     {
         internal static T Instance<T>()
         {
-            return (T) Activator.CreateInstance(typeof(T), ContextSingleton.GetDatabaseContext());
+            return (T)Activator.CreateInstance(typeof(T), ContextSingleton.GetDatabaseContext());
         }
     }
 }

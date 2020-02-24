@@ -2,12 +2,10 @@
 using DataAccess.Repository.Interfaces;
 using DataAccessTest.Repository.Factory;
 using Domain.EF_Models;
-using Domain.Repository.Interfaces;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace DataAccessTest.Repository
 {
@@ -44,13 +42,13 @@ namespace DataAccessTest.Repository
         {
             // Arrange
             var address = new Address
-            {                
+            {
                 Id = _id,
                 Country = _country,
                 City = _city,
                 Street = _street,
                 BuildingNumber = _buildingNumber,
-                ApartmentNumber = _apartmentNumber               
+                ApartmentNumber = _apartmentNumber
             };
             // Act
             _repository.CreateAddress(address);
@@ -67,7 +65,7 @@ namespace DataAccessTest.Repository
             // Arrange
 
             address.City = "Lvov";
-            address.ApartmentNumber ="10";
+            address.ApartmentNumber = "10";
             address.Street = "Ivanova";
 
             // Act

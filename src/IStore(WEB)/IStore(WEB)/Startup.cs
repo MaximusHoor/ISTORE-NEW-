@@ -1,6 +1,4 @@
-using AutoMapper;
 using Business.Infrastructure;
-using Business.Infrastructure.Mapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -25,12 +23,6 @@ namespace IStore_WEB_
             //services.AddTransient(typeof(UserSerive));
             services.AddControllersWithViews();
 
-            // Auto Mapper Configurations
-
-            var mappingConfig = new MapperConfiguration(mc => { mc.AddProfile(new MapperConfig()); });
-
-            IMapper mapper = mappingConfig.CreateMapper();
-            services.AddSingleton(mapper);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

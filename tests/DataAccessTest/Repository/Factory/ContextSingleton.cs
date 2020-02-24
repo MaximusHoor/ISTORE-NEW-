@@ -1,6 +1,6 @@
-﻿using System;
-using Domain.Context;
+﻿using Domain.Context;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace DataAccessTest.Repository.Factory
 {

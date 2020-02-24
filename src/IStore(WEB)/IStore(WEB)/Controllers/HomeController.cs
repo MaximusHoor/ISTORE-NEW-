@@ -1,7 +1,7 @@
-﻿using System.Diagnostics;
-using IStore_WEB_.Models;
+﻿using IStore_WEB_.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Diagnostics;
 
 namespace IStore_WEB_.Controllers
 {
@@ -28,7 +28,7 @@ namespace IStore_WEB_.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

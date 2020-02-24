@@ -1,14 +1,11 @@
-﻿using Business.Infrastructure;
-using Domain.EF_Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Domain.EF_Models;
+using Domain.Infrastructure;
 using System.Threading.Tasks;
 
 namespace Business.Service.Interfaces
 {
-    public interface IDeliveryService<T>:ICrudService<Delivery>
+    public interface IDeliveryService<in T> : ICrudService<Delivery>
     {
-        Task<OperationDetailDTO> CustomMethod(T obj);
+        Task<OperationDetail> CustomMethod(T obj);
     }
 }

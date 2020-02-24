@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using DataAccess.Repository;
+﻿using DataAccess.Repository;
 using DataAccessTest.Repository.Factory;
 using Domain.EF_Models;
 using Domain.Repository.Interfaces;
 using NUnit.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DomainTest.Repository
 {
@@ -47,8 +47,8 @@ namespace DomainTest.Repository
                 Date = _date,
                 Id = _id,
                 Text = _text,
-                Product = new Product {Id = _id},
-                User = new User {Id = _userId.Value},
+                Product = new Product { Id = _id },
+                User = new User { Id = _userId.Value },
                 Like = _like,
                 Dislike = _dislike,
                 UserId = _userId

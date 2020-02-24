@@ -5,7 +5,6 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace DataAccessTest.Repository
 {
@@ -144,7 +143,7 @@ namespace DataAccessTest.Repository
         {
             var delivery = Create();
             Delete(delivery);
-            
+
             delivery = Create();
             GetAll();
 

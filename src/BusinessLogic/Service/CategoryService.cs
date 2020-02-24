@@ -4,12 +4,11 @@ using Domain.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Business.Service
 {
-    public class CategoryService
+    public class CategoryService : ICategoryService
     {
         private readonly IUnitOfWork _unitOfWork;
 
@@ -17,25 +16,24 @@ namespace Business.Service
         {
             _unitOfWork = unitOfWork;
         }
-
-        public OperationDetail AddCategory(Category category)
+        public async Task<OperationDetail> AddCategoryAsync(Category category)
         {
             var res = _unitOfWork.CategoryRepository.CreateCategory(category);
-            _unitOfWork.SaveChangesAsync();
+            await _unitOfWork.SaveChangesAsync();
             return res;
         }
 
-        public OperationDetail DeleteCategory(Category category)
+        public async Task<OperationDetail> DeleteCategoryAsync(Category category)
         {
             var res = _unitOfWork.CategoryRepository.DeleteCategory(category);
-            _unitOfWork.SaveChangesAsync();
+            await _unitOfWork.SaveChangesAsync();
             return res;
         }
 
-        public OperationDetail UpdateCategory(Category category)
+        public async Task<OperationDetail> UpdateCategoryAsync(Category category)
         {
             var res = _unitOfWork.CategoryRepository.UpdateCategory(category);
-            _unitOfWork.SaveChangesAsync();
+            await _unitOfWork.SaveChangesAsync();
             return res;
         }
 

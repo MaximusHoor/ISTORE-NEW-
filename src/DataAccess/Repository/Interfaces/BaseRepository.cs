@@ -1,10 +1,10 @@
-﻿using System;
-using System.Linq;
-using System.Linq.Expressions;
-using Domain.Context;
+﻿using Domain.Context;
 using Domain.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
+using System;
+using System.Linq;
+using System.Linq.Expressions;
 
 namespace Domain.Repository.Interfaces
 {
@@ -28,12 +28,12 @@ namespace Domain.Repository.Interfaces
             try
             {
                 _storeContext.Set<T>().Add(entity);
-                return new OperationDetail {Message = "Created"};
+                return new OperationDetail { Message = "Created" };
             }
             catch (Exception e)
             {
                 Log.Error(e, "Create Fatal Error");
-                return new OperationDetail {IsError = true, Message = "Create Fatal Error"};
+                return new OperationDetail { IsError = true, Message = "Create Fatal Error" };
             }
         }
         public OperationDetail Update(T entity)
@@ -41,12 +41,12 @@ namespace Domain.Repository.Interfaces
             try
             {
                 _storeContext.Set<T>().Update(entity);
-                return new OperationDetail {Message = "Updated"};
+                return new OperationDetail { Message = "Updated" };
             }
             catch (Exception e)
             {
                 Log.Error(e, "Update Fatal Error");
-                return new OperationDetail {IsError = true, Message = "Update Fatal Error"};
+                return new OperationDetail { IsError = true, Message = "Update Fatal Error" };
             }
         }
         public OperationDetail Delete(T entity)
@@ -54,12 +54,12 @@ namespace Domain.Repository.Interfaces
             try
             {
                 _storeContext.Set<T>().Remove(entity);
-                return new OperationDetail {Message = "Deleted"};
+                return new OperationDetail { Message = "Deleted" };
             }
             catch (Exception e)
             {
                 Log.Error(e, "Deleted Fatal Error");
-                return new OperationDetail {IsError = true, Message = "Deleted Fatal Error"};
+                return new OperationDetail { IsError = true, Message = "Deleted Fatal Error" };
             }
         }
     }

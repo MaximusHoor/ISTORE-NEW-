@@ -1,48 +1,750 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - IStore_WEB_</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="~/css/site.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i&display=swap"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/master_page/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/lib/jquery-ui/css/jquery-ui.css" />
+    <link rel="stylesheet" href="~/master_page/css/chosen.min.css" />
+    <link rel="stylesheet" href="~/master_page/css/mobile-menu.css" />
+    <link rel="stylesheet" href="~/master_page/fonts/flaticon/flaticon.css" />
+    <link rel="stylesheet" href="~/master_page/css/master_page_style.css" />
 </head>
 <body>
-<header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-        <div class="container">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">IStore_WEB_</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                    </li>
-                </ul>
+    <header class="header style7">
+        <div class="top-bar">
+            <div class="container">
+                <div class="top-bar-left">
+                    <div class="header-message">
+                        Welcome to our online store!
+                    </div>
+                </div>
+                <div class="top-bar-right">
+                    <div class="header-language">
+                        <div class="tanajil-language tanajil-dropdown">
+                            <a href="index.html#" class="active language-toggle" data-tanajil="tanajil-dropdown">
+                                <span>
+                                    English (USD)
+                                </span>
+                            </a>
+                            <ul class="tanajil-submenu">
+                                <li class="switcher-option">
+                                    <a href="index.html#">
+                                        <span>
+                                            French (EUR)
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="switcher-option">
+                                    <a href="index.html#">
+                                        <span>
+                                            Japanese (JPY)
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <ul class="header-user-links">
+                        <li>
+                            <a href="login.html">Login or Register</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </nav>
-</header>
-<div class="container">
-    <main role="main" class="pb-3">
-        @RenderBody()
-    </main>
-</div>
-
-<footer class="border-top footer text-muted">
-    <div class="container">
-        &copy; 2020 - IStore_WEB_ - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <div class="container">
+            <div class="main-header">
+                <div class="row">
+                    <div class="col-lg-3 col-sm-4 col-md-3 col-xs-7 col-ts-12 header-element">
+                        <div class="logo">
+                            <a href="index.html">
+                                <img src="assets/images/logo.png" alt="img">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-sm-8 col-md-6 col-xs-5 col-ts-12">
+                        <div class="block-search-block">
+                            <form class="form-search form-search-width-category">
+                                <div class="form-content">
+                                    <div class="category">
+                                        <select title="cate" data-placeholder="All Categories" class="chosen-select"
+                                                tabindex="1">
+                                            <option value="United States">Accessories</option>
+                                            <option value="United Kingdom">Interior</option>
+                                            <option value="Afghanistan">Performance</option>
+                                            <option value="Aland Islands">Sofas</option>
+                                            <option value="Albania">New Arrivals</option>
+                                            <option value="Algeria">Storage</option>
+                                        </select>
+                                    </div>
+                                    <div class="inner">
+                                        <input type="text" class="input" name="s" value="" placeholder="Search here">
+                                    </div>
+                                    <button class="btn-search" type="submit">
+                                        <span class="icon-search"></span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-sm-12 col-md-3 col-xs-12 col-ts-12">
+                        <div class="header-control">
+                            <div class="block-minicart tanajil-mini-cart block-header tanajil-dropdown">
+                                <a href="javascript:void(0);" class="shopcart-icon" data-tanajil="tanajil-dropdown">
+                                    Cart
+                                    <span class="count">
+                                        0
+                                    </span>
+                                </a>
+                                <div class="shopcart-description tanajil-submenu">
+                                    <div class="content-wrap">
+                                        <h3 class="title">Shopping Cart</h3>
+                                        <ul class="minicart-items">
+                                            <li class="product-cart mini_cart_item">
+                                                <a href="index.html#" class="product-media">
+                                                    <img src="assets/images/item-minicart-1.jpg" alt="img">
+                                                </a>
+                                                <div class="product-details">
+                                                    <h5 class="product-name">
+                                                        <a href="index.html#">Wheel With Inserts</a>
+                                                    </h5>
+                                                    <div class="variations">
+                                                        <span class="attribute_color">
+                                                            <a href="index.html#">Black</a>
+                                                        </span>
+                                                        ,
+                                                        <span class="attribute_size">
+                                                            <a href="index.html#">300ml</a>
+                                                        </span>
+                                                    </div>
+                                                    <span class="product-price">
+                                                        <span class="price">
+                                                            <span>$45</span>
+                                                        </span>
+                                                    </span>
+                                                    <span class="product-quantity">
+                                                        (x1)
+                                                    </span>
+                                                    <div class="product-remove">
+                                                        <a href="index.html"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="product-cart mini_cart_item">
+                                                <a href="index.html#" class="product-media">
+                                                    <img src="assets/images/item-minicart-2.jpg" alt="img">
+                                                </a>
+                                                <div class="product-details">
+                                                    <h5 class="product-name">
+                                                        <a href="index.html#">Soap Wheels Solutions</a>
+                                                    </h5>
+                                                    <div class="variations">
+                                                        <span class="attribute_color">
+                                                            <a href="index.html#">Black</a>
+                                                        </span>
+                                                        ,
+                                                        <span class="attribute_size">
+                                                            <a href="index.html#">300ml</a>
+                                                        </span>
+                                                    </div>
+                                                    <span class="product-price">
+                                                        <span class="price">
+                                                            <span>$45</span>
+                                                        </span>
+                                                    </span>
+                                                    <span class="product-quantity">
+                                                        (x1)
+                                                    </span>
+                                                    <div class="product-remove">
+                                                        <a href="index.html"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="product-cart mini_cart_item">
+                                                <a href="index.html#" class="product-media">
+                                                    <img src="assets/images/item-minicart-3.jpg" alt="img">
+                                                </a>
+                                                <div class="product-details">
+                                                    <h5 class="product-name">
+                                                        <a href="index.html#">Wheels Solutions Soap</a>
+                                                    </h5>
+                                                    <div class="variations">
+                                                        <span class="attribute_color">
+                                                            <a href="index.html#">Black</a>
+                                                        </span>
+                                                        ,
+                                                        <span class="attribute_size">
+                                                            <a href="index.html#">300ml</a>
+                                                        </span>
+                                                    </div>
+                                                    <span class="product-price">
+                                                        <span class="price">
+                                                            <span>$45</span>
+                                                        </span>
+                                                    </span>
+                                                    <span class="product-quantity">
+                                                        (x1)
+                                                    </span>
+                                                    <div class="product-remove">
+                                                        <a href="index.html"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <div class="subtotal">
+                                            <span class="total-title">Subtotal: </span>
+                                            <span class="total-price">
+                                                <span class="Price-amount">
+                                                    $135
+                                                </span>
+                                            </span>
+                                        </div>
+                                        <div class="actions">
+                                            <a class="button button-viewcart" href="shoppingcart.html">
+                                                <span>View Bag</span>
+                                            </a>
+                                            <a href="checkout.html" class="button button-checkout">
+                                                <span>Checkout</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="block-account block-header tanajil-dropdown">
+                                <a href="javascript:void(0);" data-tanajil="tanajil-dropdown">
+                                    <span class="flaticon-user"></span>
+                                </a>
+                                <div class="header-account tanajil-submenu">
+                                    <div class="header-user-form-tabs">
+                                        <ul class="tab-link">
+                                            <li class="active">
+                                                <a data-toggle="tab" aria-expanded="true" href="index.html#header-tab-login">Login</a>
+                                            </li>
+                                            <li>
+                                                <a data-toggle="tab" aria-expanded="true" href="index.html#header-tab-rigister">Register</a>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-container">
+                                            <div id="header-tab-login" class="tab-panel active">
+                                                <form method="post" class="login form-login">
+                                                    <p class="form-row form-row-wide">
+                                                        <input type="email" placeholder="Email" class="input-text">
+                                                    </p>
+                                                    <p class="form-row form-row-wide">
+                                                        <input type="password" class="input-text" placeholder="Password">
+                                                    </p>
+                                                    <p class="form-row">
+                                                        <label class="form-checkbox">
+                                                            <input type="checkbox" class="input-checkbox">
+                                                            <span>
+                                                                Remember me
+                                                            </span>
+                                                        </label>
+                                                        <input type="submit" class="button" value="Login">
+                                                    </p>
+                                                    <p class="lost_password">
+                                                        <a href="index.html#">Lost your password?</a>
+                                                    </p>
+                                                </form>
+                                            </div>
+                                            <div id="header-tab-rigister" class="tab-panel">
+                                                <form method="post" class="register form-register">
+                                                    <p class="form-row form-row-wide">
+                                                        <input type="email" placeholder="Email" class="input-text">
+                                                    </p>
+                                                    <p class="form-row form-row-wide">
+                                                        <input type="password" class="input-text" placeholder="Password">
+                                                    </p>
+                                                    <p class="form-row">
+                                                        <input type="submit" class="button" value="Register">
+                                                    </p>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a class="menu-bar mobile-navigation menu-toggle" href="index.html#">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-nav-container rows-space-20">
+            <div class="container">
+                <div class="header-nav-wapper main-menu-wapper">
+                    <div class="vertical-wapper block-nav-categori">
+                        <div class="block-title">
+                            <span class="icon-bar">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </span>
+                            <span class="text">All Categories</span>
+                        </div>
+                        <div class="block-content verticalmenu-content">
+                            <ul class="tanajil-nav-vertical vertical-menu tanajil-clone-mobile-menu">
+                                <li class="menu-item">
+                                    <a href="index.html#" class="tanajil-menu-item-title" title="New Arrivals">New Arrivals</a>
+                                </li>
+                                <li class="menu-item">
+                                    <a title="Hot Sale" href="index.html#" class="tanajil-menu-item-title">Hot Sale</a>
+                                </li>
+                                <li class="menu-item menu-item-has-children">
+                                    <a title="Accessories" href="index.html#" class="tanajil-menu-item-title">Accessories</a>
+                                    <span class="toggle-submenu"></span>
+                                    <ul role="menu" class=" submenu">
+                                        <li class="menu-item">
+                                            <a title="Audio" href="index.html#" class="tanajil-item-title">Audio</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a title="Interior" href="index.html#" class="tanajil-item-title">Interior</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a title="New Arrivals" href="index.html#" class="tanajil-item-title">New Arrivals</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a title="Accessories" href="index.html#" class="tanajil-item-title">Accessories</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a title="Storage" href="index.html#" class="tanajil-item-title">Storage</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item">
+                                    <a title="Interior" href="index.html#" class="tanajil-menu-item-title">Interior</a>
+                                </li>
+                                <li class="menu-item">
+                                    <a title="Lighting" href="index.html#" class="tanajil-menu-item-title">Lighting</a>
+                                </li>
+                                <li class="menu-item">
+                                    <a title="Wheels" href="index.html#" class="tanajil-menu-item-title">Wheels</a>
+                                </li>
+                                <li class="menu-item">
+                                    <a title="Tires" href="index.html#" class="tanajil-menu-item-title">Tires</a>
+                                </li>
+                                <li class="menu-item">
+                                    <a title="Exterior" href="index.html#" class="tanajil-menu-item-title">Exterior</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="header-nav">
+                        <div class="container-wapper">
+                            <ul class="tanajil-clone-mobile-menu tanajil-nav main-menu " id="menu-main-menu">
+                                <li class="menu-item">
+                                    <a href="index.html" class="tanajil-menu-item-title" title="Home">Home</a>
+                                    @*<span class="toggle-submenu"></span>
+                                    <ul class="submenu">
+                                        <li class="menu-item">
+                                            <a href="index.html">Home 01</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a href="home2.html">Home 02</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a href="home3.html">Home 03</a>
+                                        </li>
+                                    </ul>*@
+                                </li>
+                                <li class="menu-item menu-item-has-children">
+                                    <a href="gridproducts.html" class="tanajil-menu-item-title" title="Shop">Shop</a>
+                                    <span class="toggle-submenu"></span>
+                                    <ul class="submenu">
+                                        <li class="menu-item">
+                                            <a href="gridproducts.html">Grid Fullwidth</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a href="gridproducts_leftsidebar.html">Grid Left sidebar</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a href="gridproducts_bannerslider.html">Grid Bannerslider</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a href="listproducts.html">List</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item  menu-item-has-children item-megamenu">
+                                    <a href="index.html#" class="tanajil-menu-item-title" title="Pages">Pages</a>
+                                    <span class="toggle-submenu"></span>
+                                    <div class="submenu mega-menu menu-page">
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 menu-page-item">
+                                                <div class="tanajil-custommenu default">
+                                                    <h2 class="widgettitle">Shop Pages</h2>
+                                                    <ul class="menu">
+                                                        <li class="menu-item">
+                                                            <a href="shoppingcart.html">Shopping Cart</a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a href="checkout.html">Checkout</a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a href="contact.html">Contact us</a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a href="404page.html">404</a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a href="login.html">Login/Register</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 menu-page-item">
+                                                <div class="tanajil-custommenu default">
+                                                    <h2 class="widgettitle">Product</h2>
+                                                    <ul class="menu">
+                                                        <li class="menu-item">
+                                                            <a href="productdetails-fullwidth.html">Product Fullwidth</a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a href="productdetails-leftsidebar.html">
+                                                                Product left
+                                                                sidebar
+                                                            </a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a href="productdetails-rightsidebar.html">
+                                                                Product right
+                                                                sidebar
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 menu-page-item">
+                                            </div>
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 menu-page-item">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="menu-item  menu-item-has-children">
+                                    <a href="inblog_right-siderbar.html" class="tanajil-menu-item-title"
+                                       title="Blogs">Blogs</a>
+                                    <span class="toggle-submenu"></span>
+                                    <ul class="submenu">
+                                        <li class="menu-item menu-item-has-children">
+                                            <a href="index.html#" class="tanajil-menu-item-title" title="Blog Style">Blog Style</a>
+                                            <span class="toggle-submenu"></span>
+                                            <ul class="submenu">
+                                                <li class="menu-item">
+                                                    <a href="bloggrid.html">Grid</a>
+                                                </li>
+                                                <li class="menu-item">
+                                                    <a href="bloglist.html">List</a>
+                                                </li>
+                                                <li class="menu-item">
+                                                    <a href="bloglist-leftsidebar.html">List Sidebar</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="menu-item menu-item-has-children">
+                                            <a href="index.html#" class="tanajil-menu-item-title" title="Post Layout">Post Layout</a>
+                                            <span class="toggle-submenu"></span>
+                                            <ul class="submenu">
+                                                <li class="menu-item">
+                                                    <a href="inblog_left-siderbar.html">Left Sidebar</a>
+                                                </li>
+                                                <li class="menu-item">
+                                                    <a href="inblog_right-siderbar.html">Right Sidebar</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="about.html" class="tanajil-menu-item-title" title="About">About</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="header-device-mobile">
+        <div class="wapper">
+            <div class="item mobile-logo">
+                <div class="logo">
+                    <a href="index.html#">
+                        <img src="assets/images/logo.png" alt="img">
+                    </a>
+                </div>
+            </div>
+            <div class="item item mobile-search-box has-sub">
+                <a href="index.html#">
+                    <span class="icon">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </span>
+                </a>
+                <div class="block-sub">
+                    <a href="index.html#" class="close">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </a>
+                    <div class="header-searchform-box">
+                        <form class="header-searchform">
+                            <div class="searchform-wrap">
+                                <input type="text" class="search-input" placeholder="Enter keywords to search...">
+                                <input type="submit" class="submit button" value="Search">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="item mobile-settings-box has-sub">
+                <a href="index.html#">
+                    <span class="icon">
+                        <i class="fa fa-cog" aria-hidden="true"></i>
+                    </span>
+                </a>
+                <div class="block-sub">
+                    <a href="index.html#" class="close">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </a>
+                    <div class="block-sub-item">
+                        <h5 class="block-item-title">Currency</h5>
+                        <form class="currency-form tanajil-language">
+                            <ul class="tanajil-language-wrap">
+                                <li class="active">
+                                    <a href="index.html#">
+                                        <span>
+                                            English (USD)
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="index.html#">
+                                        <span>
+                                            French (EUR)
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="index.html#">
+                                        <span>
+                                            Japanese (JPY)
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="item menu-bar">
+                <a class=" mobile-navigation  menu-toggle" href="index.html#">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </a>
+            </div>
+        </div>
     </div>
-</footer>
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="~/js/site.js" asp-append-version="true"></script>
-@RenderSection("Scripts", false)
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="footer style7">
+        <div class="container">
+            <div class="container-wapper">
+                <div class="row">
+                    <div class="box-footer col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                        <div class="widget-box">
+                            <div class="single-img">
+                                <a href="index.html"><img src="assets/images/logo-light.png" alt="img"></a>
+                            </div>
+                            <ul class="menu">
+                                <li class="menu-item">
+                                    <a href="index.html#">
+                                        <span class="flaticon-placeholder"></span>45 Grand Central Terminal New
+                                        York,NY 1017 United State USA
+                                    </a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="index.html#"><span class="fa fa-phone"></span>(+123) 456 789 - (+123) 666 888</a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="index.html#"><span class="fa fa-envelope-o"></span>Contact@yourcompany.com</a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="index.html#"><span class="flaticon-clock"></span>Mon-Sat 9:00pm - 5:00pm Sun : Closed</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="box-footer col-xs-12 col-sm-6 col-md-6 col-lg-2">
+                        <div class="tanajil-custommenu default">
+                            <h2 class="widgettitle">Quick Menu</h2>
+                            <ul class="menu">
+                                <li class="menu-item">
+                                    <a href="index.html#">New arrivals</a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="index.html#">Life style</a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="index.html#">Interior</a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="index.html#">Lighting</a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="index.html#">Wheels</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="box-footer col-xs-12 col-sm-6 col-md-6 col-lg-2">
+                        <div class="tanajil-custommenu default">
+                            <h2 class="widgettitle">Information</h2>
+                            <ul class="menu">
+                                <li class="menu-item">
+                                    <a href="index.html#">FAQs</a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="index.html#">Track Order</a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="index.html#">Delivery</a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="index.html#">Contact Us</a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="index.html#">Return</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="box-footer col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                        <div class="tanajil-newsletter style1">
+                            <div class="newsletter-head">
+                                <h3 class="title">Newsletter</h3>
+                            </div>
+                            <div class="newsletter-form-wrap">
+                                <div class="list">
+                                    Get notified of new products, limited releases, and more.
+                                </div>
+                                <input type="email" class="input-text email email-newsletter"
+                                       placeholder="Your email letter">
+                                <button class="button btn-submit submit-newsletter">SUBSCRIBE</button>
+                            </div>
+                        </div>
+                        <div class="tanajil-socials">
+                            <ul class="socials">
+                                <li>
+                                    <a href="index.html#" class="social-item" target="_blank">
+                                        <i class="icon fa fa-facebook"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="index.html#" class="social-item" target="_blank">
+                                        <i class="icon fa fa-twitter"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="index.html#" class="social-item" target="_blank">
+                                        <i class="icon fa fa-instagram"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 border-custom">
+                        <span></span>
+                    </div>
+                </div>
+                <div class="footer-end">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="coppyright">
+                                Copyright © 2019
+                                <a href="index.html#">Tanajil</a>
+                                . All rights reserved
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="tanajil-payment">
+                                <img src="assets/images/payments.png" alt="img">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="footer-device-mobile">
+        <div class="wapper">
+            <div class="footer-device-mobile-item device-home">
+                <a href="index.html">
+                    <span class="icon">
+                        <i class="fa fa-home" aria-hidden="true"></i>
+                    </span>
+                    Home
+                </a>
+            </div>
+            <div class="footer-device-mobile-item device-home device-wishlist">
+                <a href="index.html#">
+                    <span class="icon">
+                        <i class="fa fa-heart" aria-hidden="true"></i>
+                    </span>
+                    Wishlist
+                </a>
+            </div>
+            <div class="footer-device-mobile-item device-home device-cart">
+                <a href="index.html#">
+                    <span class="icon">
+                        <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+                        <span class="count-icon">
+                            0
+                        </span>
+                    </span>
+                    <span class="text">Cart</span>
+                </a>
+            </div>
+            <div class="footer-device-mobile-item device-home device-user">
+                <a href="login.html">
+                    <span class="icon">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                    </span>
+                    Account
+                </a>
+            </div>
+        </div>
+    </div>
+    <a href="index.html#" class="backtotop">
+        <i class="fa fa-angle-double-up"></i>
+    </a>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery-ui/js/jquery-countdown.min.js"></script>
+    <script src="~/lib/jquery-ui/js/jquery-ui.min.js"></script>
+    <script src="~/lib/jquery-ui/js/jquery.actual.min.js"></script>
+    <script src="~/lib/jquery-ui/js/jquery.elevateZoom.min.js"></script>
+    <script src="~/lib/jquery-ui/js/jquery.plugin-countdown.min.js"></script>
+    <script src="~/lib/jquery-ui/js/jquery.scrollbar.min.js"></script>
+    <script src="~/master_page/js/chosen.min.js"></script>
+    <script src="~/master_page/js/frontend-plugin.js"></script>
+    <script src="~/master_page/js/isotope.min.js"></script>
+    <script src="~/master_page/js/mobile-menu.js"></script>
+    <script src="~/master_page/js/owl.carousel.min.js"></script>
+            @RenderSection("Scripts", false)
 </body>
 </html>

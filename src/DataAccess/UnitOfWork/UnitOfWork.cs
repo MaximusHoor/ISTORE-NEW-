@@ -18,7 +18,7 @@ namespace DataAccess.UnitOfWork
         {
             _storeContext?.Dispose();
         }
-
+        public IUserRepository UserRepository { get; }
         public ICommentRepository CommentRepository { get; }
         public ICategoryRepository CategoryRepository { get; }
 

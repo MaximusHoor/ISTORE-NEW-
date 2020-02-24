@@ -16,5 +16,8 @@ namespace Domain.Context
 
         public DbSet<Product> Product { get; set; }
         public DbSet<Delivery> Deliveries { get; set; }
+        public DbSet<Package> Packages { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetails> OrderDetails { get; set; }
     }
 }

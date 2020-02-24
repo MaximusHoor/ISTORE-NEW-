@@ -18,27 +18,27 @@ namespace DataAccess.Repository.Interfaces
 
         }
 
-        public OperationDetail CreateComment(Delivery delivery)
+        public async Task<OperationDetail> CreateDelivery(Delivery delivery)
         {
             return Create(delivery);
         }
 
-        public OperationDetail DeleteComment(Delivery delivery)
+        public async Task<OperationDetail> DeleteDelivery(Delivery delivery)
         {
             return Delete(delivery);
         }
 
-        public async Task<IEnumerable<Delivery>> FindAllCommentsAsync()
+        public async Task<IEnumerable<Delivery>> FindAllDeliveriesAsync()
         {
             return await FindAll().ToListAsync();
         }
 
-        public async Task<IEnumerable<Delivery>> FindCommentByConditionAsync(Expression<Func<Delivery, bool>> predicate)
+        public async Task<IEnumerable<Delivery>> FindDeliveryByConditionAsync(Expression<Func<Delivery, bool>> predicate)
         {
             return await FindByCondition(predicate).ToListAsync();
         }
 
-        public OperationDetail UpdateComment(Delivery delivery)
+        public async Task<OperationDetail> UpdateDelivery(Delivery delivery)
         {
             return Update(delivery);
         }

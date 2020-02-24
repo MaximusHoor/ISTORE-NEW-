@@ -71,7 +71,7 @@ namespace DataAccessTest.Repository
             };
 
             // Act
-            _repository.Create(delivery);
+            _repository.CreateDelivery(delivery);
             ContextSingleton.GetDatabaseContext().SaveChanges();
 
             // Assert
@@ -83,7 +83,7 @@ namespace DataAccessTest.Repository
         private void Delete(Delivery delivery)
         {
             // Act
-            _repository.Delete(delivery);
+            _repository.DeleteDelivery(delivery);
 
             ContextSingleton.GetDatabaseContext().SaveChanges();
             var delivery_res = _repository.FindByCondition(x => x.Id == delivery.Id).FirstOrDefault();
@@ -94,7 +94,7 @@ namespace DataAccessTest.Repository
         private void GetAll()
         {
             // Act
-            IEnumerable<Delivery> items = _repository.FindAll().ToList();
+            IEnumerable<Delivery> items = _repository.FindAllDeliveriesAsync().Result;
             // Assert
             Assert.IsTrue(items.Any(), "GetAll returned no items.");
         }
@@ -102,7 +102,7 @@ namespace DataAccessTest.Repository
         private void GetByID(int id)
         {
             // Act
-            var delivery = _repository.FindByCondition(x => x.Id == id).FirstOrDefault();
+            var delivery = _repository.FindDeliveryByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
             // Assert
             Assert.IsNotNull(delivery, "GetByID returned null.");
             Assert.AreEqual(id, delivery.Id);
@@ -128,7 +128,7 @@ namespace DataAccessTest.Repository
             delivery.Type = "To branch";
 
             // Act
-            _repository.Update(delivery);
+            _repository.UpdateDelivery(delivery);
             ContextSingleton.GetDatabaseContext().SaveChanges();
 
             var updatedDelivery = _repository.FindByCondition(x => x.Id == delivery.Id).FirstOrDefault();

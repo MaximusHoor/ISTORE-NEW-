@@ -11,10 +11,10 @@ namespace DataAccess.Repository.Interfaces
 {
     public interface IDeliveryRepository : IRepository<Delivery>
     {
-        Task<IEnumerable<Delivery>> FindAllCommentsAsync();
-        Task<IEnumerable<Delivery>> FindCommentByConditionAsync(Expression<Func<Delivery, bool>> predicate);
-        OperationDetail CreateComment(Delivery delivery);
-        OperationDetail UpdateComment(Delivery delivery);
-        OperationDetail DeleteComment(Delivery delivery);
+        Task<IEnumerable<Delivery>> FindAllDeliveriesAsync();
+        Task<IEnumerable<Delivery>> FindDeliveryByConditionAsync(Expression<Func<Delivery, bool>> predicate);
+        Task<OperationDetail> CreateDelivery(Delivery delivery);
+        Task<OperationDetail> UpdateDelivery(Delivery delivery);
+        Task<OperationDetail> DeleteDelivery(Delivery delivery);
     }
 }

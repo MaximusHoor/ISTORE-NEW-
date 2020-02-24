@@ -24,12 +24,16 @@ namespace Business.Service
 
         public async Task<OperationDetailDTO> Create(Delivery obj)
         {
-            return _mapper.Map<OperationDetailDTO>(await _unitOfWork.DeliveryRepository.CreateDelivery(obj));
+            var result = _mapper.Map<OperationDetailDTO>(await _unitOfWork.DeliveryRepository.CreateDelivery(obj));
+            await _unitOfWork.SaveChangesAsync();
+            return result;
         }
 
         public async Task<OperationDetailDTO> Delete(Delivery obj)
         {
-            return _mapper.Map<OperationDetailDTO>(await _unitOfWork.DeliveryRepository.DeleteDelivery(obj));
+            var result = _mapper.Map<OperationDetailDTO>(await _unitOfWork.DeliveryRepository.DeleteDelivery(obj));
+            await _unitOfWork.SaveChangesAsync();
+            return result;
         }
 
         public async Task<IEnumerable<Delivery>> FindAll()
@@ -44,7 +48,9 @@ namespace Business.Service
 
         public async Task<OperationDetailDTO> Update(Delivery obj)
         {
-            return _mapper.Map<OperationDetailDTO>(await _unitOfWork.DeliveryRepository.UpdateDelivery(obj));
+            var result = _mapper.Map<OperationDetailDTO>(await _unitOfWork.DeliveryRepository.UpdateDelivery(obj));
+            await _unitOfWork.SaveChangesAsync();
+            return result;
         }
 
         public Task<OperationDetailDTO> CustomMethod(Delivery obj)

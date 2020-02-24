@@ -28,10 +28,16 @@ namespace DataAccess.Repository
         {
             return await FindAll().ToListAsync();
         }
-        public async Task<IEnumerable<Comment>> FindCommentByConditionAsync(Expression<Func<Comment, bool>> predicate)
+        public async Task<Comment> FindCommentByConditionAsync(Expression<Func<Comment, bool>> predicate)
+        {
+            return await FindByCondition(predicate).FirstOrDefaultAsync();
+        }
+
+        public async Task<IEnumerable<Comment>> FindCommentsByConditionAsync(Expression<Func<Comment, bool>> predicate)
         {
             return await FindByCondition(predicate).ToListAsync();
         }
+
         public OperationDetail UpdateComment(Comment comment)
         {
             return Update(comment);

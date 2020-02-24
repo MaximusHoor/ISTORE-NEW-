@@ -13,10 +13,13 @@ namespace DataAccess.Repository.Interfaces
     {
         Task<IEnumerable<Order>> FindAllOrdersAsync();
         Task<IEnumerable<Order>> FindOrdersByConditionAsync(Expression<Func<Order, bool>> predicate);
-        Task<User> GetUserByOrderAsync(Order order);
-        Task<Delivery> GetDeliveryByOrderAsync(Order order);
-        Task<ICollection<OrderDetails>> GetProductsByOrderAsync(Order order);
-        Task<OperationDetail> AddOrderDetailsToOrderAsync(Order order, OrderDetails orderDetails);
-        Task<OperationDetail> RemoveOrderDetailsOfOrderAsync(Order order, OrderDetails orderDetails);
+        OperationDetail CreateOrder(Order order);
+        OperationDetail UpdateOrder(Order order);
+        OperationDetail DeleteOrder(Order order);
+        //Task<User> GetUserByOrderAsync(Order order);
+        //Task<Delivery> GetDeliveryByOrderAsync(Order order);
+        //Task<ICollection<OrderDetails>> GetProductsByOrderAsync(Order order);
+        //Task<OperationDetail> AddOrderDetailsToOrderAsync(Order order, OrderDetails orderDetails);
+        //Task<OperationDetail> RemoveOrderDetailsOfOrderAsync(Order order, OrderDetails orderDetails);
     }
 }

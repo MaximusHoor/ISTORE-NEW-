@@ -17,33 +17,19 @@ namespace Business.Service
 
         public async Task<OperationDetail> AddOrderDetailsAsync(OrderDetails orderDetails)
         {
-            var res = _unitOfWork.OrderDetailsRepository.CreateOrderDetails(orderDetails);
+            var res = await _unitOfWork.OrderDetailsRepository.CreateAsync(orderDetails);
             await _unitOfWork.SaveChangesAsync();
-            return res;
-        }
-
-        public async Task<OperationDetail> DeleteOrderDetailsAsync(OrderDetails orderDetails)
-        {
-            var res = _unitOfWork.OrderDetailsRepository.CreateOrderDetails(orderDetails);
-            await _unitOfWork.SaveChangesAsync().ConfigureAwait(false);
             return res;
         }
 
         public async Task<IEnumerable<OrderDetails>> GetAllOrderDetailsAsync()
         {
-            return await _unitOfWork.OrderDetailsRepository.FindAllOrderDetailsAsync();
+            return await _unitOfWork.OrderDetailsRepository.GetAllAsync();
         }
 
         public async Task<IEnumerable<OrderDetails>> GetOrderDetailsAsync(Expression<Func<OrderDetails, bool>> predicate)
         {
-            return await _unitOfWork.OrderDetailsRepository.FindOrderDetailsByConditionAsync(predicate);
-        }
-
-        public async Task<OperationDetail> UpdateOrderDetailsAsync(OrderDetails orderDetails)
-        {
-            var res = _unitOfWork.OrderDetailsRepository.UpdateOrderDetails(orderDetails);
-            await _unitOfWork.SaveChangesAsync();
-            return res;
+            return await _unitOfWork.OrderDetailsRepository.FindByConditionAsync(predicate);
         }
     }
 }

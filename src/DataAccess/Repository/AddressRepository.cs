@@ -6,41 +6,28 @@ using Domain.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace DataAccess.Repository
 {
-    public class AddressRepository : BaseRepository<Address>, IAddressRepository
+    public class AddressRepository : BaseRepository<Address>
     {
         public AddressRepository(StoreContext context) : base(context)
         {
 
         }
 
-        public OperationDetail CreateAddress(Address address)
+        public override  async Task<IReadOnlyCollection<Address>> GetAllAsync()
         {
-            return Create(address);
+            return await this.Entities.Include(br => br.Brand).ToListAsync().ConfigureAwait(false);
         }
 
-        public OperationDetail DeleteAddress(Address address)
+        public override async Task<IReadOnlyCollection<Address>> FindByConditionAsync(Expression<Func<Address, bool>> predicat)
         {
-            return Delete(address);
+            return await this.Entities.Include(br => br.Brand).Where(predicat).ToListAsync().ConfigureAwait(false);
         }
 
-        public async Task<IEnumerable<Address>> FindAllAddressesAsync()
-        {
-            return await FindAll().ToListAsync();
-        }
-
-        public async Task<IEnumerable<Address>> FindAddressByConditionAsync(Expression<Func<Address, bool>> predicate)
-        {
-            return await FindByCondition(predicate).ToListAsync();
-        }
-
-        public OperationDetail UpdateAddress(Address address)
-        {
-            return Update(address);
-        }
     }
 }

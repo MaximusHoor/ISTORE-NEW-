@@ -3,69 +3,42 @@ using Domain.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace Domain.Repository.Interfaces
 {
-    public abstract class BaseRepository<T> : IRepository<T> where T : class
+    public abstract class BaseRepository<TEntity> : IRepository<TEntity> where TEntity : class
     {
         protected BaseRepository(StoreContext context)
         {
             _storeContext = context;
         }
-        private StoreContext _storeContext { get; }
-        public IQueryable<T> FindAll()
+        private DbSet<TEntity> _entities;
+        private StoreContext _storeContext;
+        protected DbSet<TEntity> Entities => this._entities ??= _storeContext.Set<TEntity>();
+        public virtual async Task<IReadOnlyCollection<TEntity>> GetAllAsync()
         {
-            return _storeContext.Set<T>().AsNoTracking();
+            return await this.Entities.ToListAsync().ConfigureAwait(false);
         }
-        public IQueryable<T> FindByCondition(Expression<Func<T, bool>> predicat)
+        public virtual  async Task<IReadOnlyCollection<TEntity>> FindByConditionAsync(Expression<Func<TEntity, bool>> predicat)
         {
-            return _storeContext.Set<T>().Where(predicat);
+            return await this.Entities.Where(predicat).ToListAsync().ConfigureAwait(false);
         }
-        public OperationDetail Create(T entity)
+        public async Task<OperationDetail> CreateAsync(TEntity entity)
         {
             try
             {
-                _storeContext.Set<T>().Add(entity);
+                await Entities.AddAsync(entity).ConfigureAwait(false);
                 return new OperationDetail { Message = "Created" };
             }
-            catch (Exception e)
+            catch (Exception e)     
             {
                 Log.Error(e, "Create Fatal Error");
                 return new OperationDetail { IsError = true, Message = "Create Fatal Error" };
             }
-        }
-        public OperationDetail Update(T entity)
-        {
-            try
-            {
-                _storeContext.Set<T>().Update(entity);
-                return new OperationDetail { Message = "Updated" };
-            }
-            catch (Exception e)
-            {
-                Log.Error(e, "Update Fatal Error");
-                return new OperationDetail { IsError = true, Message = "Update Fatal Error" };
-            }
-        }
-        public OperationDetail Delete(T entity)
-        {
-            try
-            {
-                _storeContext.Set<T>().Remove(entity);
-                return new OperationDetail { Message = "Deleted" };
-            }
-            catch (Exception e)
-            {
-                Log.Error(e, "Deleted Fatal Error");
-                return new OperationDetail { IsError = true, Message = "Deleted Fatal Error" };
-            }
-        }
-
-        public IQueryable<T> FindByConditionWithInclude(Expression<Func<T, bool>> predicat, string property)
-        {
-            return _storeContext.Set<T>().Where(predicat).Include(property);
         }
     }
 }

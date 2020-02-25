@@ -6,40 +6,25 @@ using Domain.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace DataAccess.Repository
 {
-    public class PackageRepository : BaseRepository<Package>, IPackageRepository
+    public class PackageRepository : BaseRepository<Package>
     {
         public PackageRepository(StoreContext context) : base(context)
         {
         }
-
-        public OperationDetail CreatePackage(Package package)
+        public override async Task<IReadOnlyCollection<Package>> GetAllAsync()
         {
-            return Create(package);
+            return await this.Entities.ToListAsync().ConfigureAwait(false);
         }
 
-        public OperationDetail DeletePackage(Package package)
+        public override async Task<IReadOnlyCollection<Package>> FindByConditionAsync(Expression<Func<Package, bool>> predicat)
         {
-            return Delete(package);
-        }
-
-        public async Task<IEnumerable<Package>> FindAllPackagesAsync()
-        {
-            return await FindAll().ToListAsync();
-        }
-
-        public async Task<IEnumerable<Package>> FindPackageByConditionAsync(Expression<Func<Package, bool>> predicate)
-        {
-            return await FindByCondition(predicate).ToListAsync();
-        }
-
-        public OperationDetail UpdatePackage(Package package)
-        {
-            return Update(package);
+            return await this.Entities.Where(predicat).ToListAsync().ConfigureAwait(false);
         }
     }
 }

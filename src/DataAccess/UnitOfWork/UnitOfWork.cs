@@ -8,7 +8,7 @@ namespace DataAccess.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork, IDisposable
     {
-        public UnitOfWork(StoreContext storeContext, IUserRepository userRepository, ICommentRepository commentRepository, ICategoryRepository categoryRepository, IImageRepository imageRepository, IGroupCharacteristicRepository groupCharacteristicRepository, ICharacteristicRepository characteristicRepository, IProductRepository productRepository, IDeliveryRepository deliveryRepository, AddressRepository addressRepository, IBrandRepository brandRepository, IOrderDetailsRepository orderDetailsRepository, IOrderRepository orderRepository, IPackageRepository packageRepository)
+        public UnitOfWork(StoreContext storeContext, IUserRepository userRepository, ICommentRepository commentRepository, ICategoryRepository categoryRepository, IImageRepository imageRepository, IGroupCharacteristicRepository groupCharacteristicRepository, ICharacteristicRepository characteristicRepository, IProductRepository productRepository, IDeliveryRepository deliveryRepository, AddressRepository addressRepository, IBrandRepository brandRepository, OrderDetailsRepository orderDetailsRepository, OrderRepository orderRepository, PackageRepository packageRepository)
         {
             _storeContext = storeContext;
             UserRepository = userRepository;
@@ -42,9 +42,9 @@ namespace DataAccess.UnitOfWork
         public IDeliveryRepository DeliveryRepository { get; }
         public AddressRepository AddressRepository { get; }
         public IBrandRepository BrandRepository { get; }
-        public IOrderDetailsRepository OrderDetailsRepository { get; }
-        public IOrderRepository OrderRepository { get; }
-        public IPackageRepository PackageRepository { get; }
+        public OrderDetailsRepository OrderDetailsRepository { get; }
+        public OrderRepository OrderRepository { get; }
+        public PackageRepository PackageRepository { get; }
         public Task SaveChangesAsync()
         {
             return _storeContext.SaveChangesAsync();

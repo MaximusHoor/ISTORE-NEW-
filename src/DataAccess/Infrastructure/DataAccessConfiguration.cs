@@ -16,9 +16,9 @@ namespace DataAccess.Infrastructure
             services.AddTransient(typeof(IDeliveryRepository), typeof(DeliveryRepository));
             services.AddTransient(typeof(IGroupCharacteristicRepository), typeof(GroupCharacteristicRepository));
             services.AddTransient(typeof(ICharacteristicRepository), typeof(CharacteristicRepository));
-            services.AddTransient(typeof(IPackageRepository), typeof(PackageRepository));
-            services.AddTransient(typeof(IOrderRepository), typeof(OrderRepository));
-            services.AddTransient(typeof(IOrderDetailsRepository), typeof(OrderDetailsRepository));
+            services.AddTransient(typeof(PackageRepository));
+            services.AddTransient(typeof(OrderRepository));
+            services.AddTransient(typeof(OrderDetailsRepository));
             services.AddTransient(typeof(IAddressRepository), typeof(AddressRepository));
             services.AddTransient(typeof(IBrandRepository), typeof(BrandRepository));
             services.AddTransient(typeof(IUserRepository), typeof(UserRepository));

@@ -21,6 +21,8 @@ namespace Business.Infrastructure
             services.AddTransient(typeof(IGroupCharacteristicService), typeof(GroupCharacteristicService));
             services.AddTransient(typeof(IImageService), typeof(ImageService));
             services.AddTransient(typeof(IUserService), typeof(UserService));
+            services.AddTransient(typeof(IProductService), typeof(ProductService));
+            services.AddTransient(typeof(IAddressService), typeof(AddressService));
 
             DataAccessConfiguration.ConfigureServices(services, configuration);
         }

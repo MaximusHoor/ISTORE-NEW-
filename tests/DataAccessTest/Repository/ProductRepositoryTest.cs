@@ -62,7 +62,7 @@ namespace DataAccessTest.Repository
             {
 
                 Id = _id,
-                Title = _Title,
+                Title = _Title.ToString(),
                 Type = _Type,
                 VendorCode = _VendorCode,
                 Description = _Description,

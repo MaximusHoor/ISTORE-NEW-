@@ -7,22 +7,9 @@ namespace DataAccess.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork, IDisposable
     {
-        public UnitOfWork(StoreContext storeContext, IUserRepository userRepository, 
-            ICommentRepository commentRepository, ICategoryRepository categoryRepository, 
-            IImageRepository imageRepository, IGroupCharacteristicRepository groupCharacteristicRepository, 
-            ICharacteristicRepository characteristicRepository, IProductRepository productRepository,
-            IDeliveryRepository deliveryRepository, IAddressRepository addressRepository)
+        public UnitOfWork(StoreContext storeContext)
         {
-            _storeContext = storeContext;
-            UserRepository = userRepository;
-            CommentRepository = commentRepository;
-            CategoryRepository = categoryRepository;
-            ImageRepository = imageRepository;
-            GroupCharacteristicRepository = groupCharacteristicRepository;
-            CharacteristicRepository = characteristicRepository;
-            ProductRepository = productRepository;
-            DeliveryRepository = deliveryRepository;
-            AddressRepository = addressRepository;
+            _storeContext = storeContext;            
         }
 
         private StoreContext _storeContext { get; }

@@ -6,80 +6,33 @@ using Domain.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace DataAccess.Repository
 {
-    public class ProductRepository : BaseRepository<Product>, IProductRepository
+    public class ProductRepository : BaseRepository<Product>
     {
-        private StoreContext _StoreContext { get; set; }
+    
 
         public ProductRepository(StoreContext context) : base(context)
         {
-            _StoreContext = context;
-        }
+           
+        }  
 
-        //public async Task<OperationDetail> AddImage(Product product, Image image)
-        //{
-        // (await  _StoreContext.Products.FirstOrDefaultAsync(x => x == product)).Images.Add(image);
-        //    return  new OperationDetail() { Message = "AddImage Ok" };
-        //}
-
-        //public Task<Brand> GetBrand(Product products)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public Task<ICollection<Image>> GetAllImage(Product product)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public Task<Image> GetImage(Product product)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public Task<Category> GetCategory(Product product)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public Task<Package> GetPackage(Product product)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public OperationDetail AddComment(Product products, Comment comment)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-
-        public async Task<IEnumerable<Product>> FindAllProductAsync()
+        public override async Task<IReadOnlyCollection<Product>> GetAllAsync()
         {
-            return await FindAll().ToListAsync();
-        }
-        public async Task<IEnumerable<Product>> FindProductByConditionAsync(Expression<Func<Product, bool>> predicate)
-        {
-            return await FindByCondition(predicate).ToListAsync();
+            return await this.Entities.Include(br => br.Brand).Include(cat => cat.Category).Include(im => im.Images).
+            Include(pac => pac.Package).Include(grch => grch.GroupCharacteristics).Include(com => com.Comments).ToListAsync().ConfigureAwait(false);
         }
 
-
-        public OperationDetail CreateProduct(Product product)
+        public override async Task<IReadOnlyCollection<Product>> FindByConditionAsync(Expression<Func<Product, bool>> predicat)
         {
-            return Create(product);
+            return await this.Entities.Include(br => br.Brand).Include(cat => cat.Category).Include(im => im.Images).
+            Include(pac => pac.Package).Include(grch => grch.GroupCharacteristics).
+            Include(com => com.Comments).Where(predicat).ToListAsync().ConfigureAwait(false);
         }
 
-        public OperationDetail UpdateProduct(Product product)
-        {
-            return Update(product);
-        }
-
-        public OperationDetail DeleteProduct(Product product)
-        {
-            return Delete(product);
-        }
     }
 }

@@ -13,7 +13,7 @@ namespace DataAccess.UnitOfWork
         IGroupCharacteristicRepository GroupCharacteristicRepository { get; }
         ICharacteristicRepository CharacteristicRepository { get; }
         ICategoryRepository CategoryRepository { get; }
-        IProductRepository ProductRepository { get; }
+        ProductRepository ProductRepository { get; }
         AddressRepository AddressRepository { get; }
         IBrandRepository BrandRepository { get; }
         IOrderDetailsRepository OrderDetailsRepository { get; }

@@ -18,8 +18,8 @@ namespace Business.Service
         }
         public async Task<OperationDetail> AddCategoryAsync(Category category)
         {
-            var res = await _unitOfWork.CategoryRepository.CreateAsync(category);
-            await _unitOfWork.SaveChangesAsync();
+            var res = await _unitOfWork.CategoryRepository.CreateAsync(category).ConfigureAwait(false);
+            await _unitOfWork.SaveChangesAsync().ConfigureAwait(false);
             return res;
         }
 

@@ -21,7 +21,7 @@ namespace DataAccess.Repository
 
         public override  async Task<IReadOnlyCollection<Address>> GetAllAsync()
         {
-            return await this.ToListAsync().ConfigureAwait(false);
+            return await this.Entities.ToListAsync().ConfigureAwait(false);
         }
 
         public override async Task<IReadOnlyCollection<Address>> FindByConditionAsync(Expression<Func<Address, bool>> predicat)

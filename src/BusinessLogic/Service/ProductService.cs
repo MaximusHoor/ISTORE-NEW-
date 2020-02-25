@@ -21,20 +21,20 @@ namespace Business.Service
 
         public async Task<OperationDetail> AddProductAsync(Product product)
         {
-            var res = await _unitOfWork.ProductRepository.CreateAsync(product);
-             await _unitOfWork.SaveChangesAsync();
+            var res = await _unitOfWork.ProductRepository.CreateAsync(product).ConfigureAwait(false);
+             await _unitOfWork.SaveChangesAsync().ConfigureAwait(false);
             return res;
            
         }
 
         public async Task<IEnumerable<Product>> FindAllProductsAsync()
         {
-            return await _unitOfWork.ProductRepository.GetAllAsync();
+            return await _unitOfWork.ProductRepository.GetAllAsync().ConfigureAwait(false);
         }
 
         public async Task<IEnumerable<Product>> FindProductByConditionAsync(Expression<Func<Product, bool>> predicate)
         {
-            return await _unitOfWork.ProductRepository.FindByConditionAsync(predicate);
+            return await _unitOfWork.ProductRepository.FindByConditionAsync(predicate).ConfigureAwait(false);
         }
     }
 }

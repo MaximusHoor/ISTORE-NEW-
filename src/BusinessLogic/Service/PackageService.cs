@@ -16,19 +16,19 @@ namespace Business.Service
         public PackageService(IUnitOfWork unitOfWork) => _unitOfWork = unitOfWork;
         public async Task<OperationDetail> AddPackageAsync(Package package)
         {
-            var res = await _unitOfWork.PackageRepository.CreateAsync(package);
-            await _unitOfWork.SaveChangesAsync();
+            var res = await _unitOfWork.PackageRepository.CreateAsync(package).ConfigureAwait(false);
+            await _unitOfWork.SaveChangesAsync().ConfigureAwait(false);
             return res;
         }
 
         public async Task<IEnumerable<Package>> GetAllPackagesAsync()
         {
-            return await _unitOfWork.PackageRepository.GetAllAsync();
+            return await _unitOfWork.PackageRepository.GetAllAsync().ConfigureAwait(false);
         }
 
         public async Task<IEnumerable<Package>> GetPackageAsync(Expression<Func<Package, bool>> predicate)
         {
-            return await _unitOfWork.PackageRepository.FindByConditionAsync(predicate);
+            return await _unitOfWork.PackageRepository.FindByConditionAsync(predicate).ConfigureAwait(false);
         }
     }
 }

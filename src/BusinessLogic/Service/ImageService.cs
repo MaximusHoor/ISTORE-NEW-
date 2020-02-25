@@ -19,19 +19,19 @@ namespace Business.Service
 
         public async Task<OperationDetail> AddImageAsync(Image image)
         {
-            var res = await _unitOfWork.ImageRepository.CreateAsync(image);
-            await _unitOfWork.SaveChangesAsync();
+            var res = await _unitOfWork.ImageRepository.CreateAsync(image).ConfigureAwait(false);
+            await _unitOfWork.SaveChangesAsync().ConfigureAwait(false);
             return res;
         }
 
         public async Task<IEnumerable<Image>> GetAllImagesAsync()
         {
-            return await _unitOfWork.ImageRepository.GetAllAsync();
+            return await _unitOfWork.ImageRepository.GetAllAsync().ConfigureAwait(false);
         }
 
         public async Task<IEnumerable<Image>> GetImageAsync(Expression<Func<Image, bool>> predicate)
         {
-            return await _unitOfWork.ImageRepository.FindByConditionAsync(predicate);
+            return await _unitOfWork.ImageRepository.FindByConditionAsync(predicate).ConfigureAwait(false);
         }
     }
 }

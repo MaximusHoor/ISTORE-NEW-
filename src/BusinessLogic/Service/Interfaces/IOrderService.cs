@@ -11,8 +11,6 @@ namespace Business.Service.Interfaces
     public interface IOrderService
     {
         Task<OperationDetail> AddOrderAsync(Order order);
-        Task<OperationDetail> DeleteOrderAsync(Order order);
-        Task<OperationDetail> UpdateOrderAsync(Order order);
         Task<IEnumerable<Order>> GetOrderAsync(Expression<Func<Order, bool>> predicate);
         Task<IEnumerable<Order>> GetAllOrdersAsync();
     }

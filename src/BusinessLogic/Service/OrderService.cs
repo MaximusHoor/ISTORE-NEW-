@@ -17,33 +17,19 @@ namespace Business.Service
 
         public async Task<OperationDetail> AddOrderAsync(Order order)
         {
-            var res = _unitOfWork.OrderRepository.CreateOrder(order);
+            var res = await _unitOfWork.OrderRepository.CreateAsync(order);
             await _unitOfWork.SaveChangesAsync();
-            return res;
-        }
-
-        public async Task<OperationDetail> DeleteOrderAsync(Order order)
-        {
-            var res = _unitOfWork.OrderRepository.DeleteOrder(order);
-            await _unitOfWork.SaveChangesAsync().ConfigureAwait(false);
             return res;
         }
 
         public async Task<IEnumerable<Order>> GetAllOrdersAsync()
         {
-            return await _unitOfWork.OrderRepository.FindAllOrdersAsync();
+            return await _unitOfWork.OrderRepository.GetAllAsync();
         }
 
         public async Task<IEnumerable<Order>> GetOrderAsync(Expression<Func<Order, bool>> predicate)
         {
-            return await _unitOfWork.OrderRepository.FindOrdersByConditionAsync(predicate);
-        }
-
-        public async Task<OperationDetail> UpdateOrderAsync(Order order)
-        {
-            var res = _unitOfWork.OrderRepository.UpdateOrder(order);
-            await _unitOfWork.SaveChangesAsync();
-            return res;
+            return await _unitOfWork.OrderRepository.FindByConditionAsync(predicate);
         }
     }
 }

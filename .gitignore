@@ -510,3 +510,4 @@ MigrationBackup/
 
 # End of https://www.gitignore.io/api/dotnetcore,aspnetcore,visualstudio
 /src/IStore(WEB)/IStore(WEB)/Logs
+/src/IStore(WEB)/IStore(WEB)/Views/Category

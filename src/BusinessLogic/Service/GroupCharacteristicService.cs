@@ -19,41 +19,22 @@ namespace Business.Service
             _unitOfWork = unitOfWork;
 
         }
+
         public async Task<OperationDetail> AddGroupCharacteristicAsync(GroupCharacteristic groupCharacteristic)
         {
-            var res = _unitOfWork.GroupCharacteristicRepository.CreateGroupCharacteristic(groupCharacteristic);
+            var res = await _unitOfWork.GroupCharacteristicRepository.CreateAsync(groupCharacteristic);
             await _unitOfWork.SaveChangesAsync();
             return res;
-        }
-
-        public async Task<OperationDetail> DeleteGroupCharacteristicAsync(GroupCharacteristic groupCharacteristic)
-        {
-            var res = _unitOfWork.GroupCharacteristicRepository.DeleteGroupCharacteristic(groupCharacteristic);
-            await _unitOfWork.SaveChangesAsync();
-            return res;
-        }
-
-        public async Task<OperationDetail> UpdateGroupCharacteristicAsync(GroupCharacteristic groupCharacteristic)
-        {
-            var res = _unitOfWork.GroupCharacteristicRepository.UpdateGroupCharacteristic(groupCharacteristic);
-            await _unitOfWork.SaveChangesAsync();
-            return res;
-        }
-
-        public async Task<IEnumerable<GroupCharacteristic>> GetGroupCharacteristicAsync(Expression<Func<GroupCharacteristic, bool>> predicate)
-        {
-            var groupCharacteristics = await _unitOfWork.GroupCharacteristicRepository.FindGroupCharacteristicByConditionAsync(predicate);
-            return groupCharacteristics;
         }
 
         public async Task<IEnumerable<GroupCharacteristic>> GetAllGroupCharacteristicsAsync()
         {
-            return await _unitOfWork.GroupCharacteristicRepository.FindAllGroupCharacteristicsAsync();
+            return await _unitOfWork.GroupCharacteristicRepository.GetAllAsync();
         }
 
-        public async Task<IEnumerable<GroupCharacteristic>> FindByConditionWithInclude(Expression<Func<GroupCharacteristic, bool>> predicate, string property)
+        public async Task<IEnumerable<GroupCharacteristic>> GetGroupCharacteristicAsync(Expression<Func<GroupCharacteristic, bool>> predicate)
         {
-           return _unitOfWork.GroupCharacteristicRepository.FindByConditionWithInclude(predicate, property);
+            return await _unitOfWork.GroupCharacteristicRepository.FindByConditionAsync(predicate);
         }
     }
 }

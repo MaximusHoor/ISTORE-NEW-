@@ -6,40 +6,26 @@ using Domain.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace DataAccess.Repository
 {
-    public class ImageRepository : BaseRepository<Image>, IImageRepository
+    public class ImageRepository : BaseRepository<Image>
     {
         public ImageRepository(StoreContext context) : base(context)
         {
 
         }
-        public OperationDetail CreateImage(Image image)
+        public override async Task<IReadOnlyCollection<Image>> GetAllAsync()
         {
-            return Create(image);
+            return await this.Entities.Include(img => img.FilePath).Include(img => img.ProductId).Include(img => img.Product).ToListAsync().ConfigureAwait(false);
         }
 
-        public OperationDetail DeleteImage(Image image)
+        public override async Task<IReadOnlyCollection<Image>> FindByConditionAsync(Expression<Func<Image, bool>> predicat)
         {
-            return Delete(image);
-        }
-
-        public async Task<IEnumerable<Image>> FindAllImagesAsync()
-        {
-            return await FindAll().ToListAsync();
-        }
-
-        public async Task<IEnumerable<Image>> FindImageByConditionAsync(Expression<Func<Image, bool>> predicate)
-        {
-            return await FindByCondition(predicate).ToListAsync();
-        }
-
-        public OperationDetail UpdateImage(Image image)
-        {
-            return Update(image);
+            return await this.Entities.Include(img => img.FilePath).Include(img => img.ProductId).Include(img => img.Product).Where(predicat).ToListAsync().ConfigureAwait(false);
         }
     }
 }

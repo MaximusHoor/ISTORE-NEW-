@@ -14,9 +14,9 @@ namespace DataAccess.Infrastructure
             services.AddTransient(typeof(DeliveryRepository));
 
             services.AddTransient(typeof(ICommentRepository), typeof(CommentRepository));
-            services.AddTransient(typeof(IImageRepository), typeof(ImageRepository));
-           
-            services.AddTransient(typeof(IGroupCharacteristicRepository), typeof(GroupCharacteristicRepository));
+            services.AddTransient(typeof(ImageRepository));
+            services.AddTransient(typeof(IDeliveryRepository), typeof(DeliveryRepository));
+            services.AddTransient(typeof(GroupCharacteristicRepository));
             services.AddTransient(typeof(ICharacteristicRepository), typeof(CharacteristicRepository));
             services.AddTransient(typeof(PackageRepository));
             services.AddTransient(typeof(OrderRepository));
@@ -29,7 +29,7 @@ namespace DataAccess.Infrastructure
 
             services.AddDbContext<StoreContext>(option =>
                 option.UseSqlServer(configuration.GetConnectionString("myconn")), ServiceLifetime.Singleton);
-            
+
         }
     }
 }

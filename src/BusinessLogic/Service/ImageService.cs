@@ -19,34 +19,19 @@ namespace Business.Service
 
         public async Task<OperationDetail> AddImageAsync(Image image)
         {
-            var res = _unitOfWork.ImageRepository.Create(image);
+            var res = await _unitOfWork.ImageRepository.CreateAsync(image);
             await _unitOfWork.SaveChangesAsync();
             return res;
-        }
-
-        public async Task<OperationDetail> DeleteImageAsync(Image image)
-        {
-            var res = _unitOfWork.ImageRepository.DeleteImage(image);
-            await _unitOfWork.SaveChangesAsync().ConfigureAwait(false);
-            return res;
-        }
-
-        public async Task<OperationDetail> UpdateImageAsync(Image image)
-        {
-            var res = _unitOfWork.ImageRepository.UpdateImage(image);
-            await _unitOfWork.SaveChangesAsync();
-            return res;
-        }
-
-        public async Task<IEnumerable<Image>> GetImageAsync(Expression<Func<Image, bool>> predicate)
-        {
-            var images = await _unitOfWork.ImageRepository.FindImageByConditionAsync(predicate);
-            return images;
         }
 
         public async Task<IEnumerable<Image>> GetAllImagesAsync()
         {
-            return await _unitOfWork.ImageRepository.FindAllImagesAsync();
+            return await _unitOfWork.ImageRepository.GetAllAsync();
+        }
+
+        public async Task<IEnumerable<Image>> GetImageAsync(Expression<Func<Image, bool>> predicate)
+        {
+            return await _unitOfWork.ImageRepository.FindByConditionAsync(predicate);
         }
     }
 }

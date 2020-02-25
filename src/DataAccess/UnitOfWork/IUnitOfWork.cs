@@ -8,10 +8,10 @@ namespace DataAccess.UnitOfWork
     {
         ICommentRepository CommentRepository { get; }
         IUserRepository UserRepository { get; }
-        DeliveryRepository DeliveryRepository { get; }
-        IImageRepository ImageRepository { get; }
-        IGroupCharacteristicRepository GroupCharacteristicRepository { get; }
-        CharacteristicRepository CharacteristicRepository { get; }
+        IDeliveryRepository DeliveryRepository { get; }
+        ImageRepository ImageRepository { get; }
+        GroupCharacteristicRepository GroupCharacteristicRepository { get; }
+        ICharacteristicRepository CharacteristicRepository { get; }
         ICategoryRepository CategoryRepository { get; }
         ProductRepository ProductRepository { get; }
         AddressRepository AddressRepository { get; }

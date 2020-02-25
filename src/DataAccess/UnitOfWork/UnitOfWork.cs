@@ -38,9 +38,9 @@ namespace DataAccess.UnitOfWork
         }
         public IUserRepository UserRepository { get; }
         public ICommentRepository CommentRepository { get; }
-        public CategoryRepository CategoryRepository { get; }
-        public IImageRepository ImageRepository { get; }
-        public IGroupCharacteristicRepository GroupCharacteristicRepository { get; }
+        public ICategoryRepository CategoryRepository { get; }
+        public ImageRepository ImageRepository { get; }
+        public GroupCharacteristicRepository GroupCharacteristicRepository { get; }
         public ICharacteristicRepository CharacteristicRepository { get; }
         public ProductRepository ProductRepository { get; }
         public IDeliveryRepository DeliveryRepository { get; }

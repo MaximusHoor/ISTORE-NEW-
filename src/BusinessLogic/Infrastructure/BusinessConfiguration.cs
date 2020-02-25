@@ -15,6 +15,13 @@ namespace Business.Infrastructure
             services.AddScoped(typeof(IUnitOfWork), typeof(UnitOfWork));
             //services
             services.AddTransient(typeof(IDeliveryService<Delivery>), typeof(DeliveryService));
+            services.AddTransient(typeof(ICategoryService), typeof(CategoryService));
+            services.AddTransient(typeof(ICommentService), typeof(CommentService));
+            services.AddTransient(typeof(IGroupCharacteristicService), typeof(GroupCharacteristicService));
+            services.AddTransient(typeof(IImageService), typeof(ImageService));
+            services.AddTransient(typeof(IUserService), typeof(UserService));
+            services.AddTransient(typeof(IProductService), typeof(ProductService));
+            services.AddTransient(typeof(IAddressService), typeof(AddressService));
 
             DataAccessConfiguration.ConfigureServices(services, configuration);
         }

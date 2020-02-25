@@ -40,6 +40,5 @@ namespace Domain.Repository.Interfaces
                 return new OperationDetail { IsError = true, Message = "Create Fatal Error" };
             }
         }
-        
     }
 }

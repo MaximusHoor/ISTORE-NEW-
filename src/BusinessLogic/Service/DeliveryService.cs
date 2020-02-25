@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Business.Service.Interfaces;
+﻿using Business.Service.Interfaces;
 using DataAccess.UnitOfWork;
 using Domain.EF_Models;
 using Domain.Infrastructure;
@@ -12,21 +11,19 @@ namespace Business.Service
 {
     public class DeliveryService : IDeliveryService<Delivery>
     {
-        IUnitOfWork _unitOfWork;
-        IMapper _mapper;
-
-        public DeliveryService(IUnitOfWork unitOfWork, IMapper mapper)
+        private readonly IUnitOfWork _unitOfWork;
+       
+        public DeliveryService(IUnitOfWork unitOfWork)
         {
-            _unitOfWork = unitOfWork;
-            _mapper = mapper;
+            _unitOfWork = unitOfWork;           
         }
-        public async Task<IEnumerable<Delivery>> FindAll()
+        public async Task<IEnumerable<Delivery>> FindAllAsync()
         {
-            return _mapper.Map<IEnumerable<Delivery>>(await _unitOfWork.DeliveryRepository.FindAllDeliveriesAsync());
+            return await _unitOfWork.DeliveryRepository.FindAllDeliveriesAsync();
         }
-        public async Task<IEnumerable<Delivery>> FindByCondition(Expression<Func<Delivery, bool>> predicat)
+        public async Task<IEnumerable<Delivery>> FindByConditionAsync(Expression<Func<Delivery, bool>> predicat)
         {
-            return _mapper.Map<IEnumerable<Delivery>>(await _unitOfWork.DeliveryRepository.FindDeliveryByConditionAsync(predicat));
+            return await _unitOfWork.DeliveryRepository.FindDeliveryByConditionAsync(predicat);
         }
         public Task<OperationDetail> CustomMethod(Delivery obj)
         {
@@ -41,14 +38,14 @@ namespace Business.Service
 
         public async Task<OperationDetail> UpdateAsync(Delivery obj)
         {
-            var result = _unitOfWork.DeliveryRepository.UpdateDelivery(obj);
+            var result =  _unitOfWork.DeliveryRepository.UpdateDelivery(obj);
             await _unitOfWork.SaveChangesAsync();
             return result;
         }
 
         public async Task<OperationDetail> DeleteAsync(Delivery obj)
         {
-            var result = _unitOfWork.DeliveryRepository.DeleteDelivery(obj);
+            var result =  _unitOfWork.DeliveryRepository.DeleteDelivery(obj);
             await _unitOfWork.SaveChangesAsync();
             return result;
         }

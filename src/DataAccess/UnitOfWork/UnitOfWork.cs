@@ -9,7 +9,7 @@ namespace DataAccess.UnitOfWork
     {
         public UnitOfWork(StoreContext storeContext)
         {
-            _storeContext = storeContext;
+            _storeContext = storeContext;            
         }
 
         private StoreContext _storeContext { get; }

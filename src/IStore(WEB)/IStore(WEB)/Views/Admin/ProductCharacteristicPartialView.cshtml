@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Domain.EF_Models.GroupCharacteristic>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductId)
+            </th>
+            <th>
+                Characteristics
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductId)
+                </td>
+                <td>
+                    @foreach (var сharacteristic in item.Characteristics)
+                    {
+                        @Html.DisplayFor(modelItem => сharacteristic.Title)
+                        <label> </label>
+                        @Html.DisplayFor(modelItem => сharacteristic.Value)
+                        <br>
+
+                    }
+                    <button>Add сharacteristic</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br>
+<button>Add group</button>

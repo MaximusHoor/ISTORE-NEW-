@@ -8,13 +8,9 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repository.Interfaces
 {
-    public interface IUserRepository : IRepository<User>
+    public interface IUserRepository
     {
-        Task<IEnumerable<User>> FindAllUsersAsync();
-        Task<IEnumerable<User>> FindUserByConditionAsync(Expression<Func<User, bool>> predicat);
-        Task<User> GetUserByConditionAsync(Expression<Func<User, bool>> predicat);
-        OperationDetail CreateUser(User user);
-        OperationDetail UpdateUser(User user);
-        OperationDetail DeleteUser(User user);
+        Task<IReadOnlyCollection<User>> FindAllUsersAllIncludedAsync();
+        Task<IReadOnlyCollection<User>> FindUserByConditionAsync(Expression<Func<User, bool>> addressPredicate, Expression<Func<User, bool>> commentPredicate);
     }
 }

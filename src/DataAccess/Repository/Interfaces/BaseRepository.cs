@@ -27,7 +27,7 @@ namespace Domain.Repository.Interfaces
         {
             return await this.Entities.Where(predicat).ToListAsync().ConfigureAwait(false);
         }
-        public async Task<OperationDetail> CreateAsync(TEntity entity)
+        public virtual async Task<OperationDetail> CreateAsync(TEntity entity)
         {
             try
             {

@@ -6,43 +6,38 @@ using Domain.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace DataAccess.Repository
 {
-    public class UserRepository : BaseRepository<User>, IUserRepository
+    public class UserRepository : BaseRepository<User> /*IUserRepository*/
     {
         public UserRepository(StoreContext context) : base(context) { }
-        public OperationDetail CreateUser(User user)
+        public override async Task<OperationDetail> CreateAsync(User user)
         {
-            return Create(user);
+            return await base.CreateAsync(user);
         }
 
-        public OperationDetail DeleteUser(User user)
+        public override async Task<IReadOnlyCollection<User>> GetAllAsync()
         {
-            return Delete(user);
+            return await this.Entities.Include(x => x.Address).ToListAsync();
         }
 
-        public async Task<IEnumerable<User>> FindAllUsersAsync()
+        //public async Task<IReadOnlyCollection<User>> FindAllUsersAllIncludedAsync()
+        //{
+        //    return await this.Entities.Include(x => x.Address).Include(x=>x.Comments).ToListAsync(); 
+        //}
+
+        public async Task<IReadOnlyCollection<User>> FindUserByConditionAsync(Expression<Func<User, bool>> predicat)
         {
-            return await FindAll().ToListAsync();
+            return await this.Entities.Where(predicat).Include(x => x.Address).ToListAsync();
         }
 
-        public async Task<IEnumerable<User>> FindUserByConditionAsync(Expression<Func<User, bool>> predicat)
-        {
-            return await FindByCondition(predicat).ToListAsync();
-        }
-
-        public async Task<User> GetUserByConditionAsync(Expression<Func<User, bool>> predicat)
-        {
-            return await FindByCondition(predicat).FirstOrDefaultAsync();
-        }
-
-        public OperationDetail UpdateUser(User user)
-        {
-            return Update(user);
-        }
-
+        //public async Task<IReadOnlyCollection<User>> FindUserByConditionAsync(Expression<Func<User, bool>> addressPredicate, Expression<Func<User, bool>> commentPredicate)
+        //{
+        //    return await this.Entities.Include(addressPredicate).Include(commentPredicate).ToListAsync();
+        //}
     }
 }

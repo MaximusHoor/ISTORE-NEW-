@@ -11,36 +11,29 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repository
 {
-    public class CommentRepository : BaseRepository<Comment>, ICommentRepository
+    public class CommentRepository : BaseRepository<Comment>/*, ICommentRepository*/
     {
         public CommentRepository(StoreContext context) : base(context)
         {
         }
-        public OperationDetail CreateComment(Comment comment)
+        public override async Task<OperationDetail> CreateAsync(Comment comment)
         {
-            return Create(comment);
-        }
-        public OperationDetail DeleteComment(Comment comment)
-        {
-            return Delete(comment);
-        }
-        public async Task<IEnumerable<Comment>> FindAllCommentsAsync()
-        {
-            return await FindAll().ToListAsync();
-        }
-        public async Task<Comment> FindCommentByConditionAsync(Expression<Func<Comment, bool>> predicate)
-        {
-            return await FindByCondition(predicate).FirstOrDefaultAsync();
+            return await CreateAsync(comment);
         }
 
-        public async Task<IEnumerable<Comment>> FindCommentsByConditionAsync(Expression<Func<Comment, bool>> predicate)
+        public async Task<IReadOnlyCollection<Comment>> FindAllCommentsAllIncludedAsync()
         {
-            return await FindByCondition(predicate).ToListAsync();
+            return await this.Entities.Include(x => x.Product).Include(x => x.User).Include(x=>x.Product).ToListAsync();
         }
 
-        public OperationDetail UpdateComment(Comment comment)
+        public override async Task<IReadOnlyCollection<Comment>> GetAllAsync()
         {
-            return Update(comment);
+            return await this.Entities.Include(x => x.Product).Include(x => x.User).ToListAsync();
         }
+        //public async Task<Comment> FindCommentByConditionAsync(Expression<Func<Comment, bool>> predicate)
+        //{
+        //    return this.Entities.Include(x => x.Product).Include(x => x.User).Include(x => x.Answers).ToListAsync();
+        //}
+
     }
 }

@@ -12,7 +12,7 @@ namespace Domain.EF_Models
         }
 
         public int Id { get; set; }
-        public int Title { get; set; }
+        public string Title { get; set; }
         public string Type { get; set; }
         public string VendorCode { get; set; }
         public string Description { get; set; }

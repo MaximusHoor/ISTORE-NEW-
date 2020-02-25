@@ -62,5 +62,10 @@ namespace Domain.Repository.Interfaces
                 return new OperationDetail { IsError = true, Message = "Deleted Fatal Error" };
             }
         }
+
+        public IQueryable<T> FindByConditionWithInclude(Expression<Func<T, bool>> predicat, string property)
+        {
+            return _storeContext.Set<T>().Where(predicat).Include(property);
+        }
     }
 }

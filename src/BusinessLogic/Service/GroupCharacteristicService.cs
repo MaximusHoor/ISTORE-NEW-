@@ -50,5 +50,10 @@ namespace Business.Service
         {
             return await _unitOfWork.GroupCharacteristicRepository.FindAllGroupCharacteristicsAsync();
         }
+
+        public async Task<IEnumerable<GroupCharacteristic>> FindByConditionWithInclude(Expression<Func<GroupCharacteristic, bool>> predicate, string property)
+        {
+           return _unitOfWork.GroupCharacteristicRepository.FindByConditionWithInclude(predicate, property);
+        }
     }
 }

@@ -3,6 +3,7 @@ using Domain.Infrastructure;
 using Domain.Repository.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
@@ -15,5 +16,6 @@ namespace DataAccess.Repository.Interfaces
         OperationDetail CreateGroupCharacteristic(GroupCharacteristic groupCharacteristic);
         OperationDetail UpdateGroupCharacteristic(GroupCharacteristic groupCharacteristic);
         OperationDetail DeleteGroupCharacteristic(GroupCharacteristic groupCharacteristic);
+        IQueryable<GroupCharacteristic> FindByConditionWithInclude(Expression<Func<GroupCharacteristic, bool>> predicat, string property);
     }
 }

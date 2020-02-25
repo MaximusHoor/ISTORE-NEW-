@@ -23,10 +23,11 @@ namespace DataAccess.Infrastructure
             services.AddTransient(typeof(IBrandRepository), typeof(BrandRepository));
             services.AddTransient(typeof(IUserRepository), typeof(UserRepository));
             services.AddTransient(typeof(ICategoryRepository), typeof(CategoryRepository));
-            services.AddTransient(typeof(IProductRepository), typeof(ProductRepository));
+            services.AddTransient(typeof(IProductRepository), typeof(ProductRepository));           
 
             services.AddDbContext<StoreContext>(option =>
-                option.UseSqlServer(configuration.GetConnectionString("myconn")));
+                option.UseSqlServer(configuration.GetConnectionString("myconn")), ServiceLifetime.Singleton);
+            
         }
     }
 }

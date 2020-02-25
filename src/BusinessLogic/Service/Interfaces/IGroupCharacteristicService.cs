@@ -14,5 +14,6 @@ namespace Business.Service.Interfaces
         Task<OperationDetail> UpdateGroupCharacteristicAsync(GroupCharacteristic groupCharacteristic);
         Task<IEnumerable<GroupCharacteristic>> GetGroupCharacteristicAsync(Expression<Func<GroupCharacteristic, bool>> predicate);
         Task<IEnumerable<GroupCharacteristic>> GetAllGroupCharacteristicsAsync();
+        Task<IEnumerable<GroupCharacteristic>> FindByConditionWithInclude(Expression<Func<GroupCharacteristic, bool>> predicate, string property);
     }
 }

@@ -11,9 +11,11 @@ namespace DataAccess.Infrastructure
     {
         public static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
+            services.AddTransient(typeof(DeliveryRepository));
+
             services.AddTransient(typeof(ICommentRepository), typeof(CommentRepository));
             services.AddTransient(typeof(IImageRepository), typeof(ImageRepository));
-            services.AddTransient(typeof(IDeliveryRepository), typeof(DeliveryRepository));
+           
             services.AddTransient(typeof(IGroupCharacteristicRepository), typeof(GroupCharacteristicRepository));
             services.AddTransient(typeof(ICharacteristicRepository), typeof(CharacteristicRepository));
             services.AddTransient(typeof(IPackageRepository), typeof(PackageRepository));

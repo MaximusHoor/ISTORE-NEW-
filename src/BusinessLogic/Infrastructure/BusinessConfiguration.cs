@@ -12,8 +12,7 @@ namespace Business.Infrastructure
     {
         public static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
-            services.AddSingleton(typeof(IUnitOfWork), typeof(UnitOfWork));
-
+            services.AddScoped(typeof(IUnitOfWork), typeof(UnitOfWork));
             //services
             services.AddTransient(typeof(IDeliveryService<Delivery>), typeof(DeliveryService));
 

@@ -1,5 +1,6 @@
 ﻿using DataAccess.Repository.Interfaces;
 using System.Threading.Tasks;
+using DataAccess.Repository;
 
 namespace DataAccess.UnitOfWork
 {
@@ -13,7 +14,7 @@ namespace DataAccess.UnitOfWork
         ICharacteristicRepository CharacteristicRepository { get; }
         ICategoryRepository CategoryRepository { get; }
         IProductRepository ProductRepository { get; }
-        IAddressRepository AddressRepository { get; }
+        AddressRepository AddressRepository { get; }
         IBrandRepository BrandRepository { get; }
 
         Task SaveChangesAsync();

@@ -2,14 +2,28 @@
 using Domain.Context;
 using System;
 using System.Threading.Tasks;
+using DataAccess.Repository;
 
 namespace DataAccess.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork, IDisposable
     {
-        public UnitOfWork(StoreContext storeContext)
+        public UnitOfWork(StoreContext storeContext, IUserRepository userRepository, ICommentRepository commentRepository, ICategoryRepository categoryRepository, IImageRepository imageRepository, IGroupCharacteristicRepository groupCharacteristicRepository, ICharacteristicRepository characteristicRepository, IProductRepository productRepository, IDeliveryRepository deliveryRepository, AddressRepository addressRepository, IBrandRepository brandRepository, IOrderDetailsRepository orderDetailsRepository, IOrderRepository orderRepository, IPackageRepository packageRepository)
         {
-            _storeContext = storeContext;            
+            _storeContext = storeContext;
+            UserRepository = userRepository;
+            CommentRepository = commentRepository;
+            CategoryRepository = categoryRepository;
+            ImageRepository = imageRepository;
+            GroupCharacteristicRepository = groupCharacteristicRepository;
+            CharacteristicRepository = characteristicRepository;
+            ProductRepository = productRepository;
+            DeliveryRepository = deliveryRepository;
+            AddressRepository = addressRepository;
+            BrandRepository = brandRepository;
+            OrderDetailsRepository = orderDetailsRepository;
+            OrderRepository = orderRepository;
+            PackageRepository = packageRepository;
         }
 
         private StoreContext _storeContext { get; }
@@ -26,15 +40,14 @@ namespace DataAccess.UnitOfWork
         public ICharacteristicRepository CharacteristicRepository { get; }
         public IProductRepository ProductRepository { get; }
         public IDeliveryRepository DeliveryRepository { get; }
-        public IAddressRepository AddressRepository { get; }
+        public AddressRepository AddressRepository { get; }
         public IBrandRepository BrandRepository { get; }
         public IOrderDetailsRepository OrderDetailsRepository { get; }
         public IOrderRepository OrderRepository { get; }
         public IPackageRepository PackageRepository { get; }
-
-        public async Task SaveChangesAsync()
+        public Task SaveChangesAsync()
         {
-            await _storeContext.SaveChangesAsync();
+            return _storeContext.SaveChangesAsync();
         }
     }
 }

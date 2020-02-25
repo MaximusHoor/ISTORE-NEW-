@@ -12,10 +12,16 @@ namespace Business.Infrastructure
     {
         public static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
-            services.AddSingleton(typeof(IUnitOfWork), typeof(UnitOfWork));
+            //services.AddSingleton(typeof(IUnitOfWork), typeof(UnitOfWork));
+            services.AddTransient(typeof(IUnitOfWork), typeof(UnitOfWork));
 
             //services
             services.AddTransient(typeof(IDeliveryService<Delivery>), typeof(DeliveryService));
+            services.AddTransient(typeof(ICategoryService), typeof(CategoryService));
+            services.AddTransient(typeof(ICommentService), typeof(CommentService));
+            services.AddTransient(typeof(IGroupCharacteristicService), typeof(GroupCharacteristicService));
+            services.AddTransient(typeof(IImageService), typeof(ImageService));
+            services.AddTransient(typeof(IUserService), typeof(UserService));
 
             DataAccessConfiguration.ConfigureServices(services, configuration);
         }

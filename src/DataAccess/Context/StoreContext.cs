@@ -7,6 +7,7 @@ namespace Domain.Context
     {
         public StoreContext(DbContextOptions<StoreContext> options) : base(options)
         {
+            Database.EnsureCreated();
         }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Image> Images { get; set; }

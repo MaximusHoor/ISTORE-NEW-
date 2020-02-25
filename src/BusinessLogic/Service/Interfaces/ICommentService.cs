@@ -7,10 +7,11 @@ namespace Business.Service.Interfaces
 {
     public interface ICommentService
     {
-        Task<IEnumerable<Comment>> FindAllCommentsAsync();
-        Task<Comment> FindCommentAsync(int id);
+        Task<IEnumerable<Comment>> GetCommentsAsync();
+        Task<IEnumerable<Comment>> GetCommentsAllIncludedAsync();
+        Task<Comment> GetCommentAllIncludedAsync(int commentId);
+        Task <IEnumerable<Comment>> GetCommentsByUserAsync(int userId);
+        Task<IEnumerable<Comment>> GetCommentsByProductAsync(int productId);
         Task<OperationDetail> CreateCommentAsync(Comment comment);
-        Task<OperationDetail> UpdateCommentAsync(Comment comment);
-        Task<OperationDetail> DeleteCommentAsync(Comment comment);
     }
 }

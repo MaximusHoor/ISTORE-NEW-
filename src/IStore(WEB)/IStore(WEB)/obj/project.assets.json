@@ -8870,11 +8870,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Andrew\\Source\\Repos\\ISTORE-NEW-3\\src\\IStore(WEB)\\IStore(WEB)\\IStore(WEB).csproj",
+      "projectUniqueName": "C:\\Users\\Andrew\\source\\repos\\ISTORE-NEW-3\\src\\IStore(WEB)\\IStore(WEB)\\IStore(WEB).csproj",
       "projectName": "IStore(WEB)",
-      "projectPath": "C:\\Users\\Andrew\\Source\\Repos\\ISTORE-NEW-3\\src\\IStore(WEB)\\IStore(WEB)\\IStore(WEB).csproj",
+      "projectPath": "C:\\Users\\Andrew\\source\\repos\\ISTORE-NEW-3\\src\\IStore(WEB)\\IStore(WEB)\\IStore(WEB).csproj",
       "packagesPath": "C:\\Users\\Andrew\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Andrew\\Source\\Repos\\ISTORE-NEW-3\\src\\IStore(WEB)\\IStore(WEB)\\obj\\",
+      "outputPath": "C:\\Users\\Andrew\\source\\repos\\ISTORE-NEW-3\\src\\IStore(WEB)\\IStore(WEB)\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -8893,8 +8893,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\Andrew\\Source\\Repos\\ISTORE-NEW-3\\src\\BusinessLogic\\Business.csproj": {
-              "projectPath": "C:\\Users\\Andrew\\Source\\Repos\\ISTORE-NEW-3\\src\\BusinessLogic\\Business.csproj"
+            "C:\\Users\\Andrew\\source\\repos\\ISTORE-NEW-3\\src\\BusinessLogic\\Business.csproj": {
+              "projectPath": "C:\\Users\\Andrew\\source\\repos\\ISTORE-NEW-3\\src\\BusinessLogic\\Business.csproj"
             }
           }
         }

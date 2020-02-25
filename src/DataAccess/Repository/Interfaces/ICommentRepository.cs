@@ -10,7 +10,8 @@ namespace DataAccess.Repository.Interfaces
 {
     public interface ICommentRepository : IRepository<Comment>
     {
-        Task<IReadOnlyCollection<Comment>> FindAllCommentsAllIncludedAsync();
-
+        Task<IReadOnlyCollection<Comment>> GetCommentsAllIncludedAsync();
+        Task<IReadOnlyCollection<Comment>> FindByConditionAllIncludedAsync(Expression<Func<Comment,bool>> predicate);
+        Task<Comment> GetCommentAllIncludedAsync(Expression<Func<Comment, bool>> predicate);
     }
 }

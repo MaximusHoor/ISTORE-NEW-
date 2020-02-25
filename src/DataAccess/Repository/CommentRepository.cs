@@ -6,12 +6,13 @@ using Domain.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace DataAccess.Repository
 {
-    public class CommentRepository : BaseRepository<Comment>/*, ICommentRepository*/
+    public class CommentRepository : BaseRepository<Comment>, ICommentRepository
     {
         public CommentRepository(StoreContext context) : base(context)
         {
@@ -21,19 +22,28 @@ namespace DataAccess.Repository
             return await CreateAsync(comment);
         }
 
-        public async Task<IReadOnlyCollection<Comment>> FindAllCommentsAllIncludedAsync()
-        {
-            return await this.Entities.Include(x => x.Product).Include(x => x.User).Include(x=>x.Product).ToListAsync();
-        }
-
         public override async Task<IReadOnlyCollection<Comment>> GetAllAsync()
         {
-            return await this.Entities.Include(x => x.Product).Include(x => x.User).ToListAsync();
+            return await base.GetAllAsync();
         }
-        //public async Task<Comment> FindCommentByConditionAsync(Expression<Func<Comment, bool>> predicate)
-        //{
-        //    return this.Entities.Include(x => x.Product).Include(x => x.User).Include(x => x.Answers).ToListAsync();
-        //}
+        public override async Task<IReadOnlyCollection<Comment>> FindByConditionAsync(Expression<Func<Comment, bool>> predicat)
+        {
+            return await this.Entities.Where(predicat).Include(x => x.Answers).ToListAsync();
+        }
 
+        public async Task<IReadOnlyCollection<Comment>> GetCommentsAllIncludedAsync()
+        {
+            return await this.Entities.Include(x => x.Product).Include(x => x.User).Include(x=>x.Answers).ToListAsync();
+        }
+
+        public async Task<IReadOnlyCollection<Comment>> FindByConditionAllIncludedAsync(Expression<Func<Comment, bool>> predicate)
+        {
+            return await this.Entities.Where(predicate).Include(x => x.Product).Include(x => x.User).Include(x => x.Answers).ToListAsync();
+        }
+
+        public async Task<Comment> GetCommentAllIncludedAsync(Expression<Func<Comment, bool>> predicate)
+        {
+            return await this.Entities.Where(predicate).Include(x => x.Product).Include(x => x.User).Include(x => x.Answers).FirstOrDefaultAsync();
+        }
     }
 }

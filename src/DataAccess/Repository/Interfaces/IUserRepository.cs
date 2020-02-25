@@ -8,9 +8,11 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repository.Interfaces
 {
-    public interface IUserRepository
+    public interface IUserRepository : IRepository<User>
     {
         Task<IReadOnlyCollection<User>> FindAllUsersAllIncludedAsync();
-        Task<IReadOnlyCollection<User>> FindUserByConditionAsync(Expression<Func<User, bool>> addressPredicate, Expression<Func<User, bool>> commentPredicate);
+        Task<IReadOnlyCollection<User>> FindUserByConditionAllIncludedAsync(Expression<Func<User, bool>> userPredicate, Expression<Func<Comment, bool>> commentPredicate);
+        Task<IReadOnlyCollection<User>> FindUserByConditionAllIncludedAsync(Expression<Func<User, bool>> userPredicate);
+        Task<User> GetUserAllIncludedAsync(Expression<Func<User, bool>> userPredicate);
     }
 }

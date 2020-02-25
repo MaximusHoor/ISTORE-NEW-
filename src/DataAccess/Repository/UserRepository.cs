@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repository
 {
-    public class UserRepository : BaseRepository<User> /*IUserRepository*/
+    public class UserRepository : BaseRepository<User>, IUserRepository
     {
         public UserRepository(StoreContext context) : base(context) { }
         public override async Task<OperationDetail> CreateAsync(User user)
@@ -24,20 +24,27 @@ namespace DataAccess.Repository
         {
             return await this.Entities.Include(x => x.Address).ToListAsync();
         }
-
-        //public async Task<IReadOnlyCollection<User>> FindAllUsersAllIncludedAsync()
-        //{
-        //    return await this.Entities.Include(x => x.Address).Include(x=>x.Comments).ToListAsync(); 
-        //}
-
-        public async Task<IReadOnlyCollection<User>> FindUserByConditionAsync(Expression<Func<User, bool>> predicat)
+        public override async Task<IReadOnlyCollection<User>> FindByConditionAsync(Expression<Func<User, bool>> predicat)
         {
             return await this.Entities.Where(predicat).Include(x => x.Address).ToListAsync();
         }
+        public async Task<IReadOnlyCollection<User>> FindAllUsersAllIncludedAsync()
+        {
+            return await this.Entities.Include(x => x.Address).Include(x => x.Comments).ToListAsync();
+        }
 
-        //public async Task<IReadOnlyCollection<User>> FindUserByConditionAsync(Expression<Func<User, bool>> addressPredicate, Expression<Func<User, bool>> commentPredicate)
-        //{
-        //    return await this.Entities.Include(addressPredicate).Include(commentPredicate).ToListAsync();
-        //}
+        public async Task<IReadOnlyCollection<User>> FindUserByConditionAllIncludedAsync(Expression<Func<User, bool>> userPredicate, Expression<Func<Comment, bool>> commentPredicate)
+        {
+            return await this.Entities.Where(userPredicate).Include(x=>x.Address).Include(x=>x.Comments.AsQueryable().Where(commentPredicate)).ToListAsync();
+        }
+        public async Task<IReadOnlyCollection<User>> FindUserByConditionAllIncludedAsync(Expression<Func<User, bool>> userPredicate)
+        {
+            return await this.Entities.Where(userPredicate).Include(x => x.Address).Include(x => x.Comments).ToListAsync();
+        }
+
+        public async Task<User> GetUserAllIncludedAsync(Expression<Func<User, bool>> userPredicate)
+        {
+            return await this.Entities.Where(userPredicate).Include(x => x.Address).Include(x => x.Comments).FirstOrDefaultAsync();
+        }
     }
 }

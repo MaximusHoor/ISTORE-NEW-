@@ -21,12 +21,12 @@ namespace DataAccess.Repository
 
         public override  async Task<IReadOnlyCollection<Address>> GetAllAsync()
         {
-            return await this.Entities.Include(br => br.Brand).ToListAsync().ConfigureAwait(false);
+            return await this.ToListAsync().ConfigureAwait(false);
         }
 
         public override async Task<IReadOnlyCollection<Address>> FindByConditionAsync(Expression<Func<Address, bool>> predicat)
         {
-            return await this.Entities.Include(br => br.Brand).Where(predicat).ToListAsync().ConfigureAwait(false);
+            return await this.Entities.Where(predicat).ToListAsync().ConfigureAwait(false);
         }
 
     }

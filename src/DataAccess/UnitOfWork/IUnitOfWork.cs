@@ -16,9 +16,9 @@ namespace DataAccess.UnitOfWork
         ProductRepository ProductRepository { get; }
         AddressRepository AddressRepository { get; }
         IBrandRepository BrandRepository { get; }
-        IOrderDetailsRepository OrderDetailsRepository { get; }
-        IOrderRepository OrderRepository { get; }
-        IPackageRepository PackageRepository { get; }
+        OrderDetailsRepository OrderDetailsRepository { get; }
+        OrderRepository OrderRepository { get; }
+        PackageRepository PackageRepository { get; }
 
         Task SaveChangesAsync();
     }

@@ -46,9 +46,9 @@ namespace DataAccess.UnitOfWork
         public IDeliveryRepository DeliveryRepository { get; }
         public AddressRepository AddressRepository { get; }
         public IBrandRepository BrandRepository { get; }
-        public IOrderDetailsRepository OrderDetailsRepository { get; }
-        public IOrderRepository OrderRepository { get; }
-        public IPackageRepository PackageRepository { get; }
+        public OrderDetailsRepository OrderDetailsRepository { get; }
+        public OrderRepository OrderRepository { get; }
+        public PackageRepository PackageRepository { get; }
         public Task SaveChangesAsync()
         {
             return _storeContext.SaveChangesAsync();

@@ -8,7 +8,7 @@ namespace DataAccess.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork, IDisposable
     {
-        public UnitOfWork(StoreContext storeContext, IUserRepository userRepository, ICommentRepository commentRepository, ICategoryRepository categoryRepository, IImageRepository imageRepository, IGroupCharacteristicRepository groupCharacteristicRepository, ICharacteristicRepository characteristicRepository, IProductRepository productRepository, IDeliveryRepository deliveryRepository, AddressRepository addressRepository, IBrandRepository brandRepository, IOrderDetailsRepository orderDetailsRepository, IOrderRepository orderRepository, IPackageRepository packageRepository)
+        public UnitOfWork(StoreContext storeContext, IUserRepository userRepository, ICommentRepository commentRepository, ICategoryRepository categoryRepository, IImageRepository imageRepository, IGroupCharacteristicRepository groupCharacteristicRepository, CharacteristicRepository characteristicRepository, IProductRepository productRepository, IDeliveryRepository deliveryRepository, AddressRepository addressRepository, IBrandRepository brandRepository, IOrderDetailsRepository orderDetailsRepository, IOrderRepository orderRepository, IPackageRepository packageRepository)
         {
             _storeContext = storeContext;
             UserRepository = userRepository;
@@ -37,7 +37,7 @@ namespace DataAccess.UnitOfWork
         public ICategoryRepository CategoryRepository { get; }
         public IImageRepository ImageRepository { get; }
         public IGroupCharacteristicRepository GroupCharacteristicRepository { get; }
-        public ICharacteristicRepository CharacteristicRepository { get; }
+        public CharacteristicRepository CharacteristicRepository { get; }
         public IProductRepository ProductRepository { get; }
         public IDeliveryRepository DeliveryRepository { get; }
         public AddressRepository AddressRepository { get; }

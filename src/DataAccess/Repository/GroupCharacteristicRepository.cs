@@ -6,41 +6,27 @@ using Domain.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace DataAccess.Repository
 {
-    public class GroupCharacteristicRepository : BaseRepository<GroupCharacteristic>, IGroupCharacteristicRepository
+    public class GroupCharacteristicRepository : BaseRepository<GroupCharacteristic>
     {
         public GroupCharacteristicRepository(StoreContext context) : base(context)
         {
 
         }
 
-        public OperationDetail CreateGroupCharacteristic(GroupCharacteristic groupCharacteristic)
+        public override async Task<IReadOnlyCollection<GroupCharacteristic>> GetAllAsync()
         {
-            return Create(groupCharacteristic);
+            return await this.Entities.Include(grc => grc.Title).Include(grc => grc.ProductId).Include(grc => grc.Product).Include(grc => grc.Characteristics).ToListAsync().ConfigureAwait(false);
         }
 
-        public OperationDetail DeleteGroupCharacteristic(GroupCharacteristic groupCharacteristic)
+        public override async Task<IReadOnlyCollection<GroupCharacteristic>> FindByConditionAsync(Expression<Func<GroupCharacteristic, bool>> predicat)
         {
-            return Delete(groupCharacteristic);
-        }
-
-        public async Task<IEnumerable<GroupCharacteristic>> FindAllGroupCharacteristicsAsync()
-        {
-            return await FindAll().ToListAsync();
-        }
-
-        public async Task<IEnumerable<GroupCharacteristic>> FindGroupCharacteristicByConditionAsync(Expression<Func<GroupCharacteristic, bool>> predicate)
-        {
-            return await FindByCondition(predicate).ToListAsync();
-        }
-
-        public OperationDetail UpdateGroupCharacteristic(GroupCharacteristic groupCharacteristic)
-        {
-            return Update(groupCharacteristic);
+            return await this.Entities.Include(grc => grc.Title).Include(grc => grc.ProductId).Include(grc => grc.Product).Include(grc => grc.Characteristics).Where(predicat).ToListAsync().ConfigureAwait(false);
         }
     }
 }

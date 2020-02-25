@@ -12,9 +12,9 @@ namespace DataAccess.Infrastructure
         public static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
             services.AddTransient(typeof(ICommentRepository), typeof(CommentRepository));
-            services.AddTransient(typeof(IImageRepository), typeof(ImageRepository));
+            services.AddTransient(typeof(ImageRepository));
             services.AddTransient(typeof(IDeliveryRepository), typeof(DeliveryRepository));
-            services.AddTransient(typeof(IGroupCharacteristicRepository), typeof(GroupCharacteristicRepository));
+            services.AddTransient(typeof(GroupCharacteristicRepository));
             services.AddTransient(typeof(ICharacteristicRepository), typeof(CharacteristicRepository));
             services.AddTransient(typeof(IPackageRepository), typeof(PackageRepository));
             services.AddTransient(typeof(IOrderRepository), typeof(OrderRepository));
@@ -23,11 +23,11 @@ namespace DataAccess.Infrastructure
             services.AddTransient(typeof(IBrandRepository), typeof(BrandRepository));
             services.AddTransient(typeof(IUserRepository), typeof(UserRepository));
             services.AddTransient(typeof(ICategoryRepository), typeof(CategoryRepository));
-            services.AddTransient(typeof(IProductRepository), typeof(ProductRepository));           
+            services.AddTransient(typeof(IProductRepository), typeof(ProductRepository));
 
             services.AddDbContext<StoreContext>(option =>
                 option.UseSqlServer(configuration.GetConnectionString("myconn")), ServiceLifetime.Singleton);
-            
+
         }
     }
 }

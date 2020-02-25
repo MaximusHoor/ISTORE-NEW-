@@ -6,39 +6,32 @@ using Domain.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace DataAccess.Repository
 {
-    public class CategoryRepository : BaseRepository<Category>, ICategoryRepository
+    public class CategoryRepository : BaseRepository<Category>
     {
-        //public StoreContext storeContext { get; set; }
+       
         public CategoryRepository(StoreContext context) : base(context)
         {
-            //storeContext = context;
+            
         }
 
-        public async Task<IEnumerable<Category>> FindAllCategoriesAsync()
+        public override async Task<IReadOnlyCollection<Category>> GetAllAsync()
         {
-            return await FindAll().ToListAsync();
+            return await this.Entities.Include(t => t.Title).Include(p => p.PreviewImage).Include(p => p.Products)
+                .Include(s => s.Subcategories).ToListAsync().ConfigureAwait(false);
         }
-        public async Task<IEnumerable<Category>> FindCategoryByConditionAsync(Expression<Func<Category, bool>> predicate)
+
+        public override async Task<IReadOnlyCollection<Category>> FindByConditionAsync(Expression<Func<Category, bool>> predicat)
         {
-            return await FindByCondition(predicate).ToListAsync();
-        }
-        public OperationDetail CreateCategory(Category category)
-        {
-            return Create(category);
-        }
-        public OperationDetail UpdateCategory(Category сategory)
-        {
-            return Update(сategory);
-        }
-        public OperationDetail DeleteCategory(Category сategory)
-        {
-            return Delete(сategory);
-        }
+            return await this.Entities.Include(t => t.Title).Include(p => p.PreviewImage).Include(p => p.Products)
+                .Include(s => s.Subcategories).Where(predicat).ToListAsync().ConfigureAwait(false);
+        } 
+
         //public async Task<OperationDetail> AddProductAsync(Category product)
         //{
         //    //(await _storeContext.Categories.FirstOrDefaultAsync(x => x.Id == categoryId)).Products.Add(product);

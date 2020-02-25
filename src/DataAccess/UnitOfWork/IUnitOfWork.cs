@@ -12,7 +12,7 @@ namespace DataAccess.UnitOfWork
         IImageRepository ImageRepository { get; }
         IGroupCharacteristicRepository GroupCharacteristicRepository { get; }
         ICharacteristicRepository CharacteristicRepository { get; }
-        ICategoryRepository CategoryRepository { get; }
+        CategoryRepository CategoryRepository { get; }
         IProductRepository ProductRepository { get; }
         AddressRepository AddressRepository { get; }
         IBrandRepository BrandRepository { get; }

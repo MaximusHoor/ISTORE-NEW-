@@ -18,33 +18,19 @@ namespace Business.Service
         }
         public async Task<OperationDetail> AddCategoryAsync(Category category)
         {
-            var res = _unitOfWork.CategoryRepository.CreateCategory(category);
-            await _unitOfWork.SaveChangesAsync();
-            return res;
-        }
-
-        public async Task<OperationDetail> DeleteCategoryAsync(Category category)
-        {
-            var res = _unitOfWork.CategoryRepository.DeleteCategory(category);
-            await _unitOfWork.SaveChangesAsync();
-            return res;
-        }
-
-        public async Task<OperationDetail> UpdateCategoryAsync(Category category)
-        {
-            var res = _unitOfWork.CategoryRepository.UpdateCategory(category);
+            var res = await _unitOfWork.CategoryRepository.CreateAsync(category);
             await _unitOfWork.SaveChangesAsync();
             return res;
         }
 
         public async Task<IEnumerable<Category>> FindAllCategoriesAsync()
-        {
-            return await _unitOfWork.CategoryRepository.FindAllCategoriesAsync();
+        {                                  
+            return await _unitOfWork.CategoryRepository.GetAllAsync();
         }
+
         public async Task<IEnumerable<Category>> FindCategoryByConditionAsync(Expression<Func<Category, bool>> predicate)
         {
-            var category = await _unitOfWork.CategoryRepository.FindCategoryByConditionAsync(predicate);
-            return category;
+            return await _unitOfWork.CategoryRepository.FindByConditionAsync(predicate);
         }
     }
 }

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Business.Service
 {
-    public class PackageService : IPackageService
+    public class PackageService 
     {
         private readonly IUnitOfWork _unitOfWork;
         public PackageService(IUnitOfWork unitOfWork) => _unitOfWork = unitOfWork;

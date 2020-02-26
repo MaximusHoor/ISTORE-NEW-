@@ -10,9 +10,14 @@ using System.Threading.Tasks;
 
 namespace Business.Service
 {
-    public class ProductService : IProductService
+    public class ProductService 
     {
         private readonly IUnitOfWork _unitOfWork;
+
+        public ProductService(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
 
         public async Task<OperationDetail> CreateAsync(Product entity)
         {
@@ -25,11 +30,7 @@ namespace Business.Service
         {
             return await _unitOfWork.ProductRepository.FindByConditionAsync(predicat);
         }
-
-        public async Task<IReadOnlyCollection<Product>> FindByConditionWithIncludeAsync(Expression<Func<Product, bool>> predicat, Expression<Func<Product, bool>> includePredicat)
-        {
-            return await _unitOfWork.ProductRepository.FindByConditionWithIncludeAsync(predicat, includePredicat);
-        }
+       
 
         public async Task<IReadOnlyCollection<Product>> GetAllAsync()
         {

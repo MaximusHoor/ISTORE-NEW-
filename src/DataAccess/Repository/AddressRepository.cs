@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repository
 {
-    public class AddressRepository : BaseRepository<Address>, IAddressRepository
+    public class AddressRepository : BaseRepository<Address> 
     {
         public AddressRepository(StoreContext context) : base(context)
         {

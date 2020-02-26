@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repository
 {
-    public class GroupCharacteristicRepository : BaseRepository<GroupCharacteristic>, IGroupCharacteristicRepository
+    public class GroupCharacteristicRepository : BaseRepository<GroupCharacteristic>
     {
         public GroupCharacteristicRepository(StoreContext context) : base(context)
         {
@@ -33,9 +33,6 @@ namespace DataAccess.Repository
                 .Where(predicat).ToListAsync().ConfigureAwait(false);
         }
 
-        public async Task<IReadOnlyCollection<GroupCharacteristic>> FindByConditionWithIncludeAsync(Expression<Func<GroupCharacteristic, bool>> predicat, Expression<Func<GroupCharacteristic, bool>> includePredicat)
-        {
-            return await this.Entities.Include(includePredicat).Where(predicat).ToListAsync().ConfigureAwait(false);
-        }
+        
     }
 }

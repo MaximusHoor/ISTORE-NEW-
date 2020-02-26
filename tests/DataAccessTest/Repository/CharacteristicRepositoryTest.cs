@@ -44,7 +44,7 @@ namespace DataAccessTest.Repository
             };
 
             // Act
-            _repository.Create(characteristic);
+            _repository.CreateAsync(characteristic);
             ContextSingleton.GetDatabaseContext().SaveChanges();
 
             // Assert
@@ -56,14 +56,13 @@ namespace DataAccessTest.Repository
         private void Update(int id)
         {
             // Arrange
-            var characteristic = _repository.FindByCondition(x => x.Id == id).FirstOrDefault();
+            var characteristic = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
             characteristic.Title = "New Title";
 
             // Act
-            _repository.Update(characteristic);
             ContextSingleton.GetDatabaseContext().SaveChanges();
 
-            var updatedCharacteristic = _repository.FindByCondition(x => x.Id == id).FirstOrDefault();
+            var updatedCharacteristic = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
 
             // Assert
             Assert.AreEqual("New Title", updatedCharacteristic.Title, "Record is not updated.");
@@ -72,7 +71,7 @@ namespace DataAccessTest.Repository
         private void GetAll()
         {
             // Act
-            IEnumerable<Characteristic> items = _repository.FindAll().ToList();
+            IReadOnlyCollection<Characteristic> items = _repository.GetAllAsync().Result;
 
             // Assert
             Assert.IsTrue(items.Any(), "GetAll returned no items.");
@@ -81,27 +80,13 @@ namespace DataAccessTest.Repository
         private void GetByID(int id)
         {
             // Act
-            var characteristic = _repository.FindByCondition(x => x.Id == id).FirstOrDefault();
+            var characteristic = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
 
             // Assert
             Assert.IsNotNull(characteristic, "GetByID returned null.");
             Assert.AreEqual(id, characteristic.Id);
             Assert.AreEqual(_title, characteristic.Title);
             Assert.AreEqual(_characteristicId, characteristic.GroupCharacteristicId);
-        }
-
-        private void Delete(int id)
-        {
-            // Arrange
-            var characteristic = _repository.FindByCondition(x => x.Id == id).FirstOrDefault();
-
-            // Act
-            _repository.Delete(characteristic);
-            ContextSingleton.GetDatabaseContext().SaveChanges();
-            characteristic = _repository.FindByCondition(x => x.Id == id).FirstOrDefault();
-
-            // Assert
-            Assert.IsNull(characteristic, "Record is not deleted.");
         }
 
         [Test]
@@ -112,7 +97,6 @@ namespace DataAccessTest.Repository
             GetByID(characteristic.Item1);
             GetAll();
             Update(characteristic.Item1);
-            Delete(characteristic.Item1);
         }
     }
 }

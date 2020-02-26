@@ -41,7 +41,7 @@ namespace DataAccessTest.Repository
                 Weight = _weight
             };
             // Act
-            _repository.Create(package);
+            _repository.CreateAsync(package);
             ContextSingleton.GetDatabaseContext().SaveChanges();
             // Assert
             Assert.AreNotEqual(0, package.Id, "Creating new record does not return id");
@@ -51,14 +51,13 @@ namespace DataAccessTest.Repository
         private void Update(int id)
         {
             // Arrange
-            var package = _repository.FindByCondition(x => x.Id == id).FirstOrDefault();
+            var package = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
             package.CountInPackage = 20;
             package.Volume = 15.15;
             package.Weight = 33.33;
             // Act
-            _repository.Update(package);
             ContextSingleton.GetDatabaseContext().SaveChanges();
-            var updatedPackage = _repository.FindByCondition(x => x.Id == id).FirstOrDefault();
+            var updatedPackage = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
             // Assert
             Assert.AreEqual(20, updatedPackage.CountInPackage, "Record is not updated.");
             Assert.AreEqual(15.15, updatedPackage.Volume, "Record is not updated.");
@@ -67,31 +66,20 @@ namespace DataAccessTest.Repository
         private void GetAll()
         {
             // Act
-            IEnumerable<Package> items = _repository.FindAll().ToList();
+            IReadOnlyCollection<Package> items = _repository.GetAllAsync().Result;
             // Assert
             Assert.IsTrue(items.Any(), "GetAll returned no items.");
         }
         private void GetById(int id)
         {
             // Arrange
-            var package = _repository.FindByCondition(x => x.Id == id).FirstOrDefault();
+            var package = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
             // Assert
             Assert.IsNotNull(package, "GetById returned null.");
             Assert.AreEqual(id, package.Id);
             Assert.AreEqual(_countInPackage, package.CountInPackage);
             Assert.AreEqual(_volume, package.Volume);
             Assert.AreEqual(_weight, package.Weight);
-        }
-        private void Delete(int id)
-        {
-            // Arrange
-            var package = _repository.FindByCondition(x => x.Id == id).FirstOrDefault();
-            // Act
-            _repository.Delete(package);
-            ContextSingleton.GetDatabaseContext().SaveChanges();
-            package = _repository.FindByCondition(x => x.Id == id).FirstOrDefault();
-            // Assert
-            Assert.IsNull(package, "Record is not deleted.");
         }
 
         [Test]
@@ -101,7 +89,6 @@ namespace DataAccessTest.Repository
             GetAll();
             GetById(package);
             Update(package);
-            Delete(package);
         }
     }
 }

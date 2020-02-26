@@ -10,11 +10,9 @@ namespace DataAccess.Repository.Interfaces
 {
     public interface IUserRepository : IRepository<User>
     {
-        Task<IEnumerable<User>> FindAllUsersAsync();
-        Task<IEnumerable<User>> FindUserByConditionAsync(Expression<Func<User, bool>> predicat);
-        Task<User> GetUserByConditionAsync(Expression<Func<User, bool>> predicat);
-        OperationDetail CreateUser(User user);
-        OperationDetail UpdateUser(User user);
-        OperationDetail DeleteUser(User user);
+        Task<IReadOnlyCollection<User>> FindAllUsersAllIncludedAsync();
+        Task<IReadOnlyCollection<User>> FindUserByConditionAllIncludedAsync(Expression<Func<User, bool>> userPredicate, Expression<Func<Comment, bool>> commentPredicate);
+        Task<IReadOnlyCollection<User>> FindUserByConditionAllIncludedAsync(Expression<Func<User, bool>> userPredicate);
+        Task<User> GetUserAllIncludedAsync(Expression<Func<User, bool>> userPredicate);
     }
 }

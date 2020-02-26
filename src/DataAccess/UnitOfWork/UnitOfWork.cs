@@ -8,7 +8,7 @@ namespace DataAccess.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork, IDisposable
     {
-        public UnitOfWork(StoreContext storeContext, /*UserRepository userRepository,*/ /*CommentRepository commentRepository,*/
+        public UnitOfWork(StoreContext storeContext, IUserRepository userRepository, ICommentRepository commentRepository,
         CategoryRepository categoryRepository, ImageRepository imageRepository, 
         GroupCharacteristicRepository groupCharacteristicRepository, 
         CharacteristicRepository characteristicRepository, ProductRepository productRepository, 
@@ -17,8 +17,8 @@ namespace DataAccess.UnitOfWork
         PackageRepository packageRepository)
         {
             _storeContext = storeContext;
-            //UserRepository = userRepository;
-            //CommentRepository = commentRepository;
+            UserRepository = userRepository;
+            CommentRepository = commentRepository;
             CategoryRepository = categoryRepository;
             ImageRepository = imageRepository;
             GroupCharacteristicRepository = groupCharacteristicRepository;
@@ -38,8 +38,8 @@ namespace DataAccess.UnitOfWork
         {
             _storeContext?.Dispose();
         }
-        //public IUserRepository UserRepository { get; }
-        //public ICommentRepository CommentRepository { get; }
+        public IUserRepository UserRepository { get; }
+        public ICommentRepository CommentRepository { get; }
         public CategoryRepository CategoryRepository { get; }
         public ImageRepository ImageRepository { get; }
         public GroupCharacteristicRepository GroupCharacteristicRepository { get; }

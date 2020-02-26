@@ -2,45 +2,51 @@
 using DataAccess.UnitOfWork;
 using Domain.EF_Models;
 using Domain.Infrastructure;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Business.Service
 {
-    //public class CommentService : ICommentService
-    //{
+    public class CommentService : ICommentService
+    {
+        public CommentService(IUnitOfWork unitOfWork) { this._unitOfWork = unitOfWork; }
+        private readonly IUnitOfWork _unitOfWork;
+        public async Task<OperationDetail> CreateCommentAsync(Comment comment)
+        {
+            var operationResult = await _unitOfWork.CommentRepository.CreateAsync(comment);
+            await _unitOfWork.SaveChangesAsync();
+            return operationResult;
+        }
 
-    //    public CommentService(IUnitOfWork unitOfWork) { this._unitOfWork = unitOfWork; }
-    //    private readonly IUnitOfWork _unitOfWork;
-    //    public async Task<OperationDetail> CreateCommentAsync(Comment comment)
-    //    {
-    //        var operationResult = _unitOfWork.CommentRepository.Create(comment);
-    //        await _unitOfWork.SaveChangesAsync();
-    //        return operationResult;
-    //    }
+        public async Task<IReadOnlyCollection<Comment>> GetCommentsAsync()
+        {
+            return await _unitOfWork.CommentRepository.GetAllAsync();
+        }
 
-    //    public async Task<OperationDetail> DeleteCommentAsync(Comment comment)
-    //    {
-    //        var operationResult = _unitOfWork.CommentRepository.Delete(comment);
-    //        await _unitOfWork.SaveChangesAsync();
-    //        return operationResult;
-    //    }
+        public async Task<IReadOnlyCollection<Comment>> GetCommentsAllIncludedAsync()
+        {
+            return await _unitOfWork.CommentRepository.GetCommentsAllIncludedAsync();
+        }
+        public async Task<Comment> GetCommentAllIncludedAsync(int commentId)
+        {
+            var comments = await _unitOfWork.CommentRepository.FindByConditionAllIncludedAsync(x => x.Id == commentId);
+            return comments.ElementAt(0);
+        }
+        public async Task<IReadOnlyCollection<Comment>> GetCommentsByUserAsync(int userId)
+        {
+            return await _unitOfWork.CommentRepository.FindByConditionAllIncludedAsync(x => x.UserId == userId);
+        }
 
-    //    public async Task<IEnumerable<Comment>> FindAllCommentsAsync()
-    //    {
-    //        return await _unitOfWork.CommentRepository.FindAllCommentsAsync();
-    //    }
+        public async Task<IReadOnlyCollection<Comment>> GetCommentsByProductAsync(int productId)
+        {
+            return await _unitOfWork.CommentRepository.FindByConditionAllIncludedAsync(x => x.ProductId == productId);
+        }
 
-    //    public async Task<Comment> FindCommentAsync(int id)
-    //    {
-    //        return await _unitOfWork.CommentRepository.FindCommentByConditionAsync(x => x.Id == id);
-    //    }
-
-    //    public async Task<OperationDetail> UpdateCommentAsync(Comment comment)
-    //    {
-    //        var operationResult = _unitOfWork.CommentRepository.Update(comment);
-    //        await _unitOfWork.SaveChangesAsync();
-    //        return operationResult;
-    //    }
-    //}
+        public async Task<IReadOnlyCollection<Comment>> GetCommentsDateFromAsync(DateTime time)
+        {
+            return await _unitOfWork.CommentRepository.FindByConditionAllIncludedAsync(x => x.Date > time);
+        }
+    }
 }

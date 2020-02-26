@@ -12,7 +12,7 @@ namespace DataAccess.Infrastructure
         public static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
             
-            //services.AddTransient(typeof(ICommentRepository), typeof(CommentRepository));
+            services.AddTransient(typeof(ICommentRepository), typeof(CommentRepository));
             services.AddTransient(typeof(ImageRepository));
             services.AddTransient(typeof(DeliveryRepository));
             services.AddTransient(typeof(GroupCharacteristicRepository));
@@ -22,8 +22,8 @@ namespace DataAccess.Infrastructure
             services.AddTransient(typeof(OrderDetailsRepository));
             services.AddTransient(typeof(AddressRepository));
             services.AddTransient(typeof(BrandRepository));
-            //services.AddTransient(typeof(IUserRepository), typeof(UserRepository));
-            services.AddTransient(typeof(CategoryRepository));
+            services.AddTransient(typeof(IUserRepository), typeof(UserRepository));
+            services.AddTransient(typeof(CategoryRepository));  
             services.AddTransient(typeof(ProductRepository));           
 
             services.AddDbContext<StoreContext>(option =>

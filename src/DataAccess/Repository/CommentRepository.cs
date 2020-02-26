@@ -6,41 +6,39 @@ using Domain.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace DataAccess.Repository
 {
-    //public class CommentRepository : BaseRepository<Comment>, ICommentRepository
-    //{
-    //    public CommentRepository(StoreContext context) : base(context)
-    //    {
-    //    }
-    //    public OperationDetail CreateComment(Comment comment)
-    //    {
-    //        return Create(comment);
-    //    }
-    //    public OperationDetail DeleteComment(Comment comment)
-    //    {
-    //        return Delete(comment);
-    //    }
-    //    public async Task<IEnumerable<Comment>> FindAllCommentsAsync()
-    //    {
-    //        return await FindAll().ToListAsync();
-    //    }
-    //    public async Task<Comment> FindCommentByConditionAsync(Expression<Func<Comment, bool>> predicate)
-    //    {
-    //        return await FindByCondition(predicate).FirstOrDefaultAsync();
-    //    }
+    public class CommentRepository : BaseRepository<Comment>, ICommentRepository
+    {
+        public CommentRepository(StoreContext context) : base(context)
+        {
+        }
+        public async Task<OperationDetail> CreateAsync(Comment comment)
+        {
+            return await CreateAsync(comment).ConfigureAwait(false);
+        }
 
-    //    public async Task<IEnumerable<Comment>> FindCommentsByConditionAsync(Expression<Func<Comment, bool>> predicate)
-    //    {
-    //        return await FindByCondition(predicate).ToListAsync();
-    //    }
+        public override async Task<IReadOnlyCollection<Comment>> GetAllAsync()
+        {
+            return await base.GetAllAsync().ConfigureAwait(false);
+        }
+        public override async Task<IReadOnlyCollection<Comment>> FindByConditionAsync(Expression<Func<Comment, bool>> predicat)
+        {
+            return await this.Entities.Where(predicat).Include(x => x.Answers).ToListAsync().ConfigureAwait(false);
+        }
 
-    //    public OperationDetail UpdateComment(Comment comment)
-    //    {
-    //        return Update(comment);
-    //    }
-    //}
+        public async Task<IReadOnlyCollection<Comment>> GetCommentsAllIncludedAsync()
+        {
+            return await this.Entities.Include(x => x.Product).Include(x => x.User).Include(x => x.Answers).ToListAsync().ConfigureAwait(false);
+        }
+
+        public async Task<IReadOnlyCollection<Comment>> FindByConditionAllIncludedAsync(Expression<Func<Comment, bool>> predicate)
+        {
+            return await this.Entities.Where(predicate).Include(x => x.Product).Include(x => x.User).Include(x => x.Answers).ToListAsync().ConfigureAwait(false);
+        }
+    }
 }

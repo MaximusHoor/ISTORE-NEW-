@@ -19,35 +19,21 @@ namespace Business.Service
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<OperationDetail> AddAddressAsync(Address address)
+        public async Task<OperationDetail> CreateAsync(Address entity)
         {
-            var res = _unitOfWork.AddressRepository.CreateAddress(address);
+            var res = await _unitOfWork.AddressRepository.CreateAsync(entity);
             await _unitOfWork.SaveChangesAsync();
             return res;
         }
 
-        public async Task<OperationDetail> DeleteAddressAsync(Address address)
+        public async Task<IReadOnlyCollection<Address>> FindByConditionAsync(Expression<Func<Address, bool>> predicat)
         {
-            var res = _unitOfWork.AddressRepository.DeleteAddress(address);
-            await _unitOfWork.SaveChangesAsync();
-            return res;
+            return await _unitOfWork.AddressRepository.FindByConditionAsync(predicat);
         }
 
-        public async Task<IEnumerable<Address>> FindAddressByConditionAsync(Expression<Func<Address, bool>> predicate)
+        public async Task<IReadOnlyCollection<Address>> GetAllAsync()
         {
-            return await _unitOfWork.AddressRepository.FindAddressByConditionAsync(predicate);
-        }
-
-        public async Task<IEnumerable<Address>> FindAllAddressesAsync()
-        {
-            return await _unitOfWork.AddressRepository.FindAllAddressesAsync();
-        }
-
-        public async Task<OperationDetail> UpdateAddressAsync(Address address)
-        {
-            var res = _unitOfWork.AddressRepository.UpdateAddress(address);
-            await _unitOfWork.SaveChangesAsync();
-            return res;
+            return await _unitOfWork.AddressRepository.GetAllAsync();
         }
     }
 }

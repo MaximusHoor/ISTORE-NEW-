@@ -14,21 +14,22 @@ namespace Business.Service
     {
         private readonly IUnitOfWork _unitOfWork;
         public PackageService(IUnitOfWork unitOfWork) => _unitOfWork = unitOfWork;
-        public async Task<OperationDetail> AddPackageAsync(Package package)
+
+        public async Task<OperationDetail> CreateAsync(Package entity)
         {
-            var res = await _unitOfWork.PackageRepository.CreateAsync(package).ConfigureAwait(false);
-            await _unitOfWork.SaveChangesAsync().ConfigureAwait(false);
+            var res = await _unitOfWork.PackageRepository.CreateAsync(entity);
+            await _unitOfWork.SaveChangesAsync();
             return res;
         }
 
-        public async Task<IEnumerable<Package>> GetAllPackagesAsync()
+        public async Task<IReadOnlyCollection<Package>> FindByConditionAsync(Expression<Func<Package, bool>> predicat)
         {
-            return await _unitOfWork.PackageRepository.GetAllAsync().ConfigureAwait(false);
+            return await _unitOfWork.PackageRepository.FindByConditionAsync(predicat);
         }
 
-        public async Task<IEnumerable<Package>> GetPackageAsync(Expression<Func<Package, bool>> predicate)
+        public async Task<IReadOnlyCollection<Package>> GetAllAsync()
         {
-            return await _unitOfWork.PackageRepository.FindByConditionAsync(predicate).ConfigureAwait(false);
+            return await _unitOfWork.PackageRepository.GetAllAsync();
         }
     }
 }

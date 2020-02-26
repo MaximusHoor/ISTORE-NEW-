@@ -1,12 +1,13 @@
 ﻿using DataAccess.Repository.Interfaces;
 using Domain.Context;
 using Domain.EF_Models;
-using Domain.Infrastructure;
 using Domain.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace DataAccess.Repository
@@ -18,29 +19,16 @@ namespace DataAccess.Repository
 
         }
 
-        public OperationDetail CreateBrand(Brand brand)
+        public override async Task<IReadOnlyCollection<Brand>> GetAllAsync()
         {
-            return Create(brand);
+            return await this.Entities.ToListAsync().ConfigureAwait(false);
         }
 
-        public OperationDetail DeleteBrand(Brand brand)
+        public override async Task<IReadOnlyCollection<Brand>> FindByConditionAsync(Expression<Func<Brand, bool>> predicat)
         {
-            return Delete(brand);
+            return await this.Entities.Where(predicat).ToListAsync().ConfigureAwait(false);
         }
 
-        public async Task<IEnumerable<Brand>> FindAllBrandsAsync()
-        {
-            return await FindAll().ToListAsync();
-        }
-
-        public async Task<IEnumerable<Brand>> FindBrandByConditionAsync(Expression<Func<Brand, bool>> predicate)
-        {
-            return await FindByCondition(predicate).ToListAsync();
-        }
-
-        public OperationDetail UpdateBrand(Brand brand)
-        {
-            return Update(brand);
-        }
+        
     }
 }

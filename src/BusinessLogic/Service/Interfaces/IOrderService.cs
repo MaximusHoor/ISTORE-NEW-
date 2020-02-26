@@ -8,10 +8,8 @@ using System.Threading.Tasks;
 
 namespace Business.Service.Interfaces
 {
-    public interface IOrderService
+    public interface IOrderService:ICrudService<Order>
     {
-        Task<OperationDetail> AddOrderAsync(Order order);
-        Task<IEnumerable<Order>> GetOrderAsync(Expression<Func<Order, bool>> predicate);
-        Task<IEnumerable<Order>> GetAllOrdersAsync();
+        Task<IReadOnlyCollection<Order>> FindByConditionWithIncludeAsync(Expression<Func<Order, bool>> predicat, Expression<Func<Order, bool>> includePredicat);
     }
 }

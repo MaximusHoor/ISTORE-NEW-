@@ -26,7 +26,8 @@ namespace DataAccess.Repository
 
         public override async Task<IReadOnlyCollection<Delivery>> FindByConditionAsync(Expression<Func<Delivery, bool>> predicat)
         {
-            return await this.Entities.Include(del=>del.AddressDelivery).Where(predicat).ToListAsync().ConfigureAwait(false);
+            return await this.Entities.Include(del=>del.AddressDelivery)
+                .Where(predicat).ToListAsync().ConfigureAwait(false);
         }
 
         public async Task<IReadOnlyCollection<Delivery>> FindByConditionWithIncludeAsync(Expression<Func<Delivery, bool>> predicat, Expression<Func<Delivery, bool>> includePredicat)

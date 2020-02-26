@@ -8,10 +8,8 @@ namespace Business.Service.Interfaces
 {
     public interface ICrudService<T>
     {
-        Task<IEnumerable<T>> FindAllAsync();
-        Task<IEnumerable<T>> FindByConditionAsync(Expression<Func<T, bool>> predicat);
-        Task<OperationDetail> CreateAsync(T obj);
-        Task<OperationDetail> UpdateAsync(T obj);
-        Task<OperationDetail> DeleteAsync(T obj);
+        Task<IReadOnlyCollection<T>> GetAllAsync();
+        Task<IReadOnlyCollection<T>> FindByConditionAsync(Expression<Func<T, bool>> predicat);
+        Task<OperationDetail> CreateAsync(T entity);
     }
 }

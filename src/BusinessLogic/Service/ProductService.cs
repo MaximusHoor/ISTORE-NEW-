@@ -14,27 +14,26 @@ namespace Business.Service
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public ProductService(IUnitOfWork unitOfWork)
+        public async Task<OperationDetail> CreateAsync(Product entity)
         {
-            _unitOfWork = unitOfWork;
-        }
-
-        public async Task<OperationDetail> AddProductAsync(Product product)
-        {
-            var res = await _unitOfWork.ProductRepository.CreateAsync(product).ConfigureAwait(false);
-             await _unitOfWork.SaveChangesAsync().ConfigureAwait(false);
+            var res = await _unitOfWork.ProductRepository.CreateAsync(entity);
+            await _unitOfWork.SaveChangesAsync();
             return res;
-           
         }
 
-        public async Task<IEnumerable<Product>> FindAllProductsAsync()
+        public async Task<IReadOnlyCollection<Product>> FindByConditionAsync(Expression<Func<Product, bool>> predicat)
         {
-            return await _unitOfWork.ProductRepository.GetAllAsync().ConfigureAwait(false);
+            return await _unitOfWork.ProductRepository.FindByConditionAsync(predicat);
         }
 
-        public async Task<IEnumerable<Product>> FindProductByConditionAsync(Expression<Func<Product, bool>> predicate)
+        public async Task<IReadOnlyCollection<Product>> FindByConditionWithIncludeAsync(Expression<Func<Product, bool>> predicat, Expression<Func<Product, bool>> includePredicat)
         {
-            return await _unitOfWork.ProductRepository.FindByConditionAsync(predicate).ConfigureAwait(false);
+            return await _unitOfWork.ProductRepository.FindByConditionWithIncludeAsync(predicat, includePredicat);
+        }
+
+        public async Task<IReadOnlyCollection<Product>> GetAllAsync()
+        {
+            return await _unitOfWork.ProductRepository.GetAllAsync();
         }
     }
 }

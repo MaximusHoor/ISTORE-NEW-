@@ -15,21 +15,26 @@ namespace Business.Service
         private readonly IUnitOfWork _unitOfWork;
         public OrderService(IUnitOfWork unitOfWork) => _unitOfWork = unitOfWork;
 
-        public async Task<OperationDetail> AddOrderAsync(Order order)
+        public async  Task<OperationDetail> CreateAsync(Order entity)
         {
-            var res = await _unitOfWork.OrderRepository.CreateAsync(order).ConfigureAwait(false);
-            await _unitOfWork.SaveChangesAsync().ConfigureAwait(false);
+            var res = await _unitOfWork.OrderRepository.CreateAsync(entity);
+            await _unitOfWork.SaveChangesAsync();
             return res;
         }
 
-        public async Task<IEnumerable<Order>> GetAllOrdersAsync()
+        public async Task<IReadOnlyCollection<Order>> FindByConditionAsync(Expression<Func<Order, bool>> predicat)
         {
-            return await _unitOfWork.OrderRepository.GetAllAsync().ConfigureAwait(false);
+            return await _unitOfWork.OrderRepository.FindByConditionAsync(predicat);
         }
 
-        public async Task<IEnumerable<Order>> GetOrderAsync(Expression<Func<Order, bool>> predicate)
+        public async Task<IReadOnlyCollection<Order>> FindByConditionWithIncludeAsync(Expression<Func<Order, bool>> predicat, Expression<Func<Order, bool>> includePredicat)
         {
-            return await _unitOfWork.OrderRepository.FindByConditionAsync(predicate).ConfigureAwait(false);
+            return await _unitOfWork.OrderRepository.FindByConditionWithIncludeAsync(predicat, includePredicat);
+        }
+
+        public async Task<IReadOnlyCollection<Order>> GetAllAsync()
+        {
+            return await _unitOfWork.OrderRepository.GetAllAsync();
         }
     }
 }

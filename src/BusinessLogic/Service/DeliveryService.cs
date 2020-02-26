@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Business.Service
 {
-    public class DeliveryService : IDeliveryService<Delivery>
+    public class DeliveryService : IDeliveryService
     {
         private readonly IUnitOfWork _unitOfWork;
        
@@ -17,37 +17,27 @@ namespace Business.Service
         {
             _unitOfWork = unitOfWork;           
         }
-        public async Task<IEnumerable<Delivery>> FindAllAsync()
+
+        public async Task<OperationDetail> CreateAsync(Delivery entity)
         {
-            return await _unitOfWork.DeliveryRepository.FindAllDeliveriesAsync();
-        }
-        public async Task<IEnumerable<Delivery>> FindByConditionAsync(Expression<Func<Delivery, bool>> predicat)
-        {
-            return await _unitOfWork.DeliveryRepository.FindDeliveryByConditionAsync(predicat);
-        }
-        public Task<OperationDetail> CustomMethod(Delivery obj)
-        {
-            throw new NotImplementedException();
-        }
-        public async Task<OperationDetail> CreateAsync(Delivery obj)
-        {
-            var result = _unitOfWork.DeliveryRepository.CreateDelivery(obj);
+            var res = await _unitOfWork.DeliveryRepository.CreateAsync(entity);
             await _unitOfWork.SaveChangesAsync();
-            return result;
+            return res;
         }
 
-        public async Task<OperationDetail> UpdateAsync(Delivery obj)
+        public async Task<IReadOnlyCollection<Delivery>> FindByConditionAsync(Expression<Func<Delivery, bool>> predicat)
         {
-            var result =  _unitOfWork.DeliveryRepository.UpdateDelivery(obj);
-            await _unitOfWork.SaveChangesAsync();
-            return result;
+            return await _unitOfWork.DeliveryRepository.FindByConditionAsync(predicat);
         }
 
-        public async Task<OperationDetail> DeleteAsync(Delivery obj)
+        public async Task<IReadOnlyCollection<Delivery>> FindByConditionWithIncludeAsync(Expression<Func<Delivery, bool>> predicat, Expression<Func<Delivery, bool>> includePredicat)
         {
-            var result =  _unitOfWork.DeliveryRepository.DeleteDelivery(obj);
-            await _unitOfWork.SaveChangesAsync();
-            return result;
+            return await _unitOfWork.DeliveryRepository.FindByConditionWithIncludeAsync(predicat, includePredicat);
+        }
+
+        public async Task<IReadOnlyCollection<Delivery>> GetAllAsync()
+        {
+            return await _unitOfWork.DeliveryRepository.GetAllAsync();
         }
     }
 }

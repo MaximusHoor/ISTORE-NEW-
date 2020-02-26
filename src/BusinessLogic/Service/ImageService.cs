@@ -17,21 +17,26 @@ namespace Business.Service
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<OperationDetail> AddImageAsync(Image image)
+        public async Task<OperationDetail> CreateAsync(Image entity)
         {
-            var res = await _unitOfWork.ImageRepository.CreateAsync(image).ConfigureAwait(false);
-            await _unitOfWork.SaveChangesAsync().ConfigureAwait(false);
+            var res = await _unitOfWork.ImageRepository.CreateAsync(entity);
+            await _unitOfWork.SaveChangesAsync();
             return res;
         }
 
-        public async Task<IEnumerable<Image>> GetAllImagesAsync()
+        public async Task<IReadOnlyCollection<Image>> FindByConditionAsync(Expression<Func<Image, bool>> predicat)
         {
-            return await _unitOfWork.ImageRepository.GetAllAsync().ConfigureAwait(false);
+            return await _unitOfWork.ImageRepository.FindByConditionAsync(predicat);
         }
 
-        public async Task<IEnumerable<Image>> GetImageAsync(Expression<Func<Image, bool>> predicate)
+        public async Task<IReadOnlyCollection<Image>> FindByConditionWithIncludeAsync(Expression<Func<Image, bool>> predicat, Expression<Func<Image, bool>> includePredicat)
         {
-            return await _unitOfWork.ImageRepository.FindByConditionAsync(predicate).ConfigureAwait(false);
+            return await _unitOfWork.ImageRepository.FindByConditionWithIncludeAsync(predicat, includePredicat);
+        }
+
+        public async Task<IReadOnlyCollection<Image>> GetAllAsync()
+        {
+            return await _unitOfWork.ImageRepository.GetAllAsync();
         }
     }
 }

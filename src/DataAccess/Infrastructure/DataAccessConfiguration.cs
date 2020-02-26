@@ -11,24 +11,23 @@ namespace DataAccess.Infrastructure
     {
         public static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
-            services.AddTransient(typeof(DeliveryRepository));
-
-            services.AddTransient(typeof(ICommentRepository), typeof(CommentRepository));
+            
+            //services.AddTransient(typeof(ICommentRepository), typeof(CommentRepository));
             services.AddTransient(typeof(ImageRepository));
-            services.AddTransient(typeof(IDeliveryRepository), typeof(DeliveryRepository));
+            services.AddTransient(typeof(DeliveryRepository));
             services.AddTransient(typeof(GroupCharacteristicRepository));
-            services.AddTransient(typeof(ICharacteristicRepository), typeof(CharacteristicRepository));
+            services.AddTransient(typeof(CharacteristicRepository));
             services.AddTransient(typeof(PackageRepository));
             services.AddTransient(typeof(OrderRepository));
             services.AddTransient(typeof(OrderDetailsRepository));
-            services.AddTransient(typeof(IAddressRepository), typeof(AddressRepository));
-            services.AddTransient(typeof(IBrandRepository), typeof(BrandRepository));
-            services.AddTransient(typeof(IUserRepository), typeof(UserRepository));
-            services.AddTransient(typeof(ICategoryRepository), typeof(CategoryRepository));
+            services.AddTransient(typeof(AddressRepository));
+            services.AddTransient(typeof(BrandRepository));
+            //services.AddTransient(typeof(IUserRepository), typeof(UserRepository));
+            services.AddTransient(typeof(CategoryRepository));
             services.AddTransient(typeof(ProductRepository));           
 
             services.AddDbContext<StoreContext>(option =>
-                option.UseSqlServer(configuration.GetConnectionString("myconn")), ServiceLifetime.Singleton);
+                option.UseSqlServer(configuration.GetConnectionString("myconn")));
 
         }
     }

@@ -6,16 +6,16 @@ namespace DataAccess.UnitOfWork
 {
     public interface IUnitOfWork
     {
-        ICommentRepository CommentRepository { get; }
-        IUserRepository UserRepository { get; }
-        IDeliveryRepository DeliveryRepository { get; }
+        //ICommentRepository CommentRepository { get; }
+        //IUserRepository UserRepository { get; }
+        DeliveryRepository DeliveryRepository { get; }
         ImageRepository ImageRepository { get; }
         GroupCharacteristicRepository GroupCharacteristicRepository { get; }
         CharacteristicRepository CharacteristicRepository { get; }
         CategoryRepository CategoryRepository { get; }
         ProductRepository ProductRepository { get; }
         AddressRepository AddressRepository { get; }
-        IBrandRepository BrandRepository { get; }
+        BrandRepository BrandRepository { get; }
         OrderDetailsRepository OrderDetailsRepository { get; }
         OrderRepository OrderRepository { get; }
         PackageRepository PackageRepository { get; }

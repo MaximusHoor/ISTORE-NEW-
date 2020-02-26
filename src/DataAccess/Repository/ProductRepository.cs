@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repository
 {
-    public class ProductRepository : BaseRepository<Product>
+    public class ProductRepository : BaseRepository<Product>, IProductRepository
     {
     
 
@@ -23,16 +23,29 @@ namespace DataAccess.Repository
 
         public override async Task<IReadOnlyCollection<Product>> GetAllAsync()
         {
-            return await this.Entities.Include(br => br.Brand).Include(cat => cat.Category).Include(im => im.Images).
-            Include(pac => pac.Package).Include(grch => grch.GroupCharacteristics).Include(com => com.Comments).ToListAsync().ConfigureAwait(false);
+            return await this.Entities.Include(br => br.Brand)
+                .Include(cat => cat.Category)
+                .Include(im => im.Images)
+                .Include(pac => pac.Package)
+                .Include(grch => grch.GroupCharacteristics)
+                .Include(com => com.Comments)
+                .ToListAsync().ConfigureAwait(false);
         }
 
         public override async Task<IReadOnlyCollection<Product>> FindByConditionAsync(Expression<Func<Product, bool>> predicat)
         {
-            return await this.Entities.Include(br => br.Brand).Include(cat => cat.Category).Include(im => im.Images).
-            Include(pac => pac.Package).Include(grch => grch.GroupCharacteristics).
-            Include(com => com.Comments).Where(predicat).ToListAsync().ConfigureAwait(false);
+            return await this.Entities.Include(br => br.Brand)
+                .Include(cat => cat.Category)
+                .Include(im => im.Images)
+                .Include(pac => pac.Package)
+                .Include(grch => grch.GroupCharacteristics)
+                .Include(com => com.Comments)
+                .Where(predicat).ToListAsync().ConfigureAwait(false);
         }
 
+        public async Task<IReadOnlyCollection<Product>> FindByConditionWithIncludeAsync(Expression<Func<Product, bool>> predicat, Expression<Func<Product, bool>> includePredicat)
+        {
+            return await this.Entities.Include(includePredicat).Where(predicat).ToListAsync().ConfigureAwait(false);
+        }
     }
 }

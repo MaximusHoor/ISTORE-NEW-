@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repository.Interfaces
 {
-    public interface IBrandRepository
+    public interface IAddressRepository
     {
         
     }

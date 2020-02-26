@@ -16,21 +16,27 @@ namespace Business.Service
         {
             _unitOfWork = unitOfWork;
         }
-        public async Task<OperationDetail> AddCategoryAsync(Category category)
+
+        public async Task<OperationDetail> CreateAsync(Category entity)
         {
-            var res = await _unitOfWork.CategoryRepository.CreateAsync(category).ConfigureAwait(false);
-            await _unitOfWork.SaveChangesAsync().ConfigureAwait(false);
+            var res = await _unitOfWork.CategoryRepository.CreateAsync(entity);
+            await _unitOfWork.SaveChangesAsync();
             return res;
         }
 
-        public async Task<IEnumerable<Category>> FindAllCategoriesAsync()
-        {                                  
-            return await _unitOfWork.CategoryRepository.GetAllAsync();
+        public async Task<IReadOnlyCollection<Category>> FindByConditionAsync(Expression<Func<Category, bool>> predicat)
+        {
+            return await _unitOfWork.CategoryRepository.FindByConditionAsync(predicat);
         }
 
-        public async Task<IEnumerable<Category>> FindCategoryByConditionAsync(Expression<Func<Category, bool>> predicate)
+        public async Task<IReadOnlyCollection<Category>> FindByConditionWithIncludeAsync(Expression<Func<Category, bool>> predicat, Expression<Func<Category, bool>> includePredicat)
         {
-            return await _unitOfWork.CategoryRepository.FindByConditionAsync(predicate);
+            return await _unitOfWork.CategoryRepository.FindByConditionWithIncludeAsync(predicat, includePredicat);
+        }
+
+        public async Task<IReadOnlyCollection<Category>> GetAllAsync()
+        {
+            return await _unitOfWork.CategoryRepository.GetAllAsync();
         }
     }
 }

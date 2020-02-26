@@ -11,38 +11,38 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repository
 {
-    public class UserRepository : BaseRepository<User>, IUserRepository
-    {
-        public UserRepository(StoreContext context) : base(context) { }
-        public OperationDetail CreateUser(User user)
-        {
-            return Create(user);
-        }
+    //public class UserRepository : BaseRepository<User>, IUserRepository
+    //{
+    //    public UserRepository(StoreContext context) : base(context) { }
+    //    public OperationDetail CreateUser(User user)
+    //    {
+    //        return Create(user);
+    //    }
 
-        public OperationDetail DeleteUser(User user)
-        {
-            return Delete(user);
-        }
+    //    public OperationDetail DeleteUser(User user)
+    //    {
+    //        return Delete(user);
+    //    }
 
-        public async Task<IEnumerable<User>> FindAllUsersAsync()
-        {
-            return await FindAll().ToListAsync();
-        }
+    //    public async Task<IEnumerable<User>> FindAllUsersAsync()
+    //    {
+    //        return await FindAll().ToListAsync();
+    //    }
 
-        public async Task<IEnumerable<User>> FindUserByConditionAsync(Expression<Func<User, bool>> predicat)
-        {
-            return await FindByCondition(predicat).ToListAsync();
-        }
+    //    public async Task<IEnumerable<User>> FindUserByConditionAsync(Expression<Func<User, bool>> predicat)
+    //    {
+    //        return await FindByCondition(predicat).ToListAsync();
+    //    }
 
-        public async Task<User> GetUserByConditionAsync(Expression<Func<User, bool>> predicat)
-        {
-            return await FindByCondition(predicat).FirstOrDefaultAsync();
-        }
+    //    public async Task<User> GetUserByConditionAsync(Expression<Func<User, bool>> predicat)
+    //    {
+    //        return await FindByCondition(predicat).FirstOrDefaultAsync();
+    //    }
 
-        public OperationDetail UpdateUser(User user)
-        {
-            return Update(user);
-        }
+    //    public OperationDetail UpdateUser(User user)
+    //    {
+    //        return Update(user);
+    //    }
 
-    }
+    //}
 }

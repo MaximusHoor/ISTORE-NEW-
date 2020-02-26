@@ -20,22 +20,26 @@ namespace Business.Service
 
         }
 
-        public async Task<OperationDetail> AddGroupCharacteristicAsync(GroupCharacteristic groupCharacteristic)
+        public async Task<OperationDetail> CreateAsync(GroupCharacteristic entity)
         {
-            var res = await _unitOfWork.GroupCharacteristicRepository.CreateAsync(groupCharacteristic)
-                .ConfigureAwait(false);
-            await _unitOfWork.SaveChangesAsync().ConfigureAwait(false);
+            var res = await _unitOfWork.GroupCharacteristicRepository.CreateAsync(entity);
+            await _unitOfWork.SaveChangesAsync();
             return res;
         }
 
-        public async Task<IEnumerable<GroupCharacteristic>> GetAllGroupCharacteristicsAsync()
+        public async Task<IReadOnlyCollection<GroupCharacteristic>> FindByConditionAsync(Expression<Func<GroupCharacteristic, bool>> predicat)
         {
-            return await _unitOfWork.GroupCharacteristicRepository.GetAllAsync().ConfigureAwait(false);
+            return await _unitOfWork.GroupCharacteristicRepository.FindByConditionAsync(predicat);
         }
 
-        public async Task<IEnumerable<GroupCharacteristic>> GetGroupCharacteristicAsync(Expression<Func<GroupCharacteristic, bool>> predicate)
+        public async Task<IReadOnlyCollection<GroupCharacteristic>> FindByConditionWithIncludeAsync(Expression<Func<GroupCharacteristic, bool>> predicat, Expression<Func<GroupCharacteristic, bool>> includePredicat)
         {
-            return await _unitOfWork.GroupCharacteristicRepository.FindByConditionAsync(predicate).ConfigureAwait(false);
+            return await _unitOfWork.GroupCharacteristicRepository.FindByConditionWithIncludeAsync(predicat, includePredicat);
+        }
+
+        public async Task<IReadOnlyCollection<GroupCharacteristic>> GetAllAsync()
+        {
+            return await _unitOfWork.GroupCharacteristicRepository.GetAllAsync();
         }
     }
 }

@@ -43,7 +43,7 @@ namespace DataAccessTest.Repository
                 PreviewImage = _previewImage
             };
             // Act
-            _repository.Create(category);
+            _repository.CreateAsync(category);
             ContextSingleton.GetDatabaseContext().SaveChanges();
 
             // Assert
@@ -55,15 +55,14 @@ namespace DataAccessTest.Repository
         private void Update(int id)
         {
             // Arrange
-            var category = _repository.FindByCondition(x => x.Id == id).FirstOrDefault();
+            var category = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
             category.Title = "Title";
             category.PreviewImage = "Preview Image";
 
             // Act
-            _repository.Update(category);
             ContextSingleton.GetDatabaseContext().SaveChanges();
 
-            var updatedcategory = _repository.FindByCondition(x => x.Id == id).FirstOrDefault();
+            var updatedcategory = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
 
             // Assert
             Assert.AreEqual("Title", updatedcategory.Title, "Record is not updated.");
@@ -73,7 +72,7 @@ namespace DataAccessTest.Repository
         private void GetAll()
         {
             // Act
-            IEnumerable<Category> items = _repository.FindAll().ToList();
+            IReadOnlyCollection<Category> items = _repository.GetAllAsync().Result;
             // Assert
             Assert.IsTrue(items.Any(), "GetAll returned no items.");
         }
@@ -81,25 +80,13 @@ namespace DataAccessTest.Repository
         private void GetByID(int id)
         {
             // Act
-            var category = _repository.FindByCondition(x => x.Id == id).FirstOrDefault();
+            var category = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
             // Assert
             Assert.IsNotNull(category, "GetByID returned null.");
             Assert.AreEqual(id, category.Id);
             Assert.AreEqual(_title, category.Title);
             Assert.AreEqual(_previewImage, category.PreviewImage);
 
-        }
-
-        private void Delete(int id)
-        {
-            // Arrange
-            var category = _repository.FindByCondition(x => x.Id == id).FirstOrDefault();
-            // Act
-            _repository.Delete(category);
-            ContextSingleton.GetDatabaseContext().SaveChanges();
-            category = _repository.FindByCondition(x => x.Id == id).FirstOrDefault();
-            // Assert
-            Assert.IsNull(category, "Record is not deleted.");
         }
 
         [Test]
@@ -109,7 +96,6 @@ namespace DataAccessTest.Repository
             GetByID(id);
             GetAll();
             Update(id);
-            Delete(id);
         }
     }
 }

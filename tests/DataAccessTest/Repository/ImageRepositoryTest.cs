@@ -43,7 +43,7 @@ namespace DataAccessTest.Repository
             };
 
             // Act
-            _repository.Create(image);
+            _repository.CreateAsync(image);
             ContextSingleton.GetDatabaseContext().SaveChanges();
 
             // Assert
@@ -55,14 +55,13 @@ namespace DataAccessTest.Repository
         private void Update(int id)
         {
             // Arrange
-            var image = _repository.FindByCondition(x => x.Id == id).FirstOrDefault();
+            var image = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
             image.FilePath = "new file path";
 
             // Act
-            _repository.Update(image);
             ContextSingleton.GetDatabaseContext().SaveChanges();
 
-            var updatedImage = _repository.FindByCondition(x => x.Id == id).FirstOrDefault();
+            var updatedImage = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
 
             // Assert
             Assert.AreEqual("new file path", updatedImage.FilePath, "Record is not updated.");
@@ -71,7 +70,7 @@ namespace DataAccessTest.Repository
         private void GetAll()
         {
             // Act
-            IEnumerable<Image> items = _repository.FindAll().ToList();
+            IReadOnlyCollection<Image> items = _repository.GetAllAsync().Result;
 
             // Assert
             Assert.IsTrue(items.Any(), "GetAll returned no items.");
@@ -80,7 +79,7 @@ namespace DataAccessTest.Repository
         private void GetByID(int id)
         {
             // Act
-            var image = _repository.FindByCondition(x => x.Id == id).FirstOrDefault();
+            var image = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
 
             // Assert
             Assert.IsNotNull(image, "GetByID returned null.");
@@ -88,30 +87,14 @@ namespace DataAccessTest.Repository
             Assert.AreEqual(_filePath, image.FilePath);
             Assert.AreEqual(_productId, image.ProductId);
         }
-
-        private void Delete(int id)
-        {
-            // Arrange
-            var image = _repository.FindByCondition(x => x.Id == id).FirstOrDefault();
-
-            // Act
-            _repository.Delete(image);
-            ContextSingleton.GetDatabaseContext().SaveChanges();
-            image = _repository.FindByCondition(x => x.Id == id).FirstOrDefault();
-
-            // Assert
-            Assert.IsNull(image, "Record is not deleted.");
-        }
-
         [Test]
-        public void ImnageCrud()
+        public void ImageCrud()
         {
             var image = Create();
             _productId = image.Item2;
             GetByID(image.Item1);
             GetAll();
             Update(image.Item1);
-            Delete(image.Item1);
         }
     }
 }

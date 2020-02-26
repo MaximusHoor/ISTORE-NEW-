@@ -42,7 +42,7 @@ namespace DataAccessTest.Repository
             };
 
             // Act
-            _repository.Create(groupCharacteristic);
+            _repository.CreateAsync(groupCharacteristic);
             ContextSingleton.GetDatabaseContext().SaveChanges();
 
             // Assert
@@ -54,14 +54,13 @@ namespace DataAccessTest.Repository
         private void Update(int id)
         {
             // Arrange
-            var groupCharacteristic = _repository.FindByCondition(x => x.Id == id).FirstOrDefault();
+            var groupCharacteristic = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
             groupCharacteristic.Title = "New Title";
 
             // Act
-            _repository.Update(groupCharacteristic);
             ContextSingleton.GetDatabaseContext().SaveChanges();
 
-            var updatedGroupCharacteristic = _repository.FindByCondition(x => x.Id == id).FirstOrDefault();
+            var updatedGroupCharacteristic = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
 
             // Assert
             Assert.AreEqual("New Title", updatedGroupCharacteristic.Title, "Record is not updated.");
@@ -70,7 +69,7 @@ namespace DataAccessTest.Repository
         private void GetAll()
         {
             // Act
-            IEnumerable<GroupCharacteristic> items = _repository.FindAll().ToList();
+            IReadOnlyCollection<GroupCharacteristic> items = _repository.GetAllAsync().Result;
 
             // Assert
             Assert.IsTrue(items.Any(), "GetAll returned no items.");
@@ -79,7 +78,7 @@ namespace DataAccessTest.Repository
         private void GetByID(int id)
         {
             // Act
-            var groupCharacteristic = _repository.FindByCondition(x => x.Id == id).FirstOrDefault();
+            var groupCharacteristic = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
 
             // Assert
             Assert.IsNotNull(groupCharacteristic, "GetByID returned null.");
@@ -87,30 +86,14 @@ namespace DataAccessTest.Repository
             Assert.AreEqual(_title, groupCharacteristic.Title);
             Assert.AreEqual(_productId, groupCharacteristic.ProductId);
         }
-
-        private void Delete(int id)
-        {
-            // Arrange
-            var groupCharacteristic = _repository.FindByCondition(x => x.Id == id).FirstOrDefault();
-
-            // Act
-            _repository.Delete(groupCharacteristic);
-            ContextSingleton.GetDatabaseContext().SaveChanges();
-            groupCharacteristic = _repository.FindByCondition(x => x.Id == id).FirstOrDefault();
-
-            // Assert
-            Assert.IsNull(groupCharacteristic, "Record is not deleted.");
-        }
-
         [Test]
-        public void CommentCrud()
+        public void GroupCharacteristicCrud()
         {
             var groupCharacteristic = Create();
             _productId = groupCharacteristic.Item2;
             GetByID(groupCharacteristic.Item1);
             GetAll();
             Update(groupCharacteristic.Item1);
-            Delete(groupCharacteristic.Item1);
         }
     }
 }

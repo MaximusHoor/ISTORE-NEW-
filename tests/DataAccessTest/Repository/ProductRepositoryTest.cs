@@ -21,14 +21,15 @@ namespace DataAccessTest.Repository
         }
 
         private int _id;
-        private int _Title;
+        private string _Title;
         private string _Type;
         private string _VendorCode;
         private string _Description;
         private int? _BrandId;
         private double _RetailPrice;
-        private int? _CategoryId;
-        private int? _PackageId;
+        private string _PreviewImage;
+        private int _CategoryId;
+        private int _PackageId;
         private int _CountInStorage;
         private int _Rating;
         private int _WarrantyMonth;
@@ -39,11 +40,12 @@ namespace DataAccessTest.Repository
         private void InitialiseParameters()
         {
             _id = new Random().Next(0, int.MaxValue);
-            _Title = new Random().Next(0, int.MaxValue);
+            _Title = "Title";
             _Type = "Type";
             _VendorCode = "VendorCode";
             _Description = "Descrip";
-            _RetailPrice = new Random().Next(0, int.MaxValue);
+            _RetailPrice = new Random().Next(0, int.MaxValue) * new Random().NextDouble();
+            _PreviewImage = "Image path";
             _BrandId = 1;
             _CategoryId = 1;
             _PackageId = 1;
@@ -55,30 +57,32 @@ namespace DataAccessTest.Repository
 
         }
 
-        private (int, int?, int?, int?) Create()
+        private (int, int?, int, int) Create()
         {
             // Arrange
             var product = new Product
             {
-
                 Id = _id,
-                Title = _Title.ToString(),
+                Title = _Title,
                 Type = _Type,
                 VendorCode = _VendorCode,
                 Description = _Description,
                 RetailPrice = _RetailPrice,
+                PreviewImage = _PreviewImage,
                 CountInStorage = _CountInStorage,
                 Rating = _Rating,
                 Series = _Series,
                 WarrantyMonth = _WarrantyMonth,
                 Model = _Model,
-                Brand = new Brand { Id = (int)_BrandId },
-                Category = new Category { Id = (int)_CategoryId },
-                Package = new Package { Id = (int)_PackageId }
-
+                Brand = new Brand { Id = (int)_BrandId + 1 },
+                BrandId = _BrandId + 1,
+                Category = new Category { Id = _CategoryId + 1 },
+                CategoryId = _CategoryId + 1,
+                Package = new Package { Id = _PackageId + 1 },
+                PackageId = _PackageId + 1
             };
             // Act
-            _repository.Create(product);
+            _repository.CreateAsync(product);
             ContextSingleton.GetDatabaseContext().SaveChanges();
 
             // Assert
@@ -90,16 +94,14 @@ namespace DataAccessTest.Repository
         private void Update(int id)
         {
             // Arrange
-            var product = _repository.FindByCondition(x => x.Id == id).FirstOrDefault();
+            var product = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
             product.VendorCode = "1234567890";
             product.Model = "qwerty-333";
             product.Rating = 5;
 
             // Act
-            _repository.Update(product);
             ContextSingleton.GetDatabaseContext().SaveChanges();
-
-            var updatedproduct = _repository.FindByCondition(x => x.Id == id).FirstOrDefault();
+            var updatedproduct = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
 
             // Assert
             Assert.AreEqual("1234567890", updatedproduct.VendorCode, "Record is not updated.");
@@ -110,7 +112,7 @@ namespace DataAccessTest.Repository
         private void GetAll()
         {
             // Act
-            IEnumerable<Product> items = _repository.FindAll().ToList();
+            IReadOnlyCollection<Product> items = _repository.GetAllAsync().Result;
             // Assert
             Assert.IsTrue(items.Any(), "GetAll returned no items.");
         }
@@ -118,7 +120,7 @@ namespace DataAccessTest.Repository
         private void GetByID(int id)
         {
             // Act
-            var product = _repository.FindByCondition(x => x.Id == id).FirstOrDefault();
+            var product = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
             // Assert
             Assert.IsNotNull(product, "GetByID returned null.");
             Assert.AreEqual(id, product.Id);
@@ -138,30 +140,16 @@ namespace DataAccessTest.Repository
 
 
         }
-
-        private void Delete(int id)
-        {
-            // Arrange
-            var product = _repository.FindByCondition(x => x.Id == id).FirstOrDefault();
-            // Act
-            _repository.Delete(product);
-            ContextSingleton.GetDatabaseContext().SaveChanges();
-            product = _repository.FindByCondition(x => x.Id == id).FirstOrDefault();
-            // Assert
-            Assert.IsNull(product, "Record is not deleted.");
-        }
-
         [Test]
         public void ProductCrud()
         {
             var product = Create();
-            _CategoryId = product.Item2;
-            _BrandId = product.Item3;
+            _BrandId = product.Item2;
+            _CategoryId = product.Item3;
             _PackageId = product.Item4;
             GetByID(product.Item1);
             GetAll();
             Update(product.Item1);
-            Delete(product.Item1);
         }
     }
 }

@@ -55,7 +55,7 @@ namespace DataAccessTest.Repository
                 PaymentStatus = _paymentStatus
             };
             // Act
-            _repository.Create(order);
+            _repository.CreateAsync(order);
             ContextSingleton.GetDatabaseContext().SaveChanges();
             // Assert
             Assert.AreNotEqual(0, order.Id, "Creating new record does not return id");
@@ -65,16 +65,15 @@ namespace DataAccessTest.Repository
         private void Update(int id)
         {
             // Arrange
-            var order = _repository.FindByCondition(x => x.Id == id).FirstOrDefault();
+            var order = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
             order.Number = "New Number";
             order.Date = _date.AddDays(20);
             order.Total = 50;
             order.DeliveryStatus = "New delivery status";
             order.PaymentStatus = "New payment status";
             // Act
-            _repository.Update(order);
             ContextSingleton.GetDatabaseContext().SaveChanges();
-            var updatedOrder = _repository.FindByCondition(x => x.Id == id).FirstOrDefault();
+            var updatedOrder = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
             // Assert
             Assert.AreEqual("New Number", updatedOrder.Number, "Record is not updated.");
             Assert.AreEqual(_date.AddDays(20), updatedOrder.Date, "Record is not updated.");
@@ -85,14 +84,14 @@ namespace DataAccessTest.Repository
         private void GetAll()
         {
             // Act
-            IEnumerable<Order> items = _repository.FindAll().ToList();
+            IReadOnlyCollection<Order> items = _repository.GetAllAsync().Result;
             // Assert
             Assert.IsTrue(items.Any(), "GetAll returned no items.");
         }
         private void GetById(int id)
         {
             // Arrange
-            var order = _repository.FindByCondition(x => x.Id == id).FirstOrDefault();
+            var order = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
             // Assert
             Assert.IsNotNull(order, "GetById returned null.");
             Assert.AreEqual(id, order.Id);
@@ -104,17 +103,6 @@ namespace DataAccessTest.Repository
             Assert.AreEqual(_deliveryStatus, order.DeliveryStatus);
             Assert.AreEqual(_paymentStatus, order.PaymentStatus);
         }
-        private void Delete(int id)
-        {
-            // Arrange
-            var order = _repository.FindByCondition(x => x.Id == id).FirstOrDefault();
-            // Act
-            _repository.Delete(order);
-            ContextSingleton.GetDatabaseContext().SaveChanges();
-            order = _repository.FindByCondition(x => x.Id == id).FirstOrDefault();
-            // Assert
-            Assert.IsNull(order, "Record is not deleted.");
-        }
         [Test]
         public void OrderCrud()
         {
@@ -124,7 +112,6 @@ namespace DataAccessTest.Repository
             GetAll();
             GetById(orderDetails.Item1);
             Update(orderDetails.Item1);
-            Delete(orderDetails.Item1);
         }
     }
 }

@@ -2,6 +2,7 @@
 using DataAccess.Repository.Interfaces;
 using DataAccessTest.Repository.Factory;
 using Domain.EF_Models;
+using Domain.Repository.Interfaces;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,6 @@ namespace DataAccessTest.Repository
     [TestFixture]
     class AddressRepositoryTest
     {
-        private IAddressRepository _repository;
 
         [SetUp]
         public void Setup()
@@ -27,7 +27,7 @@ namespace DataAccessTest.Repository
         string _street;
         string _buildingNumber;
         string _apartmentNumber;
-
+        private IRepository<Address> _repository;
         private void InitialiseParameters()
         {
             _id = new Random().Next(0, int.MaxValue);
@@ -38,7 +38,7 @@ namespace DataAccessTest.Repository
             _apartmentNumber = "44";
         }
 
-        private Address Create()
+        private int Create()
         {
             // Arrange
             var address = new Address
@@ -51,28 +51,27 @@ namespace DataAccessTest.Repository
                 ApartmentNumber = _apartmentNumber
             };
             // Act
-            _repository.CreateAddress(address);
+            _repository.CreateAsync(address);
             ContextSingleton.GetDatabaseContext().SaveChanges();
 
             // Assert
             Assert.AreNotEqual(0, address.Id, "Creating new record does not return id");
 
-            return address;
+            return address.Id;
         }
 
-        private void Update(Address address)
+        private void Update(int id)
         {
             // Arrange
-
+            var address = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
             address.City = "Lvov";
             address.ApartmentNumber = "10";
             address.Street = "Ivanova";
 
             // Act
-            _repository.UpdateAddress(address);
             ContextSingleton.GetDatabaseContext().SaveChanges();
 
-            var updatedAddress = _repository.FindAddressByConditionAsync(x => x.Id == address.Id).Result.FirstOrDefault();
+            var updatedAddress = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
 
             // Assert
             Assert.AreEqual("Lvov", updatedAddress.City, "Record is not updated.");
@@ -83,7 +82,7 @@ namespace DataAccessTest.Repository
         private void GetAll()
         {
             // Act
-            IEnumerable<Address> items = _repository.FindAll().ToList();
+            IReadOnlyCollection<Address> items = _repository.GetAllAsync().Result;
             // Assert
             Assert.IsTrue(items.Any(), "GetAll returned no items.");
         }
@@ -91,7 +90,7 @@ namespace DataAccessTest.Repository
         private void GetByID(int id)
         {
             // Act
-            var address = _repository.FindAddressByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
+            var address = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
             // Assert
             Assert.IsNotNull(address, "GetByID returned null.");
             Assert.AreEqual(id, address.Id);
@@ -102,30 +101,15 @@ namespace DataAccessTest.Repository
             Assert.AreEqual(_apartmentNumber, address.ApartmentNumber);
         }
 
-        private void Delete(int id)
-        {
-            // Arrange
-            var address = _repository.FindAddressByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
-            // Act
-            _repository.DeleteAddress(address);
-            ContextSingleton.GetDatabaseContext().SaveChanges();
-            address = _repository.FindAddressByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
-            // Assert
-            Assert.IsNull(address, "Record is not deleted.");
-        }
-
         [Test]
         public void AddressCrud()
         {
-            var address = Create();
-            Delete(address.Id);
-
-            address = Create();
+            var id = Create();
             GetAll();
 
-            GetByID(address.Id);
+            GetByID(id);
 
-            Update(address);
+            Update(id);
         }
     }
 }

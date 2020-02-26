@@ -2,6 +2,7 @@
 using DataAccess.Repository.Interfaces;
 using DataAccessTest.Repository.Factory;
 using Domain.EF_Models;
+using Domain.Repository.Interfaces;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,6 @@ namespace DataAccessTest.Repository
     [TestFixture]
     public class BrandRepositoryTests
     {
-        private IBrandRepository _repository;
 
         [SetUp]
         public void Setup()
@@ -25,7 +25,7 @@ namespace DataAccessTest.Repository
         string _name;
         string _country;
         string _description;
-
+        private IRepository<Brand> _repository;
         private void InitialiseParameters()
         {
             _id = new Random().Next(0, int.MaxValue);
@@ -34,7 +34,7 @@ namespace DataAccessTest.Repository
             _description = "SamsungDescription";
         }
 
-        private Brand Create()
+        private int Create()
         {
             // Arrange
             var brand = new Brand
@@ -45,28 +45,27 @@ namespace DataAccessTest.Repository
                 Description = _description
             };
             // Act
-            _repository.CreateBrand(brand);
+            _repository.CreateAsync(brand);
             ContextSingleton.GetDatabaseContext().SaveChanges();
 
             // Assert
             Assert.AreNotEqual(0, brand.Id, "Creating new record does not return id");
 
-            return brand;
+            return brand.Id;
         }
 
-        private void Update(Brand brand)
+        private void Update(int id)
         {
             // Arrange
-
+            var brand = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
             brand.Country = "Japan";
             brand.Description = "newDescription";
             brand.Name = "LG";
 
             // Act
-            _repository.UpdateBrand(brand);
             ContextSingleton.GetDatabaseContext().SaveChanges();
 
-            var updatedBrand = _repository.FindBrandByConditionAsync(x => x.Id == brand.Id).Result.FirstOrDefault();
+            var updatedBrand = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
 
             // Assert
             Assert.AreEqual("Japan", updatedBrand.Country, "Record is not updated.");
@@ -77,7 +76,7 @@ namespace DataAccessTest.Repository
         private void GetAll()
         {
             // Act
-            IEnumerable<Brand> items = _repository.FindAll().ToList();
+            IReadOnlyCollection<Brand> items = _repository.GetAllAsync().Result;
             // Assert
             Assert.IsTrue(items.Any(), "GetAll returned no items.");
         }
@@ -85,7 +84,7 @@ namespace DataAccessTest.Repository
         private void GetByID(int id)
         {
             // Act
-            var brand = _repository.FindBrandByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
+            var brand = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
             // Assert
             Assert.IsNotNull(brand, "GetByID returned null.");
             Assert.AreEqual(id, brand.Id);
@@ -95,30 +94,15 @@ namespace DataAccessTest.Repository
 
         }
 
-        private void Delete(int id)
-        {
-            // Arrange
-            var brand = _repository.FindBrandByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
-            // Act
-            _repository.DeleteBrand(brand);
-            ContextSingleton.GetDatabaseContext().SaveChanges();
-            brand = _repository.FindBrandByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
-            // Assert
-            Assert.IsNull(brand, "Record is not deleted.");
-        }
-
         [Test]
         public void BrandCrud()
         {
-            var brand = Create();
-            Delete(brand.Id);
-
-            brand = Create();
+            var id = Create();
             GetAll();
 
-            GetByID(brand.Id);
+            GetByID(id);
 
-            Update(brand);
+            Update(id);
         }
     }
 }

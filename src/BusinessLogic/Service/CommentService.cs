@@ -19,12 +19,12 @@ namespace Business.Service
             return operationResult;
         }
 
-        public async Task<IEnumerable<Comment>> GetCommentsAsync()
+        public async Task<IReadOnlyCollection<Comment>> GetCommentsAsync()
         {
             return await _unitOfWork.CommentRepository.GetAllAsync();
         }
 
-        public async Task<IEnumerable<Comment>> GetCommentsAllIncludedAsync()
+        public async Task<IReadOnlyCollection<Comment>> GetCommentsAllIncludedAsync()
         {
             return await _unitOfWork.CommentRepository.GetCommentsAllIncludedAsync();
         }
@@ -33,12 +33,12 @@ namespace Business.Service
             return await _unitOfWork.CommentRepository.GetCommentAllIncludedAsync(x => x.Id == commentId);
         }
 
-        public async Task<IEnumerable<Comment>> GetCommentsByUserAsync(int userId)
+        public async Task<IReadOnlyCollection<Comment>> GetCommentsByUserAsync(int userId)
         {
             return await _unitOfWork.CommentRepository.FindByConditionAllIncludedAsync(x => x.UserId == userId);
         }
 
-        public async Task<IEnumerable<Comment>> GetCommentsByProductAsync(int productId)
+        public async Task<IReadOnlyCollection<Comment>> GetCommentsByProductAsync(int productId)
         {
             return await _unitOfWork.CommentRepository.FindByConditionAllIncludedAsync(x => x.ProductId == productId);
         }

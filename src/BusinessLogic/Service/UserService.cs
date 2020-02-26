@@ -12,12 +12,12 @@ namespace Business.Service
         public UserService(IUnitOfWork unitOfWork) { this._unitOfWork = unitOfWork; }
         private readonly IUnitOfWork _unitOfWork;
 
-        public async Task<IEnumerable<User>> GetAllUsersAsync()
+        public async Task<IReadOnlyCollection<User>> GetAllUsersAsync()
         {
             return await _unitOfWork.UserRepository.GetAllAsync();
         }
 
-        public async Task<IEnumerable<User>> GetUsersAllIncludedAsync()
+        public async Task<IReadOnlyCollection<User>> GetUsersAllIncludedAsync()
         {
             return await _unitOfWork.UserRepository.FindAllUsersAllIncludedAsync();
         }
@@ -27,7 +27,7 @@ namespace Business.Service
             return await _unitOfWork.UserRepository.GetUserAllIncludedAsync(x => x.Id == id);
         }
 
-        public async Task<IEnumerable<User>> GetUserAllIncludedAsync(int id)
+        public async Task<IReadOnlyCollection<User>> GetUserAllIncludedAsync(int id)
         {
             return await _unitOfWork.UserRepository.FindUserByConditionAllIncludedAsync(x=>x.Id==id);
         }

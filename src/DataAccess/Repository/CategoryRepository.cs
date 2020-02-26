@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repository
 {
-    public class CategoryRepository : BaseRepository<Category>
+    public class CategoryRepository : BaseRepository<Category>, ICategoryRepository
     {
        
         public CategoryRepository(StoreContext context) : base(context)
@@ -22,26 +22,21 @@ namespace DataAccess.Repository
 
         public override async Task<IReadOnlyCollection<Category>> GetAllAsync()
         {
-            return await this.Entities.Include(t => t.Title).Include(p => p.PreviewImage).Include(p => p.Products)
-                .Include(s => s.Subcategories).ToListAsync().ConfigureAwait(false);
+            return await this.Entities.Include(p => p.Products)
+                .Include(s => s.Subcategories)
+                .ToListAsync().ConfigureAwait(false);
         }
 
         public override async Task<IReadOnlyCollection<Category>> FindByConditionAsync(Expression<Func<Category, bool>> predicat)
         {
-            return await this.Entities.Include(t => t.Title).Include(p => p.PreviewImage).Include(p => p.Products)
-                .Include(s => s.Subcategories).Where(predicat).ToListAsync().ConfigureAwait(false);
-        } 
+            return await this.Entities.Include(p => p.Products)
+                .Include(s => s.Subcategories)
+                .Where(predicat).ToListAsync().ConfigureAwait(false);
+        }
 
-        //public async Task<OperationDetail> AddProductAsync(Category product)
-        //{
-        //    //(await _storeContext.Categories.FirstOrDefaultAsync(x => x.Id == categoryId)).Products.Add(product);
-        //    //return new OperationDetail() { Message = "Product added" };
-        //    return Create(product);
-        //}
-        //public async Task<OperationDetail> AddSubcategoryAsync(int categoryId, Category category)
-        //{
-        //    (await storeContext.Categories.FirstOrDefaultAsync(x => x.Id == categoryId)).Subcategories.Add(category);
-        //    return new OperationDetail() { Message = "Subcategory added" };
-        //}
+        public async Task<IReadOnlyCollection<Category>> FindByConditionWithIncludeAsync(Expression<Func<Category, bool>> predicat, Expression<Func<Category, bool>> includePredicat)
+        {
+            return await this.Entities.Include(includePredicat).Where(predicat).ToListAsync().ConfigureAwait(false);
+        }
     }
 }

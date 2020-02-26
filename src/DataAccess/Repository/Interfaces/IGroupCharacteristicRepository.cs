@@ -1,13 +1,13 @@
 ﻿using Domain.EF_Models;
-using Domain.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.Service.Interfaces
+namespace DataAccess.Repository.Interfaces
 {
-    public interface IGroupCharacteristicService:ICrudService<GroupCharacteristic>
+    public interface IGroupCharacteristicRepository
     {
         Task<IReadOnlyCollection<GroupCharacteristic>> FindByConditionWithIncludeAsync(Expression<Func<GroupCharacteristic, bool>> predicat, Expression<Func<GroupCharacteristic, bool>> includePredicat);
     }

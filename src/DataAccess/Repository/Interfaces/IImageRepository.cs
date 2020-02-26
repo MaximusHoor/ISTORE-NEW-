@@ -1,14 +1,13 @@
-﻿using Business.Service.Interfaces;
-using Domain.EF_Models;
-using Domain.Infrastructure;
+﻿using Domain.EF_Models;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.Service
+namespace DataAccess.Repository.Interfaces
 {
-    public interface IImageService:ICrudService<Image>
+    public interface IImageRepository
     {
         Task<IReadOnlyCollection<Image>> FindByConditionWithIncludeAsync(Expression<Func<Image, bool>> predicat, Expression<Func<Image, bool>> includePredicat);
     }

@@ -11,36 +11,36 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repository
 {
-    public class CommentRepository : BaseRepository<Comment>, ICommentRepository
-    {
-        public CommentRepository(StoreContext context) : base(context)
-        {
-        }
-        public OperationDetail CreateComment(Comment comment)
-        {
-            return Create(comment);
-        }
-        public OperationDetail DeleteComment(Comment comment)
-        {
-            return Delete(comment);
-        }
-        public async Task<IEnumerable<Comment>> FindAllCommentsAsync()
-        {
-            return await FindAll().ToListAsync();
-        }
-        public async Task<Comment> FindCommentByConditionAsync(Expression<Func<Comment, bool>> predicate)
-        {
-            return await FindByCondition(predicate).FirstOrDefaultAsync();
-        }
+    //public class CommentRepository : BaseRepository<Comment>, ICommentRepository
+    //{
+    //    public CommentRepository(StoreContext context) : base(context)
+    //    {
+    //    }
+    //    public OperationDetail CreateComment(Comment comment)
+    //    {
+    //        return Create(comment);
+    //    }
+    //    public OperationDetail DeleteComment(Comment comment)
+    //    {
+    //        return Delete(comment);
+    //    }
+    //    public async Task<IEnumerable<Comment>> FindAllCommentsAsync()
+    //    {
+    //        return await FindAll().ToListAsync();
+    //    }
+    //    public async Task<Comment> FindCommentByConditionAsync(Expression<Func<Comment, bool>> predicate)
+    //    {
+    //        return await FindByCondition(predicate).FirstOrDefaultAsync();
+    //    }
 
-        public async Task<IEnumerable<Comment>> FindCommentsByConditionAsync(Expression<Func<Comment, bool>> predicate)
-        {
-            return await FindByCondition(predicate).ToListAsync();
-        }
+    //    public async Task<IEnumerable<Comment>> FindCommentsByConditionAsync(Expression<Func<Comment, bool>> predicate)
+    //    {
+    //        return await FindByCondition(predicate).ToListAsync();
+    //    }
 
-        public OperationDetail UpdateComment(Comment comment)
-        {
-            return Update(comment);
-        }
-    }
+    //    public OperationDetail UpdateComment(Comment comment)
+    //    {
+    //        return Update(comment);
+    //    }
+    //}
 }

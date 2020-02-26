@@ -12,19 +12,30 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repository
 {
-    public class OrderRepository : BaseRepository<Order>
+    public class OrderRepository : BaseRepository<Order>, IOrderRepository
     {
         public OrderRepository(StoreContext context) : base(context)
         {
         }
         public override async Task<IReadOnlyCollection<Order>> GetAllAsync()
         {
-            return await this.Entities.Include(x=>x.Delivery).Include(x=>x.Products).Include(x=>x.User).ToListAsync().ConfigureAwait(false);
+            return await this.Entities.Include(x=>x.Delivery)
+                .Include(x=>x.Products)
+                .Include(x=>x.User)
+                .ToListAsync().ConfigureAwait(false);
         }
 
         public override async Task<IReadOnlyCollection<Order>> FindByConditionAsync(Expression<Func<Order, bool>> predicat)
         {
-            return await this.Entities.Include(x => x.Delivery).Include(x => x.Products).Include(x => x.User).Where(predicat).ToListAsync().ConfigureAwait(false);
+            return await this.Entities.Include(x => x.Delivery)
+                .Include(x => x.Products)
+                .Include(x => x.User)
+                .Where(predicat).ToListAsync().ConfigureAwait(false);
+        }
+
+        public async Task<IReadOnlyCollection<Order>> FindByConditionWithIncludeAsync(Expression<Func<Order, bool>> predicat, Expression<Func<Order, bool>> includePredicat)
+        {
+            return await this.Entities.Include(includePredicat).Where(predicat).ToListAsync().ConfigureAwait(false);
         }
     }
 }

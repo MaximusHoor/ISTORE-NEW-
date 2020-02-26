@@ -8,12 +8,8 @@ using System.Threading.Tasks;
 
 namespace Business.Service.Interfaces
 {
-    public interface IAddressService
+    public interface IAddressService:ICrudService<Address>
     {
-        Task<OperationDetail> AddAddressAsync(Address address);
-        Task<OperationDetail> DeleteAddressAsync(Address address);
-        Task<OperationDetail> UpdateAddressAsync(Address address);
-        Task<IEnumerable<Address>> FindAllAddressesAsync();
-        Task<IEnumerable<Address>> FindAddressByConditionAsync(Expression<Func<Address, bool>> predicate);
+        
     }
 }

@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repository
 {
-    public class ImageRepository : BaseRepository<Image>
+    public class ImageRepository : BaseRepository<Image>, IImageRepository
     {
         public ImageRepository(StoreContext context) : base(context)
         {
@@ -20,12 +20,17 @@ namespace DataAccess.Repository
         }
         public override async Task<IReadOnlyCollection<Image>> GetAllAsync()
         {
-            return await this.Entities.Include(img => img.FilePath).Include(img => img.ProductId).Include(img => img.Product).ToListAsync().ConfigureAwait(false);
+            return await this.Entities.Include(img => img.Product).ToListAsync().ConfigureAwait(false);
         }
 
         public override async Task<IReadOnlyCollection<Image>> FindByConditionAsync(Expression<Func<Image, bool>> predicat)
         {
-            return await this.Entities.Include(img => img.FilePath).Include(img => img.ProductId).Include(img => img.Product).Where(predicat).ToListAsync().ConfigureAwait(false);
+            return await this.Entities.Include(img => img.Product).Where(predicat).ToListAsync().ConfigureAwait(false);
+        }
+
+        public async Task<IReadOnlyCollection<Image>> FindByConditionWithIncludeAsync(Expression<Func<Image, bool>> predicat, Expression<Func<Image, bool>> includePredicat)
+        {
+            return await this.Entities.Include(includePredicat).Where(predicat).ToListAsync().ConfigureAwait(false);
         }
     }
 }

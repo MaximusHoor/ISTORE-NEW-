@@ -21,12 +21,12 @@ namespace IStore_WEB_.Controllers
             return View();
         }
 
-        //public async Task<IActionResult> GetCharacteristic(int id)
-        //{
-        //    var res = await _groupCharacteristicService
-        //        .FindByConditionWithInclude(x => x.ProductId == 1, "Characteristics");
+        public async Task<IActionResult> GetCharacteristic(int id)
+        {
+            var res = await _groupCharacteristicService
+                .FindByConditionAsync(x => x.ProductId == 1);
 
-        //    return PartialView("ProductCharacteristicPartialView", res);
-        //}
+            return PartialView("ProductCharacteristicPartialView", res);
+        }
     }
 }

@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repository
 {
-    public class AddressRepository : BaseRepository<Address>
+    public class AddressRepository : BaseRepository<Address>, IAddressRepository
     {
         public AddressRepository(StoreContext context) : base(context)
         {
@@ -29,5 +29,6 @@ namespace DataAccess.Repository
             return await this.Entities.Where(predicat).ToListAsync().ConfigureAwait(false);
         }
 
+        
     }
 }

@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repository
 {
-    public class GroupCharacteristicRepository : BaseRepository<GroupCharacteristic>
+    public class GroupCharacteristicRepository : BaseRepository<GroupCharacteristic>, IGroupCharacteristicRepository
     {
         public GroupCharacteristicRepository(StoreContext context) : base(context)
         {
@@ -21,12 +21,21 @@ namespace DataAccess.Repository
 
         public override async Task<IReadOnlyCollection<GroupCharacteristic>> GetAllAsync()
         {
-            return await this.Entities.Include(grc => grc.Title).Include(grc => grc.ProductId).Include(grc => grc.Product).Include(grc => grc.Characteristics).ToListAsync().ConfigureAwait(false);
+            return await this.Entities.Include(grc => grc.Product)
+                .Include(grc => grc.Characteristics)
+                .ToListAsync().ConfigureAwait(false);
         }
 
         public override async Task<IReadOnlyCollection<GroupCharacteristic>> FindByConditionAsync(Expression<Func<GroupCharacteristic, bool>> predicat)
         {
-            return await this.Entities.Include(grc => grc.Title).Include(grc => grc.ProductId).Include(grc => grc.Product).Include(grc => grc.Characteristics).Where(predicat).ToListAsync().ConfigureAwait(false);
+            return await this.Entities.Include(grc => grc.Product)
+                .Include(grc => grc.Characteristics)
+                .Where(predicat).ToListAsync().ConfigureAwait(false);
+        }
+
+        public async Task<IReadOnlyCollection<GroupCharacteristic>> FindByConditionWithIncludeAsync(Expression<Func<GroupCharacteristic, bool>> predicat, Expression<Func<GroupCharacteristic, bool>> includePredicat)
+        {
+            return await this.Entities.Include(includePredicat).Where(predicat).ToListAsync().ConfigureAwait(false);
         }
     }
 }

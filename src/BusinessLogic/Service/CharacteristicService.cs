@@ -17,35 +17,27 @@ namespace Business.Service
         {
             _unitOfWork = unitOfWork;
         }
-        public async Task<OperationDetail> AddCharacteristicAsync(Characteristic characteristic)
+
+        public async Task<OperationDetail> CreateAsync(Characteristic entity)
         {
-            var res = _unitOfWork.CharacteristicRepository.CreateCharacteristic(characteristic);
-            await _unitOfWork.SaveChangesAsync();
-            return res;
-        }
-        public async Task<OperationDetail> DeleteCharacteristicAsync(Characteristic characteristic)
-        {
-            var res = _unitOfWork.CharacteristicRepository.DeleteCharacteristic(characteristic);
+            var res = await _unitOfWork.CharacteristicRepository.CreateAsync(entity);
             await _unitOfWork.SaveChangesAsync();
             return res;
         }
 
-        public async Task<IEnumerable<Characteristic>> GetAllCharacteristicsAsync()
+        public async Task<IReadOnlyCollection<Characteristic>> FindByConditionAsync(Expression<Func<Characteristic, bool>> predicat)
         {
-            return await _unitOfWork.CharacteristicRepository.FindAllCharacteristicAsync();
+            return await _unitOfWork.CharacteristicRepository.FindByConditionAsync(predicat);
         }
 
-        public async Task<IEnumerable<Characteristic>> GetCharacteristicAsync(Expression<Func<Characteristic, bool>> predicate)
+        public async Task<IReadOnlyCollection<Characteristic>> FindByConditionWithIncludeAsync(Expression<Func<Characteristic, bool>> predicat, Expression<Func<Characteristic, bool>> includePredicat)
         {
-            var characteristics = await _unitOfWork.CharacteristicRepository.FindCharacteristicByConditionAsync(predicate);
-            return characteristics;
+            return await _unitOfWork.CharacteristicRepository.FindByConditionWithIncludeAsync(predicat, includePredicat);
         }
 
-        public async Task<OperationDetail> UpdateCharacteristicAsync(Characteristic characteristic)
+        public async Task<IReadOnlyCollection<Characteristic>> GetAllAsync()
         {
-            var res = _unitOfWork.CharacteristicRepository.UpdateCharacteristic(characteristic);
-            await _unitOfWork.SaveChangesAsync();
-            return res;
+            return await _unitOfWork.CharacteristicRepository.GetAllAsync();
         }
     }
 }

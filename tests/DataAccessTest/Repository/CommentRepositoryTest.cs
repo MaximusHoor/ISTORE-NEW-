@@ -1,4 +1,5 @@
 ﻿using DataAccess.Repository;
+using DataAccess.Repository.Interfaces;
 using DataAccessTest.Repository.Factory;
 using Domain.EF_Models;
 using Domain.Repository.Interfaces;
@@ -6,6 +7,7 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace DomainTest.Repository
 {
@@ -26,7 +28,7 @@ namespace DomainTest.Repository
         private int _productId;
         private int _like;
         private int _dislike;
-        private IRepository<Comment> _repository;
+        private ICommentRepository _repository;
 
         private void InitialiseParameters()
         {
@@ -39,7 +41,7 @@ namespace DomainTest.Repository
             _dislike = new Random().Next(0, int.MaxValue);
         }
 
-        private (int, int, int?) Create()
+        private async Task<(int, int, int)> CreateAsync()
         {
             // Arrange
             var comment = new Comment
@@ -51,11 +53,11 @@ namespace DomainTest.Repository
                 User = new User { Id = _userId.Value },
                 Like = _like,
                 Dislike = _dislike,
-                UserId = _userId
+                UserId = _userId.Value
             };
             // Act
-            _repository.Create(comment);
-            ContextSingleton.GetDatabaseContext().SaveChanges();
+            await _repository.CreateAsync(comment);
+            await ContextSingleton.GetDatabaseContext().SaveChangesAsync();
 
             // Assert
             Assert.AreNotEqual(0, comment.Id, "Creating new record does not return id");
@@ -63,70 +65,62 @@ namespace DomainTest.Repository
             return (comment.Id, comment.ProductId, comment.UserId);
         }
 
-        private void Update(int id)
-        {
-            // Arrange
-            var comment = _repository.FindByCondition(x => x.Id == id).FirstOrDefault();
-            comment.Like = 50;
-            comment.Date = _date.AddDays(-40);
-            comment.Text = "Hello";
-
-            // Act
-            _repository.Update(comment);
-            ContextSingleton.GetDatabaseContext().SaveChanges();
-
-            var updatedcomment = _repository.FindByCondition(x => x.Id == id).FirstOrDefault();
-
-            // Assert
-            Assert.AreEqual(50, updatedcomment.Like, "Record is not updated.");
-            Assert.AreEqual(_date.AddDays(-40), updatedcomment.Date, "Record is not updated.");
-            Assert.AreEqual("Hello", updatedcomment.Text, "Record is not updated.");
-        }
-
-        private void GetAll()
+        private async Task GetAllAsync()
         {
             // Act
-            IEnumerable<Comment> items = _repository.FindAll().ToList();
+            IEnumerable<Comment> items = await _repository.GetAllAsync();
             // Assert
             Assert.IsTrue(items.Any(), "GetAll returned no items.");
         }
 
-        private void GetByID(int id)
+        private async Task GetByIDAsync(int id)
         {
             // Act
-            var comment = _repository.FindByCondition(x => x.Id == id).FirstOrDefault();
+            var comment = await _repository.FindByConditionAllIncludedAsync(x => x.Id == id);
             // Assert
             Assert.IsNotNull(comment, "GetByID returned null.");
-            Assert.AreEqual(id, comment.Id);
-            Assert.AreEqual(_date, comment.Date);
-            Assert.AreEqual(_dislike, comment.Dislike);
-            Assert.AreEqual(_text, comment.Text);
-            Assert.AreEqual(_userId, comment.UserId);
-            Assert.AreEqual(_productId, comment.ProductId);
+            Assert.AreEqual(id, comment.ElementAt(0).Id);
+            Assert.AreEqual(_date, comment.ElementAt(0).Date);
+            Assert.AreEqual(_dislike, comment.ElementAt(0).Dislike);
+            Assert.AreEqual(_text, comment.ElementAt(0).Text);
+            Assert.AreEqual(_userId, comment.ElementAt(0).UserId);
+            Assert.AreEqual(_productId, comment.ElementAt(0).ProductId);
         }
-
-        private void Delete(int id)
+        private async Task GetByUserIDAsync(int userId)
         {
-            // Arrange
-            var comment = _repository.FindByCondition(x => x.Id == id).FirstOrDefault();
             // Act
-            _repository.Delete(comment);
-            ContextSingleton.GetDatabaseContext().SaveChanges();
-            comment = _repository.FindByCondition(x => x.Id == id).FirstOrDefault();
+            var comment = await _repository.FindByConditionAsync(x=>x.UserId==userId);
             // Assert
-            Assert.IsNull(comment, "Record is not deleted.");
+            Assert.IsNotNull(comment, "GetByUserID returned null.");
+            Assert.AreEqual(_id, comment.ElementAt(0).Id);
+            Assert.AreEqual(_date, comment.ElementAt(0).Date);
+            Assert.AreEqual(_dislike, comment.ElementAt(0).Dislike);
+            Assert.AreEqual(_text, comment.ElementAt(0).Text);
+            Assert.AreEqual(_productId, comment.ElementAt(0).ProductId);
+            Assert.AreEqual(_userId, comment.ElementAt(0).UserId);
+        }
+        private async Task GetByProductIDAsync(int productId)
+        {
+            // Act
+            var comment = await _repository.FindByConditionAsync(x => x.ProductId == productId);
+            // Assert
+            Assert.IsNotNull(comment, "GetByUserID returned null.");
+            Assert.AreEqual(_id, comment.ElementAt(0).Id);
+            Assert.AreEqual(_date, comment.ElementAt(0).Date);
+            Assert.AreEqual(_dislike, comment.ElementAt(0).Dislike);
+            Assert.AreEqual(_text, comment.ElementAt(0).Text);
+            Assert.AreEqual(_productId, comment.ElementAt(0).ProductId);
+            Assert.AreEqual(_userId, comment.ElementAt(0).UserId);
         }
 
         [Test]
-        public void CommentCrud()
+        public async Task CommentCrud()
         {
-            var comment = Create();
-            _productId = comment.Item2;
-            _userId = comment.Item3;
-            GetByID(comment.Item1);
-            GetAll();
-            Update(comment.Item1);
-            Delete(comment.Item1);
+            var comment = await CreateAsync();
+            await GetByIDAsync(comment.Item1);
+            await GetByUserIDAsync(comment.Item3);
+            await GetAllAsync();
+            await GetByProductIDAsync(comment.Item2);
         }
     }
 }

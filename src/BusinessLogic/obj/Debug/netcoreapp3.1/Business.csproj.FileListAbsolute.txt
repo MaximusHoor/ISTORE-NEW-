@@ -76,3 +76,6 @@ C:\Users\admin\Pictures\ISTORE(NEW)\src\BusinessLogic\obj\Debug\netcoreapp3.1\Bu
 C:\Users\admin\Pictures\ISTORE(NEW)\src\BusinessLogic\obj\Debug\netcoreapp3.1\Business.csproj.CopyComplete
 C:\Users\admin\Pictures\ISTORE(NEW)\src\BusinessLogic\obj\Debug\netcoreapp3.1\Business.dll
 C:\Users\admin\Pictures\ISTORE(NEW)\src\BusinessLogic\obj\Debug\netcoreapp3.1\Business.pdb
+C:\Users\Andrew\source\repos\ISTORE-NEW-3\src\BusinessLogic\obj\Debug\netcoreapp3.1\Business.csprojAssemblyReference.cache
+C:\Users\Andrew\source\repos\ISTORE-NEW-3\src\BusinessLogic\obj\Debug\netcoreapp3.1\Business.AssemblyInfoInputs.cache
+C:\Users\Andrew\source\repos\ISTORE-NEW-3\src\BusinessLogic\obj\Debug\netcoreapp3.1\Business.AssemblyInfo.cs

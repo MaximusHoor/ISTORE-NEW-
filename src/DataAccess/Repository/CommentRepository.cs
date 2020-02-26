@@ -40,10 +40,5 @@ namespace DataAccess.Repository
         {
             return await this.Entities.Where(predicate).Include(x => x.Product).Include(x => x.User).Include(x => x.Answers).ToListAsync();
         }
-
-        public async Task<Comment> GetCommentAllIncludedAsync(Expression<Func<Comment, bool>> predicate)
-        {
-            return await this.Entities.Where(predicate).Include(x => x.Product).Include(x => x.User).Include(x => x.Answers).FirstOrDefaultAsync();
-        }
     }
 }

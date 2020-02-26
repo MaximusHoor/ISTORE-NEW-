@@ -12,6 +12,5 @@ namespace DataAccess.Repository.Interfaces
     {
         Task<IReadOnlyCollection<Comment>> GetCommentsAllIncludedAsync();
         Task<IReadOnlyCollection<Comment>> FindByConditionAllIncludedAsync(Expression<Func<Comment,bool>> predicate);
-        Task<Comment> GetCommentAllIncludedAsync(Expression<Func<Comment, bool>> predicate);
     }
 }

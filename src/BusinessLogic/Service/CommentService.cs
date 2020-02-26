@@ -3,6 +3,7 @@ using DataAccess.UnitOfWork;
 using Domain.EF_Models;
 using Domain.Infrastructure;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Business.Service
@@ -30,7 +31,8 @@ namespace Business.Service
         }
         public async Task<Comment> GetCommentAllIncludedAsync(int commentId)
         {
-            return await _unitOfWork.CommentRepository.GetCommentAllIncludedAsync(x => x.Id == commentId);
+            var comments= await _unitOfWork.CommentRepository.FindByConditionAllIncludedAsync(x => x.Id == commentId);
+            return comments.ElementAt(0);
         }
 
         public async Task<IReadOnlyCollection<Comment>> GetCommentsByUserAsync(int userId)

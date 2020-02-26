@@ -14,7 +14,7 @@ namespace Domain.EF_Models
         public DateTime Date { get; set; }
         public string Text { get; set; }
         public ICollection<Comment> Answers { get; set; }
-        public int? UserId { get; set; }
+        public int UserId { get; set; }
         public User User { get; set; }
         public int ProductId { get; set; }
         public Product Product { get; set; }

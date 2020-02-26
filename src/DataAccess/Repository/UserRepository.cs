@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace DataAccess.Repository
 {
     public class UserRepository : BaseRepository<User>, IUserRepository
-    {
+    {     
         public UserRepository(StoreContext context) : base(context) { }
         public override async Task<IReadOnlyCollection<User>> GetAllAsync()
         {
@@ -25,7 +25,7 @@ namespace DataAccess.Repository
         }
         public async Task<IReadOnlyCollection<User>> FindAllUsersAllIncludedAsync()
         {
-            return await this.Entities.Include(x => x.Address).Include(x => x.Comments).ToListAsync().ConfigureAwait(false);
+            return await this.Entities.Include (x => x.Address).Include(x => x.Comments).ToListAsync().ConfigureAwait(false);
         }
 
         public async Task<IReadOnlyCollection<User>> FindUserByConditionAllIncludedAsync(Expression<Func<User, bool>> userPredicate, Expression<Func<Comment, bool>> commentPredicate)

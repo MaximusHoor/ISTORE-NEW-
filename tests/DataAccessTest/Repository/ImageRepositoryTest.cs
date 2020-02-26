@@ -6,6 +6,7 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace DataAccessTest.Repository
 {
@@ -52,34 +53,34 @@ namespace DataAccessTest.Repository
             return (image.Id, image.ProductId);
         }
 
-        private void Update(int id)
+        private async Task Update(int id)
         {
             // Arrange
-            var image = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
+            var image = (await _repository.FindByConditionAsync(x => x.Id == id)).FirstOrDefault();
             image.FilePath = "new file path";
 
             // Act
             ContextSingleton.GetDatabaseContext().SaveChanges();
 
-            var updatedImage = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
+            var updatedImage = (await _repository.FindByConditionAsync(x => x.Id == id)).FirstOrDefault();
 
             // Assert
             Assert.AreEqual("new file path", updatedImage.FilePath, "Record is not updated.");
         }
 
-        private void GetAll()
+        private async Task GetAll()
         {
             // Act
-            IReadOnlyCollection<Image> items = _repository.GetAllAsync().Result;
+            IReadOnlyCollection<Image> items = await _repository.GetAllAsync();
 
             // Assert
             Assert.IsTrue(items.Any(), "GetAll returned no items.");
         }
 
-        private void GetByID(int id)
+        private async Task GetByID(int id)
         {
             // Act
-            var image = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
+            var image = (await _repository.FindByConditionAsync(x => x.Id == id)).FirstOrDefault();
 
             // Assert
             Assert.IsNotNull(image, "GetByID returned null.");
@@ -88,13 +89,13 @@ namespace DataAccessTest.Repository
             Assert.AreEqual(_productId, image.ProductId);
         }
         [Test]
-        public void ImageCrud()
+        public async Task ImageCrud()
         {
             var image = Create();
             _productId = image.Item2;
-            GetByID(image.Item1);
-            GetAll();
-            Update(image.Item1);
+            await GetByID(image.Item1);
+            await GetAll();
+            await Update(image.Item1);
         }
     }
 }

@@ -6,6 +6,7 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace DataAccessTest.Repository
 {
@@ -48,32 +49,32 @@ namespace DataAccessTest.Repository
             return package.Id;
         }
 
-        private void Update(int id)
+        private async Task Update(int id)
         {
             // Arrange
-            var package = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
+            var package = (await _repository.FindByConditionAsync(x => x.Id == id)).FirstOrDefault();
             package.CountInPackage = 20;
             package.Volume = 15.15;
             package.Weight = 33.33;
             // Act
             ContextSingleton.GetDatabaseContext().SaveChanges();
-            var updatedPackage = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
+            var updatedPackage = (await _repository.FindByConditionAsync(x => x.Id == id)).FirstOrDefault();
             // Assert
             Assert.AreEqual(20, updatedPackage.CountInPackage, "Record is not updated.");
             Assert.AreEqual(15.15, updatedPackage.Volume, "Record is not updated.");
             Assert.AreEqual(33.33, updatedPackage.Weight, "Record is not updated.");
         }
-        private void GetAll()
+        private async Task GetAll()
         {
             // Act
-            IReadOnlyCollection<Package> items = _repository.GetAllAsync().Result;
+            IReadOnlyCollection<Package> items = await _repository.GetAllAsync();
             // Assert
             Assert.IsTrue(items.Any(), "GetAll returned no items.");
         }
-        private void GetById(int id)
+        private async Task GetById(int id)
         {
             // Arrange
-            var package = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
+            var package = (await _repository.FindByConditionAsync(x => x.Id == id)).FirstOrDefault();
             // Assert
             Assert.IsNotNull(package, "GetById returned null.");
             Assert.AreEqual(id, package.Id);
@@ -83,12 +84,12 @@ namespace DataAccessTest.Repository
         }
 
         [Test]
-        public void PackageCrud()
+        public async Task PackageCrud()
         {
             var package = Create();
-            GetAll();
-            GetById(package);
-            Update(package);
+            await GetAll();
+            await GetById(package);
+            await Update(package);
         }
     }
 }

@@ -7,6 +7,7 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace DataAccessTest.Repository
 {
@@ -60,10 +61,10 @@ namespace DataAccessTest.Repository
             return address.Id;
         }
 
-        private void Update(int id)
+        private async Task Update(int id)
         {
             // Arrange
-            var address = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
+            var address = (await _repository.FindByConditionAsync(x => x.Id == id)).FirstOrDefault();
             address.City = "Lvov";
             address.ApartmentNumber = "10";
             address.Street = "Ivanova";
@@ -71,7 +72,7 @@ namespace DataAccessTest.Repository
             // Act
             ContextSingleton.GetDatabaseContext().SaveChanges();
 
-            var updatedAddress = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
+            var updatedAddress = (await _repository.FindByConditionAsync(x => x.Id == id)).FirstOrDefault();
 
             // Assert
             Assert.AreEqual("Lvov", updatedAddress.City, "Record is not updated.");
@@ -79,18 +80,18 @@ namespace DataAccessTest.Repository
             Assert.AreEqual("Ivanova", updatedAddress.Street, "Record is not updated.");
         }
 
-        private void GetAll()
+        private async Task GetAll()
         {
             // Act
-            IReadOnlyCollection<Address> items = _repository.GetAllAsync().Result;
+            IReadOnlyCollection<Address> items = await _repository.GetAllAsync();
             // Assert
             Assert.IsTrue(items.Any(), "GetAll returned no items.");
         }
 
-        private void GetByID(int id)
+        private async Task GetByID(int id)
         {
             // Act
-            var address = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
+            var address = (await _repository.FindByConditionAsync(x => x.Id == id)).FirstOrDefault();
             // Assert
             Assert.IsNotNull(address, "GetByID returned null.");
             Assert.AreEqual(id, address.Id);
@@ -102,14 +103,14 @@ namespace DataAccessTest.Repository
         }
 
         [Test]
-        public void AddressCrud()
+        public async Task AddressCrud()
         {
             var id = Create();
-            GetAll();
+            await GetAll();
 
-            GetByID(id);
+            await GetByID(id);
 
-            Update(id);
+            await Update(id);
         }
     }
 }

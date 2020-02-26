@@ -6,6 +6,7 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace DataAccessTest.Repository
 {
@@ -51,34 +52,34 @@ namespace DataAccessTest.Repository
             return (groupCharacteristic.Id, groupCharacteristic.ProductId);
         }
 
-        private void Update(int id)
+        private async Task Update(int id)
         {
             // Arrange
-            var groupCharacteristic = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
+            var groupCharacteristic = (await _repository.FindByConditionAsync(x => x.Id == id)).FirstOrDefault();
             groupCharacteristic.Title = "New Title";
 
             // Act
             ContextSingleton.GetDatabaseContext().SaveChanges();
 
-            var updatedGroupCharacteristic = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
+            var updatedGroupCharacteristic = (await _repository.FindByConditionAsync(x => x.Id == id)).FirstOrDefault();
 
             // Assert
             Assert.AreEqual("New Title", updatedGroupCharacteristic.Title, "Record is not updated.");
         }
 
-        private void GetAll()
+        private async Task GetAll()
         {
             // Act
-            IReadOnlyCollection<GroupCharacteristic> items = _repository.GetAllAsync().Result;
+            IReadOnlyCollection<GroupCharacteristic> items = await _repository.GetAllAsync();
 
             // Assert
             Assert.IsTrue(items.Any(), "GetAll returned no items.");
         }
 
-        private void GetByID(int id)
+        private async Task GetByID(int id)
         {
             // Act
-            var groupCharacteristic = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
+            var groupCharacteristic = (await _repository.FindByConditionAsync(x => x.Id == id)).FirstOrDefault();
 
             // Assert
             Assert.IsNotNull(groupCharacteristic, "GetByID returned null.");
@@ -87,13 +88,13 @@ namespace DataAccessTest.Repository
             Assert.AreEqual(_productId, groupCharacteristic.ProductId);
         }
         [Test]
-        public void GroupCharacteristicCrud()
+        public async Task GroupCharacteristicCrud()
         {
             var groupCharacteristic = Create();
             _productId = groupCharacteristic.Item2;
-            GetByID(groupCharacteristic.Item1);
-            GetAll();
-            Update(groupCharacteristic.Item1);
+            await GetByID(groupCharacteristic.Item1);
+            await GetAll();
+            await Update(groupCharacteristic.Item1);
         }
     }
 }

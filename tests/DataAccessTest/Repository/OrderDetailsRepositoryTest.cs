@@ -6,6 +6,7 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace DataAccessTest.Repository
 {
@@ -50,28 +51,28 @@ namespace DataAccessTest.Repository
             return (orderDetails.Id, orderDetails.OrderId, orderDetails.ProductId);
         }
 
-        private void Update(int id)
+        private async Task Update(int id)
         {
             // Arrange
-            var orderDetails = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
+            var orderDetails = (await _repository.FindByConditionAsync(x => x.Id == id)).FirstOrDefault();
             orderDetails.Count = 20;
             // Act
             ContextSingleton.GetDatabaseContext().SaveChanges();
-            var updatedOrderDetails = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
+            var updatedOrderDetails = (await _repository.FindByConditionAsync(x => x.Id == id)).FirstOrDefault();
             // Assert
             Assert.AreEqual(20, updatedOrderDetails.Count, "Record is not updated.");
         }
-        private void GetAll()
+        private async Task GetAll()
         {
             // Act
-            IReadOnlyCollection<OrderDetails> items = _repository.GetAllAsync().Result;
+            IReadOnlyCollection<OrderDetails> items = await _repository.GetAllAsync();
             // Assert
             Assert.IsTrue(items.Any(), "GetAll returned no items.");
         }
-        private void GetById(int id)
+        private async Task GetById(int id)
         {
             // Arrange
-            var orderDetails = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
+            var orderDetails = (await _repository.FindByConditionAsync(x => x.Id == id)).FirstOrDefault();
             // Assert
             Assert.IsNotNull(orderDetails, "GetById returned null.");
             Assert.AreEqual(id, orderDetails.Id);
@@ -81,14 +82,14 @@ namespace DataAccessTest.Repository
         }
        
         [Test]
-        public void OrderDetailsCrud()
+        public async Task OrderDetailsCrud()
         {
             var orderDetails = Create();
             _orderId = orderDetails.Item2;
             _productId = orderDetails.Item3;
-            GetAll();
-            GetById(orderDetails.Item1);
-            Update(orderDetails.Item1);
+            await GetAll();
+            await GetById(orderDetails.Item1);
+            await Update(orderDetails.Item1);
         }
     }
 }

@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User'\\Source\\Repos\\ISTORE-NEW-\\src\\BusinessLogic\\Business.csproj": {}
+    "C:\\Users\\student\\Desktop\\Repository\\ISTORE-NEW\\src\\BusinessLogic\\Business.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User'\\Source\\Repos\\ISTORE-NEW-\\src\\BusinessLogic\\Business.csproj": {
+    "C:\\Users\\student\\Desktop\\Repository\\ISTORE-NEW\\src\\BusinessLogic\\Business.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User'\\Source\\Repos\\ISTORE-NEW-\\src\\BusinessLogic\\Business.csproj",
+        "projectUniqueName": "C:\\Users\\student\\Desktop\\Repository\\ISTORE-NEW\\src\\BusinessLogic\\Business.csproj",
         "projectName": "Business",
-        "projectPath": "C:\\Users\\User'\\Source\\Repos\\ISTORE-NEW-\\src\\BusinessLogic\\Business.csproj",
-        "packagesPath": "C:\\Users\\User'\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User'\\Source\\Repos\\ISTORE-NEW-\\src\\BusinessLogic\\obj\\",
+        "projectPath": "C:\\Users\\student\\Desktop\\Repository\\ISTORE-NEW\\src\\BusinessLogic\\Business.csproj",
+        "packagesPath": "C:\\Users\\student\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\student\\Desktop\\Repository\\ISTORE-NEW\\src\\BusinessLogic\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\User'\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\student\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -30,11 +30,11 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\User'\\Source\\Repos\\ISTORE-NEW-\\src\\DataAccess\\DataAccess.csproj": {
-                "projectPath": "C:\\Users\\User'\\Source\\Repos\\ISTORE-NEW-\\src\\DataAccess\\DataAccess.csproj"
+              "C:\\Users\\student\\Desktop\\Repository\\ISTORE-NEW\\src\\DataAccess\\DataAccess.csproj": {
+                "projectPath": "C:\\Users\\student\\Desktop\\Repository\\ISTORE-NEW\\src\\DataAccess\\DataAccess.csproj"
               },
-              "C:\\Users\\User'\\Source\\Repos\\ISTORE-NEW-\\src\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\User'\\Source\\Repos\\ISTORE-NEW-\\src\\Domain\\Domain.csproj"
+              "C:\\Users\\student\\Desktop\\Repository\\ISTORE-NEW\\src\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\student\\Desktop\\Repository\\ISTORE-NEW\\src\\Domain\\Domain.csproj"
               }
             }
           }
@@ -47,28 +47,45 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            }
+          },
           "imports": [
-            "net461"
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
           ],
           "assetTargetFallback": true,
-          "warn": true
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\User'\\Source\\Repos\\ISTORE-NEW-\\src\\DataAccess\\DataAccess.csproj": {
+    "C:\\Users\\student\\Desktop\\Repository\\ISTORE-NEW\\src\\DataAccess\\DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User'\\Source\\Repos\\ISTORE-NEW-\\src\\DataAccess\\DataAccess.csproj",
+        "projectUniqueName": "C:\\Users\\student\\Desktop\\Repository\\ISTORE-NEW\\src\\DataAccess\\DataAccess.csproj",
         "projectName": "DataAccess",
-        "projectPath": "C:\\Users\\User'\\Source\\Repos\\ISTORE-NEW-\\src\\DataAccess\\DataAccess.csproj",
-        "packagesPath": "C:\\Users\\User'\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User'\\Source\\Repos\\ISTORE-NEW-\\src\\DataAccess\\obj\\",
+        "projectPath": "C:\\Users\\student\\Desktop\\Repository\\ISTORE-NEW\\src\\DataAccess\\DataAccess.csproj",
+        "packagesPath": "C:\\Users\\student\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\student\\Desktop\\Repository\\ISTORE-NEW\\src\\DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\User'\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\student\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -81,8 +98,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\User'\\Source\\Repos\\ISTORE-NEW-\\src\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\User'\\Source\\Repos\\ISTORE-NEW-\\src\\Domain\\Domain.csproj"
+              "C:\\Users\\student\\Desktop\\Repository\\ISTORE-NEW\\src\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\student\\Desktop\\Repository\\ISTORE-NEW\\src\\Domain\\Domain.csproj"
               }
             }
           }
@@ -95,28 +112,49 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            },
+            "Serilog": {
+              "target": "Package",
+              "version": "[2.9.0, )"
+            }
+          },
           "imports": [
-            "net461"
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
           ],
           "assetTargetFallback": true,
-          "warn": true
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\User'\\Source\\Repos\\ISTORE-NEW-\\src\\Domain\\Domain.csproj": {
+    "C:\\Users\\student\\Desktop\\Repository\\ISTORE-NEW\\src\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User'\\Source\\Repos\\ISTORE-NEW-\\src\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\student\\Desktop\\Repository\\ISTORE-NEW\\src\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\User'\\Source\\Repos\\ISTORE-NEW-\\src\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\User'\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User'\\Source\\Repos\\ISTORE-NEW-\\src\\Domain\\obj\\",
+        "projectPath": "C:\\Users\\student\\Desktop\\Repository\\ISTORE-NEW\\src\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\student\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\student\\Desktop\\Repository\\ISTORE-NEW\\src\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\User'\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\student\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -139,11 +177,32 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            }
+          },
           "imports": [
-            "net461"
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
           ],
           "assetTargetFallback": true,
-          "warn": true
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

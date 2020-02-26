@@ -6,6 +6,7 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace DataAccessTest.Repository
 {
@@ -52,35 +53,35 @@ namespace DataAccessTest.Repository
             return category.Id;
         }
 
-        private void Update(int id)
+        private async Task Update(int id)
         {
             // Arrange
-            var category = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
+            var category = (await _repository.FindByConditionAsync(x => x.Id == id)).FirstOrDefault();
             category.Title = "Title";
             category.PreviewImage = "Preview Image";
 
             // Act
             ContextSingleton.GetDatabaseContext().SaveChanges();
 
-            var updatedcategory = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
+            var updatedcategory = (await _repository.FindByConditionAsync(x => x.Id == id)).FirstOrDefault();
 
             // Assert
             Assert.AreEqual("Title", updatedcategory.Title, "Record is not updated.");
             Assert.AreEqual("Preview Image", updatedcategory.PreviewImage, "Record is not updated.");
         }
 
-        private void GetAll()
+        private async Task GetAll()
         {
             // Act
-            IReadOnlyCollection<Category> items = _repository.GetAllAsync().Result;
+            IReadOnlyCollection<Category> items = await _repository.GetAllAsync();
             // Assert
             Assert.IsTrue(items.Any(), "GetAll returned no items.");
         }
 
-        private void GetByID(int id)
+        private async Task GetByID(int id)
         {
             // Act
-            var category = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
+            var category = (await _repository.FindByConditionAsync(x => x.Id == id)).FirstOrDefault();
             // Assert
             Assert.IsNotNull(category, "GetByID returned null.");
             Assert.AreEqual(id, category.Id);
@@ -90,12 +91,12 @@ namespace DataAccessTest.Repository
         }
 
         [Test]
-        public void CommentCrud()
+        public async Task CommentCrud()
         {
             var id = Create();
-            GetByID(id);
-            GetAll();
-            Update(id);
+            await GetByID(id);
+            await GetAll();
+            await Update(id);
         }
     }
 }

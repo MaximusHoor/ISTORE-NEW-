@@ -7,6 +7,7 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace DataAccessTest.Repository
 {
@@ -54,10 +55,10 @@ namespace DataAccessTest.Repository
             return brand.Id;
         }
 
-        private void Update(int id)
+        private async Task Update(int id)
         {
             // Arrange
-            var brand = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
+            var brand = (await _repository.FindByConditionAsync(x => x.Id == id)).FirstOrDefault();
             brand.Country = "Japan";
             brand.Description = "newDescription";
             brand.Name = "LG";
@@ -65,7 +66,7 @@ namespace DataAccessTest.Repository
             // Act
             ContextSingleton.GetDatabaseContext().SaveChanges();
 
-            var updatedBrand = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
+            var updatedBrand = (await _repository.FindByConditionAsync(x => x.Id == id)).FirstOrDefault();
 
             // Assert
             Assert.AreEqual("Japan", updatedBrand.Country, "Record is not updated.");
@@ -73,18 +74,18 @@ namespace DataAccessTest.Repository
             Assert.AreEqual("LG", updatedBrand.Name, "Record is not updated.");
         }
 
-        private void GetAll()
+        private async Task GetAll()
         {
             // Act
-            IReadOnlyCollection<Brand> items = _repository.GetAllAsync().Result;
+            IReadOnlyCollection<Brand> items = await _repository.GetAllAsync();
             // Assert
             Assert.IsTrue(items.Any(), "GetAll returned no items.");
         }
 
-        private void GetByID(int id)
+        private async Task GetByID(int id)
         {
             // Act
-            var brand = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
+            var brand = (await _repository.FindByConditionAsync(x => x.Id == id)).FirstOrDefault();
             // Assert
             Assert.IsNotNull(brand, "GetByID returned null.");
             Assert.AreEqual(id, brand.Id);
@@ -95,14 +96,14 @@ namespace DataAccessTest.Repository
         }
 
         [Test]
-        public void BrandCrud()
+        public async Task BrandCrud()
         {
             var id = Create();
-            GetAll();
+            await GetAll();
 
-            GetByID(id);
+            await GetByID(id);
 
-            Update(id);
+            await Update(id);
         }
     }
 }

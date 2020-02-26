@@ -6,6 +6,7 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace DataAccessTest.Repository
 {
@@ -62,10 +63,10 @@ namespace DataAccessTest.Repository
             return (order.Id, order.UserId, order.DeliveryId);
         }
 
-        private void Update(int id)
+        private async Task Update(int id)
         {
             // Arrange
-            var order = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
+            var order = (await _repository.FindByConditionAsync(x => x.Id == id)).FirstOrDefault();
             order.Number = "New Number";
             order.Date = _date.AddDays(20);
             order.Total = 50;
@@ -73,7 +74,7 @@ namespace DataAccessTest.Repository
             order.PaymentStatus = "New payment status";
             // Act
             ContextSingleton.GetDatabaseContext().SaveChanges();
-            var updatedOrder = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
+            var updatedOrder = (await _repository.FindByConditionAsync(x => x.Id == id)).FirstOrDefault();
             // Assert
             Assert.AreEqual("New Number", updatedOrder.Number, "Record is not updated.");
             Assert.AreEqual(_date.AddDays(20), updatedOrder.Date, "Record is not updated.");
@@ -81,17 +82,17 @@ namespace DataAccessTest.Repository
             Assert.AreEqual("New delivery status", updatedOrder.DeliveryStatus, "Record is not updated.");
             Assert.AreEqual("New payment status", updatedOrder.PaymentStatus, "Record is not updated.");
         }
-        private void GetAll()
+        private async Task GetAll()
         {
             // Act
-            IReadOnlyCollection<Order> items = _repository.GetAllAsync().Result;
+            IReadOnlyCollection<Order> items = await _repository.GetAllAsync();
             // Assert
             Assert.IsTrue(items.Any(), "GetAll returned no items.");
         }
-        private void GetById(int id)
+        private async Task GetById(int id)
         {
             // Arrange
-            var order = _repository.FindByConditionAsync(x => x.Id == id).Result.FirstOrDefault();
+            var order = (await _repository.FindByConditionAsync(x => x.Id == id)).FirstOrDefault();
             // Assert
             Assert.IsNotNull(order, "GetById returned null.");
             Assert.AreEqual(id, order.Id);
@@ -104,14 +105,14 @@ namespace DataAccessTest.Repository
             Assert.AreEqual(_paymentStatus, order.PaymentStatus);
         }
         [Test]
-        public void OrderCrud()
+        public async Task OrderCrud()
         {
             var orderDetails = Create();
             _userId = orderDetails.Item2;
             _deliveryId = orderDetails.Item3;
-            GetAll();
-            GetById(orderDetails.Item1);
-            Update(orderDetails.Item1);
+            await GetAll();
+            await GetById(orderDetails.Item1);
+            await Update(orderDetails.Item1);
         }
     }
 }

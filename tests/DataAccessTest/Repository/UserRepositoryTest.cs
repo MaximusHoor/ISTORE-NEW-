@@ -29,6 +29,7 @@ namespace DataAccessTest.Repository
         private int _comment1Id;
         private int _comment2Id;
         private DateTime _dateTime1;
+        private DateTime _dateTime2;
         private IUserRepository _repository;
         private void InitialiseParameters()
         {
@@ -40,8 +41,8 @@ namespace DataAccessTest.Repository
             _email = "some email";
             _comment1Id = new Random().Next(0, int.MaxValue);
             _comment2Id = new Random().Next(0, int.MaxValue);
-            _dateTime1 = new DateTime(1998, 04, 30);
-
+            _dateTime1 = new DateTime(2020, 04, 30);
+            _dateTime2 = new DateTime(2019, 04, 30);
         }
 
         private async Task<(int, int?)> CreateAsync()
@@ -52,8 +53,8 @@ namespace DataAccessTest.Repository
                 Id = _id,
                 FirstName = _firstName,
                 LastName = _lastName,
-                Address = new Address { Id = _id },
-                Comments = new List<Comment> { new Comment() { Id = _comment1Id }, new Comment() { Id = _comment2Id } },
+                Address = new Address { Id = _addressId.Value },
+                Comments = new List<Comment> { new Comment() { Id = _comment1Id,Date=_dateTime1 }, new Comment() { Id = _comment2Id,Date=_dateTime2 } },
                 AddressId = _addressId,
                 PhoneNumber = _phoneNumber,
                 Email = _email
@@ -63,7 +64,7 @@ namespace DataAccessTest.Repository
             ContextSingleton.GetDatabaseContext().SaveChanges();
 
             // Assert
-            Assert.AreNotEqual(_id, user.Id, "Creating new record does not return id");
+            Assert.AreNotEqual(0, user.Id, "Creating new record does not return id");
 
             return (user.Id, user.AddressId);
         }
@@ -81,23 +82,49 @@ namespace DataAccessTest.Repository
         private async Task GetByIDAsync(int id)
         {
             // Act
-            var comment = await _repository.FindUserByConditionAllIncludedAsync(x => x.Id == id);
+            var user = await _repository.GetUserAllIncludedAsync(x => x.Id == id);
             // Assert
-            Assert.IsNotNull(comment, "GetByID returned null.");
-            Assert.AreEqual(id, comment);
-            Assert.AreEqual(_firstName, comment.ElementAt(0).FirstName);
-            Assert.AreEqual(_lastName, comment.ElementAt(0).LastName);
-            Assert.AreEqual(_email, comment.ElementAt(0).Email);
-            Assert.AreEqual(_phoneNumber, comment.ElementAt(0).PhoneNumber);
-            Assert.AreEqual(_addressId, comment.ElementAt(0).AddressId);
+            Assert.IsNotNull(user, "GetByID returned null.");
+            Assert.AreEqual(id, user.Id);
+            Assert.AreEqual(_firstName, user.FirstName);
+            Assert.AreEqual(_lastName, user.LastName);
+            Assert.AreEqual(_email, user.Email);
+            Assert.AreEqual(_phoneNumber, user.PhoneNumber);
+            Assert.AreEqual(_addressId, user.AddressId);
+        }
+        private async Task GetUserByCondition(string email)
+        {
+            // Act
+            var user = await _repository.FindByConditionAsync(x => x.Email == email);
+            // Assert
+            Assert.IsNotNull(user, "GetByID returned null.");
+            Assert.AreEqual(_id, user.ElementAt(0).Id);
+            Assert.AreEqual(_firstName, user.ElementAt(0).FirstName);
+            Assert.AreEqual(_lastName, user.ElementAt(0).LastName);
+            Assert.AreEqual(_email, user.ElementAt(0).Email);
+            Assert.AreEqual(_phoneNumber, user.ElementAt(0).PhoneNumber);
+            Assert.AreEqual(_addressId, user.ElementAt(0).AddressId);
+        }
+        private async Task UpdateAsync(int id)
+        {
+            // Arrange
+            var user = (await _repository.GetUserAllIncludedAsync(x => x.Id == id));
+            user.Email = "new email";
+            // Act
+            ContextSingleton.GetDatabaseContext().SaveChanges();
+            var updatedUser = (await _repository.GetUserAllIncludedAsync(x => x.Id == id));
+            // Assert
+            Assert.AreEqual("new email", updatedUser.Email, "not updated.");
         }
 
         [Test]
         public async Task UserCrud()
         {
-            var comment = await CreateAsync();
-            await GetByIDAsync(comment.Item1);
+            var user = await CreateAsync();
             await GetAllAsync();
+            await GetByIDAsync(user.Item1);
+            await GetUserByCondition(_email);
+            await UpdateAsync(user.Item1);
         }
     }
 }

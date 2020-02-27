@@ -32,7 +32,7 @@ namespace Business.Service
         public async Task<Comment> GetCommentAllIncludedAsync(int commentId)
         {
             var comments = await _unitOfWork.CommentRepository.FindByConditionAllIncludedAsync(x => x.Id == commentId);
-            return comments.ElementAt(0);
+            return comments.ElementAtOrDefault(0);
         }
         public async Task<IReadOnlyCollection<Comment>> GetCommentsByUserAsync(int userId)
         {

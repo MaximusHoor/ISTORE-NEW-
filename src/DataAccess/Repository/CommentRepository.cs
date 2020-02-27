@@ -17,11 +17,6 @@ namespace DataAccess.Repository
         public CommentRepository(StoreContext context) : base(context)
         {
         }
-        public async Task<OperationDetail> CreateAsync(Comment comment)
-        {
-            return await CreateAsync(comment).ConfigureAwait(false);
-        }
-
         public override async Task<IReadOnlyCollection<Comment>> GetAllAsync()
         {
             return await base.GetAllAsync().ConfigureAwait(false);

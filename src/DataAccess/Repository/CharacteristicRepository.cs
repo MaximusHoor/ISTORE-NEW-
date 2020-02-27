@@ -12,8 +12,8 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repository
 {
-    public class CharacteristicRepository : BaseRepository<Characteristic>, ICharacteristicRepository
-    {
+    public class CharacteristicRepository : BaseRepository<Characteristic>
+    { 
         public CharacteristicRepository(StoreContext context) : base(context)
         {
 
@@ -29,9 +29,6 @@ namespace DataAccess.Repository
             return await this.Entities.Include(ch => ch.GroupCharacteristic).Where(predicat).ToListAsync().ConfigureAwait(false);
         }
 
-        public async Task<IReadOnlyCollection<Characteristic>> FindByConditionWithIncludeAsync(Expression<Func<Characteristic, bool>> predicat, Expression<Func<Characteristic, bool>> includePredicat)
-        {
-            return await this.Entities.Include(includePredicat).Where(predicat).ToListAsync().ConfigureAwait(false);
-        }
+       
     }
 }

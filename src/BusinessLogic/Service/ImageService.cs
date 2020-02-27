@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Business.Service
 {
-    public class ImageService : IImageService
+    public class ImageService 
     {
         private readonly IUnitOfWork _unitOfWork;
 
@@ -28,11 +28,7 @@ namespace Business.Service
         {
             return await _unitOfWork.ImageRepository.FindByConditionAsync(predicat);
         }
-
-        public async Task<IReadOnlyCollection<Image>> FindByConditionWithIncludeAsync(Expression<Func<Image, bool>> predicat, Expression<Func<Image, bool>> includePredicat)
-        {
-            return await _unitOfWork.ImageRepository.FindByConditionWithIncludeAsync(predicat, includePredicat);
-        }
+    
 
         public async Task<IReadOnlyCollection<Image>> GetAllAsync()
         {

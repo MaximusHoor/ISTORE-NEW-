@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Business.Service
 {
-    public class OrderDetailsService : IOrderDetailsService
+    public class OrderDetailsService 
     {
         private readonly IUnitOfWork _unitOfWork;
         public OrderDetailsService(IUnitOfWork unitOfWork) => _unitOfWork = unitOfWork;
@@ -26,11 +26,7 @@ namespace Business.Service
         {
             return await _unitOfWork.OrderDetailsRepository.FindByConditionAsync(predicat);
         }
-
-        public async Task<IReadOnlyCollection<OrderDetails>> FindByConditionWithIncludeAsync(Expression<Func<OrderDetails, bool>> predicat, Expression<Func<OrderDetails, bool>> includePredicat)
-        {
-            return await _unitOfWork.OrderDetailsRepository.FindByConditionWithIncludeAsync(predicat, includePredicat);
-        }
+        
 
         public async Task<IReadOnlyCollection<OrderDetails>> GetAllAsync()
         {

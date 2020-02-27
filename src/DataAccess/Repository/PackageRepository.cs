@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repository
 {
-    public class PackageRepository : BaseRepository<Package>, IPackageRepository
+    public class PackageRepository : BaseRepository<Package>
     {
         public PackageRepository(StoreContext context) : base(context)
         {

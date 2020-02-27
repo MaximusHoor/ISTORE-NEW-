@@ -32,7 +32,7 @@ namespace DataAccess.Repository
 
         public async Task<IReadOnlyCollection<Delivery>> FindByConditionWithIncludeAsync(Expression<Func<Delivery, bool>> predicat, Expression<Func<Delivery, bool>> includePredicat)
         {
-            return await this.Entities.Include(includePredicat).Where(predicat).ToListAsync().ConfigureAwait(false);
+            return await this.Entities.Where(predicat).Include(x => x.AddressDelivery).Where(includePredicat).ToListAsync().ConfigureAwait(false);
         }
     }
 }

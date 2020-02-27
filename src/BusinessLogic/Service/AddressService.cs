@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Business.Service
 {
-    public class AddressService: IAddressService
+    public class AddressService
     {
         private readonly IUnitOfWork _unitOfWork;
 

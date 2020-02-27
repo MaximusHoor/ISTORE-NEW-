@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Business.Service
 {
-    public class CategoryService : ICategoryService
+    public class CategoryService 
     {
         private readonly IUnitOfWork _unitOfWork;
 
@@ -29,11 +29,7 @@ namespace Business.Service
             return await _unitOfWork.CategoryRepository.FindByConditionAsync(predicat);
         }
 
-        public async Task<IReadOnlyCollection<Category>> FindByConditionWithIncludeAsync(Expression<Func<Category, bool>> predicat, Expression<Func<Category, bool>> includePredicat)
-        {
-            return await _unitOfWork.CategoryRepository.FindByConditionWithIncludeAsync(predicat, includePredicat);
-        }
-
+       
         public async Task<IReadOnlyCollection<Category>> GetAllAsync()
         {
             return await _unitOfWork.CategoryRepository.GetAllAsync();

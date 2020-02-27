@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Business.Service
 {
-    public class BrandService:IBrandService
+    public class BrandService
     {
         private readonly IUnitOfWork _unitOfWork;
 

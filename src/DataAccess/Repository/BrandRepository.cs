@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repository
 {
-    public class BrandRepository : BaseRepository<Brand>, IBrandRepository
+    public class BrandRepository : BaseRepository<Brand>
     {
         public BrandRepository(StoreContext context) : base(context)
         {

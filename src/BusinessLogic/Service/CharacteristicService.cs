@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Business.Service
 {
 
-    public class CharacteristicService : ICharacteristicService
+    public class CharacteristicService 
     {
         private readonly IUnitOfWork _unitOfWork;
         public CharacteristicService(IUnitOfWork unitOfWork)
@@ -30,11 +30,7 @@ namespace Business.Service
             return await _unitOfWork.CharacteristicRepository.FindByConditionAsync(predicat);
         }
 
-        public async Task<IReadOnlyCollection<Characteristic>> FindByConditionWithIncludeAsync(Expression<Func<Characteristic, bool>> predicat, Expression<Func<Characteristic, bool>> includePredicat)
-        {
-            return await _unitOfWork.CharacteristicRepository.FindByConditionWithIncludeAsync(predicat, includePredicat);
-        }
-
+      
         public async Task<IReadOnlyCollection<Characteristic>> GetAllAsync()
         {
             return await _unitOfWork.CharacteristicRepository.GetAllAsync();

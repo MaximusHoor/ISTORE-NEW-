@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repository
 {
-    public class ProductRepository : BaseRepository<Product>, IProductRepository
+    public class ProductRepository : BaseRepository<Product>
     {
     
 
@@ -43,9 +43,6 @@ namespace DataAccess.Repository
                 .Where(predicat).ToListAsync().ConfigureAwait(false);
         }
 
-        public async Task<IReadOnlyCollection<Product>> FindByConditionWithIncludeAsync(Expression<Func<Product, bool>> predicat, Expression<Func<Product, bool>> includePredicat)
-        {
-            return await this.Entities.Include(includePredicat).Where(predicat).ToListAsync().ConfigureAwait(false);
-        }
+        
     }
 }

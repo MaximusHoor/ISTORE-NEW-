@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repository
 {
-    public class ImageRepository : BaseRepository<Image>, IImageRepository
+    public class ImageRepository : BaseRepository<Image>
     {
         public ImageRepository(StoreContext context) : base(context)
         {
@@ -28,9 +28,6 @@ namespace DataAccess.Repository
             return await this.Entities.Include(img => img.Product).Where(predicat).ToListAsync().ConfigureAwait(false);
         }
 
-        public async Task<IReadOnlyCollection<Image>> FindByConditionWithIncludeAsync(Expression<Func<Image, bool>> predicat, Expression<Func<Image, bool>> includePredicat)
-        {
-            return await this.Entities.Include(includePredicat).Where(predicat).ToListAsync().ConfigureAwait(false);
-        }
+       
     }
 }

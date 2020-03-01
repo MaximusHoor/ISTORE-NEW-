@@ -20,6 +20,8 @@ namespace Domain.Context
                     PreviewImage="",                    
                 });
 
+
+
             modelBuilder.Entity<Brand>().HasData(
                 new Brand
                 {
@@ -59,19 +61,23 @@ namespace Domain.Context
                 });
 
             modelBuilder.Entity<GroupCharacteristic>().HasData(
-               new GroupCharacteristic
+               new GroupCharacteristic[]
                {
-                  Id = 1,
-                  ProductId = 1,
-                  Title ="Colors",                  
-               });
+                   new GroupCharacteristic{Id = 1, ProductId = 1, Title = "Связь"},
+                   new GroupCharacteristic{Id = 2, ProductId = 1, Title = "Экран"}
+
+               }); 
 
             modelBuilder.Entity<Characteristic>().HasData(
               new Characteristic[]
               {
-                  new Characteristic {Id = 1, GroupCharacteristicId = 1,  Title="Title", Value = "black"},
-                  new Characteristic {Id = 2, GroupCharacteristicId = 1,  Title="Title", Value = "red"},
-                  new Characteristic {Id = 3, GroupCharacteristicId = 1,  Title="Title", Value = "blue" },
+                  new Characteristic {Id = 1, GroupCharacteristicId = 1,  Title="Стандарт связи", Value = "GSM, 3G, 4G (LTE), 5G"},
+                  new Characteristic {Id = 2, GroupCharacteristicId = 1,  Title="Количество sim-карт", Value ="2 SIM"},
+                  new Characteristic {Id = 3, GroupCharacteristicId = 1,  Title="Формат SIM-карты", Value = "Nano-SIM" },
+                  new Characteristic {Id = 4, GroupCharacteristicId = 2,  Title="Диагональ", Value = "6.9"},
+                  new Characteristic {Id = 5, GroupCharacteristicId = 2,  Title="Количество цветов", Value ="16 миллионов"},
+                  new Characteristic {Id = 6, GroupCharacteristicId = 2,  Title="Тип дисплея", Value = "Dynamic AMOLED" },
+
               }) ;
 
         }

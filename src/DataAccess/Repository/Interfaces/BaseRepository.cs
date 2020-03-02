@@ -17,7 +17,7 @@ namespace Domain.Repository.Interfaces
             _storeContext = context;
         }
         private DbSet<TEntity> _entities;
-        private StoreContext _storeContext;
+        protected StoreContext _storeContext;
         protected DbSet<TEntity> Entities => this._entities ??= _storeContext.Set<TEntity>();
         public virtual async Task<IReadOnlyCollection<TEntity>> GetAllAsync()
         {

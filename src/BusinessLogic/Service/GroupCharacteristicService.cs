@@ -38,5 +38,10 @@ namespace Business.Service
         {
             return await _unitOfWork.GroupCharacteristicRepository.GetAllAsync();
         }
+
+        public async Task<GroupCharacteristic> GetByIdAsync (int id)
+        {
+            return await _unitOfWork.GroupCharacteristicRepository.GetByIdAsync(id);
+        }
     }
 }

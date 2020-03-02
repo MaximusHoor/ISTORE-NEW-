@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repository
 {
-    public class CharacteristicRepository : BaseRepository<Characteristic>
+    public class CharacteristicRepository : BaseRepository<Characteristic>, ICharacteristicRepository
     { 
         public CharacteristicRepository(StoreContext context) : base(context)
         {
@@ -29,6 +29,10 @@ namespace DataAccess.Repository
             return await this.Entities.Include(ch => ch.GroupCharacteristic).Where(predicat).ToListAsync().ConfigureAwait(false);
         }
 
-       
+        public async Task<Characteristic> GetByIdAsync(int id)
+        {
+            return await _storeContext.Characteristics.Where(x => x.Id == id)
+                .Include(ch => ch.GroupCharacteristic).FirstOrDefaultAsync();
+        }
     }
 }

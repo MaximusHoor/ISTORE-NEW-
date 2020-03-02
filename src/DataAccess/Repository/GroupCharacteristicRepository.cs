@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repository
 {
-    public class GroupCharacteristicRepository : BaseRepository<GroupCharacteristic>
+    public class GroupCharacteristicRepository : BaseRepository<GroupCharacteristic>, IGroupCharacteristicRepository
     {
         public GroupCharacteristicRepository(StoreContext context) : base(context)
         {
@@ -33,6 +33,12 @@ namespace DataAccess.Repository
                 .Where(predicat).ToListAsync().ConfigureAwait(false);
         }
 
-        
+        public async Task<GroupCharacteristic> GetByIdAsync(int id)
+        {
+            return await _storeContext.GroupCharacteristics.Where(x=>x.Id==id)
+                .Include(grc => grc.Product)
+                .Include(grc => grc.Characteristics)
+                .FirstOrDefaultAsync();
+        }
     }
 }

@@ -4,7 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Business.Service;
 using Business.Service.Interfaces;
+using Domain.EF_Models;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace IStore_WEB_.Controllers
 {
@@ -29,5 +31,12 @@ namespace IStore_WEB_.Controllers
 
             return PartialView("ProductCharacteristicPartialView", res);
         }
+
+        [HttpPost]
+        public async Task GetCharacteristic(string parameters)
+        {
+            await _groupCharacteristicService.SaveAllFromAdminAsync(JsonConvert.DeserializeObject<List<GroupCharacteristic>>(parameters));            
+        }
+
     }
 }

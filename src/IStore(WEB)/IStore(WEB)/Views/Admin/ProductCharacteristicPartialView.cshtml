@@ -8,12 +8,16 @@
 
     $(function () {
 
+        $(".prodid").attr("readonly", true);
+        $(".idchar").attr("readonly", true);
+
         $('html').on('click', '.addBtn', function () {
 
             $(this).parent().find(".cont").append($(".innerBox").last().clone());
-            $(this).parent().find(".cont").find(".innerBox").last().children().eq(1).val("");
             $(this).parent().find(".cont").find(".innerBox").last().children().eq(4).val("");
-
+            $(this).parent().find(".cont").find(".innerBox").last().children().eq(7).val("");
+            $(this).parent().find(".cont").find(".innerBox").last().find(".idchar").val("0");
+            $(".idchar").attr("readonly", true);
         });
 
          $('.addGroup').on('click', function () {
@@ -21,31 +25,50 @@
              $("tbody").append($(".tableBox").last().clone());
              $(".tableBox").last().find("td").find(".innerBox:not(:first)").remove();
              $(".tableBox").last().find("td").find("input").val(" ");
-             $(".tableBox").last().find('td').find(".idgroup").text("");
+             $(".tableBox").last().find('td').find(".idgroup").text("0");
+             $(".tableBox").last().find('td').find(".prodid").val($(".tableBox").first().find('td').find(".prodid").val()).attr("readonly", true);
+             $(".tableBox").last().find('td').find(".idchar").val("0").attr("readonly", true);
          });
 
         $('.saveBtn').on('click', function () {
 
             var groups = [];
 
-            var elements = $(".tableBox");
+            var groupsElements = $(".tableBox");
 
-            $(elements).each(function (){
-
+            $(groupsElements).each(function (){
                 var characteristics = [];
 
+                var idgroup = $(this).find('td').find(".idgroup").text().replace(/\n/ig, '').trim();
+
                 $(this).find(".innerBox").each(function () {
-                    characteristics.push($(this).find(".title").val(), $(this).find(".value").val());
+
+                    var charact = new Object();
+                    charact.Id = $(this).find(".idchar").val();
+                    charact.Title = $(this).find(".title").val();
+                    charact.Value = $(this).find(".value").val();
+                    charact.GroupCharacteristicId = idgroup;
+
+                    characteristics.push(charact);
                 });
 
-                groups.push($(this).find('td').find(".idgroup").text().replace(/\n/ig, '').trim(), $(this).find('td').find(".group").val(), characteristics);
+                var group = new Object();
+                group.Title = $(this).find('td').find(".group").val();
+                group.ProductId = $(this).find('td').find(".prodid").val();
+                group.Characteristics = characteristics;
+                group.Id = idgroup;
+
+                groups.push(group);
+                
             });
-            var d = groups;
 
-            $('html').text(groups);
+            $.ajax({
+                type: "POST",
+                url: "/admin/GetCharacteristic",
+                data: {parameters : JSON.stringify(groups)},
+                dataType: "JSON"
+          });            
         });
-
-
     });
 
 </script>
@@ -58,16 +81,16 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Id)
+                @Html.LabelForModel("Group id")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                @Html.LabelForModel("Group title")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ProductId)
+                @Html.LabelForModel("Product id")
             </th>
             <th>
-                Characteristics
+                @Html.LabelForModel("Characteristics")
             </th>
 
             <th></th>
@@ -89,21 +112,24 @@
                     @Html.EditorFor(modelItem => item.Title, new { htmlAttributes = new { @class = "group" } })
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ProductId)
+                    @Html.EditorFor(modelItem => item.ProductId, new { htmlAttributes = new { @class = "prodid" } })
                 </td>
                 <td>
                     <div class="box">
-                        <div class="cont" style="background-color:red">
+                        <div class="cont">
                             @foreach (var сharacteristic in item.Characteristics)
                             {
-                                <div class="innerBox">
-                                    @Html.Label("Title")
-                                    @Html.EditorFor(modelItem => сharacteristic.Title, new { htmlAttributes = new { @class = "title" } })
-                                    <label> </label>
-                                    @Html.Label("Value")
-                                    @Html.EditorFor(modelItem => сharacteristic.Value, new { htmlAttributes = new { @class = "value" } })
-                                    <br>
-                                </div>
+                            <div class="innerBox">
+                                @Html.Label("Id")
+                                @Html.EditorFor(modelItem => сharacteristic.Id, new { htmlAttributes = new { @class = "idchar" } })
+                                <label> </label>
+                                @Html.Label("Title")
+                                @Html.EditorFor(modelItem => сharacteristic.Title, new { htmlAttributes = new { @class = "title" } })
+                                <label> </label>
+                                @Html.Label("Value")
+                                @Html.EditorFor(modelItem => сharacteristic.Value, new { htmlAttributes = new { @class = "value" } })
+                                <br>
+                            </div>
                             }
                         </div>
 

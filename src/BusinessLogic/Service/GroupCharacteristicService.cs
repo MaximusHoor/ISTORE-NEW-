@@ -43,5 +43,45 @@ namespace Business.Service
         {
             return await _unitOfWork.GroupCharacteristicRepository.GetByIdAsync(id);
         }
+
+        public async Task SaveAllFromAdminAsync(List<GroupCharacteristic> groups)  //void?
+        {
+            foreach(var group in groups)
+            {
+                var gr = await _unitOfWork.GroupCharacteristicRepository.GetByIdAsync(group.Id);
+                
+                if(gr is null)
+                {
+                    await _unitOfWork.GroupCharacteristicRepository.CreateAsync(group);
+                    await this._unitOfWork.SaveChangesAsync();
+                    gr = await _unitOfWork.GroupCharacteristicRepository.GetByIdAsync(group.Id);                    
+                }
+                else
+                {
+                    gr.Characteristics = group.Characteristics;
+                    gr.ProductId = group.ProductId;
+                    gr.Title = group.Title;
+                }
+
+                foreach(var character in group.Characteristics)
+                {
+                    var charac = await _unitOfWork.CharacteristicRepository.GetByIdAsync(character.Id);
+
+                    if(charac is null)
+                    {
+                        await _unitOfWork.CharacteristicRepository.CreateAsync(character);
+                        await this._unitOfWork.SaveChangesAsync();
+                    }
+                    else
+                    {
+                        charac.GroupCharacteristicId = gr.Id;
+                        charac.Title = character.Title;
+                        charac.Value = character.Value;
+                    }
+                }
+            }
+
+            await this._unitOfWork.SaveChangesAsync();
+        }
     }
 }

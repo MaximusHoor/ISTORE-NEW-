@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repository
 {
-    public class ProductRepository : BaseRepository<Product>
+    public class ProductRepository : BaseRepository<Product>, IProductRepository
     {
     
 
@@ -43,6 +43,20 @@ namespace DataAccess.Repository
                 .Where(predicat).ToListAsync().ConfigureAwait(false);
         }
 
-        
+        public async Task<Product> GetByIdAsync(int id)
+        {
+            return await _storeContext.Products.Where(x => x.Id == id)
+                .Include(br => br.Brand)
+                .Include(cat => cat.Category)
+                .Include(im => im.Images)
+                .Include(pac => pac.Package)
+                .Include(grch => grch.GroupCharacteristics)
+                .Include(com => com.Comments).FirstOrDefaultAsync();
+        }
+
+        public async Task<IReadOnlyCollection<Product>> GetSortByRatingAsync(int count)
+        {
+            return await _storeContext.Products.OrderByDescending(x => x.Rating).Take(count).ToListAsync();
+        }
     }
 }

@@ -293,49 +293,49 @@
                             <span class="text">All Categories</span>
                         </div>
                         <div class="block-content verticalmenu-content">
-                            <ul class="tanajil-nav-vertical vertical-menu tanajil-clone-mobile-menu">
-                                <li class="menu-item">
-                                    <a href="index.html#" class="tanajil-menu-item-title" title="New Arrivals">New Arrivals</a>
-                                </li>
-                                <li class="menu-item">
-                                    <a title="Hot Sale" href="index.html#" class="tanajil-menu-item-title">Hot Sale</a>
-                                </li>
-                                <li class="menu-item menu-item-has-children">
-                                    <a title="Accessories" href="index.html#" class="tanajil-menu-item-title">Accessories</a>
-                                    <span class="toggle-submenu"></span>
-                                    <ul role="menu" class=" submenu">
-                                        <li class="menu-item">
-                                            <a title="Audio" href="index.html#" class="tanajil-item-title">Audio</a>
-                                        </li>
-                                        <li class="menu-item">
-                                            <a title="Interior" href="index.html#" class="tanajil-item-title">Interior</a>
-                                        </li>
-                                        <li class="menu-item">
-                                            <a title="New Arrivals" href="index.html#" class="tanajil-item-title">New Arrivals</a>
-                                        </li>
-                                        <li class="menu-item">
-                                            <a title="Accessories" href="index.html#" class="tanajil-item-title">Accessories</a>
-                                        </li>
-                                        <li class="menu-item">
-                                            <a title="Storage" href="index.html#" class="tanajil-item-title">Storage</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="menu-item">
-                                    <a title="Interior" href="index.html#" class="tanajil-menu-item-title">Interior</a>
-                                </li>
-                                <li class="menu-item">
-                                    <a title="Lighting" href="index.html#" class="tanajil-menu-item-title">Lighting</a>
-                                </li>
-                                <li class="menu-item">
-                                    <a title="Wheels" href="index.html#" class="tanajil-menu-item-title">Wheels</a>
-                                </li>
-                                <li class="menu-item">
-                                    <a title="Tires" href="index.html#" class="tanajil-menu-item-title">Tires</a>
-                                </li>
-                                <li class="menu-item">
-                                    <a title="Exterior" href="index.html#" class="tanajil-menu-item-title">Exterior</a>
-                                </li>
+                            <ul id="category" class="tanajil-nav-vertical vertical-menu tanajil-clone-mobile-menu">
+                                @*<li class="menu-item">
+                                        <a href="index.html#" class="tanajil-menu-item-title" title="New Arrivals">New Arrivals</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a title="Hot Sale" href="index.html#" class="tanajil-menu-item-title">Hot Sale</a>
+                                    </li>*@
+                                @*<li class="menu-item menu-item-has-children">
+                                        <a title="Accessories" href="index.html#" class="tanajil-menu-item-title">Accessories</a>
+                                        <span class="toggle-submenu"></span>
+                                        <ul role="menu" class=" submenu">
+                                            <li class="menu-item">
+                                                <a title="Audio" href="index.html#" class="tanajil-item-title">Audio</a>
+                                            </li>
+                                            <li class="menu-item">
+                                                <a title="Interior" href="index.html#" class="tanajil-item-title">Interior</a>
+                                            </li>
+                                            <li class="menu-item">
+                                                <a title="New Arrivals" href="index.html#" class="tanajil-item-title">New Arrivals</a>
+                                            </li>
+                                            <li class="menu-item">
+                                                <a title="Accessories" href="index.html#" class="tanajil-item-title">Accessories</a>
+                                            </li>
+                                            <li class="menu-item">
+                                                <a title="Storage" href="index.html#" class="tanajil-item-title">Storage</a>
+                                            </li>
+                                        </ul>
+                                    </li>*@
+                                @*<li class="menu-item">
+                                        <a title="Interior" href="index.html#" class="tanajil-menu-item-title">Interior</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a title="Lighting" href="index.html#" class="tanajil-menu-item-title">Lighting</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a title="Wheels" href="index.html#" class="tanajil-menu-item-title">Wheels</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a title="Tires" href="index.html#" class="tanajil-menu-item-title">Tires</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a title="Exterior" href="index.html#" class="tanajil-menu-item-title">Exterior</a>
+                                    </li>*@
                             </ul>
                         </div>
                     </div>
@@ -344,7 +344,7 @@
                             <ul class="tanajil-clone-mobile-menu tanajil-nav main-menu " id="menu-main-menu">
                                 <li class="menu-item">
                                     <a href="index.html" class="tanajil-menu-item-title" title="Home">Home</a>
-                                    @*<span class="toggle-submenu"></span>
+                                    <span class="toggle-submenu"></span>
                                     <ul class="submenu">
                                         <li class="menu-item">
                                             <a href="index.html">Home 01</a>
@@ -355,7 +355,7 @@
                                         <li class="menu-item">
                                             <a href="home3.html">Home 03</a>
                                         </li>
-                                    </ul>*@
+                                    </ul>
                                 </li>
                                 <li class="menu-item menu-item-has-children">
                                     <a href="gridproducts.html" class="tanajil-menu-item-title" title="Shop">Shop</a>
@@ -732,19 +732,45 @@
     <a href="index.html#" class="backtotop">
         <i class="fa fa-angle-double-up"></i>
     </a>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/lib/jquery-ui/js/jquery-countdown.min.js"></script>
-    <script src="~/lib/jquery-ui/js/jquery-ui.min.js"></script>
-    <script src="~/lib/jquery-ui/js/jquery.actual.min.js"></script>
-    <script src="~/lib/jquery-ui/js/jquery.elevateZoom.min.js"></script>
-    <script src="~/lib/jquery-ui/js/jquery.plugin-countdown.min.js"></script>
-    <script src="~/lib/jquery-ui/js/jquery.scrollbar.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+    @*<script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/lib/jquery-ui/js/jquery-countdown.min.js"></script>
+        <script src="~/lib/jquery-ui/js/jquery-ui.min.js"></script>
+        <script src="~/lib/jquery-ui/js/jquery.actual.min.js"></script>
+        <script src="~/lib/jquery-ui/js/jquery.elevateZoom.min.js"></script>
+        <script src="~/lib/jquery-ui/js/jquery.plugin-countdown.min.js"></script>
+        <script src="~/lib/jquery-ui/js/jquery.scrollbar.min.js"></script>*@
     <script src="~/master_page/js/chosen.min.js"></script>
     <script src="~/master_page/js/frontend-plugin.js"></script>
     <script src="~/master_page/js/isotope.min.js"></script>
     <script src="~/master_page/js/mobile-menu.js"></script>
     <script src="~/master_page/js/owl.carousel.min.js"></script>
-            @RenderSection("Scripts", false)
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Category/GetCategoryJson",
+                dataType: "json",
+                success: function (data) {
+                    $.each(data, function (i) {
+                        if (data[i].subcategories == 0) {
+                            $("#category").append("<li class='menu-item'> <a href='index.html#' class='tanajil-menu-item-title' title=" + data[i].title + ">" + data[i].title + "</a></li>");
+                        }
+                        else {
+                            $("#category").append("<li class='menu-item menu-item-has-children'><a  href='index.html#' class='tanajil-menu-item-title' title=" + data[i].subcategories[i].title + ">" + data[i].subcategories[j].title + "</a><span class='toggle-submenu'></span><ul id='category-submenu' role='menu' class='submenu'></ul></li>");
+                            $.each(data[i].subcategories, function (j) {
+                                $("#category-submenu").append("<li class='menu-item'><a href='index.html#' class='tanajil-item-title' title=" + data[i].subcategories[j].title + ">" + data[i].subcategories[j].title + "</a></li>");
+                            })
+                        }
+
+                    });
+                }
+            });
+        });
+    </script>
+    @*@RenderSection("Scripts", false)*@
 </body>
 </html>

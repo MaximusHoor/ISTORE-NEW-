@@ -1,8 +1,19 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<Domain.EF_Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+    <div class="tab-container">
+        <div id="bestseller" class="tab-panel active">
+            <div class="tanajil-product">
+                <ul class="row list-products auto-clear equal-container product-grid">
+                    @foreach (var item in Model)
+                     {
+                        @await Html.PartialAsync("ProductPartial", item)
+                     }
+                </ul>
+            </div>
+        </div>
+    </div>

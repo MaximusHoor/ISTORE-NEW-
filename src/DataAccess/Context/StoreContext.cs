@@ -41,23 +41,135 @@ namespace Domain.Context
                });
 
             modelBuilder.Entity<Product>().HasData(
-                new Product
+                new Product []
                 {
-                    Id = 1,
+                    new Product {Id = 1,
                     BrandId = 1,
                     CategoryId = 1,
-                    Model="Model",
+                    Model="A51",
                     CountInStorage = 5,
                     Series ="RR",
-                    Title ="Title",
-                    Type = "type",
+                    Title ="Samsung Galaxy",
+                    Type = "Phone",
                     VendorCode="YUHNGG",
-                    Rating = 2,
-                    RetailPrice =1000,
+                    Rating = 20,
+                    RetailPrice =8499,
                     PackageId = 1,
                     WarrantyMonth = 12,
                     Description = "Description",
-                    PreviewImage=""                    
+                    PreviewImage="https://i.allo.ua/media/catalog/product/cache/3/image/600x415/799896e5c6c37e11608b9f8e1d047d15/s/d/sdfhg_2_1.jpg"},
+
+                    new Product {Id = 2,
+                    BrandId = 1,
+                    CategoryId = 1,
+                    Model="A50",
+                    CountInStorage = 5,
+                    Series ="RR",
+                    Title ="Samsung Galaxy",
+                    Type = "Phone",
+                    VendorCode="YUHNGG",
+                    Rating = 2,
+                    RetailPrice =8279,
+                    PackageId = 1,
+                    WarrantyMonth = 12,
+                    Description = "Description",
+                    PreviewImage="https://i.allo.ua/media/catalog/product/cache/3/image/600x415/799896e5c6c37e11608b9f8e1d047d15/3/2/32r2388uiuu.jpg"},
+
+                    new Product {Id = 3,
+                    BrandId = 1,
+                    CategoryId = 1,
+                    Model="11",
+                    CountInStorage = 5,
+                    Series ="RR",
+                    Title ="Apple iPhone",
+                    Type = "Phone",
+                    VendorCode="YUHNGG",
+                    Rating = 12,
+                    RetailPrice =22999,
+                    PackageId = 1,
+                    WarrantyMonth = 12,
+                    Description = "Description",
+                    PreviewImage="https://i.allo.ua/media/catalog/product/cache/3/image/600x415/799896e5c6c37e11608b9f8e1d047d15/i/p/iphone_11_b_2_2.jpg"},
+
+                    new Product {Id = 4,
+                    BrandId = 1,
+                    CategoryId = 1,
+                    Model="XS Max",
+                    CountInStorage = 5,
+                    Series ="RR",
+                    Title ="Apple iPhone",
+                    Type = "type",
+                    VendorCode="YUHNGG",
+                    Rating = 14,
+                    RetailPrice =25999,
+                    PackageId = 1,
+                    WarrantyMonth = 12,
+                    Description = "Description",
+                    PreviewImage="https://i.allo.ua/media/catalog/product/cache/3/image/600x415/799896e5c6c37e11608b9f8e1d047d15/a/p/apple_iphone_xs_gold_1.jpg"},
+
+                    new Product {Id = 5,
+                    BrandId = 1,
+                    CategoryId = 1,
+                    Model="Moto E6 Plus",
+                    CountInStorage = 5,
+                    Series ="RR",
+                    Title ="Motorola",
+                    Type = "type",
+                    VendorCode="YUHNGG",
+                    Rating = 5,
+                    RetailPrice =2999,
+                    PackageId = 1,
+                    WarrantyMonth = 12,
+                    Description = "Description",
+                    PreviewImage="https://i.allo.ua/media/catalog/product/cache/3/image/600x415/799896e5c6c37e11608b9f8e1d047d15/c/o/copy_of_motoe6_plus_polished_graphite_backside__1.jpg"},
+
+                    new Product {Id = 6,
+                    BrandId = 1,
+                    CategoryId = 1,
+                    Model="Fold",
+                    CountInStorage = 5,
+                    Series ="RR",
+                    Title ="Samsung Galaxy",
+                    Type = "type",
+                    VendorCode="YUHNGG",
+                    Rating = 8,
+                    RetailPrice =56999,
+                    PackageId = 1,
+                    WarrantyMonth = 12,
+                    Description = "Description",
+                    PreviewImage="https://i.allo.ua/media/catalog/product/cache/3/image/600x415/799896e5c6c37e11608b9f8e1d047d15/s/a/samsung_galaxy_fold_12_512gb_silver_images_15092010446.jpg"},
+
+                    new Product {Id = 7,
+                    BrandId = 1,
+                    CategoryId = 1,
+                    Model="Redmi Note 8 Pro",
+                    CountInStorage = 5,
+                    Series ="RR",
+                    Title ="Xiaomi",
+                    Type = "type",
+                    VendorCode="YUHNGG",
+                    Rating = 17,
+                    RetailPrice =5999,
+                    PackageId = 1,
+                    WarrantyMonth = 12,
+                    Description = "Description",
+                    PreviewImage="https://i.allo.ua/media/catalog/product/cache/3/image/600x415/799896e5c6c37e11608b9f8e1d047d15/f/i/file_1282_6.jpg"},
+
+                    new Product {Id = 8,
+                    BrandId = 1,
+                    CategoryId = 1,
+                    Model="Redmi Note 8T",
+                    CountInStorage = 5,
+                    Series ="RR",
+                    Title ="Xiaomi",
+                    Type = "type",
+                    VendorCode="YUHNGG",
+                    Rating = 9,
+                    RetailPrice =4999,
+                    PackageId = 1,
+                    WarrantyMonth = 12,
+                    Description = "Description",
+                    PreviewImage="https://i.allo.ua/media/catalog/product/cache/3/image/600x415/799896e5c6c37e11608b9f8e1d047d15/f/i/file_1341_1_2.jpg"},
                 });
 
             modelBuilder.Entity<GroupCharacteristic>().HasData(
@@ -80,6 +192,8 @@ namespace Domain.Context
 
               }) ;
 
+            modelBuilder.Entity<Category>().ToTable("Categories");
+
         }
 
         public DbSet<Category> Categories { get; set; }
@@ -87,7 +201,7 @@ namespace Domain.Context
         public DbSet<Image> Images { get; set; }
         public DbSet<GroupCharacteristic> GroupCharacteristics { get; set; }
         public DbSet<Characteristic> Characteristics { get; set; }
-        public DbSet<Product> Product { get; set; }
+        public DbSet<Product> Products { get; set; }
         public DbSet<Delivery> Deliveries { get; set; }
         public DbSet<Package> Packages { get; set; }
         public DbSet<Order> Orders { get; set; }

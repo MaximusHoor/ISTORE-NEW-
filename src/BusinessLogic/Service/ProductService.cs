@@ -36,5 +36,15 @@ namespace Business.Service
         {
             return await _unitOfWork.ProductRepository.GetAllAsync();
         }
+
+        public async Task<Product> GetByIdsync(int id)
+        {
+            return await _unitOfWork.ProductRepository.GetByIdAsync(id);
+        }
+
+        public async Task<IReadOnlyCollection<Product>> GetSortByRatingAsync(int count)
+        {
+            return await _unitOfWork.ProductRepository.GetSortByRatingAsync(count);
+        }
     }
 }

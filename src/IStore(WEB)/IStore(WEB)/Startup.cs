@@ -20,6 +20,8 @@ namespace IStore_WEB_
         public void ConfigureServices(IServiceCollection services)
         {
             BusinessConfiguration.ConfigureServices(services, Configuration);
+            services.AddControllers().AddNewtonsoftJson(options =>
+            options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             //services.AddTransient(typeof(UserSerive));
             services.AddControllersWithViews();
 

@@ -1,4 +1,6 @@
-﻿namespace Domain.EF_Models
+﻿using System;
+
+namespace Domain.EF_Models
 {
     public class OrderDetails
     {

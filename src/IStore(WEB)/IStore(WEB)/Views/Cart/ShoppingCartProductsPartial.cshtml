@@ -1,0 +1,70 @@
+﻿@model ICollection<Domain.EF_Models.OrderDetails>
+@foreach (var item in Model)
+{
+    <tr class="cart_item">
+        <td class="product-id">
+            <span class="detailsId">@item.Id</span>
+            <span class="productId">@item.ProductId</span>
+            <span class="orderId">@item.OrderId</span>
+        </td>
+        <td class="product-thumbnail">
+            <a href="@Url.Action("Product", "Home", item.ProductId)">
+                <img src="@item.Product.PreviewImage" alt="@item.Product.Title"
+                     class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image">
+            </a>
+        </td>
+        <td class="product-name" data-title="Product">
+            <a href="@Url.Action("Product", "Home", item.ProductId)" class="title">@item.Product.Title</a>
+            <span class="attributes-select attributes-color">@item.Product.Type</span>
+            <span class="attributes-select attributes-size">@item.Product.VendorCode</span>
+        </td>
+        <td class="product-quantity" data-title="Quantity">
+            <div class="quantity">
+                <div class="control">
+                    <a class="btn-number qtyminus quantity-minus" href="#">-</a>
+                    <input type="text" data-step="1" data-min="0" value="@item.Count" title="Qty"
+                           class="input-qty qty" size="4">
+                    <a class="btn-number qtyplus quantity-plus" href="#">+</a>
+                </div>
+            </div>
+        </td>
+        <td class="product-price" data-title="Price">
+            <span class="woocommerce-Price-amount amount">
+                <span class="woocommerce-Price-currencySymbol">
+                    ₴
+                </span>
+                <span class="price">
+                    @item.Product.RetailPrice
+                </span>
+            </span>
+        </td>
+        <td class="product-subtotal" data-title="Subtotal">
+            <span class="woocommerce-Price-amount amount">
+                <span class="woocommerce-Price-currencySymbol">
+                    ₴
+                </span>
+                <span class="sub">0</span>
+            </span>
+        </td>
+        <td class="product-remove">
+            <a href="#" class="remove" onclick="deleteproduct(this)"></a>
+        </td>
+    </tr>
+}
+<tr>
+    <td class="actions">
+        <div class="coupon">
+            <label class="coupon_code">Coupon Code:</label>
+            <input type="text" class="input-text" placeholder="Promotion code here">
+            <a href="#" class="button"></a> @*HREF for CUPON BUTTON*@
+        </div>
+        <div class="order-total">
+            <span class="title">
+                Total Price: ₴
+            </span>
+            <span class="total-price">
+                0
+            </span>
+        </div>
+    </td>
+</tr>

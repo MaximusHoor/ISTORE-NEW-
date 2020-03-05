@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Business.Service;
 using DataAccess.UnitOfWork;
@@ -29,15 +30,19 @@ namespace IStore_WEB_.Controllers
             //{
             //    PreserveReferencesHandling = PreserveReferencesHandling.Objects
             //});
-            var prod = order.Products.FirstOrDefault();
-                Response.Cookies.Append("IStoreProduct", $"{prod.Id},{prod.OrderId},{prod.ProductId}");
+            //var prod = order.Products.FirstOrDefault();
+            //    Response.Cookies.Append("IStoreProduct", $"{prod.Id},{prod.OrderId},{prod.ProductId}");
             //}
-            //var prod = order.Products.ToList();
-            //var str = JsonConvert.SerializeObject(prod, Formatting.Indented, new JsonSerializerSettings
-            //{
-            //    PreserveReferencesHandling = PreserveReferencesHandling.Objects
-            //});
+            var prod = order.Products.ToArray();
+            var str = JsonConvert.SerializeObject(prod, Formatting.Indented, new JsonSerializerSettings
+            {
+                PreserveReferencesHandling = PreserveReferencesHandling.Objects
+            });
             //Response.Cookies.Append("IStoreProduct", "hello");
+            var we = WebUtility.HtmlEncode(str);
+            var ws = WebUtility.HtmlDecode(str);
+
+            //ViewBag.Products = WebUtility.HtmlEncode(str);
             return View();
         }
         public async Task<IActionResult> Checkout()
@@ -73,7 +78,9 @@ namespace IStore_WEB_.Controllers
         }
         public IActionResult ShoppingCartProductsPartial(string parameters)
         {
+            if(parameters!=null)
             return PartialView(JsonConvert.DeserializeObject<ICollection<OrderDetails>>(parameters));
+            return null;
         }
     }
 }

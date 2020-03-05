@@ -126,7 +126,7 @@
                                 <div class="control">
                                     <a class="btn-number qtyminus quantity-minus" href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">-</font></font></a><input type="text" data-step="1" data-min="0" value="1" title="Кол-во" class="input-qty qty" size="4"><a href="#" class="btn-number qtyplus quantity-plus"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">+</font></font></a>
                                 </div>
-                            </div><button class="single_add_to_cart_button button"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Добавить в корзину</font></font></button>
+                            </div><button class="single_add_to_cart_button button" onclick="addMyProd()"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Добавить в корзину</font></font></button>
                         </div>
                     </div>
                 </div><button title="Закрыть (Esc)" type="button" class="mfp-close"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">×</font></font></button>
@@ -134,4 +134,14 @@
         @*</div>*@
 
     </div>
+<script>
+    function addMyProd() {
+         var product = new Object();
+        product.Id = parseInt($(this).text());
+        product.OrderId = parseInt($(this).text());
+        product.ProductId = parseInt($(this).text());
+        product.Count = parseInt($(this).val());
+        products.push(product);
+    }
+</script>
 

@@ -1,6 +1,6 @@
 ﻿$(function () {
-    var prod = new cookieList("IStoreProduct").items;
-    $(".shop_table tbody").load("/Cart/ShoppingCartProductsPartial", JSON.stringify(new cookieList("IStoreProduct").items));
+    //var prod = new cookieList("IStoreProduct").items;
+    $(".shop_table tbody").load("/Cart/ShoppingCartProductsPartial", JSON.stringify(new localList("IStoreProduct").items));
     $(".qty").each(function () {
         subtotal(this);
     });
@@ -20,7 +20,7 @@ function totalprice() {
     $(".total-price").text(s);
 };
 function updateorder() {
-    var products = [];
+    var products = new Array();
     $(".cart_item").each(function () {
         var product = new Object();
         product.Id = parseInt($(this).find(".detailsId").text());
@@ -29,12 +29,7 @@ function updateorder() {
         product.Count = parseInt($(this).find(".qty").val());
         products.push(product);
     });
-    $.ajax({
-        type: "POST",
-        url: "/cart/UpdateProducts",
-        data: { parameters: JSON.stringify(products) },
-        dataType: "JSON"
-    });
+    new localList("IStoreProduct").replaceItems(products);
 };
 function deleteproduct(obj) {
     $(obj).parents(".cart_item").remove();

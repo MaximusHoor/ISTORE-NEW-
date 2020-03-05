@@ -9,7 +9,7 @@ function totalprice() {
     $(".Price-amount").text("₴" + s);
 };
 function updateorderpartial() {
-    var products = [];
+    var products = new Array();
     $(".mini_cart_item").each(function () {
         var product = new Object();
         product.Id = parseInt($(this).find(".detailsIdpartial").text());
@@ -18,12 +18,7 @@ function updateorderpartial() {
         product.Count = parseInt($(this).find(".product-quantity").text());
         products.push(product);
     });
-    $.ajax({
-        type: "POST",
-        url: "/cart/UpdateProducts",
-        data: { parameters: JSON.stringify(products) },
-        dataType: "JSON"
-    });
+    new localList("IStoreProduct").replaceItems(products);
 };
 function deleteproductpartial(obj) {
     $(obj).parents(".product-cart mini_cart_item").remove();

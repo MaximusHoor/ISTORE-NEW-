@@ -19,18 +19,20 @@ namespace DataAccess.Repository
         }
         public override async Task<IReadOnlyCollection<Order>> GetAllAsync()
         {
-            return await this.Entities.Include(x=>x.Delivery)
-                .Include(x=>x.Products)
-                .Include(x=>x.User)
+            var res = await this.Entities.Include(x => x.Delivery)
+                .Include(x => x.Products).ThenInclude(y => y.Product)
+                .Include(x => x.User)
                 .ToListAsync().ConfigureAwait(false);
+            return res;
         }
 
         public override async Task<IReadOnlyCollection<Order>> FindByConditionAsync(Expression<Func<Order, bool>> predicat)
         {
-            return await this.Entities.Include(x => x.Delivery)
-                .Include(x => x.Products)
+            var res = await this.Entities.Include(x => x.Delivery)
+                .Include(x => x.Products).ThenInclude(y => y.Product)
                 .Include(x => x.User)
                 .Where(predicat).ToListAsync().ConfigureAwait(false);
+            return res;
         }
 
         

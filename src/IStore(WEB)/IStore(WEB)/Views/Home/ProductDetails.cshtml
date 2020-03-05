@@ -1,0 +1,137 @@
+﻿@model Domain.EF_Models.Product
+
+
+
+    <div class="modal-content">
+        <div class="modal-body kt-popup-quickview">
+            @*<div class="kt-popup-quickview ">*@
+                <div class="details-thumb">
+                    <div class="slider-product slider-for slick-initialized slick-slider">
+                        <div aria-live="polite" class="slick-list draggable">
+                            <div class="slick-track" role="listbox" style="opacity: 1; width: 1516px;">
+
+                                
+                                    <div class="details-item slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide40" style="width: 379px; position: relative; left: 0px; top: 0px; z-index: 999; opacity: 1;">
+                                        <img src="@Model.PreviewImage" alt="IMG">
+                                    </div>
+                               
+                                @*<div class="details-item slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide40" style="width: 379px; position: relative; left: 0px; top: 0px; z-index: 999; opacity: 1;">
+                                    <img src="@Model.PreviewImage" alt="IMG">
+                                </div>
+                                <div class="details-item slick-slide" data-slick-index="1" aria-hidden="true" tabindex="-1" role="option" aria-describedby="slick-slide41" style="width: 379px; position: relative; left: -379px; top: 0px; z-index: 998; opacity: 0;">
+                                    <img src="assets/images/popup-quickview-item-1.jpg" alt="IMG">
+                                </div><div class="details-item slick-slide" data-slick-index="2" aria-hidden="true" tabindex="-1" role="option" aria-describedby="slick-slide42" style="width: 379px; position: relative; left: -758px; top: 0px; z-index: 998; opacity: 0;">
+                                    <img src="@Model.PreviewImage" alt="IMG">
+                                </div>
+                                <div class="details-item slick-slide" data-slick-index="3" aria-hidden="true" tabindex="-1" role="option" aria-describedby="slick-slide43" style="width: 379px; position: relative; left: -1137px; top: 0px; z-index: 998; opacity: 0;">
+                                    <img src="@Model.PreviewImage" alt="IMG">
+                                </div>*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slider-product-button slider-nav nav-center slick-initialized slick-slider">
+                        <i class="fa fa-angle-left slick-arrow" style="display: block;"></i><div aria-live="polite" class="slick-list draggable">
+                            <div class="slick-track" role="listbox" style="opacity: 1; width: 1250px; transform: translate3d(-375px, 0px, 0px);">
+
+                                @{
+                                    var index = 0;
+                                }
+
+                                @foreach (var item in Model.Images)
+                                {
+                                     <div class="details-item slick-slide slick-cloned" data-slick-index="-3" aria-hidden="true" tabindex="-1" style="width: 125px;">@*<img src="@Model.Images.LastOrDefault()" alt="IMG">*@</div><div class="details-item slick-slide slick-cloned" data-slick-index="-2" aria-hidden="true" tabindex="-1" style="width: 125px;">@*<img src="@Model.Images.Where(x=>x.Id ==2)" alt="IMG">*@</div><div class="details-item slick-slide slick-cloned" data-slick-index="-1" aria-hidden="true" tabindex="-1" style="width: 125px;">
+                                        <img src="@item.FilePath" alt="IMG">
+                                     </div>
+                                }
+                                @*<div class="details-item slick-slide slick-cloned" data-slick-index="-3" aria-hidden="true" tabindex="-1" style="width: 125px;"><img src="assets/images/popup-quickview-item-1.jpg" alt="IMG"></div><div class="details-item slick-slide slick-cloned" data-slick-index="-2" aria-hidden="true" tabindex="-1" style="width: 125px;"><img src="assets/images/popup-quickview-item-1.jpg" alt="IMG"></div><div class="details-item slick-slide slick-cloned" data-slick-index="-1" aria-hidden="true" tabindex="-1" style="width: 125px;">
+                                    <img src="@Model.Images.Where(x=>x.Id ==1)" alt="IMG">
+                                </div>
+                                <div class="details-item slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide50" style="width: 125px;">
+                                    <img src="@Model.Images.Where(x=>x.Id ==2)" alt="IMG">
+                                </div>
+                                <div class="details-item slick-slide slick-active" data-slick-index="1" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide51" style="width: 125px;">
+                                    <img src="@Model.Images.Where(x=>x.Id ==3)" alt="IMG">
+                                </div>*@
+                                @*<div class="details-item slick-slide slick-active" data-slick-index="2" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide52" style="width: 125px;">
+                                    <img src="@item.FilePath" alt="IMG">
+                                </div>
+                                <div class="details-item slick-slide" data-slick-index="3" aria-hidden="true" tabindex="-1" role="option" aria-describedby="slick-slide53" style="width: 125px;">
+                                    <img src="@item.FilePath" alt="IMG">
+                                </div>
+                                <div class="details-item slick-slide slick-cloned" data-slick-index="4" aria-hidden="true" tabindex="-1" style="width: 125px;">
+                                    <img src="@item.FilePath" alt="IMG">
+                                </div>
+                                <div class="details-item slick-slide slick-cloned" data-slick-index="5" aria-hidden="true" tabindex="-1" style="width: 125px;">
+                                    <img src="@item.FilePath" alt="IMG">
+                                </div>
+                                <div class="details-item slick-slide slick-cloned" data-slick-index="6" aria-hidden="true" tabindex="-1" style="width: 125px;">
+                                    <img src="@item.FilePath" alt="IMG">
+                                </div>*@
+                                
+                            </div>
+                        </div>
+                        <i class="fa fa-angle-right  slick-arrow" style="display: block;"></i>
+                    </div>
+                </div>
+                <div class="details-infor">
+                    <h1 class="product-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">@Model.Title</font></font></h1>
+                    <div class="stars-rating">
+                        <div class="star-rating">
+                            <span class="star-5"></span>
+                        </div>
+                        <div class="count-star">
+                            <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(7)</font></font>
+                        </div>
+                    </div>
+                    <div class="availability">
+                        <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">наличие: </font><a href="#"><font style="vertical-align: inherit;">в</font></a><font style="vertical-align: inherit;"> наличии</font></font><a href="#"><font style="vertical-align: inherit;"></font></a>
+                    </div>
+                    <div class="price">
+                        <span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">@Model.RetailPrice</font></font></span>
+                    </div>
+                    <div class="product-details-description">
+                        <ul><li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">@Model.Description</font></font></li><li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">@Model.Package.CountInPackage</font></font></li><li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">@Model.Type</font><font style="vertical-align: inherit;">06-7680</font></font></li></ul>
+                    </div><div class="variations">
+                        <div class="attribute attribute_color">
+                            <div class="color-text text-attribute">
+                                <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Цвет: </font></font><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">белый / </font></font></span><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">черный / </font></font></span><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">бирюзовый / </font></font></span><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">коричневый</font></font></span>
+                            </div>
+                            <div class="list-color list-item">
+                                <a href="#" class="color1"></a><a href="#" class="color2"></a><a href="#" class="color3 active">
+                                </a><a href="#" class="color4"></a>
+                            </div>
+                        </div>
+                        @*<div class="attribute attribute_size">
+                            <div class="size-text text-attribute">
+                                <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Размер:</font></font>
+                            </div>
+                            <div class="list-size list-item">
+                                <a href="#" class=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">хз </font></font></a><a href="#" class=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">с </font></font></a><a href="#" class="active"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">м </font></font></a><a href="#" class=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">л </font></font></a><a href="#" class=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xl </font></font></a><a href="#" class=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">xxl</font></font></a>
+                            </div>
+                        </div>*@
+                    </div>
+                    <div class="group-button">
+                        <div class="yith-wcwl-add-to-wishlist">
+                            <div class="yith-wcwl-add-button">
+                                <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Добавить в список желаний</font></font></a>
+                            </div>
+                        </div>
+                        @*<div class="size-chart-wrapp">
+                            <div class="btn-size-chart">
+                                <a id="size_chart" href="assets/images/size-chart.jpg" class="fancybox" target="_blank"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Посмотреть таблицу размеров</font></font></a>
+                            </div>
+                        </div>*@
+                        <div class="quantity-add-to-cart">
+                            <div class="quantity">
+                                <div class="control">
+                                    <a class="btn-number qtyminus quantity-minus" href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">-</font></font></a><input type="text" data-step="1" data-min="0" value="1" title="Кол-во" class="input-qty qty" size="4"><a href="#" class="btn-number qtyplus quantity-plus"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">+</font></font></a>
+                                </div>
+                            </div><button class="single_add_to_cart_button button"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Добавить в корзину</font></font></button>
+                        </div>
+                    </div>
+                </div><button title="Закрыть (Esc)" type="button" class="mfp-close"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">×</font></font></button>
+            </div>
+        @*</div>*@
+
+    </div>
+

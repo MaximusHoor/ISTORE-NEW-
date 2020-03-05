@@ -7,7 +7,7 @@ namespace Domain.Context
     {
         public StoreContext(DbContextOptions<StoreContext> options) : base(options)
         {
-            //Database.EnsureDeleted();
+            Database.EnsureDeleted();
             Database.EnsureCreated();           
         }
 
@@ -191,6 +191,16 @@ namespace Domain.Context
                   new Characteristic {Id = 6, GroupCharacteristicId = 2,  Title="Тип дисплея", Value = "Dynamic AMOLED" },
 
               }) ;
+
+            modelBuilder.Entity<Image>().HasData(
+              new Image[]
+              {
+                  new Image {Id = 1, FilePath="https://i.citrus.ua/uploads/shop/c/b/cb4178ebd5a5973686c461fd51399988.jpg", ProductId=1},
+                  new Image {Id = 2, FilePath="https://hotline.ua/img/tx/212/2121482265.jpg", ProductId=1},
+                  new Image {Id = 3, FilePath="https://www.ixbt.com/img/n1/news/2020/0/5/GalaxyNote10LitePR_mainFF_large.jpg", ProductId=1},
+              });
+
+
 
             modelBuilder.Entity<Category>().ToTable("Categories");
 

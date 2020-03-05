@@ -5,15 +5,36 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-    <div class="tab-container">
-        <div id="bestseller" class="tab-panel active">
-            <div class="tanajil-product">
-                <ul class="row list-products auto-clear equal-container product-grid">
-                    @foreach (var item in Model)
-                     {
-                        @await Html.PartialAsync("ProductPartial", item)
-                     }
-                </ul>
-            </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script>
+
+    $(function () {
+
+        $.ajaxSetup({ cache: false });
+        $(".quick-wiew-button").on('click', function (e) {
+
+            e.preventDefault();
+                $.get("Home/GetProductDetails/1", function (data) {
+                    $('#dialogContent').html(data);
+                    $('#modDialog').modal('show');
+                });
+        });
+    });
+</script>
+
+
+<div class="tab-container">
+    <div id="bestseller" class="tab-panel active">
+        <div class="tanajil-product">
+            <ul class="row list-products auto-clear equal-container product-grid">
+                @foreach (var item in Model)
+                {
+                    @await Html.PartialAsync("ProductPartial", item)
+                }
+            </ul>
         </div>
     </div>
+</div>
+
+

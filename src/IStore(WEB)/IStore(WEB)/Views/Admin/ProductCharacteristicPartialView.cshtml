@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Domain.EF_Models.GroupCharacteristic>
+﻿@model IEnumerable<Domain.EF_Models.ProductCharacteristic>
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
@@ -47,7 +47,7 @@
                     charact.Id = $(this).find(".idchar").val();
                     charact.Title = $(this).find(".title").val();
                     charact.Value = $(this).find(".value").val();
-                    charact.GroupCharacteristicId = idgroup;
+                    charact.ProductCharacteristicId = idgroup;
 
                     characteristics.push(charact);
                 });
@@ -109,7 +109,7 @@
                 </td>
 
                 <td>
-                    @Html.EditorFor(modelItem => item.Title, new { htmlAttributes = new { @class = "group" } })
+                    @Html.EditorFor(modelItem => item.Descriptions, new { htmlAttributes = new { @class = "group" } })
                 </td>
                 <td>
                     @Html.EditorFor(modelItem => item.ProductId, new { htmlAttributes = new { @class = "prodid" } })

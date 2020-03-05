@@ -21,18 +21,18 @@ namespace DataAccess.Repository
         
         public override async Task<IReadOnlyCollection<Characteristic>> GetAllAsync()
         {
-            return await this.Entities.Include(ch => ch.GroupCharacteristic).ToListAsync().ConfigureAwait(false);
+            return await this.Entities.Include(ch => ch.ProductCharacteristic).ToListAsync().ConfigureAwait(false);
         }
 
         public override async Task<IReadOnlyCollection<Characteristic>> FindByConditionAsync(Expression<Func<Characteristic, bool>> predicat)
         {
-            return await this.Entities.Include(ch => ch.GroupCharacteristic).Where(predicat).ToListAsync().ConfigureAwait(false);
+            return await this.Entities.Include(ch => ch.ProductCharacteristic).Where(predicat).ToListAsync().ConfigureAwait(false);
         }
 
         public async Task<Characteristic> GetByIdAsync(int id)
         {
             return await _storeContext.Characteristics.Where(x => x.Id == id)
-                .Include(ch => ch.GroupCharacteristic).FirstOrDefaultAsync();
+                .Include(ch => ch.ProductCharacteristic).FirstOrDefaultAsync();
         }
     }
 }

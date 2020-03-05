@@ -10,7 +10,7 @@ namespace DataAccess.UnitOfWork
     {
         public UnitOfWork(StoreContext storeContext, IUserRepository userRepository, ICommentRepository commentRepository,
         CategoryRepository categoryRepository, ImageRepository imageRepository, 
-        GroupCharacteristicRepository groupCharacteristicRepository, 
+        ProductCharacteristicRepository productCharacteristicRepository, 
         CharacteristicRepository characteristicRepository, ProductRepository productRepository, 
         DeliveryRepository deliveryRepository, AddressRepository addressRepository, BrandRepository brandRepository, 
         OrderDetailsRepository orderDetailsRepository, OrderRepository orderRepository, 
@@ -21,7 +21,7 @@ namespace DataAccess.UnitOfWork
             CommentRepository = commentRepository;
             CategoryRepository = categoryRepository;
             ImageRepository = imageRepository;
-            GroupCharacteristicRepository = groupCharacteristicRepository;
+            ProductCharacteristicRepository = productCharacteristicRepository;
             CharacteristicRepository = characteristicRepository;
             ProductRepository = productRepository;
             DeliveryRepository = deliveryRepository;
@@ -42,7 +42,7 @@ namespace DataAccess.UnitOfWork
         public ICommentRepository CommentRepository { get; }
         public CategoryRepository CategoryRepository { get; }
         public ImageRepository ImageRepository { get; }
-        public GroupCharacteristicRepository GroupCharacteristicRepository { get; }
+        public ProductCharacteristicRepository ProductCharacteristicRepository { get; }
         public CharacteristicRepository CharacteristicRepository { get; }
         public ProductRepository ProductRepository { get; }
         public DeliveryRepository DeliveryRepository { get; }

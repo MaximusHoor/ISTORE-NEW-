@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "..\Domain\Domain.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainTest", "..\..\tests\DomainTest\DomainTest.csproj", "{33443474-7B48-4599-95A6-CA726A126F54}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessTest", "..\..\tests\DataAccessTest\DataAccessTest.csproj", "{FCB735FE-E028-4273-8427-C6AAE4412D57}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessTest", "..\..\tests\DataAccessTest\DataAccessTest.csproj", "{FCB735FE-E028-4273-8427-C6AAE4412D57}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

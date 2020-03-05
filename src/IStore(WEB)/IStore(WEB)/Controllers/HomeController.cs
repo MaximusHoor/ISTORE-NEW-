@@ -41,5 +41,13 @@ namespace IStore_WEB_.Controllers
         {
             return View(product);
         }
+
+        public async Task<IActionResult> GetProductDetails(Product product)
+        {
+            var res = await _productservice.GetByIdsync(1);
+               
+
+            return PartialView("ProductDetails", res);
+        }
     }
 }

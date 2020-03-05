@@ -15,27 +15,17 @@ namespace IStore_WEB_.Controllers
         {
             this._categoryService = categoryService;
         }
-        public async Task<IActionResult> ShowCategoryPartial()
+        public async Task<IActionResult> CategoryPartialAsync()
         {
             var res = await _categoryService.GetAllAsync();
-
             return View(res.ToList());
         }
 
-        public async Task<IActionResult> GetCategoryJson()
+        public async Task<IActionResult> GetCategoryJsonAsync()
         {
-            try
-            {
-                var categoryCollection = await _categoryService.GetAllAsync();
-                var res = Json(categoryCollection);
-                return res;
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-
+            var categoryCollection = await _categoryService.GetAllAsync();
+            var res = Json(categoryCollection);
+            return res;
         }
         public IActionResult Index()
         {

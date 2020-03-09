@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Business.Service;
+using Business.Service.FileService;
 using Business.Service.Interfaces;
 using Domain.EF_Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -13,10 +15,12 @@ namespace IStore_WEB_.Controllers
     public class AdminController : Controller
     {
         private readonly GroupCharacteristicService _groupCharacteristicService;
+        private readonly ImageFileService _fileService;
 
-        public AdminController(GroupCharacteristicService groupCharacteristicService)
+        public AdminController(GroupCharacteristicService groupCharacteristicService, ImageFileService fileService)
         {
             _groupCharacteristicService = groupCharacteristicService;
+            _fileService = fileService;
         }
 
         public IActionResult Index()
@@ -39,6 +43,16 @@ namespace IStore_WEB_.Controllers
                 .DeserializeObject<List<GroupCharacteristic>>(parameters));            
         }
 
-        
+        public async Task<IActionResult> GetImage()
+        {
+            return PartialView("ImagePartialView");
+        }
+
+
+        [HttpPost]
+        public async Task AddFile(IFormFileCollection uploads)
+        {
+            await _fileService.Save(uploads);
+        }
     }
 }

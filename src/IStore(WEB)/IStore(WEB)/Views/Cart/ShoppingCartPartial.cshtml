@@ -1,36 +1,42 @@
-﻿@model Domain.EF_Models.Order
-<script src="~/js/ShoppingCartPartial.js"></script>
+﻿@model List<IStore_WEB_.Models.ProductViewModel>
 <div class="content-wrap">
     <h3 class="title">Shopping Cart</h3>
     <ul class="minicart-items">
-        @foreach (var item in Model.Products)
+        @foreach (var item in Model)
         {
             <li class="product-cart mini_cart_item">
                 <div style="display: none">
-                    <span class="detailsIdpartial">@item.Id</span>
-                    <span class="productIdpartial">@item.ProductId</span>
-                    <span class="orderIdpartial">@Model.Id</span>
+                    <span class="partial-id">@item.Id</span>
+                    <span class="partial-description">@item.Description</span>
+                    <span class="partial-model">@item.Model</span>
+                    <span class="partial-previewimage">@item.PreviewImage</span>
+                    <span class="partial-rating">@item.Rating</span>
+                    <span class="partial-retailprice">@item.RetailPrice</span>
+                    <span class="partial-series">@item.Series</span>
+                    <span class="partial-title">@item.Title</span>
+                    <span class="partial-vendorcode">@item.VendorCode</span>
+                    <span class="partial-warrantymonth">@item.WarrantyMonth</span>
                 </div>
-                <a href="@Url.Action("Product", "Home", item.ProductId)" class="product-media">
-                    <img src="@item.Product.PreviewImage" alt="@item.Product.Title">
+                <a href="@Url.Action("Product", "Home", item.Id)" class="product-media">
+                    <img src="@item.PreviewImage" alt="@item.Title">
                 </a>
                 <div class="product-details">
                     <h5 class="product-name">
-                        <a href="@Url.Action("Product", "Home", item.ProductId)">@item.Product.Title</a>
+                        <a href="@Url.Action("Product", "Home", item.Id)">@item.Title</a>
                     </h5>
                     <div class="variations">
                         <span class="attribute_color">
-                            <a href="@Url.Action("Product", "Home", item.ProductId)">@item.Product.Type</a>
+                            <a href="@Url.Action("Product", "Home", item.Id)">@item.Type</a>
                         </span>
                         ,
                         <span class="attribute_size">
-                            <a href="@Url.Action("Product", "Home", item.ProductId)">@item.Product.VendorCode</a>
+                            <a href="@Url.Action("Product", "Home", item.Id)">@item.VendorCode</a>
                         </span>
                     </div>
                     <span class="product-price">
                         ₴
                         <span class="price">
-                            @item.Product.RetailPrice
+                            @item.RetailPrice
                         </span>
                     </span>
                     <span class="product-quantity">
@@ -39,7 +45,7 @@
                         )
                     </span>
                     <div class="product-remove">
-                        <a href="#" onclick="deleteproductpartial(this)"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                        <a href="#" onclick="deleteproductpartial(this)"><i class="fa fa-trash-o"></i></a>
                     </div>
                 </div>
             </li>

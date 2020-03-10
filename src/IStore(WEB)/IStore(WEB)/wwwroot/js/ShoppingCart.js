@@ -1,10 +1,16 @@
 ﻿$(function () {
-    //var prod = new cookieList("IStoreProduct").items;
-    $(".shop_table tbody").load("/Cart/ShoppingCartProductsPartial", JSON.stringify(new localList("IStoreProduct").items));
-    $(".qty").each(function () {
-        subtotal(this);
+    $.ajax({
+        type: 'POST',
+        url: '/Cart/ShoppingCartProductsPartial',
+        data: { parameters: JSON.stringify(new localList("IStoreProduct").items()) },
+        success: function (responce) {
+            $(".shop_table tbody").html(responce);
+            $(".qty").each(function () {
+                subtotal(this);
+            });
+            totalprice();
+        }
     });
-    totalprice();
 });
 function subtotal(obj) {
     var q = $(obj).val();
@@ -23,9 +29,17 @@ function updateorder() {
     var products = new Array();
     $(".cart_item").each(function () {
         var product = new Object();
-        product.Id = parseInt($(this).find(".detailsId").text());
-        product.OrderId = parseInt($(this).find(".orderId").text());
-        product.ProductId = parseInt($(this).find(".productId").text());
+        product.Id = parseInt($(this).find('.partial-id').text());
+        product.Description = $(this).find('.partial-description').text();
+        product.Model = $(this).find('.partial-model').text();
+        product.PreviewImage = $(this).find('.partial-previewimage').text();
+        product.Rating = parseInt($(this).find('.partial-rating').text());
+        product.RetailPrice = parseFloat($(this).find('.partial-retailprice').text());
+        product.Series = $(this).find('.partial-series').text();
+        product.Title = $(this).find('.partial-title').text();
+        product.Type = $(this).find('.partial-type').text();
+        product.VendorCode = $(this).find('.partial-vendorcode').text();
+        product.WarrantyMonth = parseInt($(this).find('.partial-warrantymonth').text());
         product.Count = parseInt($(this).find(".qty").val());
         products.push(product);
     });
@@ -35,4 +49,5 @@ function deleteproduct(obj) {
     $(obj).parents(".cart_item").remove();
     updateorder();
     totalprice();
+    MinicartCount();
 };

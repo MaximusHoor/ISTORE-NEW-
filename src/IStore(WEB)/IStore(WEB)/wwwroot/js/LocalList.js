@@ -4,7 +4,13 @@
 
     return {
         "add": function (val) {
-            items.push(val);
+            var item = items.find(x => x.Id == val.Id);
+            if (item == null) {
+                items.push(val);
+            }
+            else {
+                item.Count = item.Count + 1;
+            }
             localStorage.setItem(localName, JSON.stringify(items));
         },
         "remove": function (val) {

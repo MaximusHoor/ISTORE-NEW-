@@ -393,8 +393,8 @@ jQuery(document).ready(function ($) {
                 _config.prevArrow = '<span class="pe-7s-angle-up"></span>';
                 _config.nextArrow = '<span class="pe-7s-angle-down"></span>';
             } else {
-                _config.prevArrow = '<span class="fa fa-angle-left"></span>';
-                _config.nextArrow = '<span class="fa fa-angle-right"></span>';
+                _config.prevArrow = '<span class="fas fa-angle-left"></span>';
+                _config.nextArrow = '<span class="fas fa-angle-right"></span>';
             }
             _config.responsive = _responsive;
             _config.cssEase = 'linear';
@@ -477,33 +477,55 @@ jQuery(document).ready(function ($) {
             $(document).on('click', '.quick-wiew-button', function () {
                 $.magnificPopup.open({
                     items: {
-                        src: '<div class="kt-popup-quickview "><div class="details-thumb"><div class="slider-product slider-for"><div class="details-item"><img src="assets/images/popup-quickview-item-1.jpg" alt="img"></div><div class="details-item"><img src="assets/images/popup-quickview-item-1.jpg" alt="img"></div><div class="details-item"><img src="assets/images/popup-quickview-item-1.jpg" alt="img"></div><div class="details-item"><img src="assets/images/popup-quickview-item-1.jpg" alt="img"></div></div><div class="slider-product-button slider-nav nav-center"><div class="details-item"><img src="assets/images/popup-quickview-item-1.jpg" alt="img"></div><div class="details-item"><img src="assets/images/popup-quickview-item-1.jpg" alt="img"></div><div class="details-item"><img src="assets/images/popup-quickview-item-1.jpg" alt="img"></div><div class="details-item"><img src="assets/images/popup-quickview-item-1.jpg" alt="img"></div></div></div><div class="details-infor"><h1 class="product-title">Eclipse Pendant Light</h1><div class="stars-rating"><div class="star-rating"><span class="star-5"></span></div><div class="count-star">(7)</div></div><div class="availability">availability:<a href="#">in Stock</a></div><div class="price"><span>€45</span></div><div class="product-details-description"><ul><li>Vestibulum tortor quam</li><li>Imported</li><li>Art.No. 06-7680</li></ul></div><div class="variations"><div class="attribute attribute_color"><div class="color-text text-attribute">Color:<span>White/</span><span>Black/</span><span>Teal/</span><span>Brown</span></div><div class="list-color list-item"><a href="#" class="color1"></a><a href="#" class="color2"></a><a href="#" class="color3 active"></a><a href="#" class="color4"></a></div></div><div class="attribute attribute_size"><div class="size-text text-attribute">Size:</div><div class="list-size list-item"><a href="#" class="">xs</a><a href="#" class="">s</a><a href="#" class="active">m</a><a href="#" class="">l</a><a href="#" class="">xl</a><a href="#" class="">xxl</a></div></div></div><div class="group-button"><div class="yith-wcwl-add-to-wishlist"><div class="yith-wcwl-add-button"><a href="#">Add to Wishlist</a></div></div><div class="size-chart-wrapp"><div class="btn-size-chart"><a id="size_chart" href="assets/images/size-chart.jpg" class="fancybox"  target="_blank">View Size Chart</a></div></div><div class="quantity-add-to-cart"><div class="quantity"><div class="control"><a class="btn-number qtyminus quantity-minus" href="#">-</a><input type="text" data-step="1" data-min="0" value="1" title="Qty" class="input-qty qty" size="4"><a href="#" class="btn-number qtyplus quantity-plus">+</a></div></div><button class="single_add_to_cart_button button">Add to cart</button></div></div></div></div>',
-                        type: 'inline'
+                        src: "/Home/GetProductDetails/" + parseInt($(this).parents('.product-thumb').find('.product-id').text()),
+                        type: 'ajax'
+                        //src: '<div class="kt-popup-quickview "><div class="details-thumb"><div class="slider-product slider-for"><div class="details-item"><img src="assets/images/popup-quickview-item-1.jpg" alt="img"></div><div class="details-item"><img src="assets/images/popup-quickview-item-1.jpg" alt="img"></div><div class="details-item"><img src="assets/images/popup-quickview-item-1.jpg" alt="img"></div><div class="details-item"><img src="assets/images/popup-quickview-item-1.jpg" alt="img"></div></div><div class="slider-product-button slider-nav nav-center"><div class="details-item"><img src="assets/images/popup-quickview-item-1.jpg" alt="img"></div><div class="details-item"><img src="assets/images/popup-quickview-item-1.jpg" alt="img"></div><div class="details-item"><img src="assets/images/popup-quickview-item-1.jpg" alt="img"></div><div class="details-item"><img src="assets/images/popup-quickview-item-1.jpg" alt="img"></div></div></div><div class="details-infor"><h1 class="product-title">Eclipse Pendant Light</h1><div class="stars-rating"><div class="star-rating"><span class="star-5"></span></div><div class="count-star">(7)</div></div><div class="availability">availability:<a href="#">in Stock</a></div><div class="price"><span>€45</span></div><div class="product-details-description"><ul><li>Vestibulum tortor quam</li><li>Imported</li><li>Art.No. 06-7680</li></ul></div><div class="variations"><div class="attribute attribute_color"><div class="color-text text-attribute">Color:<span>White/</span><span>Black/</span><span>Teal/</span><span>Brown</span></div><div class="list-color list-item"><a href="#" class="color1"></a><a href="#" class="color2"></a><a href="#" class="color3 active"></a><a href="#" class="color4"></a></div></div><div class="attribute attribute_size"><div class="size-text text-attribute">Size:</div><div class="list-size list-item"><a href="#" class="">xs</a><a href="#" class="">s</a><a href="#" class="active">m</a><a href="#" class="">l</a><a href="#" class="">xl</a><a href="#" class="">xxl</a></div></div></div><div class="group-button"><div class="yith-wcwl-add-to-wishlist"><div class="yith-wcwl-add-button"><a href="#">Add to Wishlist</a></div></div><div class="size-chart-wrapp"><div class="btn-size-chart"><a id="size_chart" href="assets/images/size-chart.jpg" class="fancybox"  target="_blank">View Size Chart</a></div></div><div class="quantity-add-to-cart"><div class="quantity"><div class="control"><a class="btn-number qtyminus quantity-minus" href="#">-</a><input type="text" data-step="1" data-min="0" value="1" title="Qty" class="input-qty qty" size="4"><a href="#" class="btn-number qtyplus quantity-plus">+</a></div></div><button class="single_add_to_cart_button button">Add to cart</button></div></div></div></div>',
+                        //type: 'inline'
                     }
                 });
                 slick_quickview_popup();
                 return false;
             });
+            $(document).on('click', '.product_to_cart', function () {
+                var par = $(this).parents('.product-thumb');
+                var product = new Object();
+                product.Id = parseInt($(par).find('.product-id').text());
+                product.Description = $(par).find('.product-description').text();
+                product.Model = $(par).find('.product-model').text();
+                product.PreviewImage = $(par).find('.product-previewimage').text();
+                product.Rating = parseInt($(par).find('.product-rating').text());
+                product.RetailPrice = parseFloat($(par).find('.product-retailprice').text());
+                product.Series = $(par).find('.product-series').text();
+                product.Title = $(par).find('.product-title').text();
+                product.Type = $(par).find('.product-type').text();
+                product.VendorCode = $(par).find('.product-vendorcode').text();
+                product.WarrantyMonth = parseInt($(par).find('.product-warrantymonth').text());
+                product.Count = 1;
+                new localList("IStoreProduct").add(product);
+                MinicartCount();
+            });
         }
     }
 
     function slick_quickview_popup() {
-        $('.slider-for').slick({
+        var a = $('html .slider-for');
+        var b = $('html .slider-nav');
+        $('html .slider-for').slick({
             slidesToShow: 1,
             slidesToScroll: 1,
             arrows: false,
             fade: true,
             asNavFor: '.slider-nav'
         });
-        $('.slider-nav').slick({
+        $('html .slider-nav').slick({
             slidesToShow: 3,
             slidesToScroll: 1,
             asNavFor: '.slider-for',
             dots: false,
             focusOnSelect: true,
             infinite: true,
-            prevArrow: '<i class="fa fa-angle-left" aria-hidden="true"></i>',
-            nextArrow: '<i class="fa fa-angle-right " aria-hidden="true"></i>',
+            prevArrow: '<i class="fas fa-angle-left" aria-hidden="true"></i>',
+            nextArrow: '<i class="fas fa-angle-right " aria-hidden="true"></i>',
         });
     }
 
@@ -617,7 +639,7 @@ jQuery(document).ready(function ($) {
         // owl config
         $(".owl-carousel").each(function (index, el) {
             var config = $(this).data();
-            config.navText = ['<i class="fa fa-angle-left" aria-hidden="true"></i>', '<i class="fa fa-angle-right" aria-hidden="true"></i>'];
+            config.navText = ['<i class="fas fa-angle-left" aria-hidden="true"></i>', '<i class="fas fa-angle-right" aria-hidden="true"></i>'];
             var animateOut = $(this).data('animateout');
             var animateIn = $(this).data('animatein');
             var slidespeed = parseFloat($(this).data('slidespeed'));

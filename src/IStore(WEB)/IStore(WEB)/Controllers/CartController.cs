@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Business.Service;
 using DataAccess.UnitOfWork;
 using Domain.EF_Models;
+using IStore_WEB_.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -63,23 +64,23 @@ namespace IStore_WEB_.Controllers
             order.Products.Add(new OrderDetails() { OrderId = order.Id, ProductId = 1, Count = 1 });
             await _unitOfWork.SaveChangesAsync();
         }
-        public async Task UpdateProducts(string parameters)
+        //public async Task UpdateProducts(string parameters)
+        //{
+        //    var currentUser = 1;
+        //    var order = (await _orderService.FindByConditionAsync(x => x.UserId == currentUser && x.PaymentStatus != "for paid")).LastOrDefault();
+        //    order.Products = JsonConvert.DeserializeObject<ICollection<OrderDetails>>(parameters);
+        //    await _unitOfWork.SaveChangesAsync();
+        //}
+        public IActionResult ShoppingCartPartial(string parameters)
         {
-            var currentUser = 1;
-            var order = (await _orderService.FindByConditionAsync(x => x.UserId == currentUser && x.PaymentStatus != "for paid")).LastOrDefault();
-            order.Products = JsonConvert.DeserializeObject<ICollection<OrderDetails>>(parameters);
-            await _unitOfWork.SaveChangesAsync();
-        }
-        public async Task<IActionResult> ShoppingCartPartial()
-        {
-            var currentUser = 1;
-            var order = (await _orderService.FindByConditionAsync(x => x.UserId == currentUser && x.PaymentStatus != "for paid")).LastOrDefault();
-            return PartialView(order);
+            if (parameters != "[]")
+                return PartialView(JsonConvert.DeserializeObject<List<ProductViewModel>>(parameters));
+            return null;
         }
         public IActionResult ShoppingCartProductsPartial(string parameters)
         {
             if(parameters!=null)
-            return PartialView(JsonConvert.DeserializeObject<ICollection<OrderDetails>>(parameters));
+            return PartialView(JsonConvert.DeserializeObject<List<ProductViewModel>>(parameters));
             return null;
         }
     }

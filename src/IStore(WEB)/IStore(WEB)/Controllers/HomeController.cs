@@ -42,11 +42,9 @@ namespace IStore_WEB_.Controllers
             return View(product);
         }
 
-        public async Task<IActionResult> GetProductDetails(Product product)
+        public async Task<IActionResult> GetProductDetails(int id)
         {
-            var res = await _productservice.GetByIdsync(1);
-               
-
+            var res = await _productservice.GetByIdsync(id);
             return PartialView("ProductDetails", res);
         }
     }

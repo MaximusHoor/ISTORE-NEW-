@@ -4,8 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - IStore_WEB_</title>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i&display=swap"
-          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <script src="https://kit.fontawesome.com/4c09a507f0.js" crossorigin="anonymous"></script>
@@ -84,7 +83,7 @@
                     <div class="col-lg-3 col-sm-4 col-md-3 col-xs-7 col-ts-12 header-element">
                         <div class="logo">
                             <a href="index.html">
-                                <img src="assets/images/logo.png" alt="img">
+                                <img src="~/master_page/images/logo.png" alt="img">
                             </a>
                         </div>
                     </div>
@@ -122,8 +121,121 @@
                                         0
                                     </span>
                                 </a>
-                                <div class="shopcart-description tanajil-submenu" id="cartpartialview">
 
+                                <div class="shopcart-description tanajil-submenu">
+                                    <div class="content-wrap">
+                                        <h3 class="title">Shopping Cart</h3>
+                                        <ul class="minicart-items">
+                                            <li class="product-cart mini_cart_item">
+                                                <a href="index.html#" class="product-media">
+                                                    <img src="~/master_page/images/item-minicart-1.jpg" alt="img">
+                                                </a>
+                                                <div class="product-details">
+                                                    <h5 class="product-name">
+                                                        <a href="index.html#">Wheel With Inserts</a>
+                                                    </h5>
+                                                    <div class="variations">
+                                                        <span class="attribute_color">
+                                                            <a href="index.html#">Black</a>
+                                                        </span>
+                                                        ,
+                                                        <span class="attribute_size">
+                                                            <a href="index.html#">300ml</a>
+                                                        </span>
+                                                    </div>
+                                                    <span class="product-price">
+                                                        <span class="price">
+                                                            <span>$45</span>
+                                                        </span>
+                                                    </span>
+                                                    <span class="product-quantity">
+                                                        (x1)
+                                                    </span>
+                                                    <div class="product-remove">
+                                                        <a href="index.html"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="product-cart mini_cart_item">
+                                                <a href="index.html#" class="product-media">
+                                                    <img src="~/master_page/images/item-minicart-2.jpg" alt="img">
+                                                </a>
+                                                <div class="product-details">
+                                                    <h5 class="product-name">
+                                                        <a href="index.html#">Soap Wheels Solutions</a>
+                                                    </h5>
+                                                    <div class="variations">
+                                                        <span class="attribute_color">
+                                                            <a href="index.html#">Black</a>
+                                                        </span>
+                                                        ,
+                                                        <span class="attribute_size">
+                                                            <a href="index.html#">300ml</a>
+                                                        </span>
+                                                    </div>
+                                                    <span class="product-price">
+                                                        <span class="price">
+                                                            <span>$45</span>
+                                                        </span>
+                                                    </span>
+                                                    <span class="product-quantity">
+                                                        (x1)
+                                                    </span>
+                                                    <div class="product-remove">
+                                                        <a href="index.html"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="product-cart mini_cart_item">
+                                                <a href="index.html#" class="product-media">
+                                                    <img src="~/master_page/images/item-minicart-3.jpg" alt="img">
+                                                </a>
+                                                <div class="product-details">
+                                                    <h5 class="product-name">
+                                                        <a href="index.html#">Wheels Solutions Soap</a>
+                                                    </h5>
+                                                    <div class="variations">
+                                                        <span class="attribute_color">
+                                                            <a href="index.html#">Black</a>
+                                                        </span>
+                                                        ,
+                                                        <span class="attribute_size">
+                                                            <a href="index.html#">300ml</a>
+                                                        </span>
+                                                    </div>
+                                                    <span class="product-price">
+                                                        <span class="price">
+                                                            <span>$45</span>
+                                                        </span>
+                                                    </span>
+                                                    <span class="product-quantity">
+                                                        (x1)
+                                                    </span>
+                                                    <div class="product-remove">
+                                                        <a href="index.html"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <div class="subtotal">
+                                            <span class="total-title">Subtotal: </span>
+                                            <span class="total-price">
+                                                <span class="Price-amount">
+                                                    $135
+                                                </span>
+                                            </span>
+                                        </div>
+                                        <div class="actions">
+                                            <a class="button button-viewcart" href="shoppingcart.html">
+                                                <span>View Bag</span>
+                                            </a>
+                                            <a href="checkout.html" class="button button-checkout">
+                                                <span>Checkout</span>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                <div class="shopcart-description tanajil-submenu" id="cartpartialview">
                                 </div>
                             </div>
                             <div class="block-account block-header tanajil-dropdown">
@@ -390,7 +502,7 @@
             <div class="item mobile-logo">
                 <div class="logo">
                     <a href="index.html#">
-                        <img src="assets/images/logo.png" alt="img">
+                        <img src="~/master_page/images/logo.png" alt="img">
                     </a>
                 </div>
             </div>
@@ -476,7 +588,7 @@
                     <div class="box-footer col-xs-12 col-sm-6 col-md-6 col-lg-4">
                         <div class="widget-box">
                             <div class="single-img">
-                                <a href="index.html"><img src="assets/images/logo-light.png" alt="img"></a>
+                                <a href="index.html"><img src="~/master_page/images/logo-light.png" alt="img"></a>
                             </div>
                             <ul class="menu">
                                 <li class="menu-item">
@@ -592,7 +704,7 @@
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                             <div class="tanajil-payment">
-                                <img src="assets/images/payments.png" alt="img">
+                                <img src="~/master_page/images/payments.png" alt="img">
                             </div>
                         </div>
                     </div>
@@ -642,6 +754,25 @@
     <a href="index.html#" class="backtotop">
         <i class="fa fa-angle-double-up"></i>
     </a>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+    @*<script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/lib/jquery-ui/js/jquery-countdown.min.js"></script>
+        <script src="~/lib/jquery-ui/js/jquery-ui.min.js"></script>
+        <script src="~/lib/jquery-ui/js/jquery.actual.min.js"></script>
+        <script src="~/lib/jquery-ui/js/jquery.elevateZoom.min.js"></script>
+        <script src="~/lib/jquery-ui/js/jquery.plugin-countdown.min.js"></script>
+        <script src="~/lib/jquery-ui/js/jquery.scrollbar.min.js"></script>*@
+    <script src="~/master_page/js/chosen.min.js"></script>
+    @*<script src="~/master_page/js/frontend-plugin.js"></script>*@
+    <script src="~/master_page/js/isotope.min.js"></script>
+    <script src="~/master_page/js/mobile-menu.js"></script>
+    <script src="~/master_page/js/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="~/js/Category.js"></script>
+
     <script src="~/js/jquery-1.12.4.min.js"></script>
     <script src="~/js/jquery.plugin-countdown.min.js"></script>
     <script src="~/js/jquery-countdown.min.js"></script>
@@ -666,63 +797,9 @@
 
 
 
-
     <script src="~/js/frontend-plugin.js"></script>
     <script src="~/js/LocalList.js"></script>
     <script src="~/js/site.js"></script>
-
-    <script type="text/javascript">
-                                                        //$(document).ready(function () {
-                                                        //    $.cookie
-                                                        //    $.ajax({
-                                                        //        type: "GET",
-                                                        //        url: "/Category/GetCategoryJson",
-                                                        //        dataType: "json",
-                                                        //        success: function (data) {
-                                                        //            $.each(data, function (i) {
-                                                        //                if (data[i].subcategories == 0) {
-                                                        //                    $("#category").append("<li class='menu-item'> <a href='index.html#' class='tanajil-menu-item-title' title=" + data[i].title + ">" + data[i].title + "</a></li>");
-                                                        //                }
-                                                        //                else {
-                                                        //                    $("#category").append("<li class='menu-item menu-item-has-children'><a  href='index.html#' class='tanajil-menu-item-title' title=" + data[i].subcategories[i].title + ">" + data[i].subcategories[j].title + "</a><span class='toggle-submenu'></span><ul id='category-submenu' role='menu' class='submenu'></ul></li>");
-                                                        //                    $.each(data[i].subcategories, function (j) {
-                                                        //                        $("#category-submenu").append("<li class='menu-item'><a href='index.html#' class='tanajil-item-title' title=" + data[i].subcategories[j].title + ">" + data[i].subcategories[j].title + "</a></li>");
-                                                        //                    })
-                                                        //                }
-
-                                                        //            });
-                                                        //        }
-                                                        //    });
-                                                        //});
-//        function updateorderpartial() {
-//    var products = new Array();
-//    $(".mini_cart_item").each(function () {
-//        var product = new Object();
-//        product.Id = parseInt($(this).find('.partial-id').text());
-//        product.Description = $(this).find('.partial-description').text();
-//        product.Model = $(this).find('.partial-model').text();
-//        product.PreviewImage = $(this).find('.partial-previewimage').text();
-//        product.Rating = parseInt($(this).find('.partial-rating').text());
-//        product.RetailPrice = parseFloat($(this).find('.partial-retailprice').text());
-//        product.Series = $(this).find('.partial-series').text();
-//        product.Title = $(this).find('.partial-title').text();
-//        product.Type = $(this).find('.partial-type').text();
-//        product.VendorCode = $(this).find('.partial-vendorcode').text();
-//        product.WarrantyMonth = parseInt($(this).find('.partial-warrantymonth').text());
-//        product.Count = parseInt($(this).find(".product-quantity").text());
-//        products.push(product);
-//    });
-//    new localList("IStoreProduct").replaceItems(products);
-//};
-//function deleteproductpartial(obj) {
-//    $(obj).parents(".mini_cart_item").remove();
-//    alert("del");
-//    updateorderpartial();
-//};
-    </script>
-
-
-
 
     @*@RenderSection("Scripts", false)*@
 </body>

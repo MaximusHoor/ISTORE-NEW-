@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Content\Images\A\AA\" />
     <Folder Include="Logs\" />
   </ItemGroup>
 

@@ -1,28 +1,35 @@
-﻿@model ICollection<Domain.EF_Models.OrderDetails>
+﻿@model List<IStore_WEB_.Models.ProductViewModel>
 @foreach (var item in Model)
 {
     <tr class="cart_item">
         <td class="product-id">
-            <span class="detailsId">@item.Id</span>
-            <span class="productId">@item.ProductId</span>
-            <span class="orderId">@item.OrderId</span>
+            <span class="partial-id">@item.Id</span>
+            <span class="partial-description">@item.Description</span>
+            <span class="partial-model">@item.Model</span>
+            <span class="partial-previewimage">@item.PreviewImage</span>
+            <span class="partial-rating">@item.Rating</span>
+            <span class="partial-retailprice">@item.RetailPrice</span>
+            <span class="partial-series">@item.Series</span>
+            <span class="partial-title">@item.Title</span>
+            <span class="partial-vendorcode">@item.VendorCode</span>
+            <span class="partial-warrantymonth">@item.WarrantyMonth</span>
         </td>
         <td class="product-thumbnail">
-            <a href="@Url.Action("Product", "Home", item.ProductId)">
-                <img src="@item.Product.PreviewImage" alt="@item.Product.Title"
+            <a href="@Url.Action("Product", "Home", item.Id)">
+                <img src="@item.PreviewImage" alt="@item.Title"
                      class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image">
             </a>
         </td>
         <td class="product-name" data-title="Product">
-            <a href="@Url.Action("Product", "Home", item.ProductId)" class="title">@item.Product.Title</a>
-            <span class="attributes-select attributes-color">@item.Product.Type</span>
-            <span class="attributes-select attributes-size">@item.Product.VendorCode</span>
+            <a href="@Url.Action("Product", "Home", item.Id)" class="title">@item.Title</a>
+            <span class="attributes-select attributes-color">@item.Type</span>
+            <span class="attributes-select attributes-size">@item.VendorCode</span>
         </td>
         <td class="product-quantity" data-title="Quantity">
             <div class="quantity">
                 <div class="control">
                     <a class="btn-number qtyminus quantity-minus" href="#">-</a>
-                    <input type="text" data-step="1" data-min="0" value="@item.Count" title="Qty"
+                    <input type="text" data-step="1" data-min="1" value="@item.Count" title="Qty"
                            class="input-qty qty" size="4">
                     <a class="btn-number qtyplus quantity-plus" href="#">+</a>
                 </div>
@@ -34,7 +41,7 @@
                     ₴
                 </span>
                 <span class="price">
-                    @item.Product.RetailPrice
+                    @item.RetailPrice
                 </span>
             </span>
         </td>

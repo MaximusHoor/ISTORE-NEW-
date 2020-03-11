@@ -16,18 +16,20 @@
     <link href="~/css/pe-icon-7-stroke.css" rel="stylesheet" />
     <link href="~/css/magnific-popup.min.css" rel="stylesheet" />
     <link href="~/css/lightbox.min.css" rel="stylesheet" />
+    <link href="~/lib/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
     <link href="~/css/jquery.scrollbar.min.css" rel="stylesheet" />
     <link href="~/css/mobile-menu.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/master_page/fonts/flaticon/flaticon.css" />
     <link rel="stylesheet" href="~/master_page/css/master_page_style.css" />
-    <link rel="stylesheet" href="~/css/owl.carousel.min.css" />
+    @*<link rel="stylesheet" href="~/css/owl.carousel.min.css" />
     <link href="~/css/animate.min.css" rel="stylesheet" />
     <link href="~/css/jquery.scrollbar.min.css" rel="stylesheet" />
     <link href="~/css/pe-icon-7-stroke.css" rel="stylesheet" />
-    <link href="~/css/slick.css" rel="stylesheet" />
+    <link href="~/css/slick.css" rel="stylesheet" />*@
+
     @*<link href="~/css/bootstrap.min.css" rel="stylesheet" />*@
-    <link href="~/css/lightbox.min.css" rel="stylesheet" />
-    <link href="~/css/magnific-popup.min.css" rel="stylesheet" />
+    @*<link href="~/css/lightbox.min.css" rel="stylesheet" />*@
+    @*<link href="~/css/magnific-popup.min.css" rel="stylesheet" />*@
 
 
 
@@ -363,19 +365,19 @@
                         <div class="container-wapper">
                             <ul class="tanajil-clone-mobile-menu tanajil-nav main-menu " id="menu-main-menu">
                                 <li class="menu-item">
-                                    <a href="index.html" class="tanajil-menu-item-title" title="Home">Home</a>
-                                    <span class="toggle-submenu"></span>
-                                    <ul class="submenu">
-                                        <li class="menu-item">
-                                            <a href="index.html">Home 01</a>
-                                        </li>
-                                        <li class="menu-item">
-                                            <a href="home2.html">Home 02</a>
-                                        </li>
-                                        <li class="menu-item">
-                                            <a href="home3.html">Home 03</a>
-                                        </li>
-                                    </ul>
+                                    <a href="@Url.Action("Index","Home")" class="tanajil-menu-item-title" title="Home">Home</a>
+                                    @*<span class="toggle-submenu"></span>
+                                        <ul class="submenu">
+                                            <li class="menu-item">
+                                                <a href="index.html">Home 01</a>
+                                            </li>
+                                            <li class="menu-item">
+                                                <a href="home2.html">Home 02</a>
+                                            </li>
+                                            <li class="menu-item">
+                                                <a href="home3.html">Home 03</a>
+                                            </li>
+                                        </ul>*@
                                 </li>
                                 <li class="menu-item menu-item-has-children">
                                     <a href="gridproducts.html" class="tanajil-menu-item-title" title="Shop">Shop</a>
@@ -774,24 +776,30 @@
     <script src="~/js/jquery-1.12.4.min.js"></script>
     <script src="~/js/jquery.plugin-countdown.min.js"></script>
     <script src="~/js/jquery-countdown.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    @*<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>*@
     <script src="~/js/bootstrap.min.js"></script>
-    <script src="~/lib/jquery-ui/js/jquery-ui.min.js"></script>
-    <script src="~/lib/jquery-ui/js/jquery.actual.min.js"></script>
-    <script src="~/lib/jquery-ui/js/jquery.elevateZoom.min.js"></script>
-    <script src="~/lib/jquery-ui/js/jquery.scrollbar.min.js"></script>
-    <script src="~/js/chosen.min.js"></script>
-    <script src="~/js/isotope.min.js"></script>
-    <script src="~/js/mobile-menu.js"></script>
     <script src="~/js/owl.carousel.min.js"></script>
-    <script src="~/js/lightbox.min.js"></script>
     <script src="~/js/magnific-popup.min.js"></script>
-    <script src="~/js/owl.thumbs.min.js"></script>
+    <script src="~/js/isotope.min.js"></script>
+    <script src="~/lib/jquery-ui/js/jquery.scrollbar.min.js"></script>
+    <script src="~/lib/jquery-ui/js/jquery-ui.min.js"></script>
+    <script src="~/js/mobile-menu.js"></script>
+    <script src="~/js/chosen.min.js"></script>
     <script src="~/js/slick.js"></script>
-    <script src="~/js/frontend-plugin.js"></script>
-    <script src="~/js/CookieList.js"></script>
-    <script src="~/js/site.js"></script>
+    <script src="~/lib/jquery-ui/js/jquery.elevateZoom.min.js"></script>
+    <script src="~/lib/jquery-ui/js/jquery.actual.min.js"></script>
+    <script src="~/lib/fancybox/source/jquery.fancybox.js"></script>
+    <script src="~/js/lightbox.min.js"></script>
+    <script src="~/js/owl.thumbs.min.js"></script>
+    <script src="~/lib/jquery-ui/js/jquery.scrollbar.min.js"></script>
 
+
+
+
+
+    <script src="~/js/frontend-plugin.js"></script>
+    <script src="~/js/LocalList.js"></script>
+    <script src="~/js/site.js"></script>
 
     @*@RenderSection("Scripts", false)*@
 </body>

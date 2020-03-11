@@ -8,7 +8,7 @@ namespace Domain.Context
     {
         public StoreContext(DbContextOptions<StoreContext> options) : base(options)
         {
-            Database.EnsureDeleted();
+            //Database.EnsureDeleted();
             Database.EnsureCreated();           
         }
 

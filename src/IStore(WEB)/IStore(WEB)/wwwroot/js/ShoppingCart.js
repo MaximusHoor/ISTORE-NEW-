@@ -6,9 +6,9 @@
         success: function (responce) {
             $(".shop_table tbody").html(responce);
             $(".qty").each(function () {
-                subtotal(this);
+                subtotal($(this));
             });
-            totalprice();
+            totalpricecart();
         }
     });
 });
@@ -18,7 +18,7 @@ function subtotal(obj) {
     var price = $(p).find(".price").text();
     $(p).find(".sub").text(q * price);
 };
-function totalprice() {
+function totalpricecart() {
     var s = 0;
     $(".sub").each(function () {
         s += parseFloat($(this).text());

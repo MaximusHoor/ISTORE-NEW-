@@ -1,5 +1,6 @@
 ﻿using Domain.EF_Models;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace Domain.Context
 {
@@ -7,7 +8,7 @@ namespace Domain.Context
     {
         public StoreContext(DbContextOptions<StoreContext> options) : base(options)
         {
-            //Database.EnsureDeleted();
+            Database.EnsureDeleted();
             Database.EnsureCreated();           
         }
 
@@ -192,7 +193,46 @@ namespace Domain.Context
 
               }) ;
 
+            modelBuilder.Entity<Image>().HasData(
+              new Image[]
+              {
+                  new Image {Id = 1, FilePath="https://i.citrus.ua/uploads/shop/c/b/cb4178ebd5a5973686c461fd51399988.jpg", ProductId=1},
+                  new Image {Id = 2, FilePath="https://hotline.ua/img/tx/212/2121482265.jpg", ProductId=1},
+                  new Image {Id = 3, FilePath="https://www.ixbt.com/img/n1/news/2020/0/5/GalaxyNote10LitePR_mainFF_large.jpg", ProductId=1},
+              });
+
+
+
             modelBuilder.Entity<Category>().ToTable("Categories");
+
+            modelBuilder.Entity<Order>().HasData(
+                new Order
+                {
+                    Id = 1,
+                    Number = "#101",
+                    Date = DateTime.Now,
+                    UserId = 1,
+                    DeliveryStatus = "",
+                    PaymentStatus = "",
+                }
+                );
+            modelBuilder.Entity<OrderDetails>().HasData(
+                new OrderDetails[]
+                {
+                new OrderDetails { Id = 1, Count = 2, OrderId = 1, ProductId = 1 },
+                new OrderDetails { Id = 2, Count = 3, OrderId = 1, ProductId = 2 },
+                new OrderDetails { Id = 3, Count = 5, OrderId = 1, ProductId = 3 }
+                }
+                );
+            modelBuilder.Entity<User>().HasData(
+                new User
+                {
+                    Id = 1,
+                    FirstName = "Some FirstName",
+                    LastName = "Some LastName",
+                    PhoneNumber = "Some phone",
+                    Email = "Some email"
+                });
 
         }
 

@@ -26,10 +26,10 @@ jQuery(document).ready(function ($) {
                 var $styles = [
                     {
                         stylers: [
-                            {hue: $hue},
-                            {invert_lightness: false},
-                            {saturation: $saturation},
-                            {lightness: 1},
+                            { hue: $hue },
+                            { invert_lightness: false },
+                            { saturation: $saturation },
+                            { lightness: 1 },
                             {
                                 featureType: "landscape.man_made",
                                 stylers: [{
@@ -40,55 +40,55 @@ jQuery(document).ready(function ($) {
                     }, {
                         "featureType": "all",
                         "elementType": "labels.text.fill",
-                        "stylers": [{"saturation": 36}, {"color": "#000000"}, {"lightness": 40}]
+                        "stylers": [{ "saturation": 36 }, { "color": "#000000" }, { "lightness": 40 }]
                     }, {
                         "featureType": "all",
                         "elementType": "labels.text.stroke",
-                        "stylers": [{"visibility": "on"}, {"color": "#000000"}, {"lightness": 16}]
+                        "stylers": [{ "visibility": "on" }, { "color": "#000000" }, { "lightness": 16 }]
                     }, {
                         "featureType": "all",
                         "elementType": "labels.icon",
-                        "stylers": [{"visibility": "off"}]
+                        "stylers": [{ "visibility": "off" }]
                     }, {
                         "featureType": "administrative",
                         "elementType": "geometry.fill",
-                        "stylers": [{"color": "#000000"}, {"lightness": 20}]
+                        "stylers": [{ "color": "#000000" }, { "lightness": 20 }]
                     }, {
                         "featureType": "administrative",
                         "elementType": "geometry.stroke",
-                        "stylers": [{"color": "#000000"}, {"lightness": 17}, {"weight": 1.2}]
+                        "stylers": [{ "color": "#000000" }, { "lightness": 17 }, { "weight": 1.2 }]
                     }, {
                         "featureType": "landscape",
                         "elementType": "geometry",
-                        "stylers": [{"color": "#000000"}, {"lightness": 20}]
+                        "stylers": [{ "color": "#000000" }, { "lightness": 20 }]
                     }, {
                         "featureType": "poi",
                         "elementType": "geometry",
-                        "stylers": [{"color": "#000000"}, {"lightness": 21}]
+                        "stylers": [{ "color": "#000000" }, { "lightness": 21 }]
                     }, {
                         "featureType": "road.highway",
                         "elementType": "geometry.fill",
-                        "stylers": [{"color": "#000000"}, {"lightness": 17}]
+                        "stylers": [{ "color": "#000000" }, { "lightness": 17 }]
                     }, {
                         "featureType": "road.highway",
                         "elementType": "geometry.stroke",
-                        "stylers": [{"color": "#000000"}, {"lightness": 29}, {"weight": 0.2}]
+                        "stylers": [{ "color": "#000000" }, { "lightness": 29 }, { "weight": 0.2 }]
                     }, {
                         "featureType": "road.arterial",
                         "elementType": "geometry",
-                        "stylers": [{"color": "#000000"}, {"lightness": 18}]
+                        "stylers": [{ "color": "#000000" }, { "lightness": 18 }]
                     }, {
                         "featureType": "road.local",
                         "elementType": "geometry",
-                        "stylers": [{"color": "#000000"}, {"lightness": 16}]
+                        "stylers": [{ "color": "#000000" }, { "lightness": 16 }]
                     }, {
                         "featureType": "transit",
                         "elementType": "geometry",
-                        "stylers": [{"color": "#000000"}, {"lightness": 19}]
+                        "stylers": [{ "color": "#000000" }, { "lightness": 19 }]
                     }, {
                         "featureType": "water",
                         "elementType": "geometry",
-                        "stylers": [{"color": "#000000"}, {"lightness": 17}]
+                        "stylers": [{ "color": "#000000" }, { "lightness": 17 }]
                     }
                 ];
             }
@@ -322,7 +322,7 @@ jQuery(document).ready(function ($) {
 
     // -------chosen----------------------------------------------------
 
-    $(".chosen-select").chosen({disable_search_threshold: 10});
+    $(".chosen-select").chosen({ disable_search_threshold: 10 });
     // ====================isotop========================
     function tanajil_masonry() {
         var masonry = $('.masonry-grid').isotope({
@@ -428,7 +428,7 @@ jQuery(document).ready(function ($) {
             var tab_id = $(this).attr('href');
             var tab_animated = $(this).data('animate');
 
-            tab_animated = ( tab_animated == undefined || tab_animated == "" ) ? '' : tab_animated;
+            tab_animated = (tab_animated == undefined || tab_animated == "") ? '' : tab_animated;
             if (tab_animated == "") {
                 return false;
             }
@@ -437,7 +437,7 @@ jQuery(document).ready(function ($) {
 
                 var t = $(this);
                 var style = $(this).attr("style");
-                style = ( style == undefined ) ? '' : style;
+                style = (style == undefined) ? '' : style;
                 var delay = i * 400;
                 t.attr("style", style +
                     ";-webkit-animation-delay:" + delay + "ms;"
@@ -517,7 +517,7 @@ jQuery(document).ready(function ($) {
         }
     });
     $(document).on('click', 'a.backtotop', function () {
-        $('html, body').animate({scrollTop: 0}, 800);
+        $('html, body').animate({ scrollTop: 0 }, 800);
     });
     //---------------------------Price filter----------------------
     $('.slider-range-price').each(function () {
@@ -555,13 +555,13 @@ jQuery(document).ready(function ($) {
         if (step === 'any' || step === '' || step === undefined || parseFloat(step) === 'NaN') step = 1;
         // Change the value
         if ($(this).is('.quantity-plus')) {
-            if (max && ( max == currentVal || currentVal > max )) {
+            if (max && (max == currentVal || currentVal > max)) {
                 $qty.val(max);
             } else {
                 $qty.val(currentVal + parseFloat(step));
             }
         } else {
-            if (min && ( min == currentVal || currentVal < min )) {
+            if (min && (min == currentVal || currentVal < min)) {
                 $qty.val(min);
             } else if (currentVal > 0) {
                 $qty.val(currentVal - parseFloat(step));
@@ -570,8 +570,11 @@ jQuery(document).ready(function ($) {
         // Trigger change event
         $qty.trigger('change');
         e.preventDefault();
+        subtotal($qty);
+        totalprice();
+        updateorder();
     });
-//------------------------EQUAL ELEM----------------------------
+    //------------------------EQUAL ELEM----------------------------
     function better_equal_elems() {
         setTimeout(function () {
             $('.equal-container').each(function () {
@@ -599,7 +602,7 @@ jQuery(document).ready(function ($) {
     $(window).on("resize", function () {
         better_equal_elems();
     });
-// ------------------owl-thumbs-----------------------------------------------
+    // ------------------owl-thumbs-----------------------------------------------
     init_carousel();
     function init_carousel() {
         //owl has thumbs 
@@ -739,10 +742,10 @@ jQuery(document).ready(function ($) {
                     container_offset = container.offset();
                     setTimeout(function () {
                         $('.main-menu .menu-item-has-children').each(function (index, element) {
-                            $(element).children('.mega-menu').css({'width': container_width + 'px'});
+                            $(element).children('.mega-menu').css({ 'width': container_width + 'px' });
                             var sub_menu_width = parseFloat($(element).children('.mega-menu').outerWidth());
                             var item_width = parseFloat($(element).outerWidth());
-                            $(element).children('.mega-menu').css({'left': '-' + (sub_menu_width / 2 - item_width / 2) + 'px'});
+                            $(element).children('.mega-menu').css({ 'left': '-' + (sub_menu_width / 2 - item_width / 2) + 'px' });
                             var container_left = container_offset.left;
                             var container_right = (container_left + container_width);
                             var item_left = $(element).offset().left;
@@ -750,12 +753,12 @@ jQuery(document).ready(function ($) {
                             var overflow_right = ((sub_menu_width / 2 + item_left) > container_right);
                             if (overflow_left) {
                                 var left = (item_left - container_left);
-                                $(element).children('.mega-menu').css({'left': -left + 'px'});
+                                $(element).children('.mega-menu').css({ 'left': -left + 'px' });
                             }
                             if (overflow_right && !overflow_left) {
                                 var left = (item_left - container_left);
-                                left = left - ( container_width - sub_menu_width );
-                                $(element).children('.mega-menu').css({'left': -left + 'px'});
+                                left = left - (container_width - sub_menu_width);
+                                $(element).children('.mega-menu').css({ 'left': -left + 'px' });
                             }
                         })
                     }, 100);
@@ -796,9 +799,9 @@ jQuery(document).ready(function ($) {
         quickview_popup();
         tanajil_mobile_block();
         tanajil_remove_class_review();
-        tanajil_custom_scrollbar()
+        tanajil_custom_scrollbar();
     });
-    tanajil_masonry()
+    tanajil_masonry();
     tanajil_dropdown();
     tanajil_init_carousel();
     tanajil_remove_class_review();

@@ -33,10 +33,12 @@ namespace IStore_WEB_.Controllers
         }
 
         [HttpPost]
-        public async Task GetCharacteristic(string parameters)
+        public async Task GetCharacteristicAsync(string parameters)
         {
-            await _groupCharacteristicService.SaveAllFromAdminAsync(JsonConvert.DeserializeObject<List<GroupCharacteristic>>(parameters));            
+            await _groupCharacteristicService.SaveGroupAsync((IEnumerable<GroupCharacteristic>)JsonConvert
+                .DeserializeObject<List<GroupCharacteristic>>(parameters));            
         }
 
+        
     }
 }

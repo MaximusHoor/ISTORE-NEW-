@@ -44,7 +44,7 @@ namespace Business.Service
             return await _unitOfWork.GroupCharacteristicRepository.GetByIdAsync(id);
         }
 
-        public async Task SaveAllFromAdminAsync(List<GroupCharacteristic> groups)  //void?
+        public async Task SaveGroupAsync(IEnumerable<GroupCharacteristic> groups)  
         {
             foreach(var group in groups)
             {

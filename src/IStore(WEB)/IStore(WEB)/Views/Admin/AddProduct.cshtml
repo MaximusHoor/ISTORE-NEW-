@@ -1,0 +1,266 @@
+﻿
+@{
+    Layout = null;
+    ViewData["Title"] = "AddProduct";
+}
+
+<style>
+
+    .box {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        align-content: flex-start;
+        margin: 20px;
+        width: 1200px;
+    }
+
+    .box1, box2, .box3 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .title, .type, .vendorCode, .description, .retailPrice, .series, .model, .rating, .warrantyMonth {
+        margin: 10px;
+    }
+
+    label, button {
+        margin: 5px;
+    }
+</style>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+<script>
+
+    $(function () {
+
+        
+
+        $(".save").click(function () {
+
+            var product = new Object();
+
+            product.Id = 0;
+            var d = $(".title").val();
+            product.Title = $(".title").val();
+            product.Type = $(".type").val();
+            product.VendorCode = $(".vendorCode").val();
+            product.Description = $(".description").val();
+
+            var br = new Object();
+            br.Id = 0;
+            br.Name = $(".brand").val();
+           
+            product.Brand = br; //
+            product.RetailPrice = $(".retailPrice").val();
+            product.PreviewImage = $(".previewImage").val(); //
+
+            var img = [];
+
+            $(".imgcoll").each(function () {
+
+                var imgItem = new Object();
+                imgItem.Id = 0;
+                imgItem.FilePath = $(this).val();
+
+                img.push(imgItem);
+
+            });
+
+            product.Images = img;
+
+            var cat = new Object();
+            cat.Id = 0;
+            cat.Title = $(".category").val();
+           
+            product.Category = cat;
+
+            var pack = new Object();
+
+            pack.Id = 0;
+            pack.CountInPackage = $(".countInPackage").val();
+            pack.Volume = $(".volume").val();
+            pack.Weight =  $(".weight").val();
+
+            product.Package = pack;
+
+           var groups = [];
+
+            var groupsElements = $(".tableBox");
+
+            $(groupsElements).each(function (){
+                var characteristics = [];
+
+                
+
+                $(this).find(".innerBox").each(function () {
+
+                    var charact = new Object();
+                    charact.Id = 0;
+                    charact.Title = $(this).find(".title").val();
+                    charact.Value = $(this).find(".value").val();
+                    charact.GroupCharacteristicId = 0;
+
+                    characteristics.push(charact);
+                });
+
+                var group = new Object();
+                group.Title = $(this).find('td').find(".titleGroup").val();
+                group.ProductId = 0;
+                group.Characteristics = characteristics;
+                group.Id = 0;
+
+                groups.push(group);
+
+            });
+
+            product.GroupCharacteristics = groups;
+            product.CountInStorage = $(".countInStorage").val();
+            product.Rating = $(".rating").val();
+            product.WarrantyMonth = $(".warrantyMonth").val();
+            product.Series = $(".series").val();
+            product.Model = $(".model").val();
+
+            var formData = new FormData();
+            formData.append('file', $('.previewImage')[0].files[0]);
+            formData.append('product', JSON.stringify(product));
+        
+
+            $.ajax({
+                type: "POST",
+                url: "/admin/SaveProduct",
+                data: formData,
+                processData: false, 
+                contentType: false,
+            });
+
+
+        });
+
+    });
+
+</script>
+
+
+<h4>New product</h4>
+<hr />
+<div class="box" style="background-color:lightgray">
+    <div class="box1">
+
+        @Html.Label("Title")
+        @Html.Editor("editor", new { htmlAttributes = new { @class = "title" } })
+        @Html.Label("Type")
+        @Html.Editor("editor", new { htmlAttributes = new { @class = "type" } })
+
+        @Html.Label("Category")
+        @Html.DropDownList("Categories",
+                 new SelectList(ViewBag.Categories),
+                 new { @class = "category" })
+
+        <button>New Category</button>
+
+    </div>
+</div>
+<div class="box" style="background-color:lightblue">
+    <div class="box2">
+        @Html.Label("VendorCode")
+        @Html.Editor("editor", new { htmlAttributes = new { @class = "vendorCode" } })
+        @Html.Label("Description")
+        @Html.Editor("editor", new { htmlAttributes = new { @class = "description" } })
+        @Html.Label("RetailPrice")
+        @Html.Editor("editor", new { htmlAttributes = new { @class = "retailPrice" } })
+        @Html.Label("Series")
+        @Html.Editor("editor", new { htmlAttributes = new { @class = "series" } })
+    </div>
+
+</div>
+
+<div class="box" style="background-color:lightgoldenrodyellow">
+    <div class="box2">
+        @Html.Label("Model")
+        @Html.Editor("editor", new { htmlAttributes = new { @class = "model" } })
+        @Html.Label("Rating")
+        @Html.Editor("editor", new { htmlAttributes = new { @class = "rating" } })
+        @Html.Label("Warranty month")
+        @Html.Editor("editor", new { htmlAttributes = new { @class = "warrantyMonth" } })
+        @Html.Label("Count in storage")
+        @Html.Editor("editor", new { htmlAttributes = new { @class = "countInStorage" } })
+    </div>
+
+</div>
+
+
+
+<div class="box" style="background-color:lightcyan">
+
+    <div class="box1">
+
+        @Html.Label("Preview image")
+        @Html.Editor("editor", new { htmlAttributes = new { @class = "previewImage", @type = "file" } })
+        <br>
+        @Html.Label("Images")
+        @await Html.PartialAsync("ImagePartialView")
+
+    </div>
+
+    <div class="box2">
+
+        @Html.Label("Brand")
+        @Html.DropDownList("Brands",
+                 new SelectList(ViewBag.Brands),
+                 new { @class = "brand" })
+
+        <button>New Brand</button>
+
+    </div>
+
+</div>
+
+<div class="box" style="background-color:lightskyblue">
+
+    <div class="box1">
+
+        @Html.Label("Сount in package")
+        @Html.Editor("editor", new { htmlAttributes = new { @class = "countInPackage", @type = "number" } })
+        @Html.Label("Packing volume")
+        @Html.Editor("editor", new { htmlAttributes = new { @class = "volume", @type = "number" } })
+        @Html.Label("Packing weight")
+        @Html.Editor("editor", new { htmlAttributes = new { @class = "weight", @type = "number" } })
+
+    </div>
+
+</div>
+
+
+<div class="box" style="background-color:lavender">
+    <div class="box1">
+
+        @await Html.PartialAsync("AddCharacteristicPartialView")
+
+    </div>
+
+</div>
+
+<div class="box">
+    <div class="box1">
+
+        <button class="save">Save</button>
+
+    </div>
+
+</div>
+
+
+
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@*@section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }*@

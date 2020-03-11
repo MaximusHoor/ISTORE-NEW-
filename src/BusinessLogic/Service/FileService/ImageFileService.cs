@@ -63,6 +63,55 @@ namespace Business.Service.FileService
             }
         }
 
+
+        public async Task<string> Save(IFormFile image)
+        {
+            string filePath = "";
+
+            if (Directory.GetDirectories($"{_mainCatalog}").Length == 0)
+            {
+                Directory.CreateDirectory($"{_mainCatalog}{_alphabet[0]}\\");
+                Directory.CreateDirectory($"{_mainCatalog}{_alphabet[0]}\\{_alphabet[0]}{_alphabet[0]}\\");
+            }
+
+            
+                var directory = GetLastFolder();
+                var filesInLastFolders = Directory.GetFiles(directory);
+
+                if (filesInLastFolders.Length <= 99)
+                {
+                   filePath = await SaveFile(image, directory);
+                }
+                else
+                {
+                    var name = directory.Substring(directory.LastIndexOf("\\") + 1);
+
+                    var letterIndexOne = _alphabet.IndexOf(name[0].ToString());
+                    var letterIndexTwo = _alphabet.IndexOf(name[1].ToString());
+
+                    if (letterIndexTwo == _alphabet.Count - 1)
+                    {
+                        Directory.CreateDirectory($"{_mainCatalog}{_alphabet[letterIndexOne]}\\{_alphabet[letterIndexOne]}{_alphabet[letterIndexTwo + 1]}\\");
+
+                        directory = GetLastFolder();
+
+                        filePath = await SaveFile(image, directory);
+                    }
+                    else
+                    {
+                        Directory.CreateDirectory($"{_mainCatalog}{_alphabet[letterIndexOne + 1]}\\");
+                        Directory.CreateDirectory($"{_mainCatalog}{_alphabet[letterIndexOne + 1]}\\{_alphabet[letterIndexOne + 1]}{_alphabet[0]}\\");
+
+                        directory = GetLastFolder();
+
+                        filePath = await SaveFile(image, directory);
+                    }
+                }
+
+            return filePath;
+        }
+
+
         private string GetLastFolder()
         {
             var directory = Directory.GetDirectories(_mainCatalog);
@@ -71,17 +120,51 @@ namespace Business.Service.FileService
             return folders[folders.Length - 1];
         }
 
-        private async Task SaveFile(IFormFile file, string path)
+        //private async Task SaveFile(IFormFile file, string path)
+        //{
+        //    using (var ms = new MemoryStream())
+        //    {
+        //        var fileExtension = file.FileName.Substring(file.FileName.IndexOf('.'));
+        //        await file.CopyToAsync(ms);
+        //        var fileBytes = ms.ToArray();
+        //        await File.WriteAllBytesAsync($"{path}\\{Guid.NewGuid()}{fileExtension}", fileBytes);
+        //    }
+        //}
+
+        private async Task<string> SaveFile(IFormFile file, string path)
         {
+            var fileExtension = file.FileName.Substring(file.FileName.IndexOf('.'));
             using (var ms = new MemoryStream())
             {
-                var fileExtension = file.FileName.Substring(file.FileName.IndexOf('.'));
                 await file.CopyToAsync(ms);
                 var fileBytes = ms.ToArray();
                 await File.WriteAllBytesAsync($"{path}\\{Guid.NewGuid()}{fileExtension}", fileBytes);
             }
+
+            return $"{path}\\{Guid.NewGuid()}{fileExtension}";
         }
 
-        
+        //private async Task<string> SaveFile(string filePath, string path)
+        //{
+        //    using (var ms = new MemoryStream())
+        //    {
+        //        try
+        //        {
+        //            using (FileStream file = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+        //            {
+        //                await file.CopyToAsync(ms);
+        //            }
+        //        } catch(Exception ex)
+        //        {
+
+        //        }
+                   
+        //        var fileExtension = filePath.Substring(filePath.IndexOf('.'));               
+        //        var fileBytes = ms.ToArray();
+        //        await File.WriteAllBytesAsync($"{path}\\{Guid.NewGuid()}{fileExtension}", fileBytes);
+
+        //        return $"{path}\\{Guid.NewGuid()}{fileExtension}";
+        //    }
+        //}
     }
 }

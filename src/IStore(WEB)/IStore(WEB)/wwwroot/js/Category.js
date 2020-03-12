@@ -16,8 +16,8 @@
                 }
             });
         },
-        error: function () {
-            alert("AjaxError");
-        }
+        //error: function () {
+        //    alert("AjaxError");
+        //}
     });
 });

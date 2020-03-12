@@ -4,7 +4,16 @@
     ViewData["Title"] = "AddProduct";
 }
 
+    <link href="https://fonts.googleapis.com/css?family=Muli&display=swap" rel="stylesheet">
+
 <style>
+
+    .allelements {
+        font-family: 'Muli', sans-serif;
+        /*overflow-y: scroll; 
+        height: 500px; 
+        overflow-y:hidden;*/
+    }
 
     .box {
         display: flex;
@@ -13,6 +22,10 @@
         align-content: flex-start;
         margin: 20px;
         width: 1200px;
+        border: 0.5px solid darkgray;
+        border-radius: 5px;
+        background-color: #fbf8f8;
+        padding: 8px;
     }
 
     .box1, box2, .box3 {
@@ -28,6 +41,51 @@
     label, button {
         margin: 5px;
     }
+
+    input[type=text] {
+        border: 0.5px solid darkgray;
+        border-radius: 5px;
+    }
+
+    input[type=file] {
+        border: 0.5px solid darkgray;
+        border-radius: 5px;
+        margin-right:20px;
+        font-size:small;
+    }
+
+    input[type=number] {
+        border: 0.5px solid darkgray;
+        border-radius: 5px;
+        margin-right: 20px;
+        font-size: small;
+        width:100px;
+        height:30px;
+    }
+
+    select {
+        border: 0.5px solid darkgray;
+        border-radius: 5px;
+        margin-right: 20px;
+        font-size: small;
+        width: 100px;
+        height: 30px;
+        background-color:beige;
+        margin-right: 15px;
+    }
+
+    img {
+        max-width: 100px;
+        max-height: 100px;
+        border-radius: 10px;
+        margin-bottom: 5px;
+        margin-right: 50px;
+    }
+
+    button {
+        margin-left: 15px;
+    }
+
 </style>
 
 
@@ -38,7 +96,57 @@
 
     $(function () {
 
-        
+        $(".previewImage").change(function (e) {
+
+            var file = $(this)[0].files[0];
+            var reader = new FileReader();
+
+            if(this.files[0].size > 12000){
+                    alert("File is too big!");
+                this.value = "";
+                e.preventDefault();
+                return;
+            };
+
+
+
+
+            reader.onload = function () {
+                $(".previewImageView").attr("src", reader.result);
+                
+            };
+           
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+            else {
+                    preview.src = "";
+            };
+
+        });
+
+        $(".imgcoll").change(function () {
+
+            var file = $(this)[0].files[0];
+            var reader = new FileReader();
+
+            var element = $(this);
+
+            reader.onload = function () {
+                $(element).next().attr("src", reader.result);
+            };
+           
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+            else {
+                    preview.src = "";
+            };
+
+        });
+
+
+
 
         $(".save").click(function () {
 
@@ -138,119 +246,136 @@
 
 <h4>New product</h4>
 <hr />
-<div class="box" style="background-color:lightgray">
-    <div class="box1">
+<div class="allelements">
+    <div class="box">
+        <div class="box1">
 
-        @Html.Label("Title")
-        @Html.Editor("editor", new { htmlAttributes = new { @class = "title" } })
-        @Html.Label("Type")
-        @Html.Editor("editor", new { htmlAttributes = new { @class = "type" } })
+            @Html.Label("Title")
+            @Html.Editor("editor", new { htmlAttributes = new { @class = "title" } })
+            @Html.Label("Type")
+            @Html.Editor("editor", new { htmlAttributes = new { @class = "type" } })
+            @Html.Label("Model")
+            @Html.Editor("editor", new { htmlAttributes = new { @class = "model" } })
+            @Html.Label("VendorCode")
+            @Html.Editor("editor", new { htmlAttributes = new { @class = "vendorCode" } })
 
-        @Html.Label("Category")
-        @Html.DropDownList("Categories",
-                 new SelectList(ViewBag.Categories),
-                 new { @class = "category" })
-
-        <button>New Category</button>
-
-    </div>
-</div>
-<div class="box" style="background-color:lightblue">
-    <div class="box2">
-        @Html.Label("VendorCode")
-        @Html.Editor("editor", new { htmlAttributes = new { @class = "vendorCode" } })
-        @Html.Label("Description")
-        @Html.Editor("editor", new { htmlAttributes = new { @class = "description" } })
-        @Html.Label("RetailPrice")
-        @Html.Editor("editor", new { htmlAttributes = new { @class = "retailPrice" } })
-        @Html.Label("Series")
-        @Html.Editor("editor", new { htmlAttributes = new { @class = "series" } })
+        </div>
     </div>
 
-</div>
+    <div class="box">
+        <div class="box1">
 
-<div class="box" style="background-color:lightgoldenrodyellow">
-    <div class="box2">
-        @Html.Label("Model")
-        @Html.Editor("editor", new { htmlAttributes = new { @class = "model" } })
-        @Html.Label("Rating")
-        @Html.Editor("editor", new { htmlAttributes = new { @class = "rating" } })
-        @Html.Label("Warranty month")
-        @Html.Editor("editor", new { htmlAttributes = new { @class = "warrantyMonth" } })
-        @Html.Label("Count in storage")
-        @Html.Editor("editor", new { htmlAttributes = new { @class = "countInStorage" } })
-    </div>
+            @Html.Label("Category")
+            @Html.DropDownList("Categories",
+                     new SelectList(ViewBag.Categories),
+                     new { @class = "category" })
 
-</div>
+            <button>New Category</button>
 
+        </div>
 
+        <div class="box2">
 
-<div class="box" style="background-color:lightcyan">
+            @Html.Label("Brand")
+            @Html.DropDownList("Brands",
+                     new SelectList(ViewBag.Brands),
+                     new { @class = "brand" })
 
-    <div class="box1">
+            <button>New Brand</button>
 
-        @Html.Label("Preview image")
-        @Html.Editor("editor", new { htmlAttributes = new { @class = "previewImage", @type = "file" } })
-        <br>
-        @Html.Label("Images")
-        @await Html.PartialAsync("ImagePartialView")
+        </div>
 
     </div>
 
-    <div class="box2">
+    <div class="box">
+        <div class="box2">
 
-        @Html.Label("Brand")
-        @Html.DropDownList("Brands",
-                 new SelectList(ViewBag.Brands),
-                 new { @class = "brand" })
-
-        <button>New Brand</button>
-
-    </div>
-
-</div>
-
-<div class="box" style="background-color:lightskyblue">
-
-    <div class="box1">
-
-        @Html.Label("Сount in package")
-        @Html.Editor("editor", new { htmlAttributes = new { @class = "countInPackage", @type = "number" } })
-        @Html.Label("Packing volume")
-        @Html.Editor("editor", new { htmlAttributes = new { @class = "volume", @type = "number" } })
-        @Html.Label("Packing weight")
-        @Html.Editor("editor", new { htmlAttributes = new { @class = "weight", @type = "number" } })
+            @Html.Label("Description")
+            @Html.Editor("editor", new { htmlAttributes = new { @class = "description" } })
+            @Html.Label("RetailPrice")
+            @Html.Editor("editor", new { htmlAttributes = new { @class = "retailPrice", @type = "number" } })
+            @Html.Label("Series")
+            @Html.Editor("editor", new { htmlAttributes = new { @class = "series" } })
+        </div>
 
     </div>
 
-</div>
+    <div class="box">
+        <div class="box2">
 
-
-<div class="box" style="background-color:lavender">
-    <div class="box1">
-
-        @await Html.PartialAsync("AddCharacteristicPartialView")
-
-    </div>
-
-</div>
-
-<div class="box">
-    <div class="box1">
-
-        <button class="save">Save</button>
+            @Html.Label("Rating")
+            @Html.Editor("editor", new { htmlAttributes = new { @class = "rating", @type = "number" } })
+            @Html.Label("Warranty month")
+            @Html.Editor("editor", new { htmlAttributes = new { @class = "warrantyMonth", @type = "number" } })
+        </div>
 
     </div>
 
+
+
+    <div class="box">
+
+        <div class="box1">
+
+            @Html.Label("Preview image")
+            @Html.Editor("editor", new { htmlAttributes = new { @class = "previewImage", @type = "file", @accept=".png" } })
+            <img class="previewImageView" />
+            <br>
+            @Html.Label("Images")
+            @await Html.PartialAsync("ImagePartialView")
+
+        </div>
+
+
+
+    </div>
+
+    <div class="box">
+
+        <div class="box1">
+
+            @Html.Label("Count in storage")
+            @Html.Editor("editor", new { htmlAttributes = new { @class = "countInStorage", @type = "number" } })
+
+        </div>
+
+        <div class="box2">
+
+            @Html.Label("Сount in package")
+            @Html.Editor("editor", new { htmlAttributes = new { @class = "countInPackage", @type = "number" } })
+            @Html.Label("Packing volume")
+            @Html.Editor("editor", new { htmlAttributes = new { @class = "volume", @type = "number" } })
+            @Html.Label("Packing weight")
+            @Html.Editor("editor", new { htmlAttributes = new { @class = "weight", @type = "number" } })
+
+        </div>
+
+    </div>
+
+
+    <div class="box">
+        <div class="box1">
+
+            @await Html.PartialAsync("AddCharacteristicPartialView")
+
+        </div>
+
+    </div>
 </div>
 
+    <div class="box">
+        <div class="box1">
+
+            <button class="save">Save</button>
+
+        </div>
+
+    </div>
 
 
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
-@*@section Scripts {
-        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    }*@
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+

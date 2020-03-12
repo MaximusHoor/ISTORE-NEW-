@@ -6,12 +6,14 @@ using Business.Service;
 using Business.Service.FileService;
 using Business.Service.Interfaces;
 using Domain.EF_Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
 namespace IStore_WEB_.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class AdminController : Controller
     {
         private readonly GroupCharacteristicService _groupCharacteristicService;
@@ -31,6 +33,7 @@ namespace IStore_WEB_.Controllers
             _imageService = imageService;
         }
 
+        //[AllowAnonymous]
         public IActionResult Index()
         {
             return View();

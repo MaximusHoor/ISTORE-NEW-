@@ -50,7 +50,7 @@ namespace DataAccessTest.Repository
             // Assert
             Assert.AreNotEqual(0, image.Id, "Creating new record does not return id");
 
-            return (image.Id, image.ProductId);
+            return (image.Id, image.Id);
         }
 
         private async Task Update(int id)

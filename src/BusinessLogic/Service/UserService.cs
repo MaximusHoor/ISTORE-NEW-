@@ -22,12 +22,12 @@ namespace Business.Service
             return await _unitOfWork.UserRepository.FindAllUsersAllIncludedAsync();
         }
 
-        public async Task<User> GetUserAsync(int id)
+        public async Task<User> GetUserAsync(string id)
         {
             return await _unitOfWork.UserRepository.GetUserAllIncludedAsync(x => x.Id == id);
         }
 
-        public async Task<IReadOnlyCollection<User>> GetUserAllIncludedAsync(int id)
+        public async Task<IReadOnlyCollection<User>> GetUserAllIncludedAsync(string id)
         {
             return await _unitOfWork.UserRepository.FindUserByConditionAllIncludedAsync(x => x.Id == id);
         }

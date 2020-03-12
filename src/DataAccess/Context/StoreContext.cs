@@ -1,10 +1,11 @@
 ﻿using Domain.EF_Models;
 using Microsoft.EntityFrameworkCore;
 using System;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Domain.Context
 {
-    public class StoreContext : DbContext
+    public class StoreContext : IdentityDbContext<User>
     {
         public StoreContext(DbContextOptions<StoreContext> options) : base(options)
         {
@@ -224,15 +225,8 @@ namespace Domain.Context
                 new OrderDetails { Id = 3, Count = 5, OrderId = 1, ProductId = 3 }
                 }
                 );
-            modelBuilder.Entity<User>().HasData(
-                new User
-                {
-                    Id = 1,
-                    FirstName = "Some FirstName",
-                    LastName = "Some LastName",
-                    PhoneNumber = "Some phone",
-                    Email = "Some email"
-                });
+
+            base.OnModelCreating(modelBuilder);
 
         }
 

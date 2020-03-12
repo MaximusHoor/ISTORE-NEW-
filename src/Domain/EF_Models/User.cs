@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity;
 
 namespace Domain.EF_Models
 {
-    public class User /*: IdentityUser*/
+    public class User : IdentityUser
     {
-        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string PhoneNumber { get; set; }

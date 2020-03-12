@@ -9,8 +9,8 @@ namespace Business.Service.Interfaces
     {
         Task<IReadOnlyCollection<User>> GetAllUsersAsync();
         Task<IReadOnlyCollection<User>> GetUsersAllIncludedAsync();
-        Task<User> GetUserAsync(int id);
-        Task<IReadOnlyCollection<User>> GetUserAllIncludedAsync(int id);
+        Task<User> GetUserAsync(string id);
+        Task<IReadOnlyCollection<User>> GetUserAllIncludedAsync(string id);
         Task<OperationDetail> CreateUserAsync(User user);
     }
 }

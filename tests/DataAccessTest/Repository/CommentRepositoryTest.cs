@@ -50,7 +50,7 @@ namespace DomainTest.Repository
                 Id = _id,
                 Text = _text,
                 Product = new Product { Id = _id },
-                User = new User { Id = _userId.Value },
+                //User = new User { Id = _userId.Value },
                 Like = _like,
                 Dislike = _dislike,
                 UserId = _userId.Value

@@ -49,7 +49,7 @@ namespace DataAccessTest.Repository
                 Date = _date,
                 Total = _total,
                 UserId = _userId,
-                User = new User() { Id = (int)_userId },
+                //User = new User() { Id = (int)_userId },
                 DeliveryId = _deliveryId,
                 Delivery = new Delivery() { Id = (int)_deliveryId },
                 DeliveryStatus = _deliveryStatus,

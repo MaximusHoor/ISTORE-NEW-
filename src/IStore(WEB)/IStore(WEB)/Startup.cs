@@ -1,7 +1,12 @@
 using Business.Infrastructure;
+using Business.Service;
+using Domain.Context;
+using Domain.EF_Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting; //using Business.Service;
 
@@ -20,10 +25,22 @@ namespace IStore_WEB_
         public void ConfigureServices(IServiceCollection services)
         {
             BusinessConfiguration.ConfigureServices(services, Configuration);
-            //services.AddControllers().AddNewtonsoftJson(options =>
-            //options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-            //services.AddTransient(typeof(UserSerive));
+            services.AddControllers().AddNewtonsoftJson(options =>
+            options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+            services.AddTransient(typeof(UserService));
             services.AddControllersWithViews();
+            services.AddIdentity<User, IdentityRole>(op =>
+            {
+                op.Password.RequireDigit = false;
+                op.Password.RequireLowercase = false;
+                op.Password.RequireNonAlphanumeric = false;
+                op.Password.RequireUppercase = false;
+                op.Password.RequiredLength = 6;
+                op.Password.RequiredUniqueChars = 0;
+
+            }).AddEntityFrameworkStores<StoreContext>();
+
+            services.AddAuthentication().AddCookie(op => op.LoginPath = "/login");
 
         }
 
@@ -48,6 +65,7 @@ namespace IStore_WEB_
 
             app.UseAuthorization();
 
+         
 
             app.UseEndpoints(endpoints =>
             {

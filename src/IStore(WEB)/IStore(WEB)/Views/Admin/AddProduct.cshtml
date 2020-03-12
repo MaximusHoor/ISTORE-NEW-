@@ -57,21 +57,6 @@
            
             product.Brand = br; //
             product.RetailPrice = $(".retailPrice").val();
-            product.PreviewImage = $(".previewImage").val(); //
-
-            var img = [];
-
-            $(".imgcoll").each(function () {
-
-                var imgItem = new Object();
-                imgItem.Id = 0;
-                imgItem.FilePath = $(this).val();
-
-                img.push(imgItem);
-
-            });
-
-            product.Images = img;
 
             var cat = new Object();
             cat.Id = 0;
@@ -127,6 +112,11 @@
 
             var formData = new FormData();
             formData.append('file', $('.previewImage')[0].files[0]);
+
+            $(".imgcoll").each(function () {
+                formData.append('file', $(this)[0].files[0]);
+            });
+
             formData.append('product', JSON.stringify(product));
         
 

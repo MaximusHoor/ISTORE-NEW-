@@ -75,37 +75,36 @@ namespace IStore_WEB_.Controllers
         [HttpPost]
         public async Task SaveProduct(IFormCollection formCode) 
         {
-            var file = formCode.Files[0];
-            
+                      
             var product = JsonConvert.DeserializeObject<Product>((formCode).ToList()[0].Value);
 
-            product.PreviewImage = await _fileService.Save(file);
+            product.PreviewImage = await _fileService.Save(formCode.Files[0]);
+
+           for (int i = 1; i < formCode.Files.Count; i++)
+           {
+                product.Images.Add(new Image() {FilePath= await _fileService.Save(formCode.Files[i]), Product = product });
+           }
+
+            var category = (await _categoryService.FindByConditionAsync(x => x.Title == product.Category.Title)).FirstOrDefault();
+
+            if (category != null)
+                product.Category = category;
+            else
+                await _categoryService.CreateAsync(product.Category);
+
+            var brand = (await _brandService.FindByConditionAsync(x => x.Name == product.Brand.Name)).FirstOrDefault();
+
+            if (brand != null)
+                product.Brand = brand;
+            else
+                await _brandService.CreateAsync(product.Brand);
 
 
-            //var viewProduct = JsonConvert.DeserializeObject<Product>(parameters);
+            //group
 
-            //var category = (await _categoryService.FindByConditionAsync(x=>x.Title== viewProduct.Category.Title)).FirstOrDefault();
+            await _productService.CreateAsync(product);
 
-            //if (category != null)           
-            //    viewProduct.Category = category;            
-            //else            
-            //    await _categoryService.CreateAsync(viewProduct.Category);
-
-            //var brand = (await _brandService.FindByConditionAsync(x => x.Name == viewProduct.Brand.Name)).FirstOrDefault();
-
-            //if (brand != null)
-            //    viewProduct.Brand = brand;
-            //else
-            //    await _brandService.CreateAsync(viewProduct.Brand);
-
-            //viewProduct.PreviewImage =  await _fileService.Save(viewProduct.PreviewImage);
-
-            //foreach(var item in viewProduct.Images)
-            //    item.FilePath = await _fileService.Save(item.FilePath);
-
-            ////group
-
-            //await _productService.CreateAsync(viewProduct);
+            var test = product;
         }
     }
 }

@@ -108,7 +108,10 @@ namespace Business.Service.FileService
                     }
                 }
 
-            return filePath;
+            var index = filePath.IndexOf("Content");
+            var result = $"/{filePath.Substring(index)}".Replace("\\", "/");
+
+            return result;
         }
 
 
@@ -120,51 +123,19 @@ namespace Business.Service.FileService
             return folders[folders.Length - 1];
         }
 
-        //private async Task SaveFile(IFormFile file, string path)
-        //{
-        //    using (var ms = new MemoryStream())
-        //    {
-        //        var fileExtension = file.FileName.Substring(file.FileName.IndexOf('.'));
-        //        await file.CopyToAsync(ms);
-        //        var fileBytes = ms.ToArray();
-        //        await File.WriteAllBytesAsync($"{path}\\{Guid.NewGuid()}{fileExtension}", fileBytes);
-        //    }
-        //}
-
         private async Task<string> SaveFile(IFormFile file, string path)
         {
             var fileExtension = file.FileName.Substring(file.FileName.IndexOf('.'));
+            var guid = Guid.NewGuid();
+
             using (var ms = new MemoryStream())
             {
                 await file.CopyToAsync(ms);
-                var fileBytes = ms.ToArray();
-                await File.WriteAllBytesAsync($"{path}\\{Guid.NewGuid()}{fileExtension}", fileBytes);
+                var fileBytes = ms.ToArray();                
+                await File.WriteAllBytesAsync($"{path}\\{guid}{fileExtension}", fileBytes);
             }
 
-            return $"{path}\\{Guid.NewGuid()}{fileExtension}";
+            return $"{path}\\{guid}{fileExtension}";
         }
-
-        //private async Task<string> SaveFile(string filePath, string path)
-        //{
-        //    using (var ms = new MemoryStream())
-        //    {
-        //        try
-        //        {
-        //            using (FileStream file = new FileStream(filePath, FileMode.Open, FileAccess.Read))
-        //            {
-        //                await file.CopyToAsync(ms);
-        //            }
-        //        } catch(Exception ex)
-        //        {
-
-        //        }
-                   
-        //        var fileExtension = filePath.Substring(filePath.IndexOf('.'));               
-        //        var fileBytes = ms.ToArray();
-        //        await File.WriteAllBytesAsync($"{path}\\{Guid.NewGuid()}{fileExtension}", fileBytes);
-
-        //        return $"{path}\\{Guid.NewGuid()}{fileExtension}";
-        //    }
-        //}
     }
 }

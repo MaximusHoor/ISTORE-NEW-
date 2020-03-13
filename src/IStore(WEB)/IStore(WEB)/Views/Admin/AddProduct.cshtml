@@ -108,6 +108,15 @@
                 return;
             };
 
+             if(this.files[0].type != "image/png"){
+                    alert("File format not supported! Required .png");
+                this.value = "";
+                e.preventDefault();
+                return;
+            };
+
+
+
             reader.onload = function () {
                 $(".previewImageView").attr("src", reader.result);               
             };
@@ -138,6 +147,12 @@
                 return;
             };
 
+            if(this.files[0].type != "image/png"){
+                    alert("File format not supported! Required .png");
+                this.value = "";
+                e.preventDefault();
+                return;
+            };
 
             var element = $(this);
 

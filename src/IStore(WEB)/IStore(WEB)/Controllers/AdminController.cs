@@ -13,7 +13,7 @@ using Newtonsoft.Json;
 
 namespace IStore_WEB_.Controllers
 {
-    [Authorize(Roles = "admin")]
+    //[Authorize(Roles = "admin")]
     public class AdminController : Controller
     {
         private readonly GroupCharacteristicService _groupCharacteristicService;
@@ -78,14 +78,18 @@ namespace IStore_WEB_.Controllers
         [HttpPost]
         public async Task SaveProduct(IFormCollection formCode) 
         {
-                      
-            var product = JsonConvert.DeserializeObject<Product>((formCode).ToList()[0].Value);
+            Product product = null;
+            if (formCode.Files.Count <=1)
+                product = JsonConvert.DeserializeObject<Product>((formCode).ToList()[1].Value);
+            else
+                product = JsonConvert.DeserializeObject<Product>((formCode).ToList()[0].Value);
 
-            product.PreviewImage = await _fileService.Save(formCode.Files[0]);
-
+            product.PreviewImage = await _fileService.Save(await _imageService.ImageResizeAsync(formCode.Files[0], ".png", 20000, 300, 300));
+            
            for (int i = 1; i < formCode.Files.Count; i++)
            {
-                product.Images.Add(new Image() {FilePath= await _fileService.Save(formCode.Files[i]), Product = product });
+                var image = await _imageService.ImageResizeAsync(formCode.Files[i], ".png", 100000, 650, 650);
+                product.Images.Add(new Image() {FilePath= await _fileService.Save(image), Product = product });
            }
 
             var category = (await _categoryService.FindByConditionAsync(x => x.Title == product.Category.Title)).FirstOrDefault();
@@ -102,12 +106,9 @@ namespace IStore_WEB_.Controllers
             else
                 await _brandService.CreateAsync(product.Brand);
 
-
             //group
 
             await _productService.CreateAsync(product);
-
-            var test = product;
         }
     }
 }

@@ -101,20 +101,21 @@
             var file = $(this)[0].files[0];
             var reader = new FileReader();
 
-            if(this.files[0].size > 12000){
+            if(this.files[0].size > 20000){ //12
                     alert("File is too big!");
                 this.value = "";
                 e.preventDefault();
                 return;
             };
 
-
-
-
             reader.onload = function () {
-                $(".previewImageView").attr("src", reader.result);
-                
+                $(".previewImageView").attr("src", reader.result);               
             };
+
+            //
+            //$('.previewImageView').on('load', function () {
+            //    alert($(this).width() + '*' + $(this).height());
+            //});
            
             if (file) {
                 reader.readAsDataURL(file);
@@ -129,6 +130,14 @@
 
             var file = $(this)[0].files[0];
             var reader = new FileReader();
+
+             if(this.files[0].size > 100000){ //12
+                    alert("File is too big!");
+                this.value = "";
+                e.preventDefault();
+                return;
+            };
+
 
             var element = $(this);
 

@@ -127,7 +127,7 @@ namespace IStore_WEB_.Controllers
                 PreviewImage = await _fileService.Save(await _imageService.ImageResizeAsync(formCode.Files[0], ".png", 20000, 300, 300)),
             };
 
-            //var res = await _categoryService.CreateAsync(category);
+            var res = await _categoryService.CreateAsync(category);
 
             var result = (await _categoryService.GetAllAsync()).Select(x=>x.Title).ToList();
             

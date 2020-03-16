@@ -1,14 +1,16 @@
 ﻿@model Domain.EF_Models.Category
 
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>*@
 
     <script>
 
         $(function () {
 
-            $(".saveCategory").click(function () {
+            $(".saveCategory").click(function (event) {
 
+                debugger;
+                event.preventDefault();
                 var title = $(".categoryTitle").val();
 
                 var formData = new FormData();
@@ -49,7 +51,7 @@
         @Html.Editor("editor", new { htmlAttributes = new { @class = "categoryPreviewImage", @type = "file", @accept = ".png" } })
         <img class="CayegoryPreviewImageView" />
 
-        <button class="saveCategory">Save</button>
+        <button type="button" class="saveCategory">Save</button>
 
         @*<form asp-action="AddCategory">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>

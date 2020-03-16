@@ -26,7 +26,7 @@
         border-radius: 5px;
         background-color: #fbf8f8;
         padding: 8px;
-    }
+    }   
 
     .box1, box2, .box3 {
         display: flex;
@@ -85,6 +85,15 @@
     button {
         margin-left: 15px;
     }
+
+    /*.prbtn{
+        display: inline-block; 
+        background: #fbf8f8; 
+        padding: 1rem 1.5rem; 
+        text-decoration: none; 
+        border-radius: 3px;
+        margin-left:10px;
+    }*/
 
 </style>
 
@@ -263,7 +272,20 @@
 
         });
 
+       
+
+        //$(".newCategory").click(function () {
+           
+        //});
+
+        
+
+        //$(".newBrand").click(function () {
+            
+        //});
+
     });
+
 
 </script>
 
@@ -289,24 +311,46 @@
     <div class="box">
         <div class="box1">
 
-            @Html.Label("Category")
-            @Html.DropDownList("Categories",
-                     new SelectList(ViewBag.Categories),
-                     new { @class = "category" })
+            <div class="block">
 
-            <button>New Category</button>
+                @Html.Label("Category")
+                @Html.DropDownList("Categories",
+                         new SelectList(ViewBag.Categories),
+                         new { @class = "category" })
 
+                <button class="newCategory">New category</button>
+
+                <div class="categoryBox">
+                    @*<button class="newCategory">New category</button>*@
+
+                    <div>
+                        @await Html.PartialAsync("AddCategory")
+                    </div>
+                </div>
+
+            </div>
         </div>
 
         <div class="box2">
 
-            @Html.Label("Brand")
-            @Html.DropDownList("Brands",
-                     new SelectList(ViewBag.Brands),
-                     new { @class = "brand" })
+            <div class="block">
 
-            <button>New Brand</button>
+                @Html.Label("Brand")
+                @Html.DropDownList("Brands",
+                         new SelectList(ViewBag.Brands),
+                         new { @class = "brand" })
 
+                <button class="newCategory">New brand</button>
+
+                <div class="brandBox">
+                    @*<button class="newCategory">New brand</button>*@
+
+                    <div>
+                        @await Html.PartialAsync("AddCategory")
+                    </div>
+                </div>
+
+            </div>
         </div>
 
     </div>

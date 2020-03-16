@@ -36,7 +36,7 @@ namespace Business.Service
             return await _unitOfWork.ImageRepository.GetAllAsync();
         }
 
-        //сделать один метод
+        
         public async Task<System.Drawing.Image> ImageResizeAsync(IFormFile file, string ext, int maxWeight, int maxWidth, int maxHeight)
         {
             System.Drawing.Bitmap newImage = null;

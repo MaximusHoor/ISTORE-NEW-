@@ -76,21 +76,21 @@ namespace IStore_WEB_.Controllers
         }
 
         [HttpPost]
-        public async Task SaveProduct(IFormCollection formCode) 
+        public async Task SaveProduct(IFormCollection formCode)
         {
             Product product = null;
-            if (formCode.Files.Count <=1)
+            if (formCode.Files.Count <= 1)
                 product = JsonConvert.DeserializeObject<Product>((formCode).ToList()[1].Value);
             else
                 product = JsonConvert.DeserializeObject<Product>((formCode).ToList()[0].Value);
 
             product.PreviewImage = await _fileService.Save(await _imageService.ImageResizeAsync(formCode.Files[0], ".png", 20000, 300, 300));
-            
-           for (int i = 1; i < formCode.Files.Count; i++)
-           {
+
+            for (int i = 1; i < formCode.Files.Count; i++)
+            {
                 var image = await _imageService.ImageResizeAsync(formCode.Files[i], ".png", 100000, 650, 650);
-                product.Images.Add(new Image() {FilePath= await _fileService.Save(image), Product = product });
-           }
+                product.Images.Add(new Image() { FilePath = await _fileService.Save(image), Product = product });
+            }
 
             var category = (await _categoryService.FindByConditionAsync(x => x.Title == product.Category.Title)).FirstOrDefault();
 
@@ -109,6 +109,29 @@ namespace IStore_WEB_.Controllers
             //group
 
             await _productService.CreateAsync(product);
+        }
+
+        public IActionResult AddCategory()
+        {
+            return PartialView();
+        }
+
+        [HttpPost]   //ajax - запрос
+        public async Task<IActionResult> SaveCategory(IFormCollection formCode)
+        {
+            
+
+            var category = new Category()
+            {
+                Title = formCode.ToList()[0].Value,
+                PreviewImage = await _fileService.Save(await _imageService.ImageResizeAsync(formCode.Files[0], ".png", 20000, 300, 300)),
+            };
+
+            //var res = await _categoryService.CreateAsync(category);
+
+            var result = (await _categoryService.GetAllAsync()).Select(x=>x.Title).ToList();
+            
+            return Json(result);
         }
     }
 }

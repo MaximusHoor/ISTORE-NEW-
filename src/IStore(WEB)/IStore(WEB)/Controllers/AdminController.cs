@@ -25,7 +25,7 @@ namespace IStore_WEB_.Controllers
         private readonly ImportExportService _importExportService;
 
         public AdminController(GroupCharacteristicService groupCharacteristicService, ImageFileService fileService, 
-            BrandService brandService, CategoryService categoryService, ProductService productService, ImageService imageService)
+            BrandService brandService, CategoryService categoryService, ProductService productService, ImageService imageService, ImportExportService importExportService)
         {
             _groupCharacteristicService = groupCharacteristicService;
             _fileService = fileService;
@@ -33,6 +33,7 @@ namespace IStore_WEB_.Controllers
             _categoryService = categoryService;
             _productService = productService;
             _imageService = imageService;
+            _importExportService = importExportService;
         }
 
         public IActionResult Index()
@@ -132,7 +133,7 @@ namespace IStore_WEB_.Controllers
             var list = new List<Product>();
             using (var stream = new MemoryStream())
             {
-                await file.CopyToAsync(stream, cancellationToken);
+                file.CopyToAsync(stream, cancellationToken);
                 list = _importExportService.ExcelToObject(stream);
             }
 

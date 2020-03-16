@@ -27,6 +27,7 @@ namespace Business.Infrastructure
             services.AddTransient(typeof(OrderDetailsService));
             services.AddTransient(typeof(PackageService));
             services.AddTransient(typeof(ProductService));
+            services.AddTransient(typeof(ImportExportService));    
             services.AddTransient<ImageFileService>(service=> new ImageFileService($"{ Directory.GetCurrentDirectory()}\\Content\\Images\\"));
 
             //services.AddTransient(typeof(ICommentService), typeof(CommentService));            

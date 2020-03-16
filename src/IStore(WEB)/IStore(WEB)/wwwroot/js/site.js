@@ -4,12 +4,30 @@
         $.ajax({
             type: 'POST',
             url: '/Cart/ShoppingCartPartial',
-            data: { parameters: JSON.stringify(new localList("IStoreProduct").items())},
+            data: { parameters: JSON.stringify(new localList("IStoreProduct").items()) },
             success: function (responce) {
                 $("#cartpartialview").html(responce);
                 totalprice();
             }
         });
+    });
+    $(document).on('click', '.product_to_cart', function () {
+        var par = $(this).parents('.product-thumb');
+        var product = new Object();
+        product.Id = parseInt($(par).find('.product-id').text());
+        product.Description = $(par).find('.product-description').text();
+        product.Model = $(par).find('.product-model').text();
+        product.PreviewImage = $(par).find('.product-previewimage').text();
+        product.Rating = parseInt($(par).find('.product-rating').text());
+        product.RetailPrice = parseFloat($(par).find('.product-retailprice').text());
+        product.Series = $(par).find('.product-series').text();
+        product.Title = $(par).find('.product-title').text();
+        product.Type = $(par).find('.product-type').text();
+        product.VendorCode = $(par).find('.product-vendorcode').text();
+        product.WarrantyMonth = parseInt($(par).find('.product-warrantymonth').text());
+        product.Count = 1;
+        new localList("IStoreProduct").add(product);
+        MinicartCount();
     });
 });
 function MinicartCount() {
@@ -48,3 +66,31 @@ function totalprice() {
     })
     $(".Price-amount").text("₴" + s);
 };
+function SlideCharacteristics(obj) {
+    $(obj).siblings('.characteristics').slideToggle();
+    var arrow = $(obj).children('.fas');
+    if (arrow.hasClass('fa-arrow-circle-up')) {
+        arrow.switchClass('fa-arrow-circle-up', 'fa-arrow-circle-down');
+    }
+    else {
+        arrow.switchClass('fa-arrow-circle-down', 'fa-arrow-circle-up');
+    }
+};
+function addToCartPopup(obj) {
+    var par = $(obj).parents('.kt-popup-quickview');
+    var product = new Object();
+    product.Id = parseInt($(par).find('.product-id').text());
+    product.Description = $(par).find('.product-description').text();
+    product.Model = $(par).find('.product-model').text();
+    product.PreviewImage = $(par).find('.product-previewimage').text();
+    product.Rating = parseInt($(par).find('.product-rating').text());
+    product.RetailPrice = parseFloat($(par).find('.product-retailprice').text());
+    product.Series = $(par).find('.product-series').text();
+    product.Title = $(par).find('.product-title').text();
+    product.Type = $(par).find('.product-type').text();
+    product.VendorCode = $(par).find('.product-vendorcode').text();
+    product.WarrantyMonth = parseInt($(par).find('.product-warrantymonth').text());
+    product.Count = parseInt($(par).find('.input-qty').val());
+    new localList("IStoreProduct").add(product);
+    MinicartCount();
+}

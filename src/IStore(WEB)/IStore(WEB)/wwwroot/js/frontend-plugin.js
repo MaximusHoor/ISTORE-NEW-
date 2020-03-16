@@ -474,48 +474,40 @@ jQuery(document).ready(function ($) {
         var window_size = parseFloat(jQuery('body').innerWidth());
         window_size += kt_get_scrollbar_width();
         if (window_size > 992) {
-            $(document).on('click', '.quick-wiew-button', function () {
-                $.magnificPopup.open({
-                    items: {
-                        src: "/Home/GetProductDetails/" + parseInt($(this).parents('.product-thumb').find('.product-id').text()),
-                        type: 'ajax'
+            //$(document).on('click', '.quick-wiew-button', function () {
+            //    $.magnificPopup.open({
+            //        items: {
+            //            src: "/Home/GetProductDetails/" + parseInt($(this).parents('.product-thumb').find('.product-id').text()),
+            //            type: 'ajax'
+            //        },
+            //        callbacks: {
+            //            ajaxContentAdded: slick_quickview_popup()
+            //        }
+            //    });
+            //    return false;
+            //});
+            $('.quick-wiew-button').magnificPopup({
+                type: 'ajax',
+                callbacks: {
+                    updateStatus: function (data) {
+                        if (data.status === 'ready') {
+                            slick_quickview_popup();
+                        }
                     }
-                });
-                slick_quickview_popup();
-                return false;
-            });
-            $(document).on('click', '.product_to_cart', function () {
-                var par = $(this).parents('.product-thumb');
-                var product = new Object();
-                product.Id = parseInt($(par).find('.product-id').text());
-                product.Description = $(par).find('.product-description').text();
-                product.Model = $(par).find('.product-model').text();
-                product.PreviewImage = $(par).find('.product-previewimage').text();
-                product.Rating = parseInt($(par).find('.product-rating').text());
-                product.RetailPrice = parseFloat($(par).find('.product-retailprice').text());
-                product.Series = $(par).find('.product-series').text();
-                product.Title = $(par).find('.product-title').text();
-                product.Type = $(par).find('.product-type').text();
-                product.VendorCode = $(par).find('.product-vendorcode').text();
-                product.WarrantyMonth = parseInt($(par).find('.product-warrantymonth').text());
-                product.Count = 1;
-                new localList("IStoreProduct").add(product);
-                MinicartCount();
+                }
+                
             });
         }
     }
-
     function slick_quickview_popup() {
-        var a = $('html .slider-for');
-        var b = $('html .slider-nav');
-        $('html .slider-for').slick({
+        $('.slider-for').slick({
             slidesToShow: 1,
             slidesToScroll: 1,
             arrows: false,
             fade: true,
             asNavFor: '.slider-nav'
         });
-        $('html .slider-nav').slick({
+        $('.slider-nav').slick({
             slidesToShow: 3,
             slidesToScroll: 1,
             asNavFor: '.slider-for',

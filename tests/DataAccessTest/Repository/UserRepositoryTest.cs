@@ -105,27 +105,27 @@ namespace DataAccessTest.Repository
             Assert.AreEqual(_phoneNumber, user.ElementAt(0).PhoneNumber);
             Assert.AreEqual(_addressId, user.ElementAt(0).AddressId);
         }
-        private async Task UpdateAsync(int id)
-        {
-            // Arrange
-            var user = (await _repository.GetUserAllIncludedAsync(x => x.Id == id));
-            user.Email = "new email";
-            // Act
-            ContextSingleton.GetDatabaseContext().SaveChanges();
-            var updatedUser = (await _repository.GetUserAllIncludedAsync(x => x.Id == id));
-            // Assert
-            Assert.AreEqual("new email", updatedUser.Email, "not updated.");
-        }
+        //private async Task UpdateAsync(int id)
+        //{
+        //    // Arrange
+        //  //  var user = (await _repository.GetUserAllIncludedAsync(x => x.Id == id));
+        //  //  user.Email = "new email";
+        //    // Act
+        //    ContextSingleton.GetDatabaseContext().SaveChanges();
+        ////    var updatedUser = (await _repository.GetUserAllIncludedAsync(x => x.Id == id));
+        //    // Assert
+        //    Assert.AreEqual("new email", updatedUser.Email, "not updated.");
+        //}
 
         [Test]
         public async Task UserCrud()
         {
             var comment = await CreateAsync();
             //await GetByIDAsync(comment.Item1);
-            await GetAllAsync();
-            await GetByIDAsync(user.Item1);
-            await GetUserByCondition(_email);
-            await UpdateAsync(user.Item1);
+            //await GetAllAsync();
+            //await GetByIDAsync(user.Item1);
+            //await GetUserByCondition(_email);
+            //await UpdateAsync(user.Item1);
         }
     }
 }

@@ -4,6 +4,7 @@ using Domain.Infrastructure;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
@@ -18,20 +19,20 @@ namespace Business.Service
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<OperationDetail> CreateAsync(Image entity)
+        public async Task<OperationDetail> CreateAsync(Domain.EF_Models.Image entity)
         {
             var res = await _unitOfWork.ImageRepository.CreateAsync(entity);
             await _unitOfWork.SaveChangesAsync();
             return res;
         }
 
-        public async Task<IReadOnlyCollection<Image>> FindByConditionAsync(Expression<Func<Image, bool>> predicat)
+        public async Task<IReadOnlyCollection<Domain.EF_Models.Image>> FindByConditionAsync(Expression<Func<Domain.EF_Models.Image, bool>> predicat)
         {
             return await _unitOfWork.ImageRepository.FindByConditionAsync(predicat);
         }
     
 
-        public async Task<IReadOnlyCollection<Image>> GetAllAsync()
+        public async Task<IReadOnlyCollection<Domain.EF_Models.Image>> GetAllAsync()
         {
             return await _unitOfWork.ImageRepository.GetAllAsync();
         }

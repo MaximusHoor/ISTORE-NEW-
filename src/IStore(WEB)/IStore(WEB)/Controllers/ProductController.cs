@@ -17,11 +17,12 @@ namespace IStore_WEB_.Controllers
         private readonly ILogger<ProductController> _logger;
         private readonly ProductService _productservice;
         private readonly ProductCharacteristicService _productCharacteristicService;
-
-        public ProductController(ILogger<ProductController> logger, ProductService productservice, ProductCharacteristicService productCharacteristicService)
+        private readonly CommentService _commentService;
+        public ProductController(ILogger<ProductController> logger, ProductService productservice, ProductCharacteristicService productCharacteristicService,CommentService commentService)
         {
             _logger = logger;
             _productservice = productservice;
+            _commentService = commentService;
             this._productCharacteristicService = productCharacteristicService;
         }
 

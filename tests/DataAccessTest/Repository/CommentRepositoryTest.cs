@@ -51,8 +51,8 @@ namespace DomainTest.Repository
                 Text = _text,
                 Product = new Product { Id = _id },
                 //User = new User { Id = _userId.Value },
-                Like = _like,
-                Dislike = _dislike,
+               // Like = _like,
+                //Dislike = _dislike,
                 UserId = _userId.Value
             };
             // Act
@@ -81,7 +81,7 @@ namespace DomainTest.Repository
             Assert.IsNotNull(comment, "GetByID returned null.");
             Assert.AreEqual(id, comment.ElementAt(0).Id);
             Assert.AreEqual(_date, comment.ElementAt(0).Date);
-            Assert.AreEqual(_dislike, comment.ElementAt(0).Dislike);
+           // Assert.AreEqual(_dislike, comment.ElementAt(0).Dislike);
             Assert.AreEqual(_text, comment.ElementAt(0).Text);
             Assert.AreEqual(_userId, comment.ElementAt(0).UserId);
             Assert.AreEqual(_productId, comment.ElementAt(0).ProductId);
@@ -94,7 +94,7 @@ namespace DomainTest.Repository
             Assert.IsNotNull(comment, "GetByUserID returned null.");
             Assert.AreEqual(_id, comment.ElementAt(0).Id);
             Assert.AreEqual(_date, comment.ElementAt(0).Date);
-            Assert.AreEqual(_dislike, comment.ElementAt(0).Dislike);
+           // Assert.AreEqual(_dislike, comment.ElementAt(0).Dislike);
             Assert.AreEqual(_text, comment.ElementAt(0).Text);
             Assert.AreEqual(_productId, comment.ElementAt(0).ProductId);
             Assert.AreEqual(_userId, comment.ElementAt(0).UserId);
@@ -107,7 +107,7 @@ namespace DomainTest.Repository
             Assert.IsNotNull(comment, "GetByUserID returned null.");
             Assert.AreEqual(_id, comment.ElementAt(0).Id);
             Assert.AreEqual(_date, comment.ElementAt(0).Date);
-            Assert.AreEqual(_dislike, comment.ElementAt(0).Dislike);
+           // Assert.AreEqual(_dislike, comment.ElementAt(0).Dislike);
             Assert.AreEqual(_text, comment.ElementAt(0).Text);
             Assert.AreEqual(_productId, comment.ElementAt(0).ProductId);
             Assert.AreEqual(_userId, comment.ElementAt(0).UserId);

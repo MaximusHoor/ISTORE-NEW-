@@ -19,11 +19,15 @@ namespace IStore_WEB_.Controllers
             _productservice = productservice;
         }
 
-        public async Task<IActionResult> Index()
-        {            
-            var result = await _productservice.GetSortByRatingAsync(24);
+        public IActionResult Index()
+        {
+            return View();
+        }
 
-            return View(result);
+        [HttpPost]
+        public async Task<IActionResult> GetProducts()
+        {
+            return Json(await _productservice.GetSortByRatingAsync(24));
         }
 
         public IActionResult Privacy()

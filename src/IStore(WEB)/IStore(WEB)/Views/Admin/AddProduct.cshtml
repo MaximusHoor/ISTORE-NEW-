@@ -184,7 +184,7 @@
         $(".save").click(function () {
 
             var product = new Object();
-
+            
             product.Id = 0;
             var d = $(".title").val();
             product.Title = $(".title").val();
@@ -272,18 +272,20 @@
 
         });
 
-       
 
-        //$(".newCategory").click(function () {
-           
-        //});
+        $(".newCategory").click(function () {
+            
+            $(".categoryBox").show();
+
+        });
+
+         $(".newBrand").click(function () {
+            
+            $(".brandBox").show();
+
+        });
 
         
-
-        //$(".newBrand").click(function () {
-            
-        //});
-
     });
 
 
@@ -320,9 +322,7 @@
 
                 <button class="newCategory">New category</button>
 
-                <div class="categoryBox">
-                    @*<button class="newCategory">New category</button>*@
-
+                <div class="categoryBox">                   
                     <div>
                         @await Html.PartialAsync("AddCategory")
                     </div>
@@ -331,7 +331,7 @@
             </div>
         </div>
 
-        <div class="box2">
+        <div class="box2" style="margin-left:150px;">
 
             <div class="block">
 
@@ -340,14 +340,12 @@
                          new SelectList(ViewBag.Brands),
                          new { @class = "brand" })
 
-                <button class="newCategory">New brand</button>
+                <button class="newBrand">New brand</button>
 
                 <div class="brandBox">
-                    @*<button class="newCategory">New brand</button>*@
-
-                    @*<div>
-                        @await Html.PartialAsync("AddCategory")
-                    </div>*@
+                    <div>
+                        @await Html.PartialAsync("AddBrand")
+                    </div>
                 </div>
 
             </div>

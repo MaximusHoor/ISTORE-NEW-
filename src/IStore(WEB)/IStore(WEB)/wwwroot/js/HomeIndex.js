@@ -42,7 +42,7 @@
             url: '/Home/GetProductDetails',
             data: { parameters: JSON.stringify(parameters) },
             success: function (responce) {
-                $.magnificPopup({
+                $.magnificPopup.open({
                     items: {
                         src: responce,
                         type: 'inline'
@@ -51,81 +51,5 @@
                 slick_quickview_popup();
             }
         });
-        });
-            //$(this).magnificPopup({
-            //    items: {
-            //        type: 'ajax',
-            //        src: "/Home/GetProductDetails/",
-            //        data: {
-            //            parameters: parameters
-            //        }  
-            //    },
-            //    callbacks: {
-            //        updateStatus: function (data) {
-            //            if (data.status === 'ready') {
-            //                slick_quickview_popup();
-            //            }
-            //        }
-            //    }
-            //});
-
-
-                //ajax: {
-                //    settings: {
-                //        url: "/Home/GetProductDetails/",
-                //        data: {
-                //        parameters: parameters
-                //    }
-                //    }
-                //    //method: "POST",
-                //    //data: {
-                //    //    parameters: parameters
-                //    //}
-                //},
-                
-        //$(this).magnificPopup({
-        //    type: 'ajax',
-        //    preloader: false,
-        //    ajax: {
-        //        method: "POST",
-        //        data: {
-        //            parameters: parameters
-        //        }
-        //    },
-        //    callbacks: {
-        //                updateStatus: function (data) {
-        //                if (data.status === 'ready') {
-        //                    slick_quickview_popup();
-        //                }
-        //            }
-        //            }
-        //});
-                //$.magnificPopup.open({
-                //    items: {
-                //        type: 'ajax',
-                //        src: "/Home/GetProductDetails",
-                        
-                //    },
-                //    callbacks: {
-                //        updateStatus: function (data) {
-                //        if (data.status === 'ready') {
-                //            slick_quickview_popup();
-                //        }
-                //    }
-                //    }
-                //});
-            //    return false;
-            //});
-    //$('.quick-wiew-button').magnificPopup({
-            //    src: "/Home/GetProductDetails/" + parseInt($(this).parents('.product-thumb').find('.product-id').text()),
-            //    type: 'ajax',
-            //    callbacks: {
-            //        updateStatus: function (data) {
-            //            if (data.status === 'ready') {
-            //                slick_quickview_popup();
-            //            }
-            //        }
-            //    }
-                
-            //});
+    });
 });

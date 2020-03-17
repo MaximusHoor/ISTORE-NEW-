@@ -51,8 +51,6 @@ namespace IStore_WEB_.Controllers
             if (parameters != null)
                 return PartialView("ProductDetails", JsonConvert.DeserializeObject<Product>(parameters));
             return null;
-            //var res = await _productservice.GetByIdsync(id);
-            //return PartialView("ProductDetails", res);
         }
     }
 }

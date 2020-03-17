@@ -16,16 +16,16 @@ namespace IStore_WEB_.Controllers
     //[Authorize(Roles = "admin")]
     public class AdminController : Controller
     {
-        private readonly GroupCharacteristicService _groupCharacteristicService;
+        private readonly ProductCharacteristicService _productCharacteristicService;
         private readonly ImageFileService _fileService;
         private readonly BrandService _brandService;
         private readonly CategoryService _categoryService;
         private readonly ProductService _productService;
         private readonly ImageService _imageService;
-        public AdminController(GroupCharacteristicService groupCharacteristicService, ImageFileService fileService, 
+        public AdminController(ProductCharacteristicService productCharacteristicService, ImageFileService fileService,
             BrandService brandService, CategoryService categoryService, ProductService productService, ImageService imageService)
         {
-            _groupCharacteristicService = groupCharacteristicService;
+
             _fileService = fileService;
             _brandService = brandService;
             _categoryService = categoryService;
@@ -52,7 +52,7 @@ namespace IStore_WEB_.Controllers
         public async Task GetCharacteristicAsync(string parameters)
         {
             await _productCharacteristicService.SaveGroupAsync((IEnumerable<ProductCharacteristic>)JsonConvert
-                .DeserializeObject<List<ProductCharacteristic>>(parameters));            
+                .DeserializeObject<List<ProductCharacteristic>>(parameters));
         }
 
         public async Task<IActionResult> GetImage()
@@ -70,28 +70,28 @@ namespace IStore_WEB_.Controllers
         public async Task<IActionResult> AddProduct()
         {
             var categories = await _categoryService.GetAllAsync();
-            var brands= await _brandService.GetAllAsync();
+            var brands = await _brandService.GetAllAsync();
             ViewBag.Categories = categories.Select(x => x.Title);
             ViewBag.Brands = brands.Select(x => x.Name);
             return View();
         }
 
         [HttpPost]
-        public async Task SaveProduct(IFormCollection formCode) 
+        public async Task SaveProduct(IFormCollection formCode)
         {
             Product product = null;
-            if (formCode.Files.Count <=1)
+            if (formCode.Files.Count <= 1)
                 product = JsonConvert.DeserializeObject<Product>((formCode).ToList()[1].Value);
             else
                 product = JsonConvert.DeserializeObject<Product>((formCode).ToList()[0].Value);
 
             product.PreviewImage = await _fileService.Save(await _imageService.ImageResizeAsync(formCode.Files[0], ".png", 20000, 300, 300));
-            
-           for (int i = 1; i < formCode.Files.Count; i++)
-           {
+
+            for (int i = 1; i < formCode.Files.Count; i++)
+            {
                 var image = await _imageService.ImageResizeAsync(formCode.Files[i], ".png", 100000, 650, 650);
-                product.Images.Add(new Image() {FilePath= await _fileService.Save(image), Product = product });
-           }
+                product.Images.Add(new Image() { FilePath = await _fileService.Save(image), Product = product });
+            }
 
             var category = (await _categoryService.FindByConditionAsync(x => x.Title == product.Category.Title)).FirstOrDefault();
 

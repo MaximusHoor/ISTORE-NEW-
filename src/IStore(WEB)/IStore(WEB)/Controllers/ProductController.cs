@@ -15,37 +15,25 @@ namespace IStore_WEB_.Controllers
     {
         private readonly ILogger<ProductController> _logger;
         private readonly ProductService _productservice;
+        private readonly ProductCharacteristicService _productCharacteristicService;
 
-        public ProductController(ILogger<ProductController> logger, ProductService productservice)
+        public ProductController(ILogger<ProductController> logger, ProductService productservice, ProductCharacteristicService productCharacteristicService)
         {
             _logger = logger;
             _productservice = productservice;
+            this._productCharacteristicService = productCharacteristicService;
         }
 
         public async Task<IActionResult> Index()
         {
             var result = await _productservice.GetSortByRatingAsync(24);
-
             return View(result);
-        }
-
-        public IActionResult Privacy()
-        private readonly ProductCharacteristicService _productCharacteristicService;
-
-        public ProductController(ProductCharacteristicService productCharacteristicService)
-        {
-            this._productCharacteristicService = productCharacteristicService;
         }
 
         public async Task<IActionResult> ProductCharacteristicPart(int id)
         {
             var res = await _productCharacteristicService.FindByConditionAsync(x=>x.ProductId == id);
             return View(res.FirstOrDefault());
-        }
-
-        public IActionResult Index()
-        {
-            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

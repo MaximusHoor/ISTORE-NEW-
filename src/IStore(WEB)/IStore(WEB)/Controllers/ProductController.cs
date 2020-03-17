@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace IStore_WEB_.Controllers
@@ -67,8 +68,10 @@ namespace IStore_WEB_.Controllers
             var res = _productservice.GetAllAsync().Result;
             if (categoryTitle != null)
             {
-                 res = _productservice.FindByConditionAsync(x => x.Category.Title == categoryTitle).Result;
-            }         
+                res = _productservice.FindByConditionAsync(x => x.Category.Title == categoryTitle).Result;
+            }
+            return View(); //todo refactor this
+        }
         public async Task<IActionResult> GetCommentsPartial(int id)
         {
            

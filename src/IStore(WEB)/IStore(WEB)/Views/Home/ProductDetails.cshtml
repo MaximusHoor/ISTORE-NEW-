@@ -68,10 +68,10 @@
             </ul>
         </div>
         <div class="variations">
-            @foreach (var item in Model.GroupCharacteristics)
+            @foreach (var item in Model.ProductCharacteristics)
             {
                 <div class="attribute">
-                    <div class="text-attribute" onclick="SlideCharacteristics(this)">@item.Title<i class="fas fa-arrow-circle-down"></i></div>
+                    <div class="text-attribute" onclick="SlideCharacteristics(this)">@*@item.Title  //todo refactor this*@<i class="fas fa-arrow-circle-down"></i></div>
                     <div class="characteristics" style="display:none">
                         @foreach (var characteristic in item.Characteristics)
                         {

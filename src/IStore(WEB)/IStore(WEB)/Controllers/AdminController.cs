@@ -111,5 +111,56 @@ namespace IStore_WEB_.Controllers
 
             await _productService.CreateAsync(product);
         }
+
+        public IActionResult AddCategory()
+        {
+            return PartialView();
+        }
+
+        [HttpPost]   
+        public async Task<IActionResult> SaveCategory(IFormCollection formCode)
+        {
+            Category category = null;
+
+            if (formCode.Files.Count < 1)
+            {
+                category = new Category()
+                {
+                    Title = formCode.ToList()[1].Value,
+                    PreviewImage = null,
+                };
+            }
+            else
+            {
+                category = new Category()
+                {
+                    Title = formCode.ToList()[0].Value,
+                    PreviewImage = await _fileService.Save(await _imageService.ImageResizeAsync(formCode.Files[0], ".png", 20000, 300, 300)),
+                };
+            }
+
+            
+
+            var res = await _categoryService.CreateAsync(category);
+
+            var result = (await _categoryService.GetAllAsync()).Select(x=>x.Title).ToList();
+            
+            return Json(result);
+        }
+
+        public IActionResult AddBrand()
+        {
+            return PartialView();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SaveBrand(Brand brand)
+        {
+            await _brandService.CreateAsync(brand);
+
+            var result = (await _brandService.GetAllAsync()).Select(x => x.Name).ToList();
+
+            return Json(result);
+        }
     }
 }

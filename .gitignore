@@ -511,3 +511,15 @@ MigrationBackup/
 # End of https://www.gitignore.io/api/dotnetcore,aspnetcore,visualstudio
 /src/IStore(WEB)/IStore(WEB)/Logs
 /src/IStore(WEB)/IStore(WEB)/Views/Category
+/src/IStore(WEB)/IStore(WEB)/wwwroot/Content/Images/B/BA/bcec6564-abe4-4141-90b8-ef76d9d05d56.png
+/src/IStore(WEB)/IStore(WEB)/wwwroot/Content/Images/B/BA/b89099fd-da9b-4ae6-a426-874d591d3f3c.png
+/src/IStore(WEB)/IStore(WEB)/wwwroot/Content/Images/B/BA/b76708bc-046f-43ae-a5e0-4e0a657642e9.png
+/src/IStore(WEB)/IStore(WEB)/wwwroot/Content/Images/B/BA/afafb2e9-aaed-443f-ab8d-2b4fb9781d73.png
+/src/IStore(WEB)/IStore(WEB)/wwwroot/Content/Images/B/BA/abaa04a7-ae8b-4e46-aa53-5cf761b84e02.png
+/src/IStore(WEB)/IStore(WEB)/wwwroot/Content/Images/B/BA/7cbdfb27-c1cb-43fd-8043-2be8c0e7ad2b.png
+/src/IStore(WEB)/IStore(WEB)/wwwroot/Content/Images/B/BA/78259bdf-11cc-421c-bae6-c00625108734.png
+/src/IStore(WEB)/IStore(WEB)/wwwroot/Content/Images/B/BA/73ce75be-f45a-4611-9e24-7bbac0ebdb21.png
+/src/IStore(WEB)/IStore(WEB)/wwwroot/Content/Images/B/BA/4b47af0a-b331-444d-b0fc-ccecbc00ee30.png
+/src/IStore(WEB)/IStore(WEB)/wwwroot/Content/Images/B/BA/3f5dfdfb-924f-4cc4-94d8-6e920a4bc96c.png
+/src/IStore(WEB)/IStore(WEB)/wwwroot/Content/Images/B/BA/3ae5cbfa-2897-4794-a5d2-75c76046c966.png
+/src/IStore(WEB)/IStore(WEB)/wwwroot/Content/Images/B/BA

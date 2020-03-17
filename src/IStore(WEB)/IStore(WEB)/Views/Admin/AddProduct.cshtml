@@ -26,7 +26,7 @@
         border-radius: 5px;
         background-color: #fbf8f8;
         padding: 8px;
-    }
+    }   
 
     .box1, box2, .box3 {
         display: flex;
@@ -85,6 +85,15 @@
     button {
         margin-left: 15px;
     }
+
+    /*.prbtn{
+        display: inline-block; 
+        background: #fbf8f8; 
+        padding: 1rem 1.5rem; 
+        text-decoration: none; 
+        border-radius: 3px;
+        margin-left:10px;
+    }*/
 
 </style>
 
@@ -175,7 +184,7 @@
         $(".save").click(function () {
 
             var product = new Object();
-
+            
             product.Id = 0;
             var d = $(".title").val();
             product.Title = $(".title").val();
@@ -263,7 +272,22 @@
 
         });
 
+
+        $(".newCategory").click(function () {
+            
+            $(".categoryBox").show();
+
+        });
+
+         $(".newBrand").click(function () {
+            
+            $(".brandBox").show();
+
+        });
+
+        
     });
+
 
 </script>
 
@@ -289,24 +313,42 @@
     <div class="box">
         <div class="box1">
 
-            @Html.Label("Category")
-            @Html.DropDownList("Categories",
-                     new SelectList(ViewBag.Categories),
-                     new { @class = "category" })
+            <div class="block">
 
-            <button>New Category</button>
+                @Html.Label("Category")
+                @Html.DropDownList("Categories",
+                         new SelectList(ViewBag.Categories),
+                         new { @class = "category" })
 
+                <button class="newCategory">New category</button>
+
+                <div class="categoryBox">                   
+                    <div>
+                        @await Html.PartialAsync("AddCategory")
+                    </div>
+                </div>
+
+            </div>
         </div>
 
-        <div class="box2">
+        <div class="box2" style="margin-left:150px;">
 
-            @Html.Label("Brand")
-            @Html.DropDownList("Brands",
-                     new SelectList(ViewBag.Brands),
-                     new { @class = "brand" })
+            <div class="block">
 
-            <button>New Brand</button>
+                @Html.Label("Brand")
+                @Html.DropDownList("Brands",
+                         new SelectList(ViewBag.Brands),
+                         new { @class = "brand" })
 
+                <button class="newBrand">New brand</button>
+
+                <div class="brandBox">
+                    <div>
+                        @await Html.PartialAsync("AddBrand")
+                    </div>
+                </div>
+
+            </div>
         </div>
 
     </div>

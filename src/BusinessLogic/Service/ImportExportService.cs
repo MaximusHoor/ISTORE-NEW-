@@ -11,6 +11,7 @@ namespace Business.Service
     {
         public List<Product> ExcelToObject(MemoryStream memoryStream)
         {
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             using (var package = new ExcelPackage(memoryStream))
             {
                 ExcelWorksheet worksheet = package.Workbook.Worksheets[0];

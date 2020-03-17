@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Business.Service;
 using Business.Service.FileService;
@@ -23,7 +25,10 @@ namespace IStore_WEB_.Controllers
         private readonly ProductService _productService;
         private readonly ImageService _imageService;
         public AdminController(ProductCharacteristicService productCharacteristicService, ImageFileService fileService,
-            BrandService brandService, CategoryService categoryService, ProductService productService, ImageService imageService)
+        private readonly ImportExportService _importExportService;
+
+        public AdminController(GroupCharacteristicService groupCharacteristicService, ImageFileService fileService, 
+            BrandService brandService, CategoryService categoryService, ProductService productService, ImageService imageService, ImportExportService importExportService)
         {
 
             _fileService = fileService;
@@ -32,6 +37,7 @@ namespace IStore_WEB_.Controllers
             _productService = productService;
             _imageService = imageService;
             _productCharacteristicService = productCharacteristicService;
+            _importExportService = importExportService;
         }
 
         //[AllowAnonymous]
@@ -161,6 +167,38 @@ namespace IStore_WEB_.Controllers
             var result = (await _brandService.GetAllAsync()).Select(x => x.Name).ToList();
 
             return Json(result);
+        }
+
+        public IActionResult ProductEdit()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ProductEdit(IFormFile file, CancellationToken cancellationToken)
+        {
+            if (file == null || file.Length <= 0)
+            {
+                return View();
+            }
+
+            if (!Path.GetExtension(file.FileName).Equals(".xlsx", StringComparison.OrdinalIgnoreCase))
+            {
+                return View();
+            }
+            var list = new List<Product>();
+            using (var stream = new MemoryStream())
+            {
+                file.CopyToAsync(stream, cancellationToken);
+                list = _importExportService.ExcelToObject(stream);
+            }
+
+            //foreach (var item in list)
+            //{
+            //    await _productService.CreateAsync(item);
+            //}
+
+            return View(list);
         }
     }
 }

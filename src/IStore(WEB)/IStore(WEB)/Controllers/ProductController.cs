@@ -30,6 +30,20 @@ namespace IStore_WEB_.Controllers
         }
 
         public IActionResult Privacy()
+        private readonly ProductCharacteristicService _productCharacteristicService;
+
+        public ProductController(ProductCharacteristicService productCharacteristicService)
+        {
+            this._productCharacteristicService = productCharacteristicService;
+        }
+
+        public async Task<IActionResult> ProductCharacteristicPart(int id)
+        {
+            var res = await _productCharacteristicService.FindByConditionAsync(x=>x.ProductId == id);
+            return View(res.FirstOrDefault());
+        }
+
+        public IActionResult Index()
         {
             return View();
         }
@@ -60,4 +74,8 @@ namespace IStore_WEB_.Controllers
         }
 
     }
+
+
+
+
 }

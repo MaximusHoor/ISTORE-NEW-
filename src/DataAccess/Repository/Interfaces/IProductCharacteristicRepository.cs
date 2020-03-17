@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repository.Interfaces
 {
-    public interface IGroupCharacteristicRepository
+    public interface IProductCharacteristicRepository
     {
-        Task<GroupCharacteristic> GetByIdAsync(int id);
+        Task<ProductCharacteristic> GetByIdAsync(int id);
     }
 }

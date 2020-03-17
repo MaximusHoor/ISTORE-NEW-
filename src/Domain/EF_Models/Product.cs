@@ -8,7 +8,7 @@ namespace Domain.EF_Models
         public Product()
         {
             Images = new List<Image>();
-            GroupCharacteristics = new List<GroupCharacteristic>();
+            ProductCharacteristics = new List<ProductCharacteristic>();
             Comments = new List<Comment>();
         }
 
@@ -26,7 +26,7 @@ namespace Domain.EF_Models
         public Category Category { get; set; }
         public int PackageId { get; set; }
         public Package Package { get; set; }
-        public ICollection<GroupCharacteristic> GroupCharacteristics { get; set; }
+        public ICollection<ProductCharacteristic> ProductCharacteristics { get; set; }
         public ICollection<Comment> Comments { get; set; }
         public int CountInStorage { get; set; }
         public int Rating { get; set; }

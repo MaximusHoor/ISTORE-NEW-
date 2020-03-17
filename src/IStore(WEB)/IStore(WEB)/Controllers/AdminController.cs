@@ -31,6 +31,7 @@ namespace IStore_WEB_.Controllers
             _categoryService = categoryService;
             _productService = productService;
             _imageService = imageService;
+            _productCharacteristicService = productCharacteristicService;
         }
 
         //[AllowAnonymous]
@@ -41,7 +42,7 @@ namespace IStore_WEB_.Controllers
 
         public async Task<IActionResult> GetCharacteristic(int id)
         {
-            var res = await _groupCharacteristicService
+            var res = await _productCharacteristicService
                 .FindByConditionAsync(x => x.ProductId == 1);
 
             return PartialView("ProductCharacteristicPartialView", res);
@@ -50,8 +51,8 @@ namespace IStore_WEB_.Controllers
         [HttpPost]
         public async Task GetCharacteristicAsync(string parameters)
         {
-            await _groupCharacteristicService.SaveGroupAsync((IEnumerable<GroupCharacteristic>)JsonConvert
-                .DeserializeObject<List<GroupCharacteristic>>(parameters));            
+            await _productCharacteristicService.SaveGroupAsync((IEnumerable<ProductCharacteristic>)JsonConvert
+                .DeserializeObject<List<ProductCharacteristic>>(parameters));            
         }
 
         public async Task<IActionResult> GetImage()

@@ -21,7 +21,7 @@ namespace Business.Infrastructure
             services.AddTransient(typeof(CategoryService));
             services.AddTransient(typeof(CharacteristicService));
             services.AddTransient(typeof(IDeliveryService), typeof(DeliveryService));
-            services.AddTransient(typeof(GroupCharacteristicService));
+            services.AddTransient(typeof(ProductCharacteristicService));
             services.AddTransient(typeof(ImageService));
             services.AddTransient(typeof(OrderService));
             services.AddTransient(typeof(OrderDetailsService));

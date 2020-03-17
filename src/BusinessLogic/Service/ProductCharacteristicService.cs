@@ -10,57 +10,57 @@ using System.Threading.Tasks;
 namespace Business.Service
 {
 
-    public class GroupCharacteristicService 
+    public class ProductCharacteristicService 
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public GroupCharacteristicService(IUnitOfWork unitOfWork)
+        public ProductCharacteristicService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
 
         }
 
-        public async Task<OperationDetail> CreateAsync(GroupCharacteristic entity)
+        public async Task<OperationDetail> CreateAsync(ProductCharacteristic entity)
         {
-            var res = await _unitOfWork.GroupCharacteristicRepository.CreateAsync(entity);
+            var res = await _unitOfWork.ProductCharacteristicRepository.CreateAsync(entity);
             await _unitOfWork.SaveChangesAsync();
             return res;
         }
 
-        public async Task<IReadOnlyCollection<GroupCharacteristic>> FindByConditionAsync(Expression<Func<GroupCharacteristic, bool>> predicat)
+        public async Task<IReadOnlyCollection<ProductCharacteristic>> FindByConditionAsync(Expression<Func<ProductCharacteristic, bool>> predicat)
         {
-            return await _unitOfWork.GroupCharacteristicRepository.FindByConditionAsync(predicat);
+            return await _unitOfWork.ProductCharacteristicRepository.FindByConditionAsync(predicat);
         }
 
         
 
-        public async Task<IReadOnlyCollection<GroupCharacteristic>> GetAllAsync()
+        public async Task<IReadOnlyCollection<ProductCharacteristic>> GetAllAsync()
         {
-            return await _unitOfWork.GroupCharacteristicRepository.GetAllAsync();
+            return await _unitOfWork.ProductCharacteristicRepository.GetAllAsync();
         }
 
-        public async Task<GroupCharacteristic> GetByIdAsync (int id)
+        public async Task<ProductCharacteristic> GetByIdAsync (int id)
         {
-            return await _unitOfWork.GroupCharacteristicRepository.GetByIdAsync(id);
+            return await _unitOfWork.ProductCharacteristicRepository.GetByIdAsync(id);
         }
 
-        public async Task SaveGroupAsync(IEnumerable<GroupCharacteristic> groups)  
+        public async Task SaveGroupAsync(IEnumerable<ProductCharacteristic> groups)  
         {
             foreach(var group in groups)
             {
-                var gr = await _unitOfWork.GroupCharacteristicRepository.GetByIdAsync(group.Id);
+                var gr = await _unitOfWork.ProductCharacteristicRepository.GetByIdAsync(group.Id);
                 
                 if(gr is null)
                 {
-                    await _unitOfWork.GroupCharacteristicRepository.CreateAsync(group);
+                    await _unitOfWork.ProductCharacteristicRepository.CreateAsync(group);
                     await this._unitOfWork.SaveChangesAsync();
-                    gr = await _unitOfWork.GroupCharacteristicRepository.GetByIdAsync(group.Id);                    
+                    gr = await _unitOfWork.ProductCharacteristicRepository.GetByIdAsync(group.Id);                    
                 }
                 else
                 {
                     gr.Characteristics = group.Characteristics;
                     gr.ProductId = group.ProductId;
-                    gr.Title = group.Title;
+                    gr.Descriptions = group.Descriptions;
                 }
 
                 foreach(var character in group.Characteristics)
@@ -74,7 +74,7 @@ namespace Business.Service
                     }
                     else
                     {
-                        charac.GroupCharacteristicId = gr.Id;
+                        charac.ProductCharacteristicId = gr.Id;
                         charac.Title = character.Title;
                         charac.Value = character.Value;
                     }

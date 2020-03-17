@@ -1,0 +1,187 @@
+﻿@model Domain.EF_Models.ProductCharacteristic
+
+
+    <div class="details-page">
+        <div class="main-content main-content-details single no-sidebar">
+            <div class="container">
+                <div class="row">
+                    <div class="content-area content-details full-width col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                        <div class="site-main">
+
+
+
+                            <div class="tab-details-product">
+
+
+                                <ul class="tab-link">
+                                    <li class="">
+                                        <a data-toggle="tab" aria-expanded="false" href="productdetails-fullwidth.html#product-descriptions">Descriptions </a>
+                                    </li>
+                                    <li class="active">
+                                        <a data-toggle="tab" aria-expanded="true" href="productdetails-fullwidth.html#information">Information </a>
+                                    </li>
+                                    <li class="">
+                                        <a data-toggle="tab" aria-expanded="true" href="productdetails-fullwidth.html#reviews">Reviews</a>
+                                    </li>
+                                </ul>
+
+                                <div class="tab-container">
+                                    <div id="product-descriptions" class="tab-panel">
+                                        <p>
+                                           @Model.Descriptions;
+                                        </p>
+                                    </div>
+
+                                    <div id="information" class="tab-panel active">
+                                        <table class="table table-bordered">
+                                            <tbody>
+                                                    @foreach (var cahr in Model.Characteristics)
+                                                    {
+                                                        <tr>
+                                                            <td>@cahr.Title</td> 
+                                                            <td>@cahr.Value</td>
+                                                        </tr>
+                                                    }
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div id="reviews" class="tab-panel">
+                                        <div class="reviews-tab">
+                                            <div class="comments">
+                                                <h2 class="reviews-title">
+                                                    1 review for
+                                                    <span>Eclipse Pendant Light</span>
+                                                </h2>
+                                                <ol class="commentlist">
+                                                    <li class="conment">
+                                                        <div class="conment-container">
+                                                            <a href="productdetails-fullwidth.html#" class="avatar">
+                                                                <img src="assets/images/avartar.jpeg" alt="img">
+                                                            </a>
+                                                            <div class="comment-text">
+                                                                <div class="stars-rating">
+                                                                    <div class="star-rating">
+                                                                        <span class="star-5"></span>
+                                                                    </div>
+                                                                    <div class="count-star">
+                                                                        (4)
+                                                                    </div>
+                                                                </div>
+                                                                <p class="meta">
+                                                                    <strong class="author">Cobus Bester</strong>
+                                                                    <span>-</span>
+                                                                    <span class="time">June 7, 2013</span>
+                                                                </p>
+                                                                <div class="description">
+                                                                    <p>Simple and effective design. One of my favorites.</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ol>
+                                            </div>
+                                            <div class="review_form_wrapper">
+                                                <div class="review_form">
+                                                    <div class="comment-respond">
+                                                        <span class="comment-reply-title">Add a review </span>
+                                                        <form class="comment-form-review">
+                                                            <p class="comment-notes">
+                                                                <span class="email-notes">Your email address will not be published.</span>
+                                                                Required fields are marked
+                                                                <span class="required">*</span>
+                                                            </p>
+                                                            <div class="comment-form-rating">
+                                                                <label>Your rating</label>
+                                                                <p class="stars">
+                                                                    <span>
+                                                                        <a class="star-1" href="productdetails-fullwidth.html#"></a>
+                                                                        <a class="star-2" href="productdetails-fullwidth.html#"></a>
+                                                                        <a class="star-3" href="productdetails-fullwidth.html#"></a>
+                                                                        <a class="star-4" href="productdetails-fullwidth.html#"></a>
+                                                                        <a class="star-5" href="productdetails-fullwidth.html#"></a>
+                                                                    </span>
+                                                                </p>
+                                                            </div>
+                                                            <p class="comment-form-comment">
+                                                                <label>
+                                                                    Your review
+                                                                    <span class="required">*</span>
+                                                                </label>
+                                                                <textarea title="review" id="comment" name="comment" cols="45" rows="8"></textarea>
+                                                            </p>
+                                                            <p class="comment-form-author">
+                                                                <label>
+                                                                    Name
+                                                                    <span class="">*</span>
+                                                                </label>
+                                                                <input title="author" id="author" name="author" type="text" value="">
+                                                            </p>
+                                                            <p class="comment-form-email">
+                                                                <label>
+                                                                    Email
+                                                                    <span class="">*</span>
+                                                                </label>
+                                                                <input title="email" id="email" name="email" type="email" value="">
+                                                            </p>
+                                                            <p class="form-submit">
+                                                                <input name="submit" type="submit" id="submit" class="submit" value="Submit">
+                                                            </p>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+                            @*<p>
+                                <a asp-action="Create">Create New</a>
+                            </p>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Id)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Descriptions)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.ProductId)
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                            @foreach (var item in Model) {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Id)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Descriptions)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ProductId)
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                                            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                        </td>
+                                    </tr>
+                            }
+                                </tbody>
+                            </table>*@

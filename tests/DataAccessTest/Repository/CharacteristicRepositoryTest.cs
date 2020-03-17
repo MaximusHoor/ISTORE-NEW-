@@ -40,8 +40,8 @@ namespace DataAccessTest.Repository
             {
                 Id = _id,
                 Title = _title,
-                GroupCharacteristicId = _characteristicId,
-                GroupCharacteristic = new GroupCharacteristic { Id = _id }
+                ProductCharacteristicId = _characteristicId,
+                ProductCharacteristic = new ProductCharacteristic { Id = _id }
             };
 
             // Act
@@ -51,7 +51,7 @@ namespace DataAccessTest.Repository
             // Assert
             Assert.AreNotEqual(0, characteristic.Id, "Creating new record does not return id");
 
-            return (characteristic.Id, characteristic.GroupCharacteristicId);
+            return (characteristic.Id, characteristic.ProductCharacteristicId);
         }
 
         private async Task Update(int id)
@@ -87,7 +87,7 @@ namespace DataAccessTest.Repository
             Assert.IsNotNull(characteristic, "GetByID returned null.");
             Assert.AreEqual(id, characteristic.Id);
             Assert.AreEqual(_title, characteristic.Title);
-            Assert.AreEqual(_characteristicId, characteristic.GroupCharacteristicId);
+            Assert.AreEqual(_characteristicId, characteristic.ProductCharacteristicId);
         }
 
         [Test]

@@ -12,30 +12,30 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repository
 {
-    public class GroupCharacteristicRepository : BaseRepository<GroupCharacteristic>, IGroupCharacteristicRepository
+    public class ProductCharacteristicRepository : BaseRepository<ProductCharacteristic>, IProductCharacteristicRepository
     {
-        public GroupCharacteristicRepository(StoreContext context) : base(context)
+        public ProductCharacteristicRepository(StoreContext context) : base(context)
         {
 
         }
 
-        public override async Task<IReadOnlyCollection<GroupCharacteristic>> GetAllAsync()
+        public override async Task<IReadOnlyCollection<ProductCharacteristic>> GetAllAsync()
         {
             return await this.Entities.Include(grc => grc.Product)
                 .Include(grc => grc.Characteristics)
                 .ToListAsync().ConfigureAwait(false);
         }
 
-        public override async Task<IReadOnlyCollection<GroupCharacteristic>> FindByConditionAsync(Expression<Func<GroupCharacteristic, bool>> predicat)
+        public override async Task<IReadOnlyCollection<ProductCharacteristic>> FindByConditionAsync(Expression<Func<ProductCharacteristic, bool>> predicat)
         {
             return await this.Entities.Include(grc => grc.Product)
                 .Include(grc => grc.Characteristics)
                 .Where(predicat).ToListAsync().ConfigureAwait(false);
         }
 
-        public async Task<GroupCharacteristic> GetByIdAsync(int id)
+        public async Task<ProductCharacteristic> GetByIdAsync(int id)
         {
-            return await _storeContext.GroupCharacteristics.Where(x=>x.Id==id)
+            return await _storeContext.ProductCharacteristics.Where(x=>x.Id==id)
                 .Include(grc => grc.Product)
                 .Include(grc => grc.Characteristics)
                 .FirstOrDefaultAsync();

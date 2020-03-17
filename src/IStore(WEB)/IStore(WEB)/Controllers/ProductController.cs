@@ -7,12 +7,11 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace IStore_WEB_.Controllers
 {
-    public class ProductController:Controller
+    public class ProductController : Controller
     {
         private readonly ILogger<ProductController> _logger;
         private readonly ProductService _productservice;
@@ -44,7 +43,7 @@ namespace IStore_WEB_.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        public async Task<IActionResult> ProductPartial(Product product)
+        public IActionResult ProductPartial(Product product)
         {
             return View(product);
         }
@@ -62,6 +61,14 @@ namespace IStore_WEB_.Controllers
 
             return View("Product", res);
         }
+        [Route("Products/{categoryTitle?}")]
+        public IActionResult GetProductFromCategory(string categoryTitle)
+        {
+            var res = _productservice.GetAllAsync().Result;
+            if (categoryTitle != null)
+            {
+                 res = _productservice.FindByConditionAsync(x => x.Category.Title == categoryTitle).Result;
+            }         
         public async Task<IActionResult> GetCommentsPartial(int id)
         {
            

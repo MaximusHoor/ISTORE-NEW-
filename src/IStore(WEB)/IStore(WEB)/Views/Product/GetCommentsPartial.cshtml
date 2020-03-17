@@ -1,0 +1,184 @@
+﻿
+@model IEnumerable<Domain.EF_Models.Comment>
+<style>
+    .active-btn{
+        color:blue;
+    }
+</style>
+    <div class="comments">
+        <h2 class="reviews-title">
+            1 review for
+            <span>Eclipse Pendant Light</span>
+        </h2>
+        @foreach (var item in Model)
+        {
+
+
+        <ol class="commentlist">
+            <li class="conment">
+                <div class="conment-container">
+                    <a href="productdetails-fullwidth.html#" class="avatar">
+                        <img src="assets/images/avartar.jpeg" alt="img">
+                    </a>
+                    <div class="comment-text" >
+                        <div class="stars-rating">
+                            <div class="star-rating">
+                                
+                                <span class="star-@item.Raiting"></span>
+                            </div>
+                            <div class="count-star">
+                                (1)
+                            </div>
+                        </div>
+                        <p class="meta">
+                            <strong class="author">@item.User.FirstName @item.User.LastName</strong>
+                            <span>-</span>
+                            <span class="time">@item.Date.ToShortDateString(), @item.Date.ToShortTimeString()</span>
+                        </p>
+                        <div class="description">
+                            <p>@item.Text</p>
+                        </div>
+                    </div>
+                    <div class="like-dislike">
+                        @*@{
+            string like = (ViewBag.Likes as IEnumerable<int>).Contains(item.Id) ? "active-btn" : "";
+            string dislike = (ViewBag.Dislikes as IEnumerable<int>).Contains(item.Id) ? "active-btn" : "";
+        }*@
+                        <div id="commentId" hidden>@item.Id</div>
+                        <i class="fa fa-thumbs-up" style="margin-right:5px;"></i><span>@item.LikesTotal</span>
+                        <i class="fa fa-thumbs-down" style="margin-right:5px;margin-left:5px;"></i><span style="margin-right:20px">@item.DislikeTotal</span>
+                        <button type="button" class="btn btn-outline-danger btn-sm answer" id="answer">Answer</button>
+                        <div id="result" style="margin-left:20px;" class="input-area"> </div>
+                        <div style="color:blue;margin-left:25px" class="toggle-answers"><i class="fa fa-caret-down" style="margin-right:15px"></i><span class="toggle-word">Show </span>answers(@item.Answers.Count)</div>
+
+                    </div>
+                </div>
+            </li>
+        </ol>
+        }
+    </div>
+<script>
+    $(function () {  
+    var like = {
+        UserId:undefined,
+        CommentId:undefined,
+        ProductId:undefined,
+        IsLikeRemoved:false,
+        IsLiked: false,
+        IsDataSent:false
+    }
+
+        $(".fa-thumbs-up").click(function () {
+            var likeNew = Object.create(like);
+            if (localStorage.getItem("like") === null) localStorage.setItem("like", JSON.stringify(new Array()));
+            var localStorageResult = JSON.parse(localStorage.getItem("like"));
+         var thisThumbDown = $(this).parent().find(".fa-thumbs-down");
+        if (thisThumbDown.hasClass("active-btn")) thisThumbDown.trigger("click");
+        $(this).toggleClass("active-btn");
+         var res =  $(this).next("span").text().trim();
+         res = parseInt(res);
+            if ($(this).hasClass("active-btn")){
+                res++;
+                $(this).next("span").text(res);
+                likeNew.IsLiked = true;
+                 likeNew.IsLikeRemoved = false;
+            }
+            else {
+                res--;
+                $(this).next("span").text(res);
+                 likeNew.IsLikeRemoved = true;
+            }
+            likeNew.UserId = $("#userId").text().trim();
+            likeNew.CommentId = $(this).parent().find("#commentId").text().trim();
+            likeNew.ProductId = $("#productId").text().trim();
+            likeNew.IsDataSent = false;
+        for (var i = 0; i < localStorageResult.length; i++) {
+            if (localStorageResult[i]["CommentId"] == likeNew.CommentId && (localStorageResult[i]["IsLiked"] == true)) {
+                    localStorageResult[i]["IsLikeRemoved"] = true;
+                    localStorage.setItem("like",JSON.stringify(localStorageResult));
+                    return;
+                }
+                else if (localStorageResult[i]["CommentId"] == likeNew.CommentId && (localStorageResult[i]["IsLikeRemoved"] == true||localStorageResult[i]["IsLiked"] == false)) {
+                localStorageResult[i]["IsLiked"] = true;
+                 localStorageResult[i]["IsLikeRemoved"] = false;
+                    localStorage.setItem("like",JSON.stringify(localStorageResult));
+                    return;
+                }
+            }
+
+          localStorageResult.push(likeNew);
+       localStorage.setItem("like", JSON.stringify(localStorageResult));
+    });
+        
+    $(".fa-thumbs-down").click(function () {
+        var dislike = Object.create(like);
+          if (localStorage.getItem("like") === null) localStorage.setItem("like", JSON.stringify(new Array()));
+            var localStorageResult = JSON.parse(localStorage.getItem("like"));
+        var thisThumbUp = $(this).parent().find(".fa-thumbs-up");
+        if (thisThumbUp.hasClass("active-btn")) thisThumbUp.trigger("click"); 
+        $(this).toggleClass("active-btn");
+         var res =  $(this).next("span").text().trim();
+         res = parseInt(res);
+            if ($(this).hasClass("active-btn")) { 
+                res++;
+                $(this).next("span").text(res);
+                dislike.IsLiked = false;
+                dislike.IsLikeRemoved = false;
+            }
+            else {
+                res--;
+                $(this).next("span").text(res);
+                 dislike.IsLikeRemoved = true;
+        }
+        dislike.UserId = $("#userId").text().trim();
+        dislike.CommentId = $(this).parent().find("#commentId").text().trim();
+        dislike.ProductId = $("#productId").text().trim();
+        dislike.IsDataSent = false;
+
+        for (var i = 0; i < localStorageResult.length; i++) {
+            if (localStorageResult[i]["CommentId"] == dislike.CommentId && localStorageResult[i]["IsLiked"] ==false) {
+                localStorageResult[i]["IsLikeRemoved"] = true;
+                    localStorage.setItem("like",JSON.stringify(localStorageResult));
+                    return;
+                }
+                else if (localStorageResult[i]["CommentId"] == dislike.CommentId && (localStorageResult[i]["IsLikeRemoved"] ==true ||localStorageResult[i]["IsLiked"] == true)) {
+                localStorageResult[i]["IsLiked"] = false;
+                localStorageResult[i]["IsLikeRemoved"] = false;
+                    localStorage.setItem("like",JSON.stringify(localStorageResult));
+                    return;
+                }
+            }
+          localStorageResult.push(dislike);
+       localStorage.setItem("like", JSON.stringify(localStorageResult));
+        
+    });   
+       
+
+         setInterval(function () {
+           // debugger
+            if (localStorage.getItem("like") === null) return;
+             $.post('@Url.Action("AddLikes", "Product")?localStorageResult='+localStorage.getItem("like"),null, function () {
+                 localStorage.removeItem("like")
+             }).fail(function () { alert("error"); });       
+        },3000);
+     
+      
+//        600000
+    
+   
+        
+    $(".answer").click(function () { 
+            $(this).closest('.like-dislike').find('.input-area').load('@Url.Action("GetInputCommentPartial","Product")');
+    });
+    $(".toggle-answers").click(function () {
+       // $(this).closest('.like-dislike').find('.input-area').load('@Url.Action("GetInputCommentPartial","Product")');
+        $(this).find("i").toggleClass("fa-caret-up");
+        if ($(this).find("i").attr("class") == "fa fa-caret-down") $(this).find(".toggle-word").text("Show ");
+        else $(this).find(".toggle-word").text("Hide ");
+    });
+        });
+
+</script>
+
+
+           

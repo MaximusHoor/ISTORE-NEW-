@@ -36,12 +36,12 @@ namespace DomainTest.Repository
             _date = DateTime.Now;
             _text = "Comment Text";
             _userId = 1;
-            _productId = 1;
+            _productId = 2;
             _like = new Random().Next(0, int.MaxValue);
             _dislike = new Random().Next(0, int.MaxValue);
         }
 
-        private async Task<(int, int, int)> CreateAsync()
+        private async Task<(int, int, int?)> CreateAsync()
         {
             // Arrange
             var comment = new Comment
@@ -68,7 +68,7 @@ namespace DomainTest.Repository
         private async Task GetAllAsync()
         {
             // Act
-            IEnumerable<Comment> items = await _repository.GetAllAsync();
+            var items = await _repository.GetAllAsync();
             // Assert
             Assert.IsTrue(items.Any(), "GetAll returned no items.");
         }
@@ -76,7 +76,7 @@ namespace DomainTest.Repository
         private async Task GetByIDAsync(int id)
         {
             // Act
-            var comment = await _repository.FindByConditionAllIncludedAsync(x => x.Id == id);
+            var comment = await _repository.FindByConditionAsync(x => x.Id == id);
             // Assert
             Assert.IsNotNull(comment, "GetByID returned null.");
             Assert.AreEqual(id, comment.ElementAt(0).Id);
@@ -89,7 +89,7 @@ namespace DomainTest.Repository
         private async Task GetByUserIDAsync(int userId)
         {
             // Act
-            var comment = await _repository.FindByConditionAsync(x => x.UserId == userId);
+            var comment = await _repository.FindByConditionAllIncludedAsync(x => x.UserId == userId);
             // Assert
             Assert.IsNotNull(comment, "GetByUserID returned null.");
             Assert.AreEqual(_id, comment.ElementAt(0).Id);
@@ -112,15 +112,27 @@ namespace DomainTest.Repository
             Assert.AreEqual(_productId, comment.ElementAt(0).ProductId);
             Assert.AreEqual(_userId, comment.ElementAt(0).UserId);
         }
+        private async Task UpdateAsync(int id)
+        {
+            // Arrange
+            var comment = (await _repository.FindByConditionAsync(x => x.Id == id));
+            comment.ElementAt(0).UserId = 5;
+            // Act
+            ContextSingleton.GetDatabaseContext().SaveChanges();
+            var updatedComment = (await _repository.FindByConditionAsync(x => x.Id == id));
+            // Assert
+            Assert.AreEqual(5, updatedComment.ElementAtOrDefault(0).UserId, "not updated.");
+        }
 
         [Test]
         public async Task CommentCrud()
         {
             var comment = await CreateAsync();
             await GetByIDAsync(comment.Item1);
-            await GetByUserIDAsync(comment.Item3);
+            await GetByUserIDAsync(comment.Item3.Value);
             await GetAllAsync();
             await GetByProductIDAsync(comment.Item2);
+            await UpdateAsync(comment.Item1);
         }
     }
 }

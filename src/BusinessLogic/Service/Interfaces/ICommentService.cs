@@ -15,5 +15,6 @@ namespace Business.Service.Interfaces
         Task<IReadOnlyCollection<Comment>> GetCommentsDateFromAsync(DateTime time);
         Task<IReadOnlyCollection<Comment>> GetCommentsByProductAsync(int productId);
         Task<OperationDetail> CreateCommentAsync(Comment comment);
+        Task<IReadOnlyCollection<Comment>> GetCommentsByProductWithAllAsync(int productId);
     }
 }

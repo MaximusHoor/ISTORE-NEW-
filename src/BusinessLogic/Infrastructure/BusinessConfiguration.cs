@@ -28,11 +28,10 @@ namespace Business.Infrastructure
             services.AddTransient(typeof(PackageService));
             services.AddTransient(typeof(ProductService));
             services.AddTransient<ImageFileService>(service=> new ImageFileService($"{ Directory.GetCurrentDirectory()}\\wwwroot\\Content\\Images\\"));
-
-            //services.AddTransient(typeof(ICommentService), typeof(CommentService));            
-            //services.AddTransient(typeof(IUserService), typeof(UserService));
-
-
+            services.AddTransient(typeof(ICommentService), typeof(CommentService));            
+            services.AddTransient(typeof(IUserService), typeof(UserService));
+          
+            
 
             DataAccessConfiguration.ConfigureServices(services, configuration);
         }

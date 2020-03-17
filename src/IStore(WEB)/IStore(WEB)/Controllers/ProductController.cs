@@ -3,6 +3,7 @@ using Domain.EF_Models;
 using IStore_WEB_.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -60,6 +61,35 @@ namespace IStore_WEB_.Controllers
 
             return View("Product", res);
         }
+        public async Task<IActionResult> GetCommentsPartial(int id)
+        {
+           
+            var comments = await _commentService.GetCommentsByProductAsync(id);
+           
+           // ViewBag.Likes = await _commentService.GetUserCommentsLikes(1, id);
+          //  ViewBag.Dislikes = await _commentService.GetUserCommentsDislikes(1, id);
+
+            return PartialView(comments);
+        }
+        public ActionResult GetInputCommentPartial()
+        {
+            return PartialView();
+        }
+        [HttpPost]
+        public async Task AddLikes(string localStorageResult)
+        {
+            var res= JsonConvert.DeserializeObject<List<Like>>(localStorageResult);
+         //   await _likeService.ManageLikesAsync(res);
+        }
+        [HttpPost]
+        public async Task AddComment(string comment)
+        {
+            var res = JsonConvert.DeserializeObject<Comment>(comment);
+            res.Date = DateTime.Now;
+            await _commentService.CreateCommentAsync(res);
+
+        }
+        
 
     }
 

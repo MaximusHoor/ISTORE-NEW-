@@ -28,10 +28,6 @@ namespace DataAccess.Repository
             return await this.Entities.Include (x => x.Address).Include(x => x.Comments).ToListAsync().ConfigureAwait(false);
         }
 
-        public async Task<IReadOnlyCollection<User>> FindUserByConditionAllIncludedAsync(Expression<Func<User, bool>> userPredicate, Expression<Func<Comment, bool>> commentPredicate)
-        {
-            return await this.Entities.Where(userPredicate).Include(x => x.Address).Include(x => x.Comments.AsQueryable().Where(commentPredicate)).ToListAsync().ConfigureAwait(false);
-        }
         public async Task<IReadOnlyCollection<User>> FindUserByConditionAllIncludedAsync(Expression<Func<User, bool>> userPredicate)
         {
             return await this.Entities.Where(userPredicate).Include(x => x.Address).Include(x => x.Comments).ToListAsync().ConfigureAwait(false);

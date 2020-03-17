@@ -3,6 +3,8 @@ using Domain.Context;
 using System;
 using System.Threading.Tasks;
 using DataAccess.Repository;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
 
 namespace DataAccess.UnitOfWork
 {
@@ -14,7 +16,7 @@ namespace DataAccess.UnitOfWork
         CharacteristicRepository characteristicRepository, ProductRepository productRepository, 
         DeliveryRepository deliveryRepository, AddressRepository addressRepository, BrandRepository brandRepository, 
         OrderDetailsRepository orderDetailsRepository, OrderRepository orderRepository, 
-        PackageRepository packageRepository)
+        PackageRepository packageRepository/*,ILikeRepository likeRepository*/)
         {
             _storeContext = storeContext;
             UserRepository = userRepository;
@@ -30,6 +32,7 @@ namespace DataAccess.UnitOfWork
             OrderDetailsRepository = orderDetailsRepository;
             OrderRepository = orderRepository;
             PackageRepository = packageRepository;
+            //LikeRepository = likeRepository;
         }
 
         private StoreContext _storeContext { get; }
@@ -38,6 +41,7 @@ namespace DataAccess.UnitOfWork
         {
             _storeContext?.Dispose();
         }
+        public ILikeRepository LikeRepository { get; }
         public IUserRepository UserRepository { get; }
         public ICommentRepository CommentRepository { get; }
         public CategoryRepository CategoryRepository { get; }
@@ -53,9 +57,23 @@ namespace DataAccess.UnitOfWork
         public PackageRepository PackageRepository { get; }
 
 
-        public Task SaveChangesAsync()
+        public async Task SaveChangesAsync()
         {
-            return _storeContext.SaveChangesAsync();
+            try
+            {
+                await _storeContext.SaveChangesAsync();
+            }
+            catch (DbUpdateException e)
+            {
+                var sqlException = e.GetBaseException() as SqlException;
+                //2601 is error number of unique index violation
+                if (sqlException != null && sqlException.Number == 2601)
+                {
+                    //Unique index was violated. Show corresponding error message to user.
+                }
+            }
+
+
         }
     }
 }

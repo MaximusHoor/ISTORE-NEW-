@@ -16,7 +16,7 @@ namespace Business.Service
         public async Task<OperationDetail> CreateCommentAsync(Comment comment)
         {
             var operationResult = await _unitOfWork.CommentRepository.CreateAsync(comment);
-            await _unitOfWork.SaveChangesAsync();
+             await _unitOfWork.SaveChangesAsync();
             return operationResult;
         }
 
@@ -32,14 +32,19 @@ namespace Business.Service
         public async Task<Comment> GetCommentAllIncludedAsync(int commentId)
         {
             var comments = await _unitOfWork.CommentRepository.FindByConditionAllIncludedAsync(x => x.Id == commentId);
-            return comments.ElementAt(0);
+            return comments.ElementAtOrDefault(0);
         }
         public async Task<IReadOnlyCollection<Comment>> GetCommentsByUserAsync(int userId)
         {
             return await _unitOfWork.CommentRepository.FindByConditionAllIncludedAsync(x => x.UserId == userId);
         }
 
+            
         public async Task<IReadOnlyCollection<Comment>> GetCommentsByProductAsync(int productId)
+        {
+            return await _unitOfWork.CommentRepository.FindByConditionAsync(x => x.ProductId == productId);
+        }
+        public async Task<IReadOnlyCollection<Comment>> GetCommentsByProductWithAllAsync(int productId)
         {
             return await _unitOfWork.CommentRepository.FindByConditionAllIncludedAsync(x => x.ProductId == productId);
         }

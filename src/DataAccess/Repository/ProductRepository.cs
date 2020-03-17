@@ -39,6 +39,7 @@ namespace DataAccess.Repository
                 .Include(im => im.Images)
                 .Include(pac => pac.Package)
                 .Include(grch => grch.GroupCharacteristics)
+                .ThenInclude(y=>y.Characteristics)
                 .Include(com => com.Comments)
                 .Where(predicat).ToListAsync().ConfigureAwait(false);
         }
@@ -51,6 +52,7 @@ namespace DataAccess.Repository
                 .Include(im => im.Images)
                 .Include(pac => pac.Package)
                 .Include(grch => grch.GroupCharacteristics)
+                .ThenInclude(y => y.Characteristics)
                 .Include(com => com.Comments).FirstOrDefaultAsync();
         }
 

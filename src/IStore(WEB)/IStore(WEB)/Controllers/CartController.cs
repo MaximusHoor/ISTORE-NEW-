@@ -52,35 +52,38 @@ namespace IStore_WEB_.Controllers
             var order = (await _orderService.FindByConditionAsync(x => x.UserId == currentUser && x.PaymentStatus != "for paid")).LastOrDefault();
             return View();
         }
-        public async Task AddProductToCart(int id)
-        {
-            var currentUser = 1;
-            var order = (await _orderService.FindByConditionAsync(x => x.UserId == currentUser && x.PaymentStatus != "for paid")).LastOrDefault();
-            if (order == null)
-            {
-                order = new Order() { Date = DateTime.Now, UserId = currentUser };
-                await _orderService.CreateAsync(order);
-            }
-            order.Products.Add(new OrderDetails() { OrderId = order.Id, ProductId = 1, Count = 1 });
-            await _unitOfWork.SaveChangesAsync();
-        }
-        //public async Task UpdateProducts(string parameters)
-        //{
-        //    var currentUser = 1;
-        //    var order = (await _orderService.FindByConditionAsync(x => x.UserId == currentUser && x.PaymentStatus != "for paid")).LastOrDefault();
-        //    order.Products = JsonConvert.DeserializeObject<ICollection<OrderDetails>>(parameters);
-        //    await _unitOfWork.SaveChangesAsync();
-        //}
         public IActionResult ShoppingCartPartial(string parameters)
         {
             if (parameters != "[]")
                 return PartialView(JsonConvert.DeserializeObject<List<ProductViewModel>>(parameters));
             return null;
         }
+        //public async Task<IActionResult> ShoppingCartPartial(int parameters)
+        //{
+        //    var order = (await _orderService.FindByConditionAsync(x => x.Id == parameters)).LastOrDefault();
+        //    var productViewList = new List<ProductViewModel>();
+        //    foreach (var item in order.Products)
+        //    {
+        //        var prod = new ProductViewModel();
+        //        prod.Id = item.Product.Id;
+        //        prod.Model = item.Product.Model;
+        //        prod.PreviewImage = item.Product.PreviewImage;
+        //        prod.Rating = item.Product.Rating;
+        //        prod.RetailPrice = item.Product.RetailPrice;
+        //        prod.Series = item.Product.Series;
+        //        prod.Title = item.Product.Title;
+        //        prod.Type = item.Product.Type;
+        //        prod.VendorCode = item.Product.VendorCode;
+        //        prod.WarrantyMonth = item.Product.WarrantyMonth;
+        //        prod.Count = item.Count;
+        //        productViewList.Add(prod);
+        //    }
+        //    return PartialView(productViewList);
+        //}
         public IActionResult ShoppingCartProductsPartial(string parameters)
         {
-            if(parameters!=null)
-            return PartialView(JsonConvert.DeserializeObject<List<ProductViewModel>>(parameters));
+            if (parameters != null)
+                return PartialView(JsonConvert.DeserializeObject<List<ProductViewModel>>(parameters));
             return null;
         }
     }

@@ -3,6 +3,7 @@ using Domain.EF_Models;
 using IStore_WEB_.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
@@ -19,11 +20,15 @@ namespace IStore_WEB_.Controllers
             _productservice = productservice;
         }
 
-        public async Task<IActionResult> Index()
-        {            
-            var result = await _productservice.GetSortByRatingAsync(24);
+        public IActionResult Index()
+        {
+            return View();
+        }
 
-            return View(result);
+        [HttpPost]
+        public async Task<IActionResult> GetProducts()
+        {
+            return Json(await _productservice.GetSortByRatingAsync(24));
         }
 
         public IActionResult Privacy()
@@ -41,11 +46,11 @@ namespace IStore_WEB_.Controllers
         {
             return View(product);
         }
-
-        public async Task<IActionResult> GetProductDetails(int id)
+        public IActionResult GetProductDetails(string parameters)
         {
-            var res = await _productservice.GetByIdsync(id);
-            return PartialView("ProductDetails", res);
+            if (parameters != null)
+                return PartialView("ProductDetails", JsonConvert.DeserializeObject<Product>(parameters));
+            return null;
         }
     }
 }

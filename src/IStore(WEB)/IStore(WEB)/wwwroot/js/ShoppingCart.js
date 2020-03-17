@@ -48,6 +48,6 @@ function updateorder() {
 function deleteproduct(obj) {
     $(obj).parents(".cart_item").remove();
     updateorder();
-    totalprice();
+    totalpricecart();
     MinicartCount();
 };

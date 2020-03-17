@@ -58,7 +58,13 @@ namespace DataAccess.Repository
 
         public async Task<IReadOnlyCollection<Product>> GetSortByRatingAsync(int count)
         {
-            return await _storeContext.Products.OrderByDescending(x => x.Rating).Take(count).ToListAsync();
+            return await _storeContext.Products.OrderByDescending(x => x.Rating).Take(count)
+                .Include(br => br.Brand)
+                .Include(cat => cat.Category)
+                .Include(im => im.Images)
+                .Include(pac => pac.Package)
+                .Include(grch => grch.GroupCharacteristics).ThenInclude(ch => ch.Characteristics)
+                .Include(com => com.Comments).ToListAsync();
         }
     }
 }

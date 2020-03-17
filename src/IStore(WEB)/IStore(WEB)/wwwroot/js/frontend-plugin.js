@@ -475,49 +475,37 @@ jQuery(document).ready(function ($) {
         window_size += kt_get_scrollbar_width();
         if (window_size > 992) {
             //$(document).on('click', '.quick-wiew-button', function () {
-            //    $.magnificPopup.open({
-            //        items: {
-            //            src: "/Home/GetProductDetails/" + parseInt($(this).parents('.product-thumb').find('.product-id').text()),
-            //            type: 'ajax'
-            //        },
-            //        callbacks: {
-            //            ajaxContentAdded: slick_quickview_popup()
+            //    var parameters = products.find(x => x.id == parseInt($(this).parents('.product-thumb').find('.mainProductId').val()));
+            //    $.ajax({
+            //        type: 'POST',
+            //        url: '/Home/GetProductDetails',
+            //        data: { parameters: JSON.stringify(parameters) },
+            //        success: function (responce) {
+            //            $.magnificPopup.open({
+            //                items: {
+            //                    src: responce,
+            //                    type: 'ajax'
+            //                }
+            //            });
+            //            slick_quickview_popup();
             //        }
             //    });
-            //    return false;
-            //});
-            $('.quick-wiew-button').magnificPopup({
-                type: 'ajax',
-                callbacks: {
-                    updateStatus: function (data) {
-                        if (data.status === 'ready') {
-                            slick_quickview_popup();
-                        }
-                    }
-                }
+            //})
+            //$('.quick-wiew-button').magnificPopup({
+            //    src: "/Home/GetProductDetails/" + parseInt($(this).parents('.product-thumb').find('.product-id').text()),
+            //    type: 'ajax',
+            //    callbacks: {
+            //        updateStatus: function (data) {
+            //            if (data.status === 'ready') {
+            //                slick_quickview_popup();
+            //            }
+            //        }
+            //    }
                 
-            });
+            //});
         }
     }
-    function slick_quickview_popup() {
-        $('.slider-for').slick({
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            arrows: false,
-            fade: true,
-            asNavFor: '.slider-nav'
-        });
-        $('.slider-nav').slick({
-            slidesToShow: 3,
-            slidesToScroll: 1,
-            asNavFor: '.slider-for',
-            dots: false,
-            focusOnSelect: true,
-            infinite: true,
-            prevArrow: '<i class="fas fa-angle-left" aria-hidden="true"></i>',
-            nextArrow: '<i class="fas fa-angle-right " aria-hidden="true"></i>',
-        });
-    }
+    
 
     // --------------------------------BACK TO TOP-----------------------------
     $(window).on('scroll', function () {
@@ -584,6 +572,7 @@ jQuery(document).ready(function ($) {
         e.preventDefault();
         subtotal($qty);
         totalprice();
+        totalpricecart();
         updateorder();
     });
     //------------------------EQUAL ELEM----------------------------
@@ -826,3 +815,22 @@ jQuery(document).ready(function ($) {
     tanajil_init_menu_toggle();
     tanajil_custom_scrollbar_header_nav();
 }); 
+function slick_quickview_popup() {
+    $('.slider-for').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        fade: true,
+        asNavFor: '.slider-nav'
+    });
+    $('.slider-nav').slick({
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        asNavFor: '.slider-for',
+        dots: false,
+        focusOnSelect: true,
+        infinite: true,
+        prevArrow: '<i class="fas fa-angle-left" aria-hidden="true"></i>',
+        nextArrow: '<i class="fas fa-angle-right " aria-hidden="true"></i>',
+    });
+}

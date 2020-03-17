@@ -16,6 +16,9 @@
     </div>
     <div class="details-thumb">
         <div class="slider-product slider-for">
+            <div class="details-item">
+                <img src="@Model.PreviewImage" alt="img">
+            </div>
             @foreach (var item in @Model.Images)
             {
                 <div class="details-item">
@@ -24,6 +27,9 @@
             }
         </div>
         <div class="slider-product-button slider-nav nav-center">
+            <div class="details-item">
+                <img src="@Model.PreviewImage" alt="img">
+            </div>
             @foreach (var item in Model.Images)
             {
                 <div class="details-item">

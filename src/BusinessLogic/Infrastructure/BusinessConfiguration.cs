@@ -25,10 +25,10 @@ namespace Business.Infrastructure
             services.AddTransient(typeof(IOrderDetailsService), typeof(OrderDetailsService));
             services.AddTransient(typeof(IPackageService), typeof(PackageService));
             services.AddTransient(typeof(IProductService), typeof(ProductService));
+            services.AddTransient(typeof(ILikeService), typeof(LikeService));
 
-
-            //services.AddTransient(typeof(ICommentService), typeof(CommentService));            
-            //services.AddTransient(typeof(IUserService), typeof(UserService));
+            services.AddTransient(typeof(ICommentService), typeof(CommentService));            
+            services.AddTransient(typeof(IUserService), typeof(UserService));
           
             
 

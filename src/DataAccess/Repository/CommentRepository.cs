@@ -14,8 +14,10 @@ namespace DataAccess.Repository
 {
     public class CommentRepository : BaseRepository<Comment>, ICommentRepository
     {
+  
         public CommentRepository(StoreContext context) : base(context)
         {
+           
         }
         public override async Task<IReadOnlyCollection<Comment>> GetAllAsync()
         {
@@ -23,9 +25,8 @@ namespace DataAccess.Repository
         }
         public override async Task<IReadOnlyCollection<Comment>> FindByConditionAsync(Expression<Func<Comment, bool>> predicat)
         {
-            return await this.Entities.Where(predicat).Include(x => x.Answers).ToListAsync().ConfigureAwait(false);
+            return await this.Entities.Where(predicat).Include(x=>x.User).Include(x=>x.Product).Include(x=>x.Likes).ToListAsync().ConfigureAwait(false);
         }
-
         public async Task<IReadOnlyCollection<Comment>> GetCommentsAllIncludedAsync()
         {
             return await this.Entities.Include(x => x.Product).Include(x => x.User).Include(x => x.Answers).ToListAsync().ConfigureAwait(false);

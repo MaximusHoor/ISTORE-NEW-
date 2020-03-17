@@ -7,8 +7,8 @@ namespace Domain.Context
     {
         public StoreContext(DbContextOptions<StoreContext> options) : base(options)
         {
-            //Database.EnsureDeleted();
-            Database.EnsureCreated();           
+           // Database.EnsureDeleted();
+          Database.EnsureCreated();           
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -37,7 +37,6 @@ namespace Domain.Context
                   Volume = 30,
                   Weight = 40
                });
-
             modelBuilder.Entity<Product>().HasData(
                 new Product
                 {
@@ -55,7 +54,7 @@ namespace Domain.Context
                     PackageId = 1,
                     WarrantyMonth = 12,
                     Description = "Description",
-                    PreviewImage=""                    
+                    PreviewImage=""
                 });
 
             modelBuilder.Entity<GroupCharacteristic>().HasData(
@@ -74,6 +73,43 @@ namespace Domain.Context
                   new Characteristic {Id = 3, GroupCharacteristicId = 1,  Title="Title", Value = "blue" },
               }) ;
 
+            modelBuilder.Entity<User>().HasData(
+                new User
+                {
+                    Id=1,
+                
+                });
+
+            modelBuilder.Entity<User>().HasData(
+              new User
+              {
+                  Id = 2,
+               
+              });
+            modelBuilder.Entity<Comment>().HasData(new Comment
+            {
+                Id=1,
+                DislikeTotal = 2,
+                LikesTotal = 1,
+                Raiting = 4,
+                Text = "Comment 1",
+                ProductId = 1,
+                UserId = 1,
+  
+
+            });
+            modelBuilder.Entity<Comment>().HasData(new Comment
+            {
+                Id = 2,
+                DislikeTotal = 1,
+                LikesTotal = 1,
+                Raiting = 4,
+                Text = "Comment 2",
+                ProductId = 1,
+                UserId = 1,
+
+            });
+
         }
 
         public DbSet<Category> Categories { get; set; }
@@ -86,5 +122,6 @@ namespace Domain.Context
         public DbSet<Package> Packages { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetails> OrderDetails { get; set; }
+        public DbSet<Like> Likes { get; set; }
     }
 }

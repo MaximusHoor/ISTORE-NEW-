@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting; //using Business.Service;
+using System;
 
 namespace IStore_WEB_
 {
@@ -22,6 +23,11 @@ namespace IStore_WEB_
             BusinessConfiguration.ConfigureServices(services, Configuration);
             //services.AddTransient(typeof(UserSerive));
             services.AddControllersWithViews();
+            
+
+        }
+        public void SomeFucntion()
+        {
 
         }
 

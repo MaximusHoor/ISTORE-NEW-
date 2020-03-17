@@ -1,0 +1,25 @@
+﻿
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+<div class="review_form">
+    <div class="comment-respond">
+        <form class="comment-form-review">
+            <div class="comment-form-comment">
+                <textarea style="resize:vertical;border-left:none;border-right:none;border-top:none;border-bottom:2px solid grey;height:50px;overflow:hidden;" placeholder="your comment..."></textarea>
+            </div>
+            <div class="form-submit" style="display:flex;flex-direction:row;justify-content:space-between">
+                <div class="star-sel"></div>
+                <div>
+                    <button type="button" class="btn btn-outline-danger btn-sm cancel" id="cancel-partial">Cancel</button>
+                    <button type="button" class="btn btn-danger btn-sm send-comment">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    $(".cancel").click(function () {
+        $(this).closest('.input-area').html(" ");
+    });
+      
+</script>
+

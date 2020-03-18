@@ -15,7 +15,7 @@ using Newtonsoft.Json;
 
 namespace IStore_WEB_.Controllers
 {
-    //[Authorize(Roles = "admin")]
+    [Authorize(Roles = "admin")]
     public class AdminController : Controller
     {
         private readonly ProductCharacteristicService _productCharacteristicService;

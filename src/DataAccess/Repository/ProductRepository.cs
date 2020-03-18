@@ -51,7 +51,7 @@ namespace DataAccess.Repository
                 .Include(im => im.Images)
                 .Include(pac => pac.Package)
                 .Include(grch => grch.ProductCharacteristics)
-                .Include(com => com.Comments).FirstOrDefaultAsync();
+                .Include(com => com.Comments).ThenInclude(us =>us.User).FirstOrDefaultAsync();
         }
 
         public async Task<IReadOnlyCollection<Product>> GetSortByRatingAsync(int count)

@@ -34,7 +34,7 @@ namespace Business.Service
             var comments = await _unitOfWork.CommentRepository.FindByConditionAllIncludedAsync(x => x.Id == commentId);
             return comments.ElementAtOrDefault(0);
         }
-        public async Task<IReadOnlyCollection<Comment>> GetCommentsByUserAsync(int userId)
+        public async Task<IReadOnlyCollection<Comment>> GetCommentsByUserAsync(string userId)
         {
             return await _unitOfWork.CommentRepository.FindByConditionAllIncludedAsync(x => x.UserId == userId);
         }

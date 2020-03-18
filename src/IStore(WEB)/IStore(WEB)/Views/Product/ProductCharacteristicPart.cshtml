@@ -1,4 +1,4 @@
-﻿@model Domain.EF_Models.ProductCharacteristic
+﻿@model Domain.EF_Models.Product
 
 
     <div class="details-page">
@@ -26,61 +26,29 @@
                                 </ul>
 
                                 <div class="tab-container">
-                                    @*<div id="product-descriptions" class="tab-panel">
+                                    <div id="product-descriptions" class="tab-panel">
                                         <p>
-                                           @Model.Descriptions;
+                                           @Model.Description;
                                         </p>
                                     </div>
 
                                     <div id="information" class="tab-panel active">
                                         <table class="table table-bordered">
                                             <tbody>
-                                                    @foreach (var cahr in Model.)
+                                                    @foreach (var cahr in Model.ProductCharacteristics)
                                                     {
                                                         <tr>
                                                             <td>@cahr.Title</td> 
-                                                            <td>@cahr.</td>
+                                                            <td>@cahr.Value</td>
                                                         </tr>
                                                     }
                                             </tbody>
                                         </table>
-                                    </div>*@
+                                    </div>
 
                                     <div id="reviews" class="tab-panel">
                                         <div class="reviews-tab">
-                                            <div class="comments">
-                                                <h2 class="reviews-title">
-                                                    1 review for
-                                                    <span>Eclipse Pendant Light</span>
-                                                </h2>
-                                                <ol class="commentlist">
-                                                    <li class="conment">
-                                                        <div class="conment-container">
-                                                            <a href="productdetails-fullwidth.html#" class="avatar">
-                                                                <img src="assets/images/avartar.jpeg" alt="img">
-                                                            </a>
-                                                            <div class="comment-text">
-                                                                <div class="stars-rating">
-                                                                    <div class="star-rating">
-                                                                        <span class="star-5"></span>
-                                                                    </div>
-                                                                    <div class="count-star">
-                                                                        (4)
-                                                                    </div>
-                                                                </div>
-                                                                <p class="meta">
-                                                                    <strong class="author">Cobus Bester</strong>
-                                                                    <span>-</span>
-                                                                    <span class="time">June 7, 2013</span>
-                                                                </p>
-                                                                <div class="description">
-                                                                    <p>Simple and effective design. One of my favorites.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                </ol>
-                                            </div>
+                                            @await Html.PartialAsync("GetCommentsPartial", Model.Comments);
                                             <div class="review_form_wrapper">
                                                 <div class="review_form">
                                                     <div class="comment-respond">
@@ -141,47 +109,3 @@
             </div>
         </div>
     </div>
-
-
-
-
-
-                            @*<p>
-                                <a asp-action="Create">Create New</a>
-                            </p>
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.Id)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.Descriptions)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.ProductId)
-                                        </th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                            @foreach (var item in Model) {
-                                    <tr>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Id)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Descriptions)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.ProductId)
-                                        </td>
-                                        <td>
-                                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                                            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                                        </td>
-                                    </tr>
-                            }
-                                </tbody>
-                            </table>*@

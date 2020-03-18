@@ -11,7 +11,7 @@ namespace Business.Service.Interfaces
         Task<IReadOnlyCollection<Comment>> GetCommentsAsync();
         Task<IReadOnlyCollection<Comment>> GetCommentsAllIncludedAsync();
         Task<Comment> GetCommentAllIncludedAsync(int commentId);
-        Task<IReadOnlyCollection<Comment>> GetCommentsByUserAsync(int userId);
+        Task<IReadOnlyCollection<Comment>> GetCommentsByUserAsync(string userId);
         Task<IReadOnlyCollection<Comment>> GetCommentsDateFromAsync(DateTime time);
         Task<IReadOnlyCollection<Comment>> GetCommentsByProductAsync(int productId);
         Task<OperationDetail> CreateCommentAsync(Comment comment);

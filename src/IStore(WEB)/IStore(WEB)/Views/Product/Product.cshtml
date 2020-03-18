@@ -17,8 +17,8 @@
                             <a href="@Url.Action("index","home")">Home</a>
                         </li>
                         @*<li class="trail-item">
-                            <a href="productdetails-leftsidebar.html#">Interior</a>
-                        </li>*@
+                                <a href="productdetails-leftsidebar.html#">Interior</a>
+                            </li>*@
                         <li class="trail-item trail-end active">
                             Product
                         </li>
@@ -77,7 +77,7 @@
                                         </div>
                                     </div>
                                 }
-                                
+
                             </div>
                             <p>
                                 <div class="group-button">
@@ -104,14 +104,14 @@
                     <div class="widget widget-categories">
                         <h3 class="widgettitle">Categories</h3>
                         <ul class="list-categories">
-                        
+
                             <li>
                                 <input type="checkbox" id="cb6">
-                                    <label for="cb6" class="label-text">
-                                        @*@await Html.PartialAsync("CategoryPartialView");*@
-                                    </label>
+                                <label for="cb6" class="label-text">
+                                    @*@await Html.PartialAsync("CategoryPartialView");*@
+                                </label>
                             </li>
-                         
+
                         </ul>
                     </div>
                 </div>
@@ -122,3 +122,4 @@
 
 
 
+@await Html.PartialAsync("ProductCharacteristicPart",Model);

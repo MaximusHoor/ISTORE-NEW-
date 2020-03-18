@@ -1,15 +1,20 @@
+using Business.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 using Serilog.Events;
+using System.Threading.Tasks;
 
 namespace IStore_WEB_
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            var host = CreateHostBuilder(args).Build();
+             await BusinessConfiguration.ConfigureIdentityInicializerAsync(host.Services.CreateScope().ServiceProvider);
+             host.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args)

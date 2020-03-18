@@ -25,10 +25,9 @@ namespace IStore_WEB_
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            BusinessConfiguration.ConfigureServices(services, Configuration);
+           
             services.AddControllers().AddNewtonsoftJson(options =>
             options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-            services.AddTransient(typeof(UserService));
             services.AddControllersWithViews();
             services.AddIdentity<User, IdentityRole>(op =>
             {
@@ -40,6 +39,8 @@ namespace IStore_WEB_
                 op.Password.RequiredUniqueChars = 0;
 
             }).AddEntityFrameworkStores<StoreContext>();
+            BusinessConfiguration.ConfigureServices(services, Configuration);
+
 
             services.AddAuthentication().AddCookie(op => op.LoginPath = "/login");
 

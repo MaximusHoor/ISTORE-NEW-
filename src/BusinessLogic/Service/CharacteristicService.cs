@@ -18,27 +18,27 @@ namespace Business.Service
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<OperationDetail> CreateAsync(Characteristic entity)
+        public async Task<OperationDetail> CreateAsync(ProductCharacteristic entity)
         {
-            var res = await _unitOfWork.CharacteristicRepository.CreateAsync(entity);
+            var res = await _unitOfWork.ProductCharacteristicRepository.CreateAsync(entity);
             await _unitOfWork.SaveChangesAsync();
             return res;
         }
 
-        public async Task<IReadOnlyCollection<Characteristic>> FindByConditionAsync(Expression<Func<Characteristic, bool>> predicat)
+        public async Task<IReadOnlyCollection<ProductCharacteristic>> FindByConditionAsync(Expression<Func<ProductCharacteristic, bool>> predicat)
         {
-            return await _unitOfWork.CharacteristicRepository.FindByConditionAsync(predicat);
+            return await _unitOfWork.ProductCharacteristicRepository.FindByConditionAsync(predicat);
         }
 
       
-        public async Task<IReadOnlyCollection<Characteristic>> GetAllAsync()
+        public async Task<IReadOnlyCollection<ProductCharacteristic>> GetAllAsync()
         {
-            return await _unitOfWork.CharacteristicRepository.GetAllAsync();
+            return await _unitOfWork.ProductCharacteristicRepository.GetAllAsync();
         }
 
-        public async Task<Characteristic> GetByIdAsync(int id)
+        public async Task<ProductCharacteristic> GetByIdAsync(int id)
         {
-            return await _unitOfWork.CharacteristicRepository.GetByIdAsync(id);
+            return await _unitOfWork.ProductCharacteristicRepository.GetByIdAsync(id);
         }
     }
 }

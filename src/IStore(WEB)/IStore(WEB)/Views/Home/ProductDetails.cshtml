@@ -70,13 +70,9 @@
         <div class="variations">
             @foreach (var item in Model.ProductCharacteristics)
             {
-                <div class="attribute">
-                    <div class="text-attribute" onclick="SlideCharacteristics(this)">@*@item.Title  //todo refactor this*@<i class="fas fa-arrow-circle-down"></i></div>
-                    <div class="characteristics" style="display:none">
-                        @foreach (var characteristic in item.Characteristics)
-                        {
-                            <div>@characteristic.Title : @characteristic.Value</div>
-                        }
+                <div class="attribute">                    
+                    <div class="characteristics">                        
+                            <div>@item.Title : @item.Value</div>                        
                     </div>
                 </div>
             }
@@ -97,16 +93,18 @@
                     <a id="size_chart" href="assets/images/size-chart.jpg" class="fancybox" target="_blank">View Size Chart</a>
                 </div>
             </div>*@
-            <div class="quantity-add-to-cart">
-                <div class="quantity">
-                    <div class="control">
-                        <a class="btn-number qtyminus quantity-minus" href="#">-</a>
-                        <input type="text" data-step="1" data-min="1" value="1" title="Qty" class="input-qty qty" size="4">
-                        <a href="#" class="btn-number qtyplus quantity-plus">+</a>
+            <p>
+                <div class="quantity-add-to-cart">
+                    <div class="quantity">
+                        <div class="control">
+                            <a class="btn-number qtyminus quantity-minus" href="#">-</a>
+                            <input type="text" data-step="1" data-min="1" value="1" title="Qty" class="input-qty qty" size="4">
+                            <a href="#" class="btn-number qtyplus quantity-plus">+</a>
+                        </div>
                     </div>
+                    <button class="single_add_to_cart_button button" onclick="addToCartPopup(this)">Add to cart</button>
                 </div>
-                <button class="single_add_to_cart_button button" onclick="addToCartPopup(this)">Add to cart</button>
-            </div>
+            </p>
         </div>
     </div>
 </div>

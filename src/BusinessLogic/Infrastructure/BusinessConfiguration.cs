@@ -27,18 +27,13 @@ namespace Business.Infrastructure
             services.AddTransient(typeof(OrderDetailsService));
             services.AddTransient(typeof(PackageService));
             services.AddTransient(typeof(ProductService));
-            services.AddTransient<ImageFileService>(service=> new ImageFileService($"{ Directory.GetCurrentDirectory()}\\wwwroot\\Content\\Images\\"));
-            services.AddTransient(typeof(ICommentService), typeof(CommentService));            
+            services.AddTransient(typeof(ImportExportService));
+            services.AddTransient(typeof(CommentService));            
             services.AddTransient(typeof(IUserService), typeof(UserService));
-          
-            
-            services.AddTransient(typeof(ImportExportService));    
-            services.AddTransient<ImageFileService>(service=> new ImageFileService($"{ Directory.GetCurrentDirectory()}\\Content\\Images\\"));
 
-            //services.AddTransient(typeof(ICommentService), typeof(CommentService));            
-            //services.AddTransient(typeof(IUserService), typeof(UserService));
+            services.AddTransient<ImageFileService>(service => new ImageFileService($"{ Directory.GetCurrentDirectory()}\\wwwroot\\Content\\Images\\"));
 
-
+           
 
             DataAccessConfiguration.ConfigureServices(services, configuration);
         }

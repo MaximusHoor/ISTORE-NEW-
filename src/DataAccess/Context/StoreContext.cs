@@ -173,23 +173,16 @@ namespace Domain.Context
                     PreviewImage="https://i.allo.ua/media/catalog/product/cache/3/image/600x415/799896e5c6c37e11608b9f8e1d047d15/f/i/file_1341_1_2.jpg"},
                 });
 
+
             modelBuilder.Entity<ProductCharacteristic>().HasData(
-               new ProductCharacteristic[]
-               {
-                   new ProductCharacteristic{Id = 1, ProductId = 1, Descriptions = "Связь"},
-                   new ProductCharacteristic{Id = 2, ProductId = 1, Descriptions = "Экран"}
-
-               }); 
-
-            modelBuilder.Entity<Characteristic>().HasData(
-              new Characteristic[]
+              new ProductCharacteristic[]
               {
-                  new Characteristic {Id = 1, ProductCharacteristicId = 1,  Title="Стандарт связи", Value = "GSM, 3G, 4G (LTE), 5G"},
-                  new Characteristic {Id = 2, ProductCharacteristicId = 1,  Title="Количество sim-карт", Value ="2 SIM"},
-                  new Characteristic {Id = 3, ProductCharacteristicId = 1,  Title="Формат SIM-карты", Value = "Nano-SIM" },
-                  new Characteristic {Id = 4, ProductCharacteristicId = 2,  Title="Диагональ", Value = "6.9"},
-                  new Characteristic {Id = 5, ProductCharacteristicId = 2,  Title="Количество цветов", Value ="16 миллионов"},
-                  new Characteristic {Id = 6, ProductCharacteristicId = 2,  Title="Тип дисплея", Value = "Dynamic AMOLED" },
+                  new ProductCharacteristic {Id = 1, Title="Стандарт связи", Value = "GSM, 3G, 4G (LTE), 5G", ProductId=1},
+                  new ProductCharacteristic {Id = 2, Title="Количество sim-карт", Value ="2 SIM", ProductId=1},
+                  new ProductCharacteristic {Id = 3, Title="Формат SIM-карты", Value = "Nano-SIM" , ProductId=1},
+                  new ProductCharacteristic {Id = 4, Title="Диагональ", Value = "6.9", ProductId=1},
+                  new ProductCharacteristic {Id = 5, Title="Количество цветов", Value ="16 миллионов", ProductId=1},
+                  new ProductCharacteristic {Id = 6, Title="Тип дисплея", Value = "Dynamic AMOLED", ProductId=1},
 
               }) ;
 
@@ -257,7 +250,6 @@ namespace Domain.Context
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Image> Images { get; set; }
         public DbSet<ProductCharacteristic> ProductCharacteristics { get; set; }
-        public DbSet<Characteristic> Characteristics { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Delivery> Deliveries { get; set; }
         public DbSet<Package> Packages { get; set; }

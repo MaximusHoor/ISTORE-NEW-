@@ -12,27 +12,26 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repository
 {
-    public class CharacteristicRepository : BaseRepository<Characteristic>, ICharacteristicRepository
+    public class CharacteristicRepository : BaseRepository<ProductCharacteristic>, ICharacteristicRepository
     { 
         public CharacteristicRepository(StoreContext context) : base(context)
         {
 
         }
         
-        public override async Task<IReadOnlyCollection<Characteristic>> GetAllAsync()
+        public override async Task<IReadOnlyCollection<ProductCharacteristic>> GetAllAsync()
         {
-            return await this.Entities.Include(ch => ch.ProductCharacteristic).ToListAsync().ConfigureAwait(false);
+            return await this.Entities.ToListAsync().ConfigureAwait(false);
         }
 
-        public override async Task<IReadOnlyCollection<Characteristic>> FindByConditionAsync(Expression<Func<Characteristic, bool>> predicat)
+        public override async Task<IReadOnlyCollection<ProductCharacteristic>> FindByConditionAsync(Expression<Func<ProductCharacteristic, bool>> predicat)
         {
-            return await this.Entities.Include(ch => ch.ProductCharacteristic).Where(predicat).ToListAsync().ConfigureAwait(false);
+            return await this.Entities.Where(predicat).ToListAsync().ConfigureAwait(false);
         }
 
-        public async Task<Characteristic> GetByIdAsync(int id)
+        public async Task<ProductCharacteristic> GetByIdAsync(int id)
         {
-            return await _storeContext.Characteristics.Where(x => x.Id == id)
-                .Include(ch => ch.ProductCharacteristic).FirstOrDefaultAsync();
+            return await _storeContext.ProductCharacteristics.Where(x => x.Id == id).FirstOrDefaultAsync();
         }
     }
 }

@@ -21,15 +21,13 @@ namespace DataAccess.Repository
 
         public override async Task<IReadOnlyCollection<ProductCharacteristic>> GetAllAsync()
         {
-            return await this.Entities.Include(grc => grc.Product)
-                .Include(grc => grc.Characteristics)
+            return await this.Entities.Include(grc => grc.Product)           
                 .ToListAsync().ConfigureAwait(false);
         }
 
         public override async Task<IReadOnlyCollection<ProductCharacteristic>> FindByConditionAsync(Expression<Func<ProductCharacteristic, bool>> predicat)
         {
             return await this.Entities.Include(grc => grc.Product)
-                .Include(grc => grc.Characteristics)
                 .Where(predicat).ToListAsync().ConfigureAwait(false);
         }
 
@@ -37,7 +35,6 @@ namespace DataAccess.Repository
         {
             return await _storeContext.ProductCharacteristics.Where(x=>x.Id==id)
                 .Include(grc => grc.Product)
-                .Include(grc => grc.Characteristics)
                 .FirstOrDefaultAsync();
         }
     }

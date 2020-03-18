@@ -18,7 +18,7 @@ namespace IStore_WEB_.Controllers
         private readonly ProductService _productservice;
         private readonly ProductCharacteristicService _productCharacteristicService;
         private readonly CommentService _commentService;
-        public ProductController(ILogger<ProductController> logger, ProductService productservice, ProductCharacteristicService productCharacteristicService,CommentService commentService)
+        public ProductController(ILogger<ProductController> logger, ProductService productservice, ProductCharacteristicService productCharacteristicService, CommentService commentService)
         {
             _logger = logger;
             _productservice = productservice;
@@ -58,10 +58,13 @@ namespace IStore_WEB_.Controllers
         }
         public async Task<IActionResult> Product(int id)
         {
-            var res = await _productservice.GetByIdsync(1);
+
+            var res = await _productservice.GetByIdsync(id);
 
             return View("Product", res);
         }
+       
+
         [Route("Products/{categoryTitle?}")]
         public IActionResult GetProductFromCategory(string categoryTitle)
         {

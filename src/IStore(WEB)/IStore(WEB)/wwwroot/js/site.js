@@ -7,24 +7,18 @@
             data: { parameters: JSON.stringify(new localList("IStoreProduct").items()) },
             success: function (responce) {
                 $("#cartpartialview").html(responce);
-                totalprice();
+                totalpricepartial();
             }
         });
     });
     $(document).on('click', '.product_to_cart', function () {
-        var par = $(this).parents('.product-thumb');
+        var par = $(this).parents('.product-item');
         var product = new Object();
-        product.Id = parseInt($(par).find('.product-id').text());
-        product.Description = $(par).find('.product-description').text();
-        product.Model = $(par).find('.product-model').text();
-        product.PreviewImage = $(par).find('.product-previewimage').text();
-        product.Rating = parseInt($(par).find('.product-rating').text());
-        product.RetailPrice = parseFloat($(par).find('.product-retailprice').text());
-        product.Series = $(par).find('.product-series').text();
-        product.Title = $(par).find('.product-title').text();
-        product.Type = $(par).find('.product-type').text();
-        product.VendorCode = $(par).find('.product-vendorcode').text();
-        product.WarrantyMonth = parseInt($(par).find('.product-warrantymonth').text());
+        product.Id = parseInt($(par).find('.mainProductId').val());
+        product.Model = $(par).find('.productModel').text();
+        product.PreviewImage = $(par).find('.productPreview').attr('src');
+        product.RetailPrice = parseFloat($(par).find('.price ins').text());
+        product.Title = $(par).find('.productTitle').text();
         product.Count = 1;
         new localList("IStoreProduct").add(product);
         MinicartCount();
@@ -38,16 +32,10 @@ function updateorderpartial() {
     $(".mini_cart_item").each(function () {
         var product = new Object();
         product.Id = parseInt($(this).find('.partial-id').text());
-        product.Description = $(this).find('.partial-description').text();
         product.Model = $(this).find('.partial-model').text();
         product.PreviewImage = $(this).find('.partial-previewimage').text();
-        product.Rating = parseInt($(this).find('.partial-rating').text());
         product.RetailPrice = parseFloat($(this).find('.partial-retailprice').text());
-        product.Series = $(this).find('.partial-series').text();
         product.Title = $(this).find('.partial-title').text();
-        product.Type = $(this).find('.partial-type').text();
-        product.VendorCode = $(this).find('.partial-vendorcode').text();
-        product.WarrantyMonth = parseInt($(this).find('.partial-warrantymonth').text());
         product.Count = parseInt($(this).find('.product-quantity .quantity').text());
         products.push(product);
     });
@@ -56,10 +44,10 @@ function updateorderpartial() {
 function deleteproductpartial(obj) {
     $(obj).parents(".mini_cart_item").remove();
     updateorderpartial();
-    totalprice();
+    totalpricepartial();
     MinicartCount();
 };
-function totalprice() {
+function totalpricepartial() {
     var s = 0;
     $(".mini_cart_item").each(function () {
         s += (parseFloat($(this).find(".price").text()) * parseFloat($(this).find(".quantity").text()));
@@ -80,16 +68,10 @@ function addToCartPopup(obj) {
     var par = $(obj).parents('.kt-popup-quickview');
     var product = new Object();
     product.Id = parseInt($(par).find('.product-id').text());
-    product.Description = $(par).find('.product-description').text();
     product.Model = $(par).find('.product-model').text();
     product.PreviewImage = $(par).find('.product-previewimage').text();
-    product.Rating = parseInt($(par).find('.product-rating').text());
     product.RetailPrice = parseFloat($(par).find('.product-retailprice').text());
-    product.Series = $(par).find('.product-series').text();
     product.Title = $(par).find('.product-title').text();
-    product.Type = $(par).find('.product-type').text();
-    product.VendorCode = $(par).find('.product-vendorcode').text();
-    product.WarrantyMonth = parseInt($(par).find('.product-warrantymonth').text());
     product.Count = parseInt($(par).find('.input-qty').val());
     new localList("IStoreProduct").add(product);
     MinicartCount();

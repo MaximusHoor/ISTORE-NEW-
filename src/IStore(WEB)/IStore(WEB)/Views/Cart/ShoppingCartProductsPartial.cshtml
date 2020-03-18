@@ -4,15 +4,10 @@
     <tr class="cart_item">
         <td class="product-id">
             <span class="partial-id">@item.Id</span>
-            <span class="partial-description">@item.Description</span>
             <span class="partial-model">@item.Model</span>
             <span class="partial-previewimage">@item.PreviewImage</span>
-            <span class="partial-rating">@item.Rating</span>
             <span class="partial-retailprice">@item.RetailPrice</span>
-            <span class="partial-series">@item.Series</span>
             <span class="partial-title">@item.Title</span>
-            <span class="partial-vendorcode">@item.VendorCode</span>
-            <span class="partial-warrantymonth">@item.WarrantyMonth</span>
         </td>
         <td class="product-thumbnail">
             <a href="@Url.Action("Product", "Home", item.Id)">
@@ -22,8 +17,7 @@
         </td>
         <td class="product-name" data-title="Product">
             <a href="@Url.Action("Product", "Home", item.Id)" class="title">@item.Title</a>
-            <span class="attributes-select attributes-color">@item.Type</span>
-            <span class="attributes-select attributes-size">@item.VendorCode</span>
+            <span class="attributes-select attributes-color">@item.Model</span>
         </td>
         <td class="product-quantity" data-title="Quantity">
             <div class="quantity">

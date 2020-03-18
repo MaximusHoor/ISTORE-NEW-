@@ -48,7 +48,7 @@ namespace IStore_WEB_.Controllers
         }
         public IActionResult GetProductDetails(string parameters)
         {
-            if (parameters != null)
+            if (parameters != "[]")
                 return PartialView("ProductDetails", JsonConvert.DeserializeObject<Product>(parameters));
             return null;
         }

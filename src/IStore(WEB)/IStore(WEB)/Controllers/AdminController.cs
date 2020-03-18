@@ -24,10 +24,9 @@ namespace IStore_WEB_.Controllers
         private readonly CategoryService _categoryService;
         private readonly ProductService _productService;
         private readonly ImageService _imageService;
-        public AdminController(ProductCharacteristicService productCharacteristicService, ImageFileService fileService,
         private readonly ImportExportService _importExportService;
 
-        public AdminController(GroupCharacteristicService groupCharacteristicService, ImageFileService fileService, 
+        public AdminController(ProductCharacteristicService productCharacteristicService, ImageFileService fileService, 
             BrandService brandService, CategoryService categoryService, ProductService productService, ImageService imageService, ImportExportService importExportService)
         {
 

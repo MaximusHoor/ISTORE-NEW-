@@ -27,7 +27,7 @@
 
                 //price = (products[count].retailPrice).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1');
                 $(this).find(".price ins").text(products[count].retailPrice);
-                
+                $(this).find(".equal-element").attr("style", "height: 320px"); //окончательный размер окошка с продуктом
                 count++;
             });
 

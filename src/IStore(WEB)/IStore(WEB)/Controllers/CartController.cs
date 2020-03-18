@@ -58,6 +58,12 @@ namespace IStore_WEB_.Controllers
                 return PartialView(JsonConvert.DeserializeObject<List<ProductViewModel>>(parameters));
             return null;
         }
+        public IActionResult ShoppingCartProductsPartial(string parameters)
+        {
+            if (parameters != null)
+                return PartialView(JsonConvert.DeserializeObject<List<ProductViewModel>>(parameters));
+            return null;
+        }
         //public async Task<IActionResult> ShoppingCartPartial(int parameters)
         //{
         //    var order = (await _orderService.FindByConditionAsync(x => x.Id == parameters)).LastOrDefault();
@@ -80,11 +86,5 @@ namespace IStore_WEB_.Controllers
         //    }
         //    return PartialView(productViewList);
         //}
-        public IActionResult ShoppingCartProductsPartial(string parameters)
-        {
-            if (parameters != null)
-                return PartialView(JsonConvert.DeserializeObject<List<ProductViewModel>>(parameters));
-            return null;
-        }
     }
 }

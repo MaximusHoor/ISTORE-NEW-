@@ -14,7 +14,7 @@
            
             count = 0;
             $(".product-item").each(function () {     
-               
+
                 $(this).find(".mainProductId").val(products[count].id);
                 $(this).find(".product-top").show();
                 $(this).find(".stars-rating").show();

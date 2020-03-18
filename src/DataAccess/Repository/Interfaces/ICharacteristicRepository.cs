@@ -8,6 +8,6 @@ namespace DataAccess.Repository.Interfaces
 {
     public interface ICharacteristicRepository
     {
-        Task<Characteristic> GetByIdAsync(int id);
+        Task<ProductCharacteristic> GetByIdAsync(int id);
     }
 }

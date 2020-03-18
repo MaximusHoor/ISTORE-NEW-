@@ -39,7 +39,6 @@ namespace DataAccess.Repository
                 .Include(im => im.Images)
                 .Include(pac => pac.Package)
                 .Include(grch => grch.ProductCharacteristics)
-                .ThenInclude(y=>y.Characteristics)
                 .Include(com => com.Comments)
                 .Where(predicat).ToListAsync().ConfigureAwait(false);
         }
@@ -52,7 +51,6 @@ namespace DataAccess.Repository
                 .Include(im => im.Images)
                 .Include(pac => pac.Package)
                 .Include(grch => grch.ProductCharacteristics)
-                .ThenInclude(y => y.Characteristics)
                 .Include(com => com.Comments).FirstOrDefaultAsync();
         }
 
@@ -63,7 +61,7 @@ namespace DataAccess.Repository
                 .Include(cat => cat.Category)
                 .Include(im => im.Images)
                 .Include(pac => pac.Package)
-                .Include(grch => grch.ProductCharacteristics).ThenInclude(ch => ch.Characteristics)
+                .Include(grch => grch.ProductCharacteristics)
                 .Include(com => com.Comments).ToListAsync();
         }
     }

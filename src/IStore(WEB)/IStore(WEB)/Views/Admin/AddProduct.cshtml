@@ -5,291 +5,11 @@
 }
 
     <link href="https://fonts.googleapis.com/css?family=Muli&display=swap" rel="stylesheet">
-
-<style>
-
-    .allelements {
-        font-family: 'Muli', sans-serif;
-        /*overflow-y: scroll; 
-        height: 500px; 
-        overflow-y:hidden;*/
-    }
-
-    .box {
-        display: flex;
-        align-items: flex-start;
-        justify-content: flex-start;
-        align-content: flex-start;
-        margin: 20px;
-        width: 1200px;
-        border: 0.5px solid darkgray;
-        border-radius: 5px;
-        background-color: #fbf8f8;
-        padding: 8px;
-    }   
-
-    .box1, box2, .box3 {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .title, .type, .vendorCode, .description, .retailPrice, .series, .model, .rating, .warrantyMonth {
-        margin: 10px;
-    }
-
-    label, button {
-        margin: 5px;
-    }
-
-    input[type=text] {
-        border: 0.5px solid darkgray;
-        border-radius: 5px;
-    }
-
-    input[type=file] {
-        border: 0.5px solid darkgray;
-        border-radius: 5px;
-        margin-right:20px;
-        font-size:small;
-    }
-
-    input[type=number] {
-        border: 0.5px solid darkgray;
-        border-radius: 5px;
-        margin-right: 20px;
-        font-size: small;
-        width:100px;
-        height:30px;
-    }
-
-    select {
-        border: 0.5px solid darkgray;
-        border-radius: 5px;
-        margin-right: 20px;
-        font-size: small;
-        width: 100px;
-        height: 30px;
-        background-color:beige;
-        margin-right: 15px;
-    }
-
-    img {
-        max-width: 100px;
-        max-height: 100px;
-        border-radius: 10px;
-        margin-bottom: 5px;
-        margin-right: 50px;
-    }
-
-    button {
-        margin-left: 15px;
-    }
-
-    /*.prbtn{
-        display: inline-block; 
-        background: #fbf8f8; 
-        padding: 1rem 1.5rem; 
-        text-decoration: none; 
-        border-radius: 3px;
-        margin-left:10px;
-    }*/
-
-</style>
+    <link href="~/AdminPanel/css/AddProduct.css" rel="stylesheet" />
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-
-<script>
-
-    $(function () {
-
-        $(".previewImage").change(function (e) {
-
-            var file = $(this)[0].files[0];
-            var reader = new FileReader();
-
-            if(this.files[0].size > 20000){ //12
-                    alert("File is too big!");
-                this.value = "";
-                e.preventDefault();
-                return;
-            };
-
-             if(this.files[0].type != "image/png"){
-                    alert("File format not supported! Required .png");
-                this.value = "";
-                e.preventDefault();
-                return;
-            };
-
-
-
-            reader.onload = function () {
-                $(".previewImageView").attr("src", reader.result);               
-            };
-
-            //
-            //$('.previewImageView').on('load', function () {
-            //    alert($(this).width() + '*' + $(this).height());
-            //});
-           
-            if (file) {
-                reader.readAsDataURL(file);
-            }
-            else {
-                    preview.src = "";
-            };
-
-        });
-
-        $(".imgcoll").change(function () {
-
-            var file = $(this)[0].files[0];
-            var reader = new FileReader();
-
-             if(this.files[0].size > 100000){ //12
-                    alert("File is too big!");
-                this.value = "";
-                e.preventDefault();
-                return;
-            };
-
-            if(this.files[0].type != "image/png"){
-                    alert("File format not supported! Required .png");
-                this.value = "";
-                e.preventDefault();
-                return;
-            };
-
-            var element = $(this);
-
-            reader.onload = function () {
-                $(element).next().attr("src", reader.result);
-            };
-           
-            if (file) {
-                reader.readAsDataURL(file);
-            }
-            else {
-                    preview.src = "";
-            };
-
-        });
-
-
-
-
-        $(".save").click(function () {
-
-            var product = new Object();
-            
-            product.Id = 0;
-            var d = $(".title").val();
-            product.Title = $(".title").val();
-            product.Type = $(".type").val();
-            product.VendorCode = $(".vendorCode").val();
-            product.Description = $(".description").val();
-
-            var br = new Object();
-            br.Id = 0;
-            br.Name = $(".brand").val();
-           
-            product.Brand = br; //
-            product.RetailPrice = $(".retailPrice").val();
-
-            var cat = new Object();
-            cat.Id = 0;
-            cat.Title = $(".category").val();
-           
-            product.Category = cat;
-
-            var pack = new Object();
-
-            pack.Id = 0;
-            pack.CountInPackage = $(".countInPackage").val();
-            pack.Volume = $(".volume").val();
-            pack.Weight =  $(".weight").val();
-
-            product.Package = pack;
-
-           var groups = [];
-
-            var groupsElements = $(".tableBox");
-
-            $(groupsElements).each(function (){
-                var characteristics = [];
-
-                
-
-                $(this).find(".innerBox").each(function () {
-
-                    var charact = new Object();
-                    charact.Id = 0;
-                    charact.Title = $(this).find(".title").val();
-                    charact.Value = $(this).find(".value").val();
-                    charact.GroupCharacteristicId = 0;
-
-                    characteristics.push(charact);
-                });
-
-                var group = new Object();
-                group.Title = $(this).find('td').find(".titleGroup").val();
-                group.ProductId = 0;
-                group.Characteristics = characteristics;
-                group.Id = 0;
-
-                groups.push(group);
-
-            });
-
-            product.GroupCharacteristics = groups;
-            product.CountInStorage = $(".countInStorage").val();
-            product.Rating = $(".rating").val();
-            product.WarrantyMonth = $(".warrantyMonth").val();
-            product.Series = $(".series").val();
-            product.Model = $(".model").val();
-
-            var formData = new FormData();
-            formData.append('file', $('.previewImage')[0].files[0]);
-
-            $(".imgcoll").each(function () {
-                formData.append('file', $(this)[0].files[0]);
-            });
-
-            formData.append('product', JSON.stringify(product));
-        
-
-            $.ajax({
-                type: "POST",
-                url: "/admin/SaveProduct",
-                data: formData,
-                processData: false, 
-                contentType: false,
-            });
-
-
-        });
-
-
-        $(".newCategory").click(function () {
-            
-            $(".categoryBox").show();
-
-        });
-
-         $(".newBrand").click(function () {
-            
-            $(".brandBox").show();
-
-        });
-
-        
-    });
-
-
-</script>
+<script src="~/AdminPanel/js/AddProduct.js"></script>
 
 
 <h4>New product</h4>
@@ -324,7 +44,7 @@
 
                 <div class="categoryBox">                   
                     <div>
-                        @await Html.PartialAsync("AddCategory")
+                        @await Html.PartialAsync("AddCategoryPartialView")
                     </div>
                 </div>
 
@@ -344,7 +64,7 @@
 
                 <div class="brandBox">
                     <div>
-                        @await Html.PartialAsync("AddBrand")
+                        @await Html.PartialAsync("AddBrandPartialView")
                     </div>
                 </div>
 
@@ -422,7 +142,7 @@
     <div class="box">
         <div class="box1">
 
-            @await Html.PartialAsync("AddCharacteristicPartialView")
+            @await Html.PartialAsync("ProductCharacteristicPartialView")
 
         </div>
 
@@ -432,7 +152,7 @@
     <div class="box">
         <div class="box1">
 
-            <button class="save">Save</button>
+            <button class="saveProduct">Save</button>
 
         </div>
 

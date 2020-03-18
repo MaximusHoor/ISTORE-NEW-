@@ -44,44 +44,44 @@ namespace Business.Service
             return await _unitOfWork.ProductCharacteristicRepository.GetByIdAsync(id);
         }
 
-        public async Task SaveGroupAsync(IEnumerable<ProductCharacteristic> groups)  
-        {
-            foreach(var group in groups)
-            {
-                var gr = await _unitOfWork.ProductCharacteristicRepository.GetByIdAsync(group.Id);
+        //public async Task SaveGroupAsync(IEnumerable<ProductCharacteristic> groups)  
+        //{
+        //    foreach(var group in groups)
+        //    {
+        //        var gr = await _unitOfWork.ProductCharacteristicRepository.GetByIdAsync(group.Id);
                 
-                if(gr is null)
-                {
-                    await _unitOfWork.ProductCharacteristicRepository.CreateAsync(group);
-                    await this._unitOfWork.SaveChangesAsync();
-                    gr = await _unitOfWork.ProductCharacteristicRepository.GetByIdAsync(group.Id);                    
-                }
-                else
-                {
-                    gr.Characteristics = group.Characteristics;
-                    gr.ProductId = group.ProductId;
-                    gr.Descriptions = group.Descriptions;
-                }
+        //        if(gr is null)
+        //        {
+        //            await _unitOfWork.ProductCharacteristicRepository.CreateAsync(group);
+        //            await this._unitOfWork.SaveChangesAsync();
+        //            gr = await _unitOfWork.ProductCharacteristicRepository.GetByIdAsync(group.Id);                    
+        //        }
+        //        else
+        //        {
+        //            gr.Characteristics = group.Characteristics;
+        //            gr.ProductId = group.ProductId;
+        //            gr.Descriptions = group.Descriptions;
+        //        }
 
-                foreach(var character in group.Characteristics)
-                {
-                    var charac = await _unitOfWork.CharacteristicRepository.GetByIdAsync(character.Id);
+        //        foreach(var character in group.Characteristics)
+        //        {
+        //            var charac = await _unitOfWork.CharacteristicRepository.GetByIdAsync(character.Id);
 
-                    if(charac is null)
-                    {
-                        await _unitOfWork.CharacteristicRepository.CreateAsync(character);
-                        await this._unitOfWork.SaveChangesAsync();
-                    }
-                    else
-                    {
-                        charac.ProductCharacteristicId = gr.Id;
-                        charac.Title = character.Title;
-                        charac.Value = character.Value;
-                    }
-                }
-            }
+        //            if(charac is null)
+        //            {
+        //                await _unitOfWork.CharacteristicRepository.CreateAsync(character);
+        //                await this._unitOfWork.SaveChangesAsync();
+        //            }
+        //            else
+        //            {
+        //                charac.ProductCharacteristicId = gr.Id;
+        //                charac.Title = character.Title;
+        //                charac.Value = character.Value;
+        //            }
+        //        }
+        //    }
 
-            await this._unitOfWork.SaveChangesAsync();
-        }
+        //    await this._unitOfWork.SaveChangesAsync();
+        //}
     }
 }

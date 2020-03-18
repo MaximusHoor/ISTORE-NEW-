@@ -19,23 +19,18 @@ namespace IStore_WEB_.Controllers
     public class AdminController : Controller
     {
         private readonly ProductCharacteristicService _productCharacteristicService;
-        private readonly ImageFileService _fileService;
         private readonly BrandService _brandService;
         private readonly CategoryService _categoryService;
-        private readonly ProductService _productService;
-        private readonly ImageService _imageService;
-        public AdminController(ProductCharacteristicService productCharacteristicService, ImageFileService fileService,
+        private readonly ProductService _productService;               
         private readonly ImportExportService _importExportService;
 
-        public AdminController(GroupCharacteristicService groupCharacteristicService, ImageFileService fileService, 
-            BrandService brandService, CategoryService categoryService, ProductService productService, ImageService imageService, ImportExportService importExportService)
-        {
-
-            _fileService = fileService;
+        public AdminController(ProductCharacteristicService productCharacteristicService, 
+            BrandService brandService, CategoryService categoryService, ProductService productService, 
+            ImportExportService importExportService)
+        {         
             _brandService = brandService;
             _categoryService = categoryService;
-            _productService = productService;
-            _imageService = imageService;
+            _productService = productService;            
             _productCharacteristicService = productCharacteristicService;
             _importExportService = importExportService;
         }
@@ -46,32 +41,29 @@ namespace IStore_WEB_.Controllers
             return View();
         }
 
-        public async Task<IActionResult> GetCharacteristic(int id)
+        public async Task<IActionResult> AddCharacteristic()
         {
-            var res = await _productCharacteristicService
-                .FindByConditionAsync(x => x.ProductId == 1);
-
-            return PartialView("ProductCharacteristicPartialView", res);
+            return PartialView("ProductCharacteristicPartialView");
         }
 
-        [HttpPost]
-        public async Task GetCharacteristicAsync(string parameters)
-        {
-            await _productCharacteristicService.SaveGroupAsync((IEnumerable<ProductCharacteristic>)JsonConvert
-                .DeserializeObject<List<ProductCharacteristic>>(parameters));
-        }
+        //[HttpPost]
+        //public async Task GetCharacteristicAsync(string parameters)
+        //{
+        //    await _productCharacteristicService.SaveGroupAsync((IEnumerable<ProductCharacteristic>)JsonConvert
+        //        .DeserializeObject<List<ProductCharacteristic>>(parameters));
+        //}
 
-        public async Task<IActionResult> GetImage()
+        public async Task<IActionResult> AddImage()
         {
             return PartialView("ImagePartialView");
         }
 
 
-        [HttpPost]
-        public async Task AddFile(IFormFileCollection uploads)
-        {
-            await _fileService.Save(uploads);
-        }
+        //[HttpPost]
+        //public async Task AddFile(IFormFileCollection uploads)
+        //{
+        //    await _fileService.Save(uploads);
+        //}
 
         public async Task<IActionResult> AddProduct()
         {
@@ -85,69 +77,18 @@ namespace IStore_WEB_.Controllers
         [HttpPost]
         public async Task SaveProduct(IFormCollection formCode)
         {
-            Product product = null;
-            if (formCode.Files.Count <= 1)
-                product = JsonConvert.DeserializeObject<Product>((formCode).ToList()[1].Value);
-            else
-                product = JsonConvert.DeserializeObject<Product>((formCode).ToList()[0].Value);
-
-            product.PreviewImage = await _fileService.Save(await _imageService.ImageResizeAsync(formCode.Files[0], ".png", 20000, 300, 300));
-
-            for (int i = 1; i < formCode.Files.Count; i++)
-            {
-                var image = await _imageService.ImageResizeAsync(formCode.Files[i], ".png", 100000, 650, 650);
-                product.Images.Add(new Image() { FilePath = await _fileService.Save(image), Product = product });
-            }
-
-            var category = (await _categoryService.FindByConditionAsync(x => x.Title == product.Category.Title)).FirstOrDefault();
-
-            if (category != null)
-                product.Category = category;
-            else
-                await _categoryService.CreateAsync(product.Category);
-
-            var brand = (await _brandService.FindByConditionAsync(x => x.Name == product.Brand.Name)).FirstOrDefault();
-
-            if (brand != null)
-                product.Brand = brand;
-            else
-                await _brandService.CreateAsync(product.Brand);
-
-            //group
-
-            await _productService.CreateAsync(product);
+            await _productService.CreateAsync(formCode);
         }
 
         public IActionResult AddCategory()
         {
-            return PartialView();
+            return PartialView("AddCategoryPartialView");
         }
 
         [HttpPost]   
         public async Task<IActionResult> SaveCategory(IFormCollection formCode)
         {
-            Category category = null;
-
-            if (formCode.Files.Count < 1)
-            {
-                category = new Category()
-                {
-                    Title = formCode.ToList()[1].Value,
-                    PreviewImage = null,
-                };
-            }
-            else
-            {
-                category = new Category()
-                {
-                    Title = formCode.ToList()[0].Value,
-                    PreviewImage = await _fileService.Save(await _imageService.ImageResizeAsync(formCode.Files[0], ".png", 20000, 300, 300)),
-                };
-            }
-
-            
-
-            var res = await _categoryService.CreateAsync(category);
+           await _categoryService.CreateAsync(formCode);
 
             var result = (await _categoryService.GetAllAsync()).Select(x=>x.Title).ToList();
             
@@ -156,7 +97,7 @@ namespace IStore_WEB_.Controllers
 
         public IActionResult AddBrand()
         {
-            return PartialView();
+            return PartialView("AddBrandPartialView");
         }
 
         [HttpPost]

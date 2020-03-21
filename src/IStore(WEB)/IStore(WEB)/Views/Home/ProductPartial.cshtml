@@ -30,7 +30,7 @@
 <span class="product-warrantymonth">@Model.WarrantyMonth</span>
                 </div>
 <div class="thumb-inner">
-    <a href="index.html#">
+    <a href="@Url.Action("Product", "Product", new { id = Model.Id })">
         <img src=@Model.PreviewImage alt="img">
     </a>
     <div class="thumb-group">

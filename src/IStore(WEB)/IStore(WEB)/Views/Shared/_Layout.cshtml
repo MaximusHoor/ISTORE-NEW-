@@ -46,7 +46,7 @@
                 <div class="top-bar-right">
                     <div class="header-language">
                         <div class="tanajil-language tanajil-dropdown">
-                            <a href="index.html#" class="active language-toggle" data-tanajil="tanajil-dropdown">
+                            <a href="#" class="active language-toggle" data-tanajil="tanajil-dropdown">
                                 <span>
                                     English (USD)
                                 </span>
@@ -91,8 +91,8 @@
                 <div class="row">
                     <div class="col-lg-3 col-sm-4 col-md-3 col-xs-7 col-ts-12 header-element">
                         <div class="logo">
-                            <a href="index.html">
-                                <img src="~/master_page/images/logo.png" alt="img">
+                            <a href="@Url.Action("Index","Home")">
+                                <img src="~/Content/img/istore_logo.png" alt="logo" style="max-height:60px"/>
                             </a>
                         </div>
                     </div>
@@ -445,8 +445,8 @@
         <div class="wapper">
             <div class="item mobile-logo">
                 <div class="logo">
-                    <a href="index.html#">
-                        <img src="~/master_page/images/logo.png" alt="img">
+                    <a href="@Url.Action("Index","Home")">
+                        <img src="~/Content/img/istore_logo.png" alt="logo" />
                     </a>
                 </div>
             </div>
@@ -532,7 +532,9 @@
                     <div class="box-footer col-xs-12 col-sm-6 col-md-6 col-lg-4">
                         <div class="widget-box">
                             <div class="single-img">
-                                <a href="index.html"><img src="~/master_page/images/logo-light.png" alt="img"></a>
+                                <a href="@Url.Action("Index","Home")">
+                                    <img src="~/Content/img/istore_lightlogo.png" alt="img" style="width:120px">
+                                </a>
                             </div>
                             <ul class="menu">
                                 <li class="menu-item">
@@ -659,7 +661,7 @@
     <div class="footer-device-mobile">
         <div class="wapper">
             <div class="footer-device-mobile-item device-home">
-                <a href="index.html">
+                <a href="@Url.Action("Index", "Home")">
                     <span class="icon">
                         <i class="fa fa-home" aria-hidden="true"></i>
                     </span>
@@ -675,7 +677,7 @@
                 </a>
             </div>
             <div class="footer-device-mobile-item device-home device-cart">
-                <a href="index.html#">
+                <a href="@Url.Action("ShoppingCart", "Cart")">
                     <span class="icon">
                         <i class="fa fa-shopping-basket" aria-hidden="true"></i>
                         <span class="count-icon">
@@ -695,7 +697,7 @@
             </div>
         </div>
     </div>
-    <a href="index.html#" class="backtotop">
+    <a href="#" class="backtotop">
         <i class="fa fa-angle-double-up"></i>
     </a>
 
@@ -722,7 +724,7 @@
     <script src="~/js/site.js"></script>
     <script src="~/js/Category.js"></script>
     <script src="~/js/HomeIndex.js"></script>
-    @*@RenderSection("Scripts", false)*@
+    @RenderSection("Scripts", false)
 </body>
 </html>
 

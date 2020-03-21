@@ -23,9 +23,12 @@
         new localList("IStoreProduct").add(product);
         MinicartCount();
     });
+    
 });
 function MinicartCount() {
-    $(".block-minicart .count").text(new localList("IStoreProduct").items().length);
+    var count = new localList("IStoreProduct").items().length;
+    $(".block-minicart .count").text(count);
+    $(".count-icon").text(count);
 }
 function updateorderpartial() {
     var products = new Array();

@@ -18,7 +18,7 @@
                 $(this).find(".mainProductId").val(products[count].id);
                 $(this).find(".product-top").show();
                 $(this).find(".stars-rating").show();
-                $(this).find(".productPreview").attr("src", products[count].previewImage).show();
+                $(this).find(".productPreview").attr("src", products[count].previewImage).show().parent().attr("href", "/Product/Product/" + products[count].id);
                 $(this).find(".productTitle").text(products[count].title);
                 $(this).find(".productModel").text(products[count].model);
 

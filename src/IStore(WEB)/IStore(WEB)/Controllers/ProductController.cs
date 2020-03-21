@@ -58,7 +58,7 @@ namespace IStore_WEB_.Controllers
         }
         public async Task<IActionResult> Product(int id)
         {
-            var res = await _productservice.GetByIdsync(1);
+            var res = await _productservice.GetByIdsync(id);
 
             return View("Product", res);
         }

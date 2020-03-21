@@ -12,16 +12,16 @@
                     <span class="partial-retailprice">@item.RetailPrice</span>
                     <span class="partial-title">@item.Title</span>
                 </div>
-                <a href="@Url.Action("Product", "Home", item.Id)" class="product-media">
+                <a href="@Url.Action("Product", "Product", new { id = item.Id })" class="product-media">
                     <img src="@item.PreviewImage" alt="@item.Title">
                 </a>
                 <div class="product-details">
                     <h5 class="product-name">
-                        <a href="@Url.Action("Product", "Home", item.Id)">@item.Title</a>
+                        <a href="@Url.Action("Product", "Product", new { id = item.Id })">@item.Title</a>
                     </h5>
                     <div class="variations">
                         <span class="attribute_color">
-                            <a href="@Url.Action("Product", "Home", item.Id)">@item.Model</a>
+                            <a href="@Url.Action("Product", "Product", new { id = item.Id })">@item.Model</a>
                         </span>
                     </div>
                     <span class="product-price">

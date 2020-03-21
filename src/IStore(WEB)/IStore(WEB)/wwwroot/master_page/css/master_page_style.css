@@ -1800,7 +1800,7 @@ table tr:last-child td, table tr:last-child th {
 	max-height: 250px;
 }
 
-	.shopcart-description .content-wrap ul li {
+	.shopcart-description .shopcart-description ul li {
 		list-style: none;
 		overflow: hidden;
 		padding: 20px 0;
@@ -7849,7 +7849,7 @@ ul.list-products {
 
 .header.style3 .logo {
 	text-align: left;
-	line-height: 74px;
+	line-height: 44px;
 }
 
 .header.style3 .header-control {
@@ -8965,7 +8965,7 @@ body.vertical-menu-open .vertical-menu-overlay {
 }
 
 .header.style8 .logo {
-	line-height: 74px;
+	line-height: 54px;
 }
 
 .header.style8 .header-control {
@@ -12411,7 +12411,7 @@ iframe {
 	}
 
 	.logo img {
-		max-width: 140px;
+		max-width: 100px;
 	}
 
 	.slick-dots {

@@ -123,9 +123,16 @@
         var formData = new FormData();
         formData.append('file', $('.previewImage')[0].files[0]);
 
+        if ($('.previewImage')[0].files[0] == null) {            
+            alert("Preview photo is null");
+            e.preventDefault();
+        }
+
         $(".imgcoll").each(function () {
             formData.append('file', $(this)[0].files[0]);
         });
+
+
 
         formData.append('product', JSON.stringify(product));
 
@@ -136,6 +143,9 @@
             data: formData,
             processData: false,
             contentType: false,
+            success: function (data) {
+                alert(data);
+            }
         });
     });
 

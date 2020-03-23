@@ -83,9 +83,9 @@ namespace Business.Service
 
             product.Brand = (await _brandService.FindByConditionAsync(x => x.Name == product.Brand.Name)).FirstOrDefault(); ;
 
-            await this.CreateAsync(product);
+            var res = await this.CreateAsync(product);
 
-            return new OperationDetail();
+            return res;
         }
     }
 }

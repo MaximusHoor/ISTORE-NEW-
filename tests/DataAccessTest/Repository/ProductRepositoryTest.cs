@@ -58,7 +58,7 @@ namespace DataAccessTest.Repository
 
         }
 
-        private (int, int?, int, int) Create()
+        private (int, int?, int, int?) Create()
         {
             // Arrange
             var product = new Product
@@ -76,7 +76,7 @@ namespace DataAccessTest.Repository
                 WarrantyMonth = _WarrantyMonth,
                 Model = _Model,
                 Brand = new Brand { Id = (int)_BrandId + 1 },
-                BrandId = _BrandId + 1,
+                BrandId = (int)_BrandId + 1,
                 Category = new Category { Id = _CategoryId + 1 },
                 CategoryId = _CategoryId + 1,
                 Package = new Package { Id = _PackageId + 1 },
@@ -147,7 +147,7 @@ namespace DataAccessTest.Repository
             var product = Create();
             _BrandId = product.Item2;
             _CategoryId = product.Item3;
-            _PackageId = product.Item4;
+            _PackageId = (int)product.Item4;
             await GetByID(product.Item1);
             await GetAll();
             await Update(product.Item1);

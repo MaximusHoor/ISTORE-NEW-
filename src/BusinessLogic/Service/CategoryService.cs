@@ -3,6 +3,7 @@ using DataAccess.UnitOfWork;
 using Domain.EF_Models;
 using Domain.Infrastructure;
 using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace Business.Service
         private readonly IUnitOfWork _unitOfWork;
         private readonly ImageService _imageService;
         private readonly ImageFileService _fileService;
+       
 
         public CategoryService(IUnitOfWork unitOfWork, ImageService imageService, ImageFileService fileService)
         {
@@ -26,6 +28,14 @@ namespace Business.Service
 
         public async Task<OperationDetail> CreateAsync(Category entity)
         {
+            
+
+            if ((await _unitOfWork.CategoryRepository.FindByConditionAsync(x=>x.Title.ToLower() == entity.Title.ToLower()))
+                .FirstOrDefault() != null)
+            {
+                return new OperationDetail() {IsError=true, Message = "Category exists" };
+            }
+
             var res = await _unitOfWork.CategoryRepository.CreateAsync(entity);
             await _unitOfWork.SaveChangesAsync();
             return res;
@@ -63,10 +73,16 @@ namespace Business.Service
                 };
             }
 
-            await this.CreateAsync(category);
+            var res = await this.CreateAsync(category);
+
+            return res;
+        }
+
+        public async Task<OperationDetail> AddSubCategoryAsync(IFormCollection formCode)
+        {
+           
 
             return new OperationDetail();
         }
-
     }
 }

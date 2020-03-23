@@ -12,7 +12,7 @@ namespace Domain.EF_Models
 
         public int Id { get; set; }
         public string Title { get; set; }
-        public string PreviewImage { get; set; }
+        public string PreviewImage { get; set; } 
         public ICollection<Product> Products { get; set; }
         public ICollection<Category> Subcategories { get; set; }
     }

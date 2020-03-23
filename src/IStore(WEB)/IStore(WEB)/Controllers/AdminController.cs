@@ -15,7 +15,7 @@ using Newtonsoft.Json;
 
 namespace IStore_WEB_.Controllers
 {
-    [Authorize(Roles = "admin")]
+    //[Authorize(Roles = "admin")]
     public class AdminController : Controller
     {
         private readonly ProductCharacteristicService _productCharacteristicService;
@@ -77,9 +77,25 @@ namespace IStore_WEB_.Controllers
         }
 
         [HttpPost]
-        public async Task SaveProduct(IFormCollection formCode)
+        public async Task<IActionResult> SaveProduct(IFormCollection formCode)
         {
-            await _productService.CreateAsync(formCode);
+            try
+            {
+                var res = await _productService.CreateAsync(formCode);
+                return Json(res.Message);
+            }
+            catch(ArgumentOutOfRangeException ex)
+            {
+                return Json("Add photo preview");
+            }
+            catch(JsonSerializationException ex)
+            {
+                return Json("Fill all fields");
+            }
+            catch(Exception ex)
+            {
+                return Json(ex.Message);
+            }
         }
 
         public IActionResult AddCategory()
@@ -90,7 +106,7 @@ namespace IStore_WEB_.Controllers
         [HttpPost]   
         public async Task<IActionResult> SaveCategory(IFormCollection formCode)
         {
-           await _categoryService.CreateAsync(formCode);
+            await _categoryService.CreateAsync(formCode);
 
             var result = (await _categoryService.GetAllAsync()).Select(x=>x.Title).ToList();
             
@@ -116,6 +132,24 @@ namespace IStore_WEB_.Controllers
         {
             return View();
         }
+
+        public async Task<IActionResult> Categories()
+        {
+            return View(await _categoryService.GetAllAsync());
+        }
+
+        public async Task<IActionResult> AddSubcategory()
+        {
+            ViewBag.Categories = (await _categoryService.GetAllAsync()).Select(x=>x.Title);
+            return View();
+        }
+
+        public async Task<IActionResult> SaveSubcategory(IFormCollection formCode)
+        {
+            var res = await _categoryService.AddSubCategoryAsync(formCode);
+            return View(res.Message);
+        }
+
 
         [HttpPost]
         public async Task<IActionResult> ProductEdit(IFormFile file, CancellationToken cancellationToken)

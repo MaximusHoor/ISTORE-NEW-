@@ -1,7 +1,7 @@
 ﻿
 @{
-    Layout = null;
-    ViewData["Title"] = "AddProduct";
+    
+    Layout = "~/Views/Shared/AdminPanel/AdminLayout.cshtml";
 }
 
     <link href="https://fonts.googleapis.com/css?family=Muli&display=swap" rel="stylesheet">
@@ -15,6 +15,7 @@
 <h4>New product</h4>
 <hr />
 <div class="allelements">
+
     <div class="box">
         <div class="box1">
 
@@ -24,11 +25,21 @@
             @Html.Editor("editor", new { htmlAttributes = new { @class = "type" } })
             @Html.Label("Model")
             @Html.Editor("editor", new { htmlAttributes = new { @class = "model" } })
-            @Html.Label("VendorCode")
-            @Html.Editor("editor", new { htmlAttributes = new { @class = "vendorCode" } })
 
         </div>
     </div>
+
+    <div class="box">
+        <div class="box1">
+            @Html.Label("VendorCode")
+            @Html.Editor("editor", new { htmlAttributes = new { @class = "vendorCode" } })
+            @Html.Label("Description")
+            @Html.Editor("editor", new { htmlAttributes = new { @class = "description" } })
+            
+        </div>
+    </div>
+
+
 
     <div class="box">
         <div class="box1">
@@ -42,7 +53,7 @@
 
                 <button class="newCategory">New category</button>
 
-                <div class="categoryBox">                   
+                <div class="categoryBox">
                     <div>
                         @await Html.PartialAsync("AddCategoryPartialView")
                     </div>
@@ -76,12 +87,13 @@
     <div class="box">
         <div class="box2">
 
-            @Html.Label("Description")
-            @Html.Editor("editor", new { htmlAttributes = new { @class = "description" } })
             @Html.Label("RetailPrice")
             @Html.Editor("editor", new { htmlAttributes = new { @class = "retailPrice", @type = "number" } })
             @Html.Label("Series")
             @Html.Editor("editor", new { htmlAttributes = new { @class = "series" } })
+            @Html.Label("Count in storage")
+            @Html.Editor("editor", new { htmlAttributes = new { @class = "countInStorage", @type = "number" } })
+
         </div>
 
     </div>
@@ -97,14 +109,12 @@
 
     </div>
 
-
-
     <div class="box">
 
         <div class="box1">
 
             @Html.Label("Preview image")
-            @Html.Editor("editor", new { htmlAttributes = new { @class = "previewImage", @type = "file", @accept=".png" } })
+            @Html.Editor("editor", new { htmlAttributes = new { @class = "previewImage", @type = "file", @accept = ".png" } })
             <img class="previewImageView" />
             <br>
             @Html.Label("Images")
@@ -112,18 +122,9 @@
 
         </div>
 
-
-
     </div>
 
     <div class="box">
-
-        <div class="box1">
-
-            @Html.Label("Count in storage")
-            @Html.Editor("editor", new { htmlAttributes = new { @class = "countInStorage", @type = "number" } })
-
-        </div>
 
         <div class="box2">
 
@@ -151,17 +152,9 @@
 
     <div class="box">
         <div class="box1">
-
             <button class="saveProduct">Save</button>
-
         </div>
 
     </div>
 
-
-
-
-    <div>
-        <a asp-action="Index">Back to List</a>
-    </div>
 

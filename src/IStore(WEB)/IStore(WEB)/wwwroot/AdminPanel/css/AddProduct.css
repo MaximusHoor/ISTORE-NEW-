@@ -8,12 +8,17 @@
     justify-content: flex-start;
     align-content: flex-start;
     margin: 20px;
-    width: 1200px;
+    /*width: 1200px;*/
     border: 0.5px solid darkgray;
     border-radius: 5px;
     background-color: #fbf8f8;
     padding: 8px;
 }
+
+.table {
+    width: 550px !important;
+}
+
 
 .box1, box2, .box3 {
     display: flex;
@@ -40,6 +45,7 @@ label, button {
 input[type=text] {
     border: 0.5px solid darkgray;
     border-radius: 5px;
+    width: 200px;
 }
 
 input[type=file] {

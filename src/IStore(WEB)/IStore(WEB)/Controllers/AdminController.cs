@@ -22,11 +22,11 @@ namespace IStore_WEB_.Controllers
         private readonly BrandService _brandService;
         private readonly CategoryService _categoryService;
         private readonly ProductService _productService;
-        private readonly ImageService _imageService;
+        private readonly ImageFileService _fileService;
         private readonly ImportExportService _importExportService;
 
         public AdminController(ProductCharacteristicService productCharacteristicService, ImageFileService fileService, 
-            BrandService brandService, CategoryService categoryService, ProductService productService, ImageService imageService, ImportExportService importExportService)
+            BrandService brandService, CategoryService categoryService, ProductService productService,  ImportExportService importExportService)
         {
 
             _fileService = fileService;
@@ -166,7 +166,7 @@ namespace IStore_WEB_.Controllers
             var list = new List<Product>();
             using (var stream = new MemoryStream())
             {
-                file.CopyToAsync(stream, cancellationToken);
+               await file.CopyToAsync(stream, cancellationToken);
                 list = _importExportService.ExcelToObject(stream);
             }
 

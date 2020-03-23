@@ -39,6 +39,7 @@
                                 <label class="custom-file-label" for="inputGroupFile">Choose file</label>
                             </div>
                             <div class="input-group-append">
+                                <input type="hidden" value="@User.Identity.Name" name="UserName" />
                                 <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon">Button</button>
                             </div>
                         </div>
@@ -187,6 +188,7 @@
                         </div>
 
                         <hr class="mb-4">
+                         
                         <button class="btn btn-primary btn-sm btn-block" type="submit">Edit</button>
                     </form>
                 </div>

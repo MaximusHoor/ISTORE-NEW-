@@ -21,13 +21,15 @@ namespace IStore_WEB_.Controllers
         private readonly ProductCharacteristicService _productCharacteristicService;
         private readonly BrandService _brandService;
         private readonly CategoryService _categoryService;
-        private readonly ProductService _productService;               
+        private readonly ProductService _productService;
+        private readonly ImageService _imageService;
         private readonly ImportExportService _importExportService;
 
-        public AdminController(ProductCharacteristicService productCharacteristicService, 
-            BrandService brandService, CategoryService categoryService, ProductService productService, 
-            ImportExportService importExportService)
-        {         
+        public AdminController(ProductCharacteristicService productCharacteristicService, ImageFileService fileService, 
+            BrandService brandService, CategoryService categoryService, ProductService productService, ImageService imageService, ImportExportService importExportService)
+        {
+
+            _fileService = fileService;
             _brandService = brandService;
             _categoryService = categoryService;
             _productService = productService;            

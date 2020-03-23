@@ -9,7 +9,7 @@
                 items.push(val);
             }
             else {
-                item.Count = item.Count + 1;
+                item.Count = item.Count + val.Count;
             }
             localStorage.setItem(localName, JSON.stringify(items));
         },

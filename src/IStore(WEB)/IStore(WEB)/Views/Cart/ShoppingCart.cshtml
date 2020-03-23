@@ -51,10 +51,7 @@
                                 <a class="button btn-continue-shopping" href="@Url.Action("Index", "Home")">
                                     Continue Shopping
                                 </a>
-                                <input type="submit" form="cart-form" class="button btn-cart-to-checkout" value="Checkout">
-                                @*<a class="button btn-cart-to-checkout" href="@Url.Action("AddProductToCart", "Cart", Model.Id)">
-                                        Checkout
-                                    </a>*@
+                                <a class="button btn-cart-to-checkout" href="@Url.Action("Checkout", "Cart")">Checkout</a>
                             </div>
                         </div>
                     </div>

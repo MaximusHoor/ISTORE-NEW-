@@ -18,7 +18,7 @@
                 $(this).find(".mainProductId").val(products[count].id);
                 $(this).find(".product-top").show();
                 $(this).find(".stars-rating").show();
-                $(this).find(".productPreview").attr("src", products[count].previewImage).show();
+                $(this).find(".productPreview").attr("src", products[count].previewImage).show().parent().attr("href", "/Product/Product/" + products[count].id);
                 $(this).find(".productTitle").text(products[count].title);
                 $(this).find(".productModel").text(products[count].model);
 
@@ -27,7 +27,7 @@
 
                 //price = (products[count].retailPrice).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1');
                 $(this).find(".price ins").text(products[count].retailPrice);
-                
+                $(this).find(".equal-element").attr("style", "height: 320px"); //окончательный размер окошка с продуктом
                 count++;
             });
 

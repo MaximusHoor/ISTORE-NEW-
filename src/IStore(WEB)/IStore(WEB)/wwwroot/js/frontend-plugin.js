@@ -571,7 +571,7 @@ jQuery(document).ready(function ($) {
         $qty.trigger('change');
         e.preventDefault();
         subtotal($qty);
-        totalprice();
+        totalpricepartial();
         totalpricecart();
         updateorder();
     });

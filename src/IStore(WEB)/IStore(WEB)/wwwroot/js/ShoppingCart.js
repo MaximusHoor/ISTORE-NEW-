@@ -30,16 +30,10 @@ function updateorder() {
     $(".cart_item").each(function () {
         var product = new Object();
         product.Id = parseInt($(this).find('.partial-id').text());
-        product.Description = $(this).find('.partial-description').text();
         product.Model = $(this).find('.partial-model').text();
         product.PreviewImage = $(this).find('.partial-previewimage').text();
-        product.Rating = parseInt($(this).find('.partial-rating').text());
         product.RetailPrice = parseFloat($(this).find('.partial-retailprice').text());
-        product.Series = $(this).find('.partial-series').text();
         product.Title = $(this).find('.partial-title').text();
-        product.Type = $(this).find('.partial-type').text();
-        product.VendorCode = $(this).find('.partial-vendorcode').text();
-        product.WarrantyMonth = parseInt($(this).find('.partial-warrantymonth').text());
         product.Count = parseInt($(this).find(".qty").val());
         products.push(product);
     });

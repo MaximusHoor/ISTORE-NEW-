@@ -3,16 +3,9 @@
 <div class="kt-popup-quickview ">
     <div style="display:none">
         <span class="product-id">@Model.Id</span>
-        <span class="product-description">@Model.Description</span>
         <span class="product-model">@Model.Model</span>
         <span class="product-previewimage">@Model.PreviewImage</span>
-        <span class="product-rating">@Model.Rating</span>
         <span class="product-retailprice">@Model.RetailPrice</span>
-        <span class="product-series">@Model.Series</span>
-        <span class="product-title">@Model.Title</span>
-        <span class="product-type">@Model.Type</span>
-        <span class="product-vendorcode">@Model.VendorCode</span>
-        <span class="product-warrantymonth">@Model.WarrantyMonth</span>
     </div>
     <div class="details-thumb">
         <div class="slider-product slider-for">
@@ -70,9 +63,13 @@
         <div class="variations">
             @foreach (var item in Model.ProductCharacteristics)
             {
-                <div class="attribute">                    
-                    <div class="characteristics">                        
-                            <div>@item.Title : @item.Value</div>                        
+                <div class="attribute">
+                    <div class="text-attribute" onclick="SlideCharacteristics(this)">GroupCharacteristicName@*@item.Title  //todo refactor this*@<i class="fas fa-arrow-circle-down"></i></div>
+                    <div class="characteristics" style="display:none">
+                        @foreach (var characteristic in item.Characteristics)
+                        {
+                            <div>@characteristic.Title : @characteristic.Value</div>
+                        }
                     </div>
                 </div>
             }

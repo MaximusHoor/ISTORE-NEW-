@@ -1,6 +1,7 @@
 ﻿using Business.Service;
 using Domain.EF_Models;
 using IStore_WEB_.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -18,12 +19,16 @@ namespace IStore_WEB_.Controllers
         private readonly ProductService _productservice;
         private readonly ProductCharacteristicService _productCharacteristicService;
         private readonly CommentService _commentService;
-        public ProductController(ILogger<ProductController> logger, ProductService productservice, ProductCharacteristicService productCharacteristicService, CommentService commentService)
+        private readonly LikeService _likeService;
+        private readonly UserManager<User> _userManager;
+        public ProductController(ILogger<ProductController> logger, ProductService productservice, ProductCharacteristicService productCharacteristicService, CommentService commentService, LikeService likeService,UserManager<User> userManager)
         {
             _logger = logger;
             _productservice = productservice;
             _commentService = commentService;
             this._productCharacteristicService = productCharacteristicService;
+            _likeService = likeService;
+            _userManager = userManager;
         }
 
         public async Task<IActionResult> Index()
@@ -79,10 +84,13 @@ namespace IStore_WEB_.Controllers
         {
            
             var comments = await _commentService.GetCommentsByProductAsync(id);
-           
-           // ViewBag.Likes = await _commentService.GetUserCommentsLikes(1, id);
-          //  ViewBag.Dislikes = await _commentService.GetUserCommentsDislikes(1, id);
-
+           // if (User.Identity.IsAuthenticated)
+          //  {
+              //  var authorizedUser = await _userManager.FindByNameAsync(User.Identity.Name);
+            var userId = "6cab4e64-cd04-4ba5-94d4-3c9b5ad2e78f";
+                ViewBag.Likes = await _likeService.GetLikedCommentsIdAsync(userId, id);
+                ViewBag.Dislikes = await _likeService.GetDislikedCommentsIdAsync(userId, id);
+         //   }
             return PartialView(comments);
         }
         public ActionResult GetInputCommentPartial()
@@ -90,10 +98,16 @@ namespace IStore_WEB_.Controllers
             return PartialView();
         }
         [HttpPost]
-        public async Task AddLikes(string localStorageResult)
+        public async Task UpdateLikes(string localStorageResult)
         {
             var res= JsonConvert.DeserializeObject<List<Like>>(localStorageResult);
-         //   await _likeService.ManageLikesAsync(res);
+            await _likeService.ManageLikesAsync(res);
+        }
+        [HttpPost]
+        public async Task UpdateLikesTotal(string localStorageResult)
+        {
+            var res = JsonConvert.DeserializeObject<List<Comment>>(localStorageResult);
+            await _commentService.UpdateCommentLikesAsync(res);
         }
         [HttpPost]
         public async Task AddComment(string comment)
@@ -101,7 +115,6 @@ namespace IStore_WEB_.Controllers
             var res = JsonConvert.DeserializeObject<Comment>(comment);
             res.Date = DateTime.Now;
             await _commentService.CreateCommentAsync(res);
-
         }
         
 

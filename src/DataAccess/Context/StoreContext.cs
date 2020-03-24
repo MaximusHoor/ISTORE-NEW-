@@ -18,11 +18,6 @@ namespace Domain.Context
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
-
-
-
-
             modelBuilder.Entity<Category>().HasData(
                 new Category{
                     Id = 1,
@@ -225,29 +220,33 @@ namespace Domain.Context
                 new OrderDetails { Id = 3, Count = 5, OrderId = 1, ProductId = 3 }
                 }
                 );
-            //modelBuilder.Entity<Comment>().HasData(new Comment
-            //{
-            //    Id = 1,
-            //    DislikeTotal = 2,
-            //    LikesTotal = 1,
-            //    Raiting = 4,
-            //    Text = "Comment 1",
-            //    ProductId = 1,
-            //    UserId = "6cab4e64-cd04-4ba5-94d4-3c9b5ad2e78f",
+            modelBuilder.Entity<User>().HasData(new User
+            {
+                Id = "6cab4e64-cd04-4ba5-94d4-3c9b5ad2e78f"
+            });
+            modelBuilder.Entity<Comment>().HasData(new Comment
+            {
+                Id = 1,
+                DislikesTotal = 2,
+                LikesTotal = 1,
+                Raiting = 4,
+                Text = "Comment 1",
+                ProductId = 1,
+                UserId = "6cab4e64-cd04-4ba5-94d4-3c9b5ad2e78f",
 
 
-            //});
-            //modelBuilder.Entity<Comment>().HasData(new Comment
-            //{
-            //    Id = 2,
-            //    DislikeTotal = 1,
-            //    LikesTotal = 1,
-            //    Raiting = 4,
-            //    Text = "Comment 2",
-            //    ProductId = 1,
-            //    UserId = "6cab4e64-cd04-4ba5-94d4-3c9b5ad2e78f",
+            });
+            modelBuilder.Entity<Comment>().HasData(new Comment
+            {
+                Id = 2,
+                DislikesTotal = 1,
+                LikesTotal = 1,
+                Raiting = 4,
+                Text = "Comment 2",
+                ProductId = 1,
+                UserId = "6cab4e64-cd04-4ba5-94d4-3c9b5ad2e78f",
 
-            //});
+            });
 
 
             base.OnModelCreating(modelBuilder);

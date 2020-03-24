@@ -11,8 +11,7 @@ namespace Domain.EF_Models
         public string Email { get; set; }
         public int? AddressId { get; set; }
         public Address Address { get; set; }
-        public IEnumerable<Comment> Comments { get; set; }  
-        //public int? IdentityUserId { get; set; }
-        //public IdentityUser IdentityUser { get; set; }
+        public IEnumerable<Comment> Comments { get; set; }
+        public IEnumerable<Like> Likes { get; set; }
     }
 }

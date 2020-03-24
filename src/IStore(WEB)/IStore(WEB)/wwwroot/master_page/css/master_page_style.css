@@ -5307,7 +5307,7 @@ ul.list-products {
 		display: inline-block;
 		float: left;
 		font-family: FontAwesome;
-		content: "\f004\f004\f004\f004\f004";
+		content: "\f006\f006\f006\f006\f006";
 		font-size: 13px;
 		line-height: 13px;
 		color: #ffb933;
@@ -5344,7 +5344,7 @@ ul.list-products {
 	}
 
 	.star-rating > span:before {
-		content: "\f21e\f21e\f21e\f21e\f21e";
+		content: "\f005\f005\f005\f005\f005";
 		color: #ffb933;
 	}
 

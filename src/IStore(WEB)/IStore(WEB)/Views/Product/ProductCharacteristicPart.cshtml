@@ -1,105 +1,55 @@
 ﻿@model Domain.EF_Models.Product
 
 
-    <div class="details-page">
-        <div class="main-content main-content-details single no-sidebar">
-            <div class="container">
-                <div class="row">
-                    <div class="content-area content-details full-width col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                        <div class="site-main">
+<div class="details-page">
+    <div class="main-content main-content-details single no-sidebar">
+        <div class="container">
+            <div class="row">
+                <div class="content-area content-details full-width col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                    <div class="site-main">
 
 
 
-                            <div class="tab-details-product">
+                        <div class="tab-details-product">
 
 
-                                <ul class="tab-link">
-                                    <li class="">
-                                        <a data-toggle="tab" aria-expanded="false" href="productdetails-fullwidth.html#product-descriptions">Descriptions </a>
-                                    </li>
-                                    <li class="active">
-                                        <a data-toggle="tab" aria-expanded="true" href="productdetails-fullwidth.html#information">Information </a>
-                                    </li>
-                                    <li class="">
-                                        <a data-toggle="tab" aria-expanded="true" href="productdetails-fullwidth.html#reviews">Reviews</a>
-                                    </li>
-                                </ul>
+                            <ul class="tab-link">
+                                <li class="">
+                                    <a data-toggle="tab" aria-expanded="false" href="productdetails-fullwidth.html#product-descriptions">Descriptions </a>
+                                </li>
+                                <li class="active">
+                                    <a data-toggle="tab" aria-expanded="true" href="productdetails-fullwidth.html#information">Information </a>
+                                </li>
+                                <li class="" id="review-block">
+                                    <a data-toggle="tab" aria-expanded="true" href="productdetails-fullwidth.html#reviews">Reviews</a>
+                                </li>
+                            </ul>
 
-                                <div class="tab-container">
-                                    <div id="product-descriptions" class="tab-panel">
-                                        <p>
-                                           @Model.Description;
-                                        </p>
-                                    </div>
+                            <div class="tab-container">
+                                <div id="product-descriptions" class="tab-panel">
+                                    <p>
+                                        @Model.Description;
+                                    </p>
+                                </div>
 
-                                    <div id="information" class="tab-panel active">
-                                        <table class="table table-bordered">
-                                            <tbody>
-                                                    @foreach (var cahr in Model.ProductCharacteristics)
-                                                    {
-                                                        <tr>
-                                                            <td>@cahr.Title</td> 
-                                                            <td>@cahr.Value</td>
-                                                        </tr>
-                                                    }
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                <div id="information" class="tab-panel active">
+                                    <table class="table table-bordered">
+                                        <tbody>
+                                            @foreach (var cahr in Model.ProductCharacteristics)
+                                            {
+                                                <tr>
+                                                    <td>@cahr.Title</td>
+                                                    <td>@cahr.Value</td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
 
-                                    <div id="reviews" class="tab-panel">
-                                        <div class="reviews-tab">
-                                            @await Html.PartialAsync("GetCommentsPartial", Model.Comments);
-                                            <div class="review_form_wrapper">
-                                                <div class="review_form">
-                                                    <div class="comment-respond">
-                                                        <span class="comment-reply-title">Add a review </span>
-                                                        <form class="comment-form-review">
-                                                            <p class="comment-notes">
-                                                                <span class="email-notes">Your email address will not be published.</span>
-                                                                Required fields are marked
-                                                                <span class="required">*</span>
-                                                            </p>
-                                                            <div class="comment-form-rating">
-                                                                <label>Your rating</label>
-                                                                <p class="stars">
-                                                                    <span>
-                                                                        <a class="star-1" href="productdetails-fullwidth.html#"></a>
-                                                                        <a class="star-2" href="productdetails-fullwidth.html#"></a>
-                                                                        <a class="star-3" href="productdetails-fullwidth.html#"></a>
-                                                                        <a class="star-4" href="productdetails-fullwidth.html#"></a>
-                                                                        <a class="star-5" href="productdetails-fullwidth.html#"></a>
-                                                                    </span>
-                                                                </p>
-                                                            </div>
-                                                            <p class="comment-form-comment">
-                                                                <label>
-                                                                    Your review
-                                                                    <span class="required">*</span>
-                                                                </label>
-                                                                <textarea title="review" id="comment" name="comment" cols="45" rows="8"></textarea>
-                                                            </p>
-                                                            <p class="comment-form-author">
-                                                                <label>
-                                                                    Name
-                                                                    <span class="">*</span>
-                                                                </label>
-                                                                <input title="author" id="author" name="author" type="text" value="">
-                                                            </p>
-                                                            <p class="comment-form-email">
-                                                                <label>
-                                                                    Email
-                                                                    <span class="">*</span>
-                                                                </label>
-                                                                <input title="email" id="email" name="email" type="email" value="">
-                                                            </p>
-                                                            <p class="form-submit">
-                                                                <input name="submit" type="submit" id="submit" class="submit" value="Submit">
-                                                            </p>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                <div id="reviews" class="tab-panel">
+                                    @await Html.PartialAsync("GetInputCommentPartial")
+                                    <div class="reviews-tab">
+
                                     </div>
                                 </div>
                             </div>
@@ -109,3 +59,119 @@
             </div>
         </div>
     </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous"></script>
+
+<script>
+    $(function () {
+
+
+
+         $.fn.stars = function(options) {
+
+        var settings = $.extend({
+            stars: 5,
+            emptyIcon: 'fa-star-o',
+            filledIcon: 'fa-star',
+            color: '#E4AD22',
+            starClass: '',
+            value: 0,
+            text: null,
+            click: function() {}
+        }, options);
+
+        var block = this;
+
+        for (var x = 0; x < settings.stars; x++) {
+            var icon = $("<i>").addClass("fa").addClass(settings.emptyIcon).addClass(settings.starClass);
+
+            if (settings.text) {
+                icon.attr("data-rating-text", settings.text[x]);
+            }
+
+            if (settings.color !== "none") {
+                icon.css("color", settings.color)
+            }
+
+            this.append(icon);
+        }
+
+        if (settings.text) {
+            var textDiv = $("<div>").addClass("rating-text");
+            this.append(textDiv);
+        }
+
+        var stars = this.find("i");
+
+        stars.on("mouseover", function() {
+            var index = $(this).index() + 1;
+            var starsHovered = stars.slice(0, index);
+            events.removeFilledStars(stars, settings);
+            events.fillStars(starsHovered, settings);
+
+            if (settings.text) block.find(".rating-text").html($(this).data("rating-text"));
+        }).on("mouseout", function() {
+            events.removeFilledStars(stars, settings);
+            events.fillStars(stars.filter(".selected"), settings);
+            if (settings.text) block.find(".rating-text").html("");
+        }).on("click", function() {
+            var index = $(this).index();
+            settings.value = index + 1;
+            stars.removeClass("selected").slice(0, settings.value).addClass("selected");
+            settings.click.call(stars.get(index), settings.value);
+        });
+
+        events = {
+            removeFilledStars: function(stars, s) {
+                stars.removeClass(s.filledIcon).addClass(s.emptyIcon);
+                return stars;
+            },
+
+            fillStars: function(stars, s) {
+                stars.removeClass(s.emptyIcon).addClass(s.filledIcon);
+                return stars;
+            }
+        };
+
+        if (settings.value > 0) {
+            var starsToSelect = stars.slice(0, settings.value);
+            events.fillStars(starsToSelect, settings).addClass("selected");
+        }
+
+        return this;
+    };
+        var starsSelected;
+          $(".star-sel").stars({
+            text: ["Bad", "Not so bad", "hmmm", "Good", "Perfect"], stars: 5, click: function (i) {
+                  starsSelected = i;
+            }
+                });
+            $("#review-block").click(function () {
+            $(".tab-container .tab-panel").removeClass("active");
+            $(".tab-container #reviews").addClass("active");
+
+            $(".reviews-tab").load('@Url.Action("GetCommentsPartial","Product")?id=1');
+            });
+         var userId = "6cab4e64-cd04-4ba5-94d4-3c9b5ad2e78f";
+        $(".send-comment").click(function () {
+            var comment = {
+                ProductId:$("#productId").text().trim(),
+                UserId:userId,
+                Text:$(this).closest(".comment-form-review").find("textarea").val().trim(),
+                Raiting: starsSelected,
+            }
+            $.post('@Url.ActionLink("AddComment", "Product")?comment=' + JSON.stringify(comment));
+        });
+
+
+
+
+
+
+       });
+
+
+</script>

@@ -9,6 +9,13 @@ namespace DataAccess.Repository.Interfaces
 {
     public interface ILikeRepository : IRepository<Like>
     {
-        Task LikeAsync(Like like);
+        Task LikeAsync(int id);
+        Task RemoveLikeAsync(int id);
+        Task DislikeAsync(int id);
+        Task<Like> GetLikeByIdAsync(int id);
+        Task<Like> GetLikeAsync(string userId, int productId, int commentId);
+        Task<IReadOnlyCollection<int>> GetLikedCommentsIdAsync(string userId, int productId);
+        Task<IReadOnlyCollection<int>> GetDislikedCommentsIdAsync(string userId, int productId);
+        Task DropLikesPhysicallyFromAsync(DateTime date);
     }
 }

@@ -16,7 +16,7 @@ namespace DataAccess.UnitOfWork
         CharacteristicRepository characteristicRepository, ProductRepository productRepository, 
         DeliveryRepository deliveryRepository, AddressRepository addressRepository, BrandRepository brandRepository, 
         OrderDetailsRepository orderDetailsRepository, OrderRepository orderRepository, 
-        PackageRepository packageRepository/*,ILikeRepository likeRepository*/)
+        PackageRepository packageRepository, ILikeRepository likeRepository)
         {
             _storeContext = storeContext;
             UserRepository = userRepository;
@@ -32,7 +32,7 @@ namespace DataAccess.UnitOfWork
             OrderDetailsRepository = orderDetailsRepository;
             OrderRepository = orderRepository;
             PackageRepository = packageRepository;
-            //LikeRepository = likeRepository;
+            LikeRepository = likeRepository;
         }
 
         private StoreContext _storeContext { get; }

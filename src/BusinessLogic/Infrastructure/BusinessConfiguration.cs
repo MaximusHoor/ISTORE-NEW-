@@ -34,6 +34,7 @@ namespace Business.Infrastructure
             services.AddTransient(typeof(ImportExportService));
             services.AddTransient(typeof(CommentService));
             services.AddTransient(typeof(UserService));
+            services.AddTransient(typeof(LikeService));
             services.AddTransient<ImageFileService>(service => new ImageFileService($"{ Directory.GetCurrentDirectory()}\\wwwroot\\Content\\Images\\"));
 
            

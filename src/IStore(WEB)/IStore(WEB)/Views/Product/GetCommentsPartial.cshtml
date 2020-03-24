@@ -1,17 +1,18 @@
 ﻿
 @model IEnumerable<Domain.EF_Models.Comment>
 <style>
-    .active-btn{
-        color:blue;
+    .active-btn {
+        color: blue;
     }
 </style>
-    <div class="comments">
-        <h2 class="reviews-title">
-            1 review for
-            <span>Eclipse Pendant Light</span>
-        </h2>
-        @foreach (var item in Model)
-        {
+<div id="productId" hidden>@Model.ElementAt(0).ProductId</div>
+<div class="comments">
+    <h2 class="reviews-title">
+        1 review for
+        <span>Eclipse Pendant Light</span>
+    </h2>
+    @foreach (var item in Model)
+    {
 
 
         <ol class="commentlist">
@@ -20,10 +21,10 @@
                     <a href="productdetails-fullwidth.html#" class="avatar">
                         <img src="assets/images/avartar.jpeg" alt="img">
                     </a>
-                    <div class="comment-text" >
+                    <div class="comment-text">
                         <div class="stars-rating">
                             <div class="star-rating">
-                                
+
                                 <span class="star-@item.Raiting"></span>
                             </div>
                             <div class="count-star">
@@ -40,13 +41,14 @@
                         </div>
                     </div>
                     <div class="like-dislike">
-                        @*@{
-            string like = (ViewBag.Likes as IEnumerable<int>).Contains(item.Id) ? "active-btn" : "";
-            string dislike = (ViewBag.Dislikes as IEnumerable<int>).Contains(item.Id) ? "active-btn" : "";
-        }*@
+                        @{
+                                string like = (ViewBag.Likes as IEnumerable<int>).Contains(item.Id) ? "active-btn" : "";
+                                string dislike = (ViewBag.Dislikes as IEnumerable<int>).Contains(item.Id) ? "active-btn" : "";
+                         }
                         <div id="commentId" hidden>@item.Id</div>
-                        <i class="fa fa-thumbs-up" style="margin-right:5px;"></i><span>@item.LikesTotal</span>
-                        <i class="fa fa-thumbs-down" style="margin-right:5px;margin-left:5px;"></i><span style="margin-right:20px">@item.DislikeTotal</span>
+
+                        <i class="fa fa-thumbs-up @like" style="margin-right:5px;"></i><span>@item.LikesTotal</span>
+                        <i class="fa fa-thumbs-down @dislike" style="margin-right:5px;margin-left:5px;"></i><span style="margin-right:20px">@item.DislikesTotal</span>
                         <button type="button" class="btn btn-outline-danger btn-sm answer" id="answer">Answer</button>
                         <div id="result" style="margin-left:20px;" class="input-area"> </div>
                         <div style="color:blue;margin-left:25px" class="toggle-answers"><i class="fa fa-caret-down" style="margin-right:15px"></i><span class="toggle-word">Show </span>answers(@item.Answers.Count)</div>
@@ -55,10 +57,10 @@
                 </div>
             </li>
         </ol>
-        }
-    </div>
+    }
+</div>
 <script>
-    $(function () {  
+    $(function () {
     var like = {
         UserId:undefined,
         CommentId:undefined,
@@ -66,108 +68,137 @@
         IsLikeRemoved:false,
         IsLiked: false,
         IsDataSent:false
-    }
-
+        }
+        var likeTotal = {
+            Id: 0,
+            LikesTotal:0,
+            DislikesTotal:0
+        }
+        var userId = "6cab4e64-cd04-4ba5-94d4-3c9b5ad2e78f";
         $(".fa-thumbs-up").click(function () {
             var likeNew = Object.create(like);
-            if (localStorage.getItem("like") === null) localStorage.setItem("like", JSON.stringify(new Array()));
-            var localStorageResult = JSON.parse(localStorage.getItem("like"));
+            var likeTotalNew = Object.create(likeTotal);
          var thisThumbDown = $(this).parent().find(".fa-thumbs-down");
         if (thisThumbDown.hasClass("active-btn")) thisThumbDown.trigger("click");
         $(this).toggleClass("active-btn");
-         var res =  $(this).next("span").text().trim();
-         res = parseInt(res);
-            if ($(this).hasClass("active-btn")){
-                res++;
-                $(this).next("span").text(res);
-                likeNew.IsLiked = true;
-                 likeNew.IsLikeRemoved = false;
-            }
-            else {
-                res--;
-                $(this).next("span").text(res);
-                 likeNew.IsLikeRemoved = true;
-            }
-            likeNew.UserId = $("#userId").text().trim();
-            likeNew.CommentId = $(this).parent().find("#commentId").text().trim();
-            likeNew.ProductId = $("#productId").text().trim();
+          var likes =  $(this).next("span").text().trim();
+            likes = parseInt(likes);
+            var commentId = $(this).parent().find("#commentId").text().trim();
+        likeNew.UserId = userId;
+            likeNew.CommentId = commentId;
+        likeNew.ProductId = $("#productId").text().trim();
             likeNew.IsDataSent = false;
-        for (var i = 0; i < localStorageResult.length; i++) {
-            if (localStorageResult[i]["CommentId"] == likeNew.CommentId && (localStorageResult[i]["IsLiked"] == true)) {
-                    localStorageResult[i]["IsLikeRemoved"] = true;
-                    localStorage.setItem("like",JSON.stringify(localStorageResult));
-                    return;
-                }
-                else if (localStorageResult[i]["CommentId"] == likeNew.CommentId && (localStorageResult[i]["IsLikeRemoved"] == true||localStorageResult[i]["IsLiked"] == false)) {
-                localStorageResult[i]["IsLiked"] = true;
-                 localStorageResult[i]["IsLikeRemoved"] = false;
-                    localStorage.setItem("like",JSON.stringify(localStorageResult));
-                    return;
-                }
-            }
-
-          localStorageResult.push(likeNew);
-       localStorage.setItem("like", JSON.stringify(localStorageResult));
-    });
-        
-    $(".fa-thumbs-down").click(function () {
-        var dislike = Object.create(like);
-          if (localStorage.getItem("like") === null) localStorage.setItem("like", JSON.stringify(new Array()));
-            var localStorageResult = JSON.parse(localStorage.getItem("like"));
-        var thisThumbUp = $(this).parent().find(".fa-thumbs-up");
-        if (thisThumbUp.hasClass("active-btn")) thisThumbUp.trigger("click"); 
-        $(this).toggleClass("active-btn");
-         var res =  $(this).next("span").text().trim();
-         res = parseInt(res);
-            if ($(this).hasClass("active-btn")) { 
-                res++;
-                $(this).next("span").text(res);
-                dislike.IsLiked = false;
-                dislike.IsLikeRemoved = false;
+            likeTotalNew.Id = commentId;
+            likeTotalNew.DislikesTotal = thisThumbDown.next("span").text().trim();
+            if ($(this).hasClass("active-btn")) {
+                likes++;
+                $(this).next("span").text(likes);
+                likeNew.IsLiked = true;
+                likeNew.IsLikeRemoved = false;
+                likeTotalNew.LikesTotal = likes;
+                setLikeState(likeNew);
+                setLikeTotal(likeTotalNew);
             }
             else {
-                res--;
-                $(this).next("span").text(res);
-                 dislike.IsLikeRemoved = true;
+                likes--;
+                $(this).next("span").text(likes);
+                likeNew.IsLikeRemoved = true;
+                 likeTotalNew.LikesTotal = likes;
+                setLikeState(likeNew);
+                  setLikeTotal(likeTotalNew);
         }
-        dislike.UserId = $("#userId").text().trim();
-        dislike.CommentId = $(this).parent().find("#commentId").text().trim();
-        dislike.ProductId = $("#productId").text().trim();
-        dislike.IsDataSent = false;
+    });
 
-        for (var i = 0; i < localStorageResult.length; i++) {
-            if (localStorageResult[i]["CommentId"] == dislike.CommentId && localStorageResult[i]["IsLiked"] ==false) {
-                localStorageResult[i]["IsLikeRemoved"] = true;
-                    localStorage.setItem("like",JSON.stringify(localStorageResult));
-                    return;
-                }
-                else if (localStorageResult[i]["CommentId"] == dislike.CommentId && (localStorageResult[i]["IsLikeRemoved"] ==true ||localStorageResult[i]["IsLiked"] == true)) {
-                localStorageResult[i]["IsLiked"] = false;
-                localStorageResult[i]["IsLikeRemoved"] = false;
-                    localStorage.setItem("like",JSON.stringify(localStorageResult));
+    $(".fa-thumbs-down").click(function () {
+        var likeNew = Object.create(like);
+         var likeTotalNew = Object.create(likeTotal);
+        var thisThumbUp = $(this).parent().find(".fa-thumbs-up");
+        if (thisThumbUp.hasClass("active-btn")) thisThumbUp.trigger("click");
+        $(this).toggleClass("active-btn");
+        var dislikes =  $(this).next("span").text().trim();
+        dislikes = parseInt(dislikes);
+        var commentId=$(this).parent().find("#commentId").text().trim();
+        likeNew.UserId = userId;
+        likeNew.CommentId = commentId;
+        likeNew.ProductId = $("#productId").text().trim();
+        likeNew.IsDataSent = false;
+         likeTotalNew.Id = commentId;
+            likeTotalNew.LikesTotal = thisThumbUp.next("span").text().trim();
+            if ($(this).hasClass("active-btn")) {
+                dislikes++;
+                $(this).next("span").text(dislikes);
+                likeNew.IsLiked = false;
+                likeNew.IsLikeRemoved = false;
+                likeTotalNew.DislikesTotal = dislikes;
+                setLikeState(likeNew);
+                  setLikeTotal(likeTotalNew);
+            }
+            else {
+                dislikes--;
+                $(this).next("span").text(dislikes);
+                likeNew.IsLikeRemoved = true;
+                likeTotalNew.DislikesTotal = dislikes;
+                setLikeState(likeNew);
+                  setLikeTotal(likeTotalNew);
+        }
+
+    });
+        function setLikeTotal(likeTotal) {
+              if (localStorage.getItem("likeTotal") === null) localStorage.setItem("likeTotal", JSON.stringify(new Array()));
+            var localStorageResult = JSON.parse(localStorage.getItem("likeTotal"));
+            for (var i = 0; i < localStorageResult.length; i++) {
+                if (localStorageResult[i]["Id"] == likeTotal.Id) {
+                    localStorageResult[i]["LikesTotal"] = likeTotal.LikesTotal;
+                    localStorageResult[i]["DislikesTotal"] = likeTotal.DislikesTotal;
+                    localStorage.setItem("likeTotal", JSON.stringify(localStorageResult));
                     return;
                 }
             }
-          localStorageResult.push(dislike);
+             localStorageResult.push(likeTotal);
+                 localStorage.setItem("likeTotal", JSON.stringify(localStorageResult));
+        }
+        function setLikeState(like) {
+             if (localStorage.getItem("like") === null) localStorage.setItem("like", JSON.stringify(new Array()));
+            var localStorageResult = JSON.parse(localStorage.getItem("like"));
+            for (var i = 0; i < localStorageResult.length; i++) {
+            if (localStorageResult[i]["CommentId"] == like.CommentId && like.IsLikeRemoved == true) {
+                localStorageResult[i]["IsLikeRemoved"] = true;
+                localStorageResult[i]["IsLiked"] = undefined;
+                localStorage.setItem("like",JSON.stringify(localStorageResult));
+                    return;
+                }
+            else if (localStorageResult[i]["CommentId"] == like.CommentId && like.IsLiked == false) {
+                localStorageResult[i]["IsLikeRemoved"] = false;
+                localStorageResult[i]["IsLiked"] = false;
+                localStorage.setItem("like",JSON.stringify(localStorageResult));
+                    return;
+                }
+             else  if (localStorageResult[i]["CommentId"] == like.CommentId && like.IsLiked == true) {
+                localStorageResult[i]["IsLikeRemoved"] = false;
+                localStorageResult[i]["IsLiked"] = true;
+                localStorage.setItem("like",JSON.stringify(localStorageResult));
+                    return;
+                }
+            }
+       localStorageResult.push(like);
        localStorage.setItem("like", JSON.stringify(localStorageResult));
-        
-    });   
-       
+        }
+        function synchronizeDataWithServer() {
+             if (localStorage.getItem("like") === null) return;
+             $.post('@Url.Action("UpdateLikes", "Product")?localStorageResult='+localStorage.getItem("like"),null, function () {
+                 localStorage.removeItem("like")
+             }).fail(function () { alert("error"); });
+              $.post('@Url.Action("UpdateLikesTotal", "Product")?localStorageResult='+localStorage.getItem("likeTotal"),null, function () {
+                 localStorage.removeItem("likeTotal")
+             }).fail(function () { alert("error"); });
+        }
 
          setInterval(function () {
-           // debugger
-            if (localStorage.getItem("like") === null) return;
-             $.post('@Url.Action("AddLikes", "Product")?localStorageResult='+localStorage.getItem("like"),null, function () {
-                 localStorage.removeItem("like")
-             }).fail(function () { alert("error"); });       
+             synchronizeDataWithServer();
         },3000);
-     
-      
-//        600000
-    
-   
-        
-    $(".answer").click(function () { 
+
+
+    $(".answer").click(function () {
             $(this).closest('.like-dislike').find('.input-area').load('@Url.Action("GetInputCommentPartial","Product")');
     });
     $(".toggle-answers").click(function () {
@@ -181,4 +212,3 @@
 </script>
 
 
-           

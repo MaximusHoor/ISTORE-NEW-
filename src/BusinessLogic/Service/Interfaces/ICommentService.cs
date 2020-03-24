@@ -16,5 +16,6 @@ namespace Business.Service.Interfaces
         Task<IReadOnlyCollection<Comment>> GetCommentsByProductAsync(int productId);
         Task<OperationDetail> CreateCommentAsync(Comment comment);
         Task<IReadOnlyCollection<Comment>> GetCommentsByProductWithAllAsync(int productId);
+        Task UpdateCommentLikesAsync(List<Comment> comment);
     }
 }

@@ -20,8 +20,9 @@ namespace Domain.EF_Models
         public int ProductId { get; set; }
         public Product Product { get; set; }
         public int LikesTotal { get; set; }
-        public int DislikeTotal { get; set; }
+        public int DislikesTotal { get; set; }
         public int Raiting { get; set; }
+        public bool IsRemoved { get; set; }
         public IEnumerable<Like> Likes { get; set; }
 
     }

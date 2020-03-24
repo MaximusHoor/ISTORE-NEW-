@@ -16,7 +16,7 @@ namespace Business.Service
         public async Task<OperationDetail> CreateCommentAsync(Comment comment)
         {
             var operationResult = await _unitOfWork.CommentRepository.CreateAsync(comment);
-             await _unitOfWork.SaveChangesAsync();
+            if(operationResult.IsError==false)  await _unitOfWork.SaveChangesAsync();
             return operationResult;
         }
 
@@ -38,8 +38,6 @@ namespace Business.Service
         {
             return await _unitOfWork.CommentRepository.FindByConditionAllIncludedAsync(x => x.UserId == userId);
         }
-
-            
         public async Task<IReadOnlyCollection<Comment>> GetCommentsByProductAsync(int productId)
         {
             return await _unitOfWork.CommentRepository.FindByConditionAsync(x => x.ProductId == productId);
@@ -48,10 +46,21 @@ namespace Business.Service
         {
             return await _unitOfWork.CommentRepository.FindByConditionAllIncludedAsync(x => x.ProductId == productId);
         }
-
         public async Task<IReadOnlyCollection<Comment>> GetCommentsDateFromAsync(DateTime time)
         {
             return await _unitOfWork.CommentRepository.FindByConditionAllIncludedAsync(x => x.Date > time);
         }
+        public async Task UpdateCommentLikesAsync(List<Comment> comments)
+        {
+            foreach (var comment in comments)
+            {
+                await _unitOfWork.CommentRepository.UpdateCommentLikesAsync(comment.Id, comment.LikesTotal, comment.DislikesTotal);
+            }
+            await _unitOfWork.SaveChangesAsync();
+           // var operationResult =
+           //if (operationResult.IsError == false) await _unitOfWork.SaveChangesAsync();
+           //return operationResult;
+        }
+
     }
 }

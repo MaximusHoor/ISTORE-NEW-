@@ -170,12 +170,14 @@ namespace IStore_WEB_.Controllers
                 list = _importExportService.ExcelToObject(stream);
             }
 
-            //foreach (var item in list)
-            //{
-            //    await _productService.CreateAsync(item);
-            //}
+            foreach (var item in list)
+            {
+                var res2 = await _productService.CreateAsync(item);         //add range and checking on valid
+            }
 
-            return View(list);
+            var res = await _productService.FindByConditionAsync(pr => pr.RetailPrice == 6);// типа идентити))
+
+            return View(res);
         }
     }
 }

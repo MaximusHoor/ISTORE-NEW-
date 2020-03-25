@@ -119,3 +119,9 @@
         font-size: 3.5rem;
     }
 }
+
+.table-wrapper {
+    max-height: 300px;
+    overflow: auto;
+    display: inline-block;
+}

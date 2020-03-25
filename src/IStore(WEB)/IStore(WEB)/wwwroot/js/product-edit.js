@@ -50,12 +50,35 @@
     })
 }())
 
-$(function () {
-    $.ajax({
-        url: "GetCharacteristic",
-        type: "Get",
-        success: function (response) {
-            $("#charcteristicContainer").html(response);
-        }
+
+$(document).ready(function ($) {
+    $(".table-row").click(function () {
+        var cells = $(this).children();
+
+        $("#title").val(cells[1].innerHTML);
+        $("#type").val(cells[2].innerHTML);
+        $("#vendorCode").val(cells[3].innerHTML);
+        $("#brandId").val(cells[5].innerHTML);
+        $("#retailPrice").val(cells[6].innerHTML);
+        $("#categoryId").val(cells[7].innerHTML);
+        $("#packageId").val(cells[8].innerHTML);
+        $("#countInStorage").val(cells[9].innerHTML);
+        $("#warrantyMonth").val(cells[10].innerHTML);
+        $("#series").val(cells[11].innerHTML);
+        $("#model").val(cells[12].innerHTML);
+        $("#descriptionTextarea").val(cells[4].innerHTML);
     });
 });
+
+//$(function () {
+//    $.ajax({
+//        url: "GetCharacteristic",
+//        type: "Get",
+//        success: function (response) {
+//            $("#charcteristicContainer").html(response);
+//        }
+//    });
+//});
+
+
+

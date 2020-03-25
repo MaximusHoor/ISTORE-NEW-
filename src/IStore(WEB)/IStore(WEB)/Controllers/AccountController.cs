@@ -23,7 +23,7 @@ namespace IStore_WEB_.Controllers
 
         [HttpPost]
         [AutoValidateAntiforgeryToken]
-        [Authorize]
+        
         public async Task<IActionResult> Register(RegisterViewModel model, string ReturnUrl = "")
         {
             if (ModelState.IsValid)
@@ -66,7 +66,7 @@ namespace IStore_WEB_.Controllers
 
         [HttpPost]
         [AutoValidateAntiforgeryToken]
-        [Authorize]
+      
         public async Task<IActionResult> Login(LoginViewModel model, string ReturnUrl = "")
         {
             if (ModelState.IsValid)
@@ -127,5 +127,6 @@ namespace IStore_WEB_.Controllers
             return new EmptyResult();
         }
 
+        
     }
 }

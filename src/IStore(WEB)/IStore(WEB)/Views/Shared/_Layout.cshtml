@@ -52,36 +52,30 @@
                                     English (USD)
                                 </span>
                             </a>
-                            <ul class="tanajil-submenu">
-                                <li class="switcher-option">
-                                    <a href="index.html#">
-                                        <span>
-                                            French (EUR)
-                                        </span>
-                                    </a>
-                                </li>
-                                <li class="switcher-option">
-                                    <a href="index.html#">
-                                        <span>
-                                            Japanese (JPY)
-                                        </span>
-                                    </a>
-                                </li>
-                            </ul>
                         </div>
                     </div>
                     <ul class="header-user-links">
                         @if (!User.Identity.IsAuthenticated)
                         {
                             <li>
-                                <a href="login.html">Login or Register</a>
+                                <a href="javascript:void(0);" onclick="">Login or Register</a>
                             </li>
                         }
                         else
                         {
-                            <li>
-                                <a href="login.html">@User.Identity.Name</a>
-                            </li>
+                            @if (User.IsInRole("admin"))
+                            {
+                                <li class="changeAdminPage">
+                                    <a href="javascript:void(0);">@User.Identity.Name</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="changeUserPage">
+                                    <a href="javascript:void(0);">@User.Identity.Name</a>
+                                </li>
+                            }
+
                         }
                     </ul>
                 </div>
@@ -218,16 +212,24 @@
                                                         </p>
                                                     </form>
                                                     @*//todo add cabinet*@
-                                                    <form>
+                                                <form>
+                                                    @if (User.IsInRole("admin"))
+                                                    {
                                                         <p class="form-row form-row-wide">
-                                                            <input value="CABINET" type="button" placeholder="User Cabinet" class="button">
+                                                            <input value="AdminPanel" type="button" placeholder="User Cabinet" class="button changeAdminPage">
                                                         </p>
-
-
-                                                        <p class="lost_password">
-                                                            <a href="index.html#">Lost your password?</a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p class="form-row form-row-wide">
+                                                            <input value="User Cabinet" type="button" placeholder="User Cabinet" class="button changeUserPage">
                                                         </p>
-                                                    </form>
+                                                    }
+
+                                                    <p class="lost_password">
+                                                        <a href="index.html#">Lost your password?</a>
+                                                    </p>
+                                                </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -731,8 +733,9 @@
     <script src="~/js/Layout.js"></script>
     <script>
         var MyAppUrlSettings = "@Url.Action("GetProducts","Product")";
-        
-
+        var ClientUrl = "@Url.Action("Index","Client")";
+        var AdminUrl = "@Url.Action("Index","Admin")";
+       
     </script>
     @RenderSection("Scripts", false)
 </body>

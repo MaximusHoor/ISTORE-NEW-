@@ -51,4 +51,14 @@
         window.location.href = "/Product/Product/"+id;
     });
 
+    $(".changeAdminPage").click(function () {
+
+        $(location).attr('href', AdminUrl);
+    });
+
+    $(".changeUserPage").click(function () {
+
+        $(location).attr('href', ClientUrl);
+    });
+    
 });

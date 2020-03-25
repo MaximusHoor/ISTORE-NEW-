@@ -65,6 +65,7 @@ namespace IStore_WEB_
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
          

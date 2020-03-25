@@ -62,6 +62,11 @@ namespace Business.Service
             return await _unitOfWork.ProductRepository.GetSortByRatingAsync(count);
         }
 
+        public async Task<IReadOnlyCollection<Product>> GetAfterIdAsync(int id)
+        {
+            return await _unitOfWork.ProductRepository.GetAfterIdAsync(id);
+        }
+
         public async Task<OperationDetail> CreateAsync(IFormCollection formCode)
         {
             Product product = null;

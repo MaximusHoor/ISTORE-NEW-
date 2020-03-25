@@ -18,12 +18,14 @@ namespace IStore_WEB_.Controllers
         private readonly ProductService _productservice;
         private readonly ProductCharacteristicService _productCharacteristicService;
         private readonly CommentService _commentService;
-        public ProductController(ILogger<ProductController> logger, ProductService productservice, ProductCharacteristicService productCharacteristicService, CommentService commentService)
+        private readonly CategoryService _categoryService;
+        public ProductController(ILogger<ProductController> logger, ProductService productservice, ProductCharacteristicService productCharacteristicService, CommentService commentService, CategoryService categoryService)
         {
             _logger = logger;
             _productservice = productservice;
             _commentService = commentService;
             this._productCharacteristicService = productCharacteristicService;
+            _categoryService = categoryService;
         }
 
         public async Task<IActionResult> Index()
@@ -103,8 +105,18 @@ namespace IStore_WEB_.Controllers
             await _commentService.CreateCommentAsync(res);
 
         }
-        
 
+        [HttpPost]
+        public async Task<IActionResult> GetProducts (IList<string> filter)
+        {          
+            return Json((await _productservice.FindByConditionAsync(x => x.Title.Contains(filter[1]))).Where(c=>c.Category.Title== filter[0]).Select(obj => new
+            {
+                id = obj.Id,
+                title = obj.Title,
+                price = obj.RetailPrice,
+                image = obj.PreviewImage
+            }));            
+        }        
     }
 
 

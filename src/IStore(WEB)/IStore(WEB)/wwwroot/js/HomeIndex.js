@@ -1,10 +1,9 @@
 ﻿$(function () {
 
     var products = new Array();
+    var coord = $(window).scrollTop();
 
     $.ajax({
-
-
 
         type: "POST",   //запрос
         url: "Home/GetProducts",
@@ -30,8 +29,6 @@
                 $(this).find(".equal-element").attr("style", "height: 320px"); //окончательный размер окошка с продуктом
                 count++;
             });
-
-
             
         }
     });
@@ -51,5 +48,46 @@
                 slick_quickview_popup();
             }
         });
+    });
+
+    $(window).scroll(function () {
+    
+        if ($(window).scrollTop() - coord > 350) {
+
+            coord = $(window).scrollTop();
+            var block = $(".product-item").last().clone();
+                      
+            $.ajax({
+
+                type: "POST",   //запрос
+                url: "Home/GetProductsAfterId/" + $(block).find(".mainProductId").val(),
+                dataType: "Json",
+                success: function (data) {
+                    products = data;
+                    
+                    $.each(products, function (index, value) {
+
+                        var obj = $(".product-item").last().clone();
+
+                        $(obj).find(".mainProductId").val(products[index].id);
+                        $(obj).find(".product-top").show();
+                        $(obj).find(".stars-rating").show();
+                        $(obj).find(".productPreview").attr("src", products[index].previewImage).show().parent().attr("href", "/Product/Product/" + products[index].id);
+                        $(obj).find(".productTitle").text(products[index].title);
+                        $(obj).find(".productModel").text(products[index].model);
+
+                        salePrice = (products[index].retailPrice * 1.15).toFixed(0);
+                        $(obj).find(".price del").text(salePrice);
+
+                        
+                        $(obj).find(".price ins").text(products[index].retailPrice);
+                        $(obj).find(".equal-element").attr("style", "height: 320px"); 
+
+                        $(".product-grid").append(obj);
+
+                    });
+                }
+            });
+        }      
     });
 });

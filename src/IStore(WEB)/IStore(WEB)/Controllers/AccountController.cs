@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Domain.EF_Models;
 using IStore_WEB_.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,6 +23,7 @@ namespace IStore_WEB_.Controllers
 
         [HttpPost]
         [AutoValidateAntiforgeryToken]
+        [Authorize]
         public async Task<IActionResult> Register(RegisterViewModel model, string ReturnUrl = "")
         {
             if (ModelState.IsValid)
@@ -64,6 +66,7 @@ namespace IStore_WEB_.Controllers
 
         [HttpPost]
         [AutoValidateAntiforgeryToken]
+        [Authorize]
         public async Task<IActionResult> Login(LoginViewModel model, string ReturnUrl = "")
         {
             if (ModelState.IsValid)

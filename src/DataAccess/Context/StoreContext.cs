@@ -2,25 +2,60 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Domain.Context
 {
+
     public class StoreContext : IdentityDbContext<User>
     {
         public StoreContext(DbContextOptions<StoreContext> options) : base(options)
         {
-           // Database.EnsureDeleted();
-          Database.EnsureCreated();           
+            //Database.EnsureDeleted();
+            Database.EnsureCreated();
+            
+           
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //modelBuilder.Entity<Category>(entity => entity.HasMany(c=>c.Subcategories).WithOne().HasForeignKey(c=>c.ParentCategoryId));
             modelBuilder.Entity<Category>().HasData(
-                new Category{
-                    Id = 1,
-                    Title="Phones",
-                    PreviewImage="",                    
-                });
+                 new Category[]
+                 {
+                   new Category
+                   {
+                     Id = 1,
+                     Title = "Phones",
+                     PreviewImage = "",
+                    
+                   },
+                 });
+
+
+
+
+            //new Category
+            //{
+            //    Id = 2,
+            //    Title = "Smartphone",
+            //    PreviewImage = ""
+            //},
+            //       new Category
+            //       {
+            //           Id = 3,
+            //           Title = "Buttonphone",
+            //           PreviewImage = ""
+            //       },
+            //modelBuilder.Entity<Category>().HasData(category);
+            //var subcategory = new List<Category>() { new Category { Title = "Smartphone", PreviewImage = "" , ParentCategoryId = 2} };
+            //modelBuilder.Entity<Category>().HasData(subcategory);
+
+
+
+
+
 
 
 
@@ -28,21 +63,21 @@ namespace Domain.Context
                 new Brand
                 {
                     Id = 1,
-                    Country="Ukraine",
-                    Description= "Description",
-                    Name="Lg"
+                    Country = "Ukraine",
+                    Description = "Description",
+                    Name = "Lg"
                 });
 
             modelBuilder.Entity<Package>().HasData(
                new Package
                {
-                  Id = 1,
-                  CountInPackage = 6,
-                  Volume = 30,
-                  Weight = 40
+                   Id = 1,
+                   CountInPackage = 6,
+                   Volume = 30,
+                   Weight = 40
                });
             modelBuilder.Entity<Product>().HasData(
-                new Product []
+                new Product[]
                 {
                     new Product {Id = 1,
                     BrandId = 1,
@@ -184,7 +219,7 @@ namespace Domain.Context
                   new ProductCharacteristic {Id = 5, Title="Количество цветов", Value ="16 миллионов", ProductId=1},
                   new ProductCharacteristic {Id = 6, Title="Тип дисплея", Value = "Dynamic AMOLED", ProductId=1},
 
-              }) ;
+              });
 
             modelBuilder.Entity<Image>().HasData(
               new Image[]

@@ -15,10 +15,12 @@ namespace IStore_WEB_.Controllers
         {
             this._categoryService = categoryService;
         }
+
+      
         public async Task<IActionResult> CategoryPartialAsync()
         {
             var res = await _categoryService.GetAllAsync();
-            return View(res.ToList());
+            return PartialView(res.ToList());
         }
 
         public async Task<IActionResult> GetCategoryJsonAsync()

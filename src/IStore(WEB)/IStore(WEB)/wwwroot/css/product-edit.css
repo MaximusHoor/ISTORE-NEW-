@@ -125,3 +125,8 @@
     overflow: auto;
     display: inline-block;
 }
+
+thead th {
+    position: sticky;
+    top: 0;
+}

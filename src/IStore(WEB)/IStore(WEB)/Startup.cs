@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting; //using Business.Service;
 using System;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace IStore_WEB_
 {
@@ -37,11 +38,15 @@ namespace IStore_WEB_
                 op.Password.RequireUppercase = false;
                 op.Password.RequiredLength = 6;
                 op.Password.RequiredUniqueChars = 0;
+                op.Tokens.EmailConfirmationTokenProvider = "emailconfirmation";
 
-            }).AddEntityFrameworkStores<StoreContext>();
+            }).AddEntityFrameworkStores<StoreContext>().AddDefaultTokenProviders().AddTokenProvider<EmailConfirmationTokenProvider<User>>("emailconfirmation");
+
             BusinessConfiguration.ConfigureServices(services, Configuration);
-
-
+            services.Configure<SendGridSenderOptions>(op => Configuration.GetSection("SendGridSenderOptions").Bind(op));
+            services.AddTransient<IEmailSender,EmailSenderService>();
+            services.Configure<EmailConfiramtionProviderOption>(op => op.TokenLifespan = TimeSpan.FromDays(5));
+     
             services.AddAuthentication().AddCookie(op => op.LoginPath = "/login");
 
         }
@@ -71,6 +76,11 @@ namespace IStore_WEB_
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                   name:"conf",
+                   pattern:"confirmation/",
+                   defaults: new {controller="EmailConfirm",action = "Confirm" });
+
                 endpoints.MapControllerRoute(
                     "default",
                     "{controller=Home}/{action=Index}/{id?}");

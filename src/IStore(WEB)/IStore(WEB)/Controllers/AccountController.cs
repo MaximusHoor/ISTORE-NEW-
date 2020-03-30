@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Domain.EF_Models;
 using IStore_WEB_.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IStore_WEB_.Controllers
@@ -13,9 +14,11 @@ namespace IStore_WEB_.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
+        private readonly IEmailSender _emailSender;
 
-        public AccountController(SignInManager<User> signInManager, UserManager<User> userManager)
+        public AccountController(SignInManager<User> signInManager, UserManager<User> userManager, IEmailSender emailSender)
         {
+            _emailSender = emailSender;
             _signInManager = signInManager;
             _userManager = userManager;
         }
@@ -35,6 +38,10 @@ namespace IStore_WEB_.Controllers
 
                     if (!String.IsNullOrEmpty(ReturnUrl))
                     {
+                        var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                        var confirmationLink = Url.Action("", "confirmation", new { guid=token, userEmail = user.Email }, Request.Scheme,Request.Host.Value);
+
+                        await _emailSender.SendEmailAsync(user.Email, "LINK->", confirmationLink);
                         if (ReturnUrl == "/")
                         {
                             return RedirectToAction("Index", "Home");

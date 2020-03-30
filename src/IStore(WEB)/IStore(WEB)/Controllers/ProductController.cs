@@ -120,8 +120,18 @@ namespace IStore_WEB_.Controllers
             res.Date = DateTime.Now;
             await _commentService.CreateCommentAsync(res);
         }
-        
 
+        [HttpPost]
+        public async Task<IActionResult> GetProducts (IList<string> filter)
+        {          
+            return Json((await _productservice.FindByConditionAsync(x => x.Title.Contains(filter[1]))).Where(c=>c.Category.Title== filter[0]).Select(obj => new
+            {
+                id = obj.Id,
+                title = obj.Title,
+                price = obj.RetailPrice,
+                image = obj.PreviewImage
+            }));            
+        }        
     }
 
 

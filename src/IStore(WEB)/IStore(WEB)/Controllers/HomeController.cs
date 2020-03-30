@@ -1,14 +1,17 @@
 ﻿using Business.Service;
 using Domain.EF_Models;
 using IStore_WEB_.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using System.Collections;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace IStore_WEB_.Controllers
 {
+    
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -28,7 +31,13 @@ namespace IStore_WEB_.Controllers
         [HttpPost]
         public async Task<IActionResult> GetProducts()
         {
-            return Json(await _productservice.GetSortByRatingAsync(24));
+            return Json(await _productservice.GetSortByRatingAsync(8));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> GetProductsAfterId(int id)
+        {
+            return Json(await _productservice.GetAfterIdAsync(id));
         }
 
         public IActionResult Privacy()

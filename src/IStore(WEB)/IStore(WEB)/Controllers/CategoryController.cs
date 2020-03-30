@@ -34,6 +34,9 @@ namespace IStore_WEB_.Controllers
             return View();
         }
 
-        
+        public async Task<IActionResult> GetCategoryTitle()
+        {
+            return Json((await _categoryService.GetAllAsync()).Select(x=>x.Title));
+        }
     }
 }

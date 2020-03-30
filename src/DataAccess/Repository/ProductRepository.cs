@@ -64,5 +64,15 @@ namespace DataAccess.Repository
                 .Include(grch => grch.ProductCharacteristics)
                 .Include(com => com.Comments).ToListAsync();
         }
+        public async Task<IReadOnlyCollection<Product>> GetAfterIdAsync(int id)
+        {
+            return await _storeContext.Products.OrderByDescending(x => x.Id > id).Take(8)
+                .Include(br => br.Brand)
+                .Include(cat => cat.Category)
+                .Include(im => im.Images)
+                .Include(pac => pac.Package)
+                .Include(grch => grch.ProductCharacteristics)
+                .Include(com => com.Comments).ToListAsync();
+        }
     }
 }

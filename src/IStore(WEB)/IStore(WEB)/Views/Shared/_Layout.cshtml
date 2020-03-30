@@ -324,9 +324,9 @@
                                             </li>
                                         </ul>*@
                                 </li>
-                                <li class="menu-item menu-item-has-children">
-                                    <a href="gridproducts.html" class="tanajil-menu-item-title" title="Shop">Shop</a>
-                                    <span class="toggle-submenu"></span>
+                                <li class="menu-item menu-item @*-has-children*@">
+                                    <a href="@Url.Action("Index","Home")" class="tanajil-menu-item-title" title="Shop">Shop</a>
+                                    @*<span class="toggle-submenu"></span>
                                     <ul class="submenu">
                                         <li class="menu-item">
                                             <a href="gridproducts.html">Grid Fullwidth</a>
@@ -340,9 +340,9 @@
                                         <li class="menu-item">
                                             <a href="listproducts.html">List</a>
                                         </li>
-                                    </ul>
+                                    </ul>*@
                                 </li>
-                                <li class="menu-item  menu-item-has-children item-megamenu">
+                                @*<li class="menu-item  menu-item-has-children item-megamenu">
                                     <a href="index.html#" class="tanajil-menu-item-title" title="Pages">Pages</a>
                                     <span class="toggle-submenu"></span>
                                     <div class="submenu mega-menu menu-page">
@@ -397,8 +397,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                </li>
-                                <li class="menu-item  menu-item-has-children">
+                                </li>*@
+                                @*<li class="menu-item  menu-item-has-children">
                                     <a href="inblog_right-siderbar.html" class="tanajil-menu-item-title"
                                        title="Blogs">Blogs</a>
                                     <span class="toggle-submenu"></span>
@@ -431,7 +431,7 @@
                                             </ul>
                                         </li>
                                     </ul>
-                                </li>
+                                </li>*@
                                 <li class="menu-item">
                                     <a href="about.html" class="tanajil-menu-item-title" title="About">About</a>
                                 </li>
@@ -539,19 +539,24 @@
                             </div>
                             <ul class="menu">
                                 <li class="menu-item">
-                                    <a href="index.html#">
-                                        <span class="flaticon-placeholder"></span>45 Grand Central Terminal New
-                                        York,NY 1017 United State USA
+                                    <a href="javascript:;">
+                                        <span class="flaticon-placeholder"></span>49084, Украина,
+                                        г. Днепр, Дмитрия Яворницкого, 101
+                                        @*45 Grand Central Terminal New
+                                        York,NY 1017 United State USA*@
                                     </a>
                                 </li>
                                 <li class="menu-item">
-                                    <a href="index.html#"><span class="fa fa-phone"></span>(+123) 456 789 - (+123) 666 888</a>
+                                    <a href="javascript:;"><span class="fa fa-phone"></span>(073) 797-88-90  -  (098) 909-88-08 @*(+123) 456 789 - (+123) 666 888*@</a>
                                 </li>
                                 <li class="menu-item">
-                                    <a href="index.html#"><span class="fa fa-envelope-o"></span>Contact@yourcompany.com</a>
+                                    <a href="javascript:;"><span class="fa fa-envelope-o"></span>dnepr@itstep.org</a>
                                 </li>
                                 <li class="menu-item">
-                                    <a href="index.html#"><span class="flaticon-clock"></span>Mon-Sat 9:00pm - 5:00pm Sun : Closed</a>
+                                    <a href="javascript:void(0);">
+                                        <span class="flaticon-clock"></span> Пн-пт с 9:00 до 19:00
+                                        Сб-вс с 9:00 до 16:00@*Mon-Sat 9:00pm - 5:00pm Sun : Closed*@
+                                    </a>
                                 </li>
                             </ul>
                         </div>
@@ -561,20 +566,20 @@
                             <h2 class="widgettitle">Quick Menu</h2>
                             <ul class="menu">
                                 <li class="menu-item">
-                                    <a href="index.html#">New arrivals</a>
+                                    <a href="@Url.Action("Index","Home")">Home</a>
                                 </li>
                                 <li class="menu-item">
-                                    <a href="index.html#">Life style</a>
+                                    <a href="@Url.Action("Index","Home")">Shop</a>
                                 </li>
                                 <li class="menu-item">
-                                    <a href="index.html#">Interior</a>
+                                    <a href="@Url.Action("Index","Home")">About</a>
                                 </li>
-                                <li class="menu-item">
+                                @*<li class="menu-item">
                                     <a href="index.html#">Lighting</a>
                                 </li>
                                 <li class="menu-item">
                                     <a href="index.html#">Wheels</a>
-                                </li>
+                                </li>*@
                             </ul>
                         </div>
                     </div>
@@ -644,8 +649,8 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                             <div class="coppyright">
-                                Copyright © 2019
-                                <a href="index.html#">Tanajil</a>
+                                Copyright © 2020
+                                <a href="javascript:;">СПВ-18в-1</a>
                                 . All rights reserved
                             </div>
                         </div>

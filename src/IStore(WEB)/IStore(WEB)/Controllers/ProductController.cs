@@ -22,10 +22,13 @@ namespace IStore_WEB_.Controllers
         private readonly LikeService _likeService;
         private readonly UserManager<User> _userManager;
         public ProductController(ILogger<ProductController> logger, ProductService productservice, ProductCharacteristicService productCharacteristicService, CommentService commentService, LikeService likeService,UserManager<User> userManager)
+        private readonly CategoryService _categoryService;
+        public ProductController(ILogger<ProductController> logger, ProductService productservice, ProductCharacteristicService productCharacteristicService, CommentService commentService, CategoryService categoryService)
         {
             _logger = logger;
             _productservice = productservice;
             _commentService = commentService;
+            _categoryService = categoryService;
             this._productCharacteristicService = productCharacteristicService;
             _likeService = likeService;
             _userManager = userManager;
@@ -78,6 +81,7 @@ namespace IStore_WEB_.Controllers
             {
                 res = _productservice.FindByConditionAsync(x => x.Category.Title == categoryTitle).Result;
             }
+            ViewBag.Category = _categoryService.GetAllAsync();
             return View(); //todo refactor this
         }
         public async Task<IActionResult> GetCommentsPartial(int id)

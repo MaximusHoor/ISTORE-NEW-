@@ -100,34 +100,42 @@ $("#uploadBtn").click(function () {
 
         for (let i = 0; i < rows.length; i++) {
             productArray.push({
-                Id: rows[i].children[0].val(),
-                Title: rows[i].children[1].val(),
-                Type: rows[i].children[2].val(),
-                VendorCode: rows[i].children[3].val(),
-                BrandId: rows[i].children[5].val(),
-                RetailPrice: rows[i].children[6].val(),
-                CategoryId: rows[i].children[7].val(),
-                PackageId: rows[i].children[8].val(),
-                CountInStorage: rows[i].children[9].val(),
-                WarrantyMonth: rows[i].children[10].val(),
-                Series: rows[i].children[11].val(),
-                Model: rows[i].children[12].val(),
-                DescriptionTextarea: rows[i].children[4].val()
+                Id: rows[i].children[0].innerHTML,
+                Title: rows[i].children[1].innerHTML,
+                Type: rows[i].children[2].innerHTML,
+                VendorCode: rows[i].children[3].innerHTML,
+                BrandId: rows[i].children[5].innerHTML,
+                RetailPrice: rows[i].children[6].innerHTML,
+                CategoryId: rows[i].children[7].innerHTML,
+                PackageId: rows[i].children[8].innerHTML,
+                CountInStorage: rows[i].children[9].innerHTML,
+                WarrantyMonth: rows[i].children[10].innerHTML,
+                Series: rows[i].children[11].innerHTML,
+                Model: rows[i].children[12].innerHTML,
+                DescriptionTextarea: rows[i].children[4].innerHTML
             });
         }
+
+        $.ajax({
+            type: 'POST',
+            url: '/Admin/UploadProducts',
+            data: { products: JSON.stringify(productArray) }
+        });
 
     }
 });
 
-//$(function () {
-//    $.ajax({
-//        url: "GetCharacteristic",
-//        type: "Get",
-//        success: function (response) {
-//            $("#charcteristicContainer").html(response);
-//        }
-//    });
-//});
+
+
+
+    $.ajax({
+        url: "AddCharacteristic",
+        type: "Get",
+        success: function (response) {
+            $("#charcteristicContainer").html(response);
+        }
+    });
+
 
 
 

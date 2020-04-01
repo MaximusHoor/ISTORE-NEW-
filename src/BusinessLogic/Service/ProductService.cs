@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Business.Service
 {
-    public class ProductService 
+    public class ProductService
     {
         private readonly IUnitOfWork _unitOfWork;
 
@@ -32,7 +32,7 @@ namespace Business.Service
             _imageService = imageService;
             _categoryService = categoryService;
             _brandService = brandService;
-    }
+        }
 
         public async Task<OperationDetail> CreateAsync(Product entity)
         {
@@ -45,7 +45,7 @@ namespace Business.Service
         {
             return await _unitOfWork.ProductRepository.FindByConditionAsync(predicat);
         }
-       
+
 
         public async Task<IReadOnlyCollection<Product>> GetAllAsync()
         {
@@ -86,6 +86,27 @@ namespace Business.Service
             var res = await this.CreateAsync(product);
 
             return res;
+        }
+
+        public async Task UpdateProductsAsync(List<Product> products)
+        {
+            foreach (var item in products)
+            {
+                var pr = await _unitOfWork.ProductRepository.GetByIdAsync(item.Id);
+                pr.Title = item.Title;
+                pr.Type = item.Type;
+                pr.VendorCode = item.VendorCode;
+                pr.BrandId = item.BrandId;
+                pr.RetailPrice = item.RetailPrice;
+                pr.CategoryId = item.CategoryId;
+                pr.PackageId = item.PackageId;
+                pr.CountInStorage = item.CountInStorage;
+                pr.WarrantyMonth = item.WarrantyMonth;
+                pr.Series = item.Series;
+                pr.Model = item.Model;
+                pr.Description = item.Description;
+            }
+            await _unitOfWork.SaveChangesAsync();
         }
     }
 }

@@ -21,9 +21,12 @@ namespace IStore_WEB_.Controllers
         private readonly CommentService _commentService;
         private readonly LikeService _likeService;
         private readonly UserManager<User> _userManager;
-        public ProductController(ILogger<ProductController> logger, ProductService productservice, ProductCharacteristicService productCharacteristicService, CommentService commentService, LikeService likeService,UserManager<User> userManager)
         private readonly CategoryService _categoryService;
-        public ProductController(ILogger<ProductController> logger, ProductService productservice, ProductCharacteristicService productCharacteristicService, CommentService commentService, CategoryService categoryService)
+        
+       
+        public ProductController(ILogger<ProductController> logger, ProductService productservice, 
+            ProductCharacteristicService productCharacteristicService, CommentService commentService, 
+            CategoryService categoryService, LikeService likeService, UserManager<User> userManager)
         {
             _logger = logger;
             _productservice = productservice;

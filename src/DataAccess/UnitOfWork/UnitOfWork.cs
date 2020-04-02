@@ -16,7 +16,8 @@ namespace DataAccess.UnitOfWork
         CharacteristicRepository characteristicRepository, ProductRepository productRepository, 
         DeliveryRepository deliveryRepository, AddressRepository addressRepository, BrandRepository brandRepository, 
         OrderDetailsRepository orderDetailsRepository, OrderRepository orderRepository, 
-        PackageRepository packageRepository, ILikeRepository likeRepository)
+        PackageRepository packageRepository, ILikeRepository likeRepository, NewsRepository newsRepository,
+        SubscriberRepository subscriberRepository)
         {
             _storeContext = storeContext;
             UserRepository = userRepository;
@@ -33,6 +34,8 @@ namespace DataAccess.UnitOfWork
             OrderRepository = orderRepository;
             PackageRepository = packageRepository;
             LikeRepository = likeRepository;
+            NewsRepository = newsRepository;
+            SubscriberRepository = subscriberRepository;
         }
 
         private StoreContext _storeContext { get; }
@@ -55,6 +58,8 @@ namespace DataAccess.UnitOfWork
         public OrderDetailsRepository OrderDetailsRepository { get; }
         public OrderRepository OrderRepository { get; }
         public PackageRepository PackageRepository { get; }
+        public NewsRepository NewsRepository { get; }
+        public SubscriberRepository SubscriberRepository { get; }
 
 
         public async Task SaveChangesAsync()

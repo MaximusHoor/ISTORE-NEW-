@@ -2,7 +2,7 @@
 
     var products = new Array();
     var coord = $(window).scrollTop();
-
+  
     $.ajax({
 
         type: "POST",   //запрос
@@ -50,13 +50,17 @@
         });
     });
 
-    $(window).scroll(function () {
-    
-        if ($(window).scrollTop() - coord > 350) {
-
+    $(window).scroll(function (event) {       
+        if ($(window).scrollTop() - coord > 450) {
+            
             coord = $(window).scrollTop();
             var block = $(".product-item").last().clone();
-                      
+           
+            if ($(".product-item").length > 20) {                
+                event.preventDefault();
+                return;
+            }
+           
             $.ajax({
 
                 type: "POST",   //запрос
@@ -90,4 +94,6 @@
             });
         }      
     });
+
+    
 });

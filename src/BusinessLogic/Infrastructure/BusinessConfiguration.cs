@@ -1,6 +1,7 @@
 ﻿using Business.Service;
 using Business.Service.FileService;
 using Business.Service.Interfaces;
+using Business.Service.NewsService;
 using DataAccess.Context;
 using DataAccess.Infrastructure;
 using DataAccess.UnitOfWork;
@@ -35,6 +36,8 @@ namespace Business.Infrastructure
             services.AddTransient(typeof(CommentService));
             services.AddTransient(typeof(UserService));
             services.AddTransient(typeof(LikeService));
+            services.AddTransient(typeof(NewsSenserService));
+            services.AddTransient(typeof(NewsSaveService));
             services.AddTransient<ImageFileService>(service => new ImageFileService($"{ Directory.GetCurrentDirectory()}\\wwwroot\\Content\\Images\\"));
 
            

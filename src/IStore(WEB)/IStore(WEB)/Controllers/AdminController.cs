@@ -8,6 +8,7 @@ using Business.Service;
 using Business.Service.FileService;
 using Business.Service.Interfaces;
 using Domain.EF_Models;
+using IStore_WEB_.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -25,14 +26,14 @@ namespace IStore_WEB_.Controllers
         private readonly ImageFileService _fileService;
         private readonly ImportExportService _importExportService;
 
-        public AdminController(ProductCharacteristicService productCharacteristicService, ImageFileService fileService, 
-            BrandService brandService, CategoryService categoryService, ProductService productService,  ImportExportService importExportService)
+        public AdminController(ProductCharacteristicService productCharacteristicService, ImageFileService fileService,
+            BrandService brandService, CategoryService categoryService, ProductService productService, ImportExportService importExportService)
         {
 
             _fileService = fileService;
             _brandService = brandService;
             _categoryService = categoryService;
-            _productService = productService;            
+            _productService = productService;
             _productCharacteristicService = productCharacteristicService;
             _importExportService = importExportService;
         }
@@ -84,15 +85,15 @@ namespace IStore_WEB_.Controllers
                 var res = await _productService.CreateAsync(formCode);
                 return Json(res.Message);
             }
-            catch(ArgumentOutOfRangeException ex)
+            catch (ArgumentOutOfRangeException ex)
             {
                 return Json("Add photo preview");
             }
-            catch(JsonSerializationException ex)
+            catch (JsonSerializationException ex)
             {
                 return Json("Fill all fields");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return Json(ex.Message);
             }
@@ -103,13 +104,13 @@ namespace IStore_WEB_.Controllers
             return PartialView("AddCategoryPartialView");
         }
 
-        [HttpPost]   
+        [HttpPost]
         public async Task<IActionResult> SaveCategory(IFormCollection formCode)
         {
             await _categoryService.CreateAsync(formCode);
 
-            var result = (await _categoryService.GetAllAsync()).Select(x=>x.Title).ToList();
-            
+            var result = (await _categoryService.GetAllAsync()).Select(x => x.Title).ToList();
+
             return Json(result);
         }
 
@@ -140,7 +141,7 @@ namespace IStore_WEB_.Controllers
 
         public async Task<IActionResult> AddSubcategory()
         {
-            ViewBag.Categories = (await _categoryService.GetAllAsync()).Select(x=>x.Title);
+            ViewBag.Categories = (await _categoryService.GetAllAsync()).Select(x => x.Title);
             return View();
         }
 
@@ -166,16 +167,31 @@ namespace IStore_WEB_.Controllers
             var list = new List<Product>();
             using (var stream = new MemoryStream())
             {
-               await file.CopyToAsync(stream, cancellationToken);
+                await file.CopyToAsync(stream, cancellationToken);
                 list = _importExportService.ExcelToObject(stream);
             }
 
-            //foreach (var item in list)
-            //{
-            //    await _productService.CreateAsync(item);
-            //}
+            foreach (var item in list)
+            {
+                var res2 = await _productService.CreateAsync(item);         //add range and checking on valid
+            }
 
-            return View(list);
+            var res = await _productService.FindByConditionAsync(pr => pr.RetailPrice == 6);// типа идентити))
+
+            return View(res);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> UploadProducts(string products)
+        {
+            if (products != null)
+            {
+                List<Product> listProducts = JsonConvert.DeserializeObject<List<Product>>(products);
+                await _productService.UpdateProductsAsync(listProducts);
+            }
+            return View();
+        }
+
+
     }
 }

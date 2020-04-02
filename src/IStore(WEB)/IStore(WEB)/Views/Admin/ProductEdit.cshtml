@@ -9,13 +9,11 @@
     <meta name="viewport" content="width=device-width" />
     <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/product-edit.css" />
-
 </head>
 <body>
     <div class="container">
         <div class="row justify-content-md-center">
             <div class="col-9">
-
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="h2">Dashboard</h1>
                     <div class="btn-toolbar mb-2 mb-md-0">
@@ -49,12 +47,11 @@
         </div>
     </div>
 
-
     <div class="container">
         <div class="row justify-content-md-center">
-            @{
-                if (Model != null)
-                {
+            @if (Model != null)
+            {
+                <div class="table-responsive table-wrapper">
                     <table class="table table-hover table-dark">
                         <thead>
                             <tr>
@@ -75,39 +72,38 @@
                         <tbody>
                             @foreach (var product in Model)
                             {
-                                <tr>
-                                    <td>@product.Title</td>
-                                    <td>@product.Type</td>
-                                    <td>@product.VendorCode</td>
-                                    <td>@product.Description</td>
-                                    <td>@product.BrandId</td>
-                                    <td>@product.RetailPrice</td>
-                                    <td>@product.CategoryId</td>
-                                    <td>@product.PackageId</td>
-                                    <td>@product.CountInStorage</td>
-                                    <td>@product.WarrantyMonth</td>
-                                    <td>@product.Series</td>
-                                    <td>@product.Model</td>
+                                <tr class="table-row">
+                                    <td id="tId" hidden="hidden">@product.Id</td>
+                                    <td id="tTitle">@product.Title</td>
+                                    <td id="tType">@product.Type</td>
+                                    <td id="tVendorCode">@product.VendorCode</td>
+                                    <td id="tDescription">@product.Description</td>
+                                    <td id="tBrandId">@product.BrandId</td>
+                                    <td id="tRetailPrice">@product.RetailPrice</td>
+                                    <td id="tCategoryId">@product.CategoryId</td>
+                                    <td id="tPackageId">@product.PackageId</td>
+                                    <td id="tCountInStorage">@product.CountInStorage</td>
+                                    <td id="tWarrantyMonth">@product.WarrantyMonth</td>
+                                    <td id="tSeries">@product.Series</td>
+                                    <td id="tModel">@product.Model</td>
                                 </tr>
                             }
                         </tbody>
                     </table>
-                }
+                </div>
             }
         </div>
     </div>
 
-
     <div class="container">
         <div class="row justify-content-md-center">
             <div class="col-9">
-
                 <div class="container-fluid">
                     <h4 class="mb-3">Edit Product</h4>
                     <form class="needs-validation" novalidate="">
-
                         <div class="form-row">
                             <div class="form-group col-md-6">
+                                <input id="hiddenId" type="text" hidden="hidden" />
                                 <label>Title</label>
                                 <input type="text" class="form-control" id="title" required="">
                             </div>
@@ -181,15 +177,17 @@
                                 Characteristic
                             </button>
                         </p>
-                        <div class="collapse" id="characteristicmain">
+
+                        <div class="collapsed" id="characteristicmain">
                             <div id="charcteristicContainer">
 
                             </div>
                         </div>
 
                         <hr class="mb-4">
-                         
-                        <button class="btn btn-primary btn-sm btn-block" type="submit">Edit</button>
+
+                        <button id="editProductBtn" class="btn btn-primary btn-sm" type="button">Edit</button>
+                        <button id="uploadBtn" class="btn btn-primary btn-sm" type="button">Upload</button>
                     </form>
                 </div>
             </div>

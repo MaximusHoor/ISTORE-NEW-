@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\student\\Desktop\\Repository\\ISTORE-NEW\\src\\IStore(WEB)\\IStore(WEB)\\IStore(WEB).csproj": {}
+    "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\IStore(WEB)\\IStore(WEB)\\IStore(WEB).csproj": {}
   },
   "projects": {
-    "C:\\Users\\student\\Desktop\\Repository\\ISTORE-NEW\\src\\BusinessLogic\\Business.csproj": {
+    "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\BusinessLogic\\Business.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\student\\Desktop\\Repository\\ISTORE-NEW\\src\\BusinessLogic\\Business.csproj",
+        "projectUniqueName": "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\BusinessLogic\\Business.csproj",
         "projectName": "Business",
-        "projectPath": "C:\\Users\\student\\Desktop\\Repository\\ISTORE-NEW\\src\\BusinessLogic\\Business.csproj",
-        "packagesPath": "C:\\Users\\student\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\student\\Desktop\\Repository\\ISTORE-NEW\\src\\BusinessLogic\\obj\\",
+        "projectPath": "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\BusinessLogic\\Business.csproj",
+        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\BusinessLogic\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\student\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -30,11 +27,11 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\student\\Desktop\\Repository\\ISTORE-NEW\\src\\DataAccess\\DataAccess.csproj": {
-                "projectPath": "C:\\Users\\student\\Desktop\\Repository\\ISTORE-NEW\\src\\DataAccess\\DataAccess.csproj"
+              "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\DataAccess\\DataAccess.csproj": {
+                "projectPath": "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\DataAccess\\DataAccess.csproj"
               },
-              "C:\\Users\\student\\Desktop\\Repository\\ISTORE-NEW\\src\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\student\\Desktop\\Repository\\ISTORE-NEW\\src\\Domain\\Domain.csproj"
+              "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\Domain\\Domain.csproj"
               }
             }
           }
@@ -48,9 +45,37 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "EPPlus": {
+              "target": "Package",
+              "version": "[5.0.4, )"
+            },
+            "Microsoft.AspNetCore.Http": {
+              "target": "Package",
+              "version": "[2.2.2, )"
+            },
+            "Microsoft.AspNetCore.Http.Features": {
+              "target": "Package",
+              "version": "[3.1.2, )"
+            },
+            "Microsoft.AspNetCore.Identity.UI": {
+              "target": "Package",
+              "version": "[3.1.3, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[3.1.1, )"
+              "version": "[3.1.2, )"
+            },
+            "Microsoft.Extensions.Options": {
+              "target": "Package",
+              "version": "[3.1.3, )"
+            },
+            "SendGrid": {
+              "target": "Package",
+              "version": "[9.13.1, )"
+            },
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[4.7.0, )"
             }
           },
           "imports": [
@@ -64,6 +89,9 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
@@ -72,20 +100,17 @@
         }
       }
     },
-    "C:\\Users\\student\\Desktop\\Repository\\ISTORE-NEW\\src\\DataAccess\\DataAccess.csproj": {
+    "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\DataAccess\\DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\student\\Desktop\\Repository\\ISTORE-NEW\\src\\DataAccess\\DataAccess.csproj",
+        "projectUniqueName": "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\DataAccess\\DataAccess.csproj",
         "projectName": "DataAccess",
-        "projectPath": "C:\\Users\\student\\Desktop\\Repository\\ISTORE-NEW\\src\\DataAccess\\DataAccess.csproj",
-        "packagesPath": "C:\\Users\\student\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\student\\Desktop\\Repository\\ISTORE-NEW\\src\\DataAccess\\obj\\",
+        "projectPath": "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\DataAccess\\DataAccess.csproj",
+        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\DataAccess\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\student\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -98,8 +123,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\student\\Desktop\\Repository\\ISTORE-NEW\\src\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\student\\Desktop\\Repository\\ISTORE-NEW\\src\\Domain\\Domain.csproj"
+              "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\Domain\\Domain.csproj"
               }
             }
           }
@@ -115,11 +140,15 @@
           "dependencies": {
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[3.1.1, )"
+              "version": "[3.1.2, )"
             },
             "Serilog": {
               "target": "Package",
               "version": "[2.9.0, )"
+            },
+            "Z.EntityFramework.Extensions.EFCore": {
+              "target": "Package",
+              "version": "[3.0.57, )"
             }
           },
           "imports": [
@@ -141,20 +170,17 @@
         }
       }
     },
-    "C:\\Users\\student\\Desktop\\Repository\\ISTORE-NEW\\src\\Domain\\Domain.csproj": {
+    "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\student\\Desktop\\Repository\\ISTORE-NEW\\src\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\student\\Desktop\\Repository\\ISTORE-NEW\\src\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\student\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\student\\Desktop\\Repository\\ISTORE-NEW\\src\\Domain\\obj\\",
+        "projectPath": "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\Domain\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\student\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -178,13 +204,17 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.2, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[3.1.1, )"
+              "version": "[3.1.2, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[3.1.1, )"
+              "version": "[3.1.2, )"
             }
           },
           "imports": [
@@ -206,20 +236,17 @@
         }
       }
     },
-    "C:\\Users\\student\\Desktop\\Repository\\ISTORE-NEW\\src\\IStore(WEB)\\IStore(WEB)\\IStore(WEB).csproj": {
+    "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\IStore(WEB)\\IStore(WEB)\\IStore(WEB).csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\student\\Desktop\\Repository\\ISTORE-NEW\\src\\IStore(WEB)\\IStore(WEB)\\IStore(WEB).csproj",
+        "projectUniqueName": "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\IStore(WEB)\\IStore(WEB)\\IStore(WEB).csproj",
         "projectName": "IStore(WEB)",
-        "projectPath": "C:\\Users\\student\\Desktop\\Repository\\ISTORE-NEW\\src\\IStore(WEB)\\IStore(WEB)\\IStore(WEB).csproj",
-        "packagesPath": "C:\\Users\\student\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\student\\Desktop\\Repository\\ISTORE-NEW\\src\\IStore(WEB)\\IStore(WEB)\\obj\\",
+        "projectPath": "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\IStore(WEB)\\IStore(WEB)\\IStore(WEB).csproj",
+        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\IStore(WEB)\\IStore(WEB)\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\student\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -232,8 +259,11 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\student\\Desktop\\Repository\\ISTORE-NEW\\src\\BusinessLogic\\Business.csproj": {
-                "projectPath": "C:\\Users\\student\\Desktop\\Repository\\ISTORE-NEW\\src\\BusinessLogic\\Business.csproj"
+              "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\BusinessLogic\\Business.csproj": {
+                "projectPath": "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\BusinessLogic\\Business.csproj"
+              },
+              "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\Domain\\Domain.csproj"
               }
             }
           }
@@ -251,9 +281,21 @@
               "target": "Package",
               "version": "[9.0.0, )"
             },
+            "Microsoft.AspNetCore.Authentication.Cookies": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.2, )"
+            },
+            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
+              "target": "Package",
+              "version": "[3.1.2, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[3.1.1, )"
+              "version": "[3.1.2, )"
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",

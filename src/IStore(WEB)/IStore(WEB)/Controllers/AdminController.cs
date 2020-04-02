@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Business.Service;
 using Business.Service.FileService;
 using Business.Service.Interfaces;
+using Business.Service.NewsService;
 using Domain.EF_Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -24,9 +25,12 @@ namespace IStore_WEB_.Controllers
         private readonly ProductService _productService;
         private readonly ImageFileService _fileService;
         private readonly ImportExportService _importExportService;
+        private readonly NewsSenserService _newsSenserService;
+        private readonly NewsSaveService _newsSaveService;
 
         public AdminController(ProductCharacteristicService productCharacteristicService, ImageFileService fileService, 
-            BrandService brandService, CategoryService categoryService, ProductService productService,  ImportExportService importExportService)
+            BrandService brandService, CategoryService categoryService, ProductService productService,  ImportExportService importExportService,
+            NewsSenserService newsSenserService, NewsSaveService newsSaveService)
         {
 
             _fileService = fileService;
@@ -35,6 +39,8 @@ namespace IStore_WEB_.Controllers
             _productService = productService;            
             _productCharacteristicService = productCharacteristicService;
             _importExportService = importExportService;
+            _newsSenserService = newsSenserService;
+            _newsSaveService = newsSaveService;
         }
 
         //[AllowAnonymous]
@@ -176,6 +182,38 @@ namespace IStore_WEB_.Controllers
             //}
 
             return View(list);
+        }
+
+       
+
+        [HttpGet]
+        public async Task<IActionResult> AddNews()
+        {
+            return View();
+        }
+       
+        public async Task<IActionResult> News()
+        {
+            var res = await _newsSaveService.GetAllAsync();
+            return View(res);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddNews(IFormCollection form)
+        {
+            var res = await _newsSaveService.CreateAsync(form);
+            return Json(res.Message);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SendNews(int id)
+        {
+            var news = await _newsSaveService.GetByIdAsync(id);
+            var res = await _newsSenserService.NotifyObserver(news);
+
+            //проверить отправку//update
+            news.SentOut = true;
+            return Json(res.Message);
         }
     }
 }

@@ -14,11 +14,11 @@ namespace Domain.Context
         
         public StoreContext(DbContextOptions<StoreContext> options) : base(options)
         {
-           // Database.EnsureDeleted();
+            // Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 
-        
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //modelBuilder.Entity<Category>(entity => entity.HasMany(c=>c.Subcategories).WithOne().HasForeignKey(c=>c.ParentCategoryId));
@@ -296,5 +296,7 @@ namespace Domain.Context
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetails> OrderDetails { get; set; }
         public DbSet<Like> Likes { get; set; }
+        public DbSet<Subscriber> Subscribes { get; set; }
+        public DbSet<News> News { get; set; }
     }
 }

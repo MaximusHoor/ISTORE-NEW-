@@ -1,12 +1,15 @@
 ﻿using Business.Service;
+using Business.Service.NewsService;
 using Domain.EF_Models;
 using IStore_WEB_.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using System;
 using System.Collections;
 using System.Diagnostics;
+using System.Net.Mail;
 using System.Threading.Tasks;
 
 namespace IStore_WEB_.Controllers
@@ -16,11 +19,13 @@ namespace IStore_WEB_.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ProductService _productservice;
+        private readonly NewsSenserService _newsSenserService;
 
-        public HomeController(ILogger<HomeController> logger, ProductService productservice)
+        public HomeController(ILogger<HomeController> logger, ProductService productservice, NewsSenserService newsSenserService)
         {
             _logger = logger;
             _productservice = productservice;
+            _newsSenserService = newsSenserService;
         }
 
         public IActionResult Index()
@@ -60,6 +65,23 @@ namespace IStore_WEB_.Controllers
             if (parameters != "[]")
                 return PartialView("ProductDetails", JsonConvert.DeserializeObject<Product>(parameters));
             return null;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SubscribeNews(string email)
+        {
+            try
+            {
+                var mailAdress = new MailAddress(email);
+                var res = await _newsSenserService.AddObserver(email);
+                return Json(res.Message);
+            }
+            catch(Exception ex)
+            {
+                return Json(ex.Message);
+            }
+            
+           
         }
     }
 }

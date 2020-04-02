@@ -60,5 +60,26 @@
 
         $(location).attr('href', ClientUrl);
     });
+
+    $(".submit-newsletter").click(function () {
+
+        var pattern = /^([a-z0-9_\.-])+[@][a-z0-9-]+\.([a-z]{2,4}\.)?[a-z]{2,4}$/i;
+        var email = jQuery(".email-newsletter").val();
+
+        if (!(pattern.test(email))) {
+            alert("Email введен не верно.");
+        } else {
+
+            $.ajax({
+                type: 'POST',
+                url: NewsUrl,
+                data: { email: email },
+                success: function (responce) {
+                    alert(responce)
+                }
+            });
+        }
+
+    });
     
 });

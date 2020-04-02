@@ -16,6 +16,7 @@
     <script src="https://kit.fontawesome.com/4c09a507f0.js" crossorigin="anonymous"></script>
     <!-- Master Stylesheet [If you remove this CSS file, your file will be broken undoubtedly.] -->
     <link rel="stylesheet" href="~/AdminPanel/style/style.css">
+    <link rel="stylesheet" href="~/AdminPanel/css/AddNews.css">
 
 </head>
 
@@ -64,9 +65,15 @@
                                 <ul class="treeview-menu">
                                     <li><a href="/Admin/Categories">All categories</a></li>
                                     <li class="active"><a href="/Admin/AddSubcategory">Add subcategory</a></li>
-                                    @*<li><a href="product-details.html">Products approval</a></li>
-                                    <li><a href="/Admin/ProductEdit">Edit product</a></li>*@
 
+                                </ul>
+                            </li>
+
+                            <li class="treeview active">
+                                <a href="javascript:void(0)"><i class="bx bxs-cart"></i> <span>News</span> <i class="fas fa-angle-right"></i></a>
+                                <ul class="treeview-menu">
+                                    <li class="active"><a href="/Admin/News">All News</a></li>
+                                    <li><a href="/Admin/AddNews">New News</a></li>
                                 </ul>
                             </li>
 
@@ -126,7 +133,7 @@
                         <i class='bx bx-menu-alt-right'></i>
                     </div>
 
-                    <!-- Top Bar Nav -->                    
+                    <!-- Top Bar Nav -->
                 </div>
             </header>
 
@@ -138,7 +145,7 @@
                             <div class="card mb-30">
                                 <div class="card-body">
 
-                                    
+
                                     <div class="container">
                                         <main role="main" class="pb-3">
                                             @RenderBody()
@@ -148,7 +155,7 @@
 
                                 </div>
                             </div>
-                        </div>                       
+                        </div>
                     </div>
                 </div>
 
@@ -181,6 +188,7 @@
     ======================================= -->
     <!-- Must needed plugins to the run this Template -->
     <script src="~/AdminPanel/js/jquery.min.js"></script>
+   
     <script src="~/AdminPanel/js/popper.min.js"></script>
     <script src="~/AdminPanel/js/bootstrap.min.js"></script>
     <script src="~/AdminPanel/js/bundle.js"></script>
@@ -189,6 +197,8 @@
 
     <!-- Active JS -->
     <script src="~/AdminPanel/js/default-assets/active.js"></script>
+    <script src="~/AdminPanel/js/News.js"></script>
+    <script src="~/AdminPanel/js/AddNews.js"></script>
 
 </body>
 

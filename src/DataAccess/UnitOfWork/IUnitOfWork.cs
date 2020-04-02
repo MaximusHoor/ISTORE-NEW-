@@ -20,6 +20,8 @@ namespace DataAccess.UnitOfWork
         OrderDetailsRepository OrderDetailsRepository { get; }
         OrderRepository OrderRepository { get; }
         PackageRepository PackageRepository { get; }
+        NewsRepository NewsRepository { get; }
+        SubscriberRepository SubscriberRepository { get; }
 
         Task SaveChangesAsync();
     }

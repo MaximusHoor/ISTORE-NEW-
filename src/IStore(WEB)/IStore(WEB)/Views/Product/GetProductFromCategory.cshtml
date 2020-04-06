@@ -142,104 +142,104 @@
                             </div>
                         </div>
                         <ul class="row list-products auto-clear equal-container product-grid">
-
-                            @*@foreach (var item in Model)
-                                {
-                                    <li class="product-item  col-lg-3 col-md-4 col-sm-6 col-xs-6 col-ts-12 style-1">
-                                        <div class="product-inner equal-element" style="height: 373px;">
-                                            <div class="product-top" style="display:none">
-                                                <div class="flash">
-                                                    <span class="onnew">
-                                                        <span class="text">
-                                                            new
-                                                        </span>
+                            @foreach (var item in Model)
+                            {
+                                <li class="product-item  col-lg-3 col-md-4 col-sm-6 col-xs-6 col-ts-12 style-1">
+                                    <div class="product-inner equal-element" style="height: 373px;">
+                                        <div class="product-top" >
+                                            <div class="flash">
+                                                <span class="onnew">
+                                                    <span class="text">
+                                                        new
                                                     </span>
-                                                </div>
+                                                </span>
                                             </div>
+                                        </div>
 
-                                            <div class="product-thumb">
-                                                <div class="thumb-inner">
-                                                    <input class="mainProductId" type="hidden" />
-                                                    <a href="index.html#">
-                                                        <img src="" alt="img" class="productPreview" style="margin-top:10px; display:none;">
-                                                    </a>
-                                                    <div class="thumb-group">
-                                                        <div class="yith-wcwl-add-to-wishlist">
-                                                            <div class="yith-wcwl-add-button">
-                                                                <a href="index.html#">Add to Wishlist</a>
-                                                            </div>
-                                                        </div>
-                                                        <a class="button quick-wiew-button">Quick View</a>
-                                                        <div class="loop-form-add-to-cart">
-                                                            <button class="single_add_to_cart_button button product_to_cart">
-                                                                Add to cart
-                                                            </button>
+                                        <div class="product-thumb">
+                                            <div class="thumb-inner">
+                                                <input class="mainProductId" type="hidden" />
+                                                <a href="">
+                                                    <img src="@item.PreviewImage" alt="img"  >
+                                                </a>
+                                                <div class="thumb-group">
+                                                    <div class="yith-wcwl-add-to-wishlist">
+                                                        <div class="yith-wcwl-add-button">
+                                                            <a href="index.html#">Add to Wishlist</a>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="product-info">
-                                                <h5 class="product-name product_title">
-                                                    <a href="index.html#" class="productTitle"></a>
-                                                    <br />
-                                                    <a href="index.html#" class="productModel"></a>
-                                                </h5>
-                                                <div class="group-info">
-                                                    <div class="stars-rating" style="display:none">
-                                                        <div class="star-rating">
-                                                            <span class="star-3">
-
-                                                            </span>
-                                                        </div>
-                                                        <div class="count-star">
-                                                            (3)
-                                                        </div>
-                                                    </div>
-                                                    <div class="price">
-                                                        <del>
-                                                            @(String.Format("{0: 0,0}", (Model.RetailPrice * 1.15)))
-                                                        </del>
-                                                        <ins>
-                                                            @(String.Format("{0: 0,0}", Model.RetailPrice))
-
-                                                        </ins>
+                                                    <a class="button quick-wiew-button">Quick View</a>
+                                                    <div class="loop-form-add-to-cart">
+                                                        <button class="single_add_to_cart_button button product_to_cart">
+                                                            Add to cart
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </li>
-                                }*@
+
+
+                                        <div class="product-info">
+                                            <h5 class="product-name product_title">
+                                                <a href="" class="productTitle">@item.Title</a>
+                                                <br />
+                                                <a href="" class="productModel">@item.Model</a>
+                                            </h5>
+                                            <div class="group-info">
+                                                <div class="stars-rating" >
+                                                    <div class="star-rating">
+                                                        <span class="star-3">
+
+                                                        </span>
+                                                    </div>
+                                                    <div class="count-star">
+                                                        (3)
+                                                    </div>
+                                                </div>
+                                                <div class="price">
+                                                    <del>
+                                                        @(String.Format("{0: 0,0}", (item.RetailPrice * 1.15)))
+                                                    </del>
+                                                    <ins>
+                                                        @(String.Format("{0: 0,0}", item.RetailPrice))
+
+                                                    </ins>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+                           
                             @*@foreach (var item in Model)
-                                {
-                                    @await Html.PartialAsync("ProductPartial", item)
-                                }*@
+        {
+            @await Html.PartialAsync("ProductPartial", item)
+        }*@
 
 
                             @*<div class="product-info">
-                                    <h5 class="product-name product_title">
-                                        <a href="gridproducts_leftsidebar.html#">Armor All </a>
-                                    </h5>
-                                    <div class="group-info">
-                                        <div class="stars-rating">
-                                            <div class="star-rating">
-                                                <span class="star-3"></span>
-                                            </div>
-                                            <div class="count-star">
-                                                (3)
-                                            </div>
-                                        </div>
-                                        <div class="price">
-                                            <del>
-                                                $65
-                                            </del>
-                                            <ins>
-                                                $45
-                                            </ins>
-                                        </div>
-                                    </div>
-                                </div>*@
+            <h5 class="product-name product_title">
+                <a href="gridproducts_leftsidebar.html#">Armor All </a>
+            </h5>
+            <div class="group-info">
+                <div class="stars-rating">
+                    <div class="star-rating">
+                        <span class="star-3"></span>
+                    </div>
+                    <div class="count-star">
+                        (3)
+                    </div>
+                </div>
+                <div class="price">
+                    <del>
+                        $65
+                    </del>
+                    <ins>
+                        $45
+                    </ins>
+                </div>
+            </div>
+        </div>*@
 
                         </ul>
                         <div class="pagination clearfix style3">
@@ -595,7 +595,7 @@
     <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyC3nDHy1dARR-Pa_2jjPCjvsOR4bcILYsM'></script>
     <script src="assets/js/frontend-plugin.js"></script>
     <script src="~/js/BreadCrumbsProduct.js"></script>
-
+    
 </body>
 </html>
 

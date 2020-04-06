@@ -85,7 +85,7 @@ namespace IStore_WEB_.Controllers
                 res = _productservice.FindByConditionAsync(x => x.Category.Title == categoryTitle).Result;
             }
             ViewBag.Category = _categoryService.GetAllAsync();
-            return View(); //todo refactor this
+            return View(res); //todo refactor this
         }
         public async Task<IActionResult> GetCommentsPartial(int id)
         {

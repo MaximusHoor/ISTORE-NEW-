@@ -11,23 +11,23 @@
         success: function (data) {            
             products = data;
            
-            count = 0;
-            $(".product-item").each(function () {     
+            
+            $(".product-item").each(function (i) {     
 
-                $(this).find(".mainProductId").val(products[count].id);
+                $(this).find(".mainProductId").val(products[i].id);
                 $(this).find(".product-top").show();
                 $(this).find(".stars-rating").show();
-                $(this).find(".productPreview").attr("src", products[count].previewImage).show().parent().attr("href", "/Product/Product/" + products[count].id);
-                $(this).find(".productTitle").text(products[count].title);
-                $(this).find(".productModel").text(products[count].model);
+                $(this).find(".productPreview").attr("src", products[i].previewImage).show().parent().attr("href", "/Product/Product/" + products[i].id);
+                $(this).find(".productTitle").text(products[i].title);
+                $(this).find(".productModel").text(products[i].model);
 
-                salePrice = (products[count].retailPrice * 1.15).toFixed(0);
+                salePrice = (products[i].retailPrice * 1.15).toFixed(0);
                 $(this).find(".price del").text(salePrice);
 
-                //price = (products[count].retailPrice).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1');
-                $(this).find(".price ins").text(products[count].retailPrice);
+                //price = (products[i].retailPrice).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1');
+                $(this).find(".price ins").text(products[i].retailPrice);
                 $(this).find(".equal-element").attr("style", "height: 320px"); //окончательный размер окошка с продуктом
-                count++;
+               
             });
             
         }

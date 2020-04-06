@@ -11,12 +11,12 @@ using System.Threading.Tasks;
 
 namespace Business.Service.NewsService
 {
-    public class NewsSenserService
+    public class NewsSenderService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IEmailSender _emailSenderService;
       
-        public NewsSenserService(IUnitOfWork unitOfWork, IEmailSender emailSender)
+        public NewsSenderService(IUnitOfWork unitOfWork, IEmailSender emailSender)
         {
             _unitOfWork = unitOfWork;
             _emailSenderService = emailSender;

@@ -25,12 +25,12 @@ namespace IStore_WEB_.Controllers
         private readonly ProductService _productService;
         private readonly ImageFileService _fileService;
         private readonly ImportExportService _importExportService;
-        private readonly NewsSenserService _newsSenserService;
+        private readonly NewsSenderService _newsSenserService;
         private readonly NewsSaveService _newsSaveService;
 
         public AdminController(ProductCharacteristicService productCharacteristicService, ImageFileService fileService, 
             BrandService brandService, CategoryService categoryService, ProductService productService,  ImportExportService importExportService,
-            NewsSenserService newsSenserService, NewsSaveService newsSaveService)
+            NewsSenderService newsSenserService, NewsSaveService newsSaveService)
         {
 
             _fileService = fileService;

@@ -28,6 +28,14 @@
         "replaceItems": function (val) {
             items = val;
             localStorage.setItem(localName, JSON.stringify(items));
+        },
+        "getHashItems": function () {
+            var res = 0;
+            for (x in items) {
+                var hash = Math.pow(items[x].Id, items[x].Count) + items[x].Id * 5;
+                res += hash;
+            }
+            return res;
         }
     }
 }

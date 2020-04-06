@@ -234,25 +234,25 @@ namespace Domain.Context
 
             modelBuilder.Entity<Category>().ToTable("Categories");
 
-            modelBuilder.Entity<Order>().HasData(
-                new Order
-                {
-                    Id = 1,
-                    Number = "#101",
-                    Date = DateTime.Now,
-                    UserId = 1,
-                    DeliveryStatus = "",
-                    PaymentStatus = "",
-                }
-                );
-            modelBuilder.Entity<OrderDetails>().HasData(
-                new OrderDetails[]
-                {
-                new OrderDetails { Id = 1, Count = 2, OrderId = 1, ProductId = 1 },
-                new OrderDetails { Id = 2, Count = 3, OrderId = 1, ProductId = 2 },
-                new OrderDetails { Id = 3, Count = 5, OrderId = 1, ProductId = 3 }
-                }
-                );
+            //modelBuilder.Entity<Order>().HasData(
+            //    new Order
+            //    {
+            //        Id = 1,
+            //        Number = "#101",
+            //        Date = DateTime.Now,
+            //        UserId = "1",
+            //        DeliveryStatus = "",
+            //        PaymentStatus = "",
+            //    }
+            //    );
+            //modelBuilder.Entity<OrderDetails>().HasData(
+            //    new OrderDetails[]
+            //    {
+            //    new OrderDetails { Id = 1, Count = 2, OrderId = 1, ProductId = 1 },
+            //    new OrderDetails { Id = 2, Count = 3, OrderId = 1, ProductId = 2 },
+            //    new OrderDetails { Id = 3, Count = 5, OrderId = 1, ProductId = 3 }
+            //    }
+            //    );
             modelBuilder.Entity<User>().HasData(new User
             {
                 Id = "6cab4e64-cd04-4ba5-94d4-3c9b5ad2e78f"

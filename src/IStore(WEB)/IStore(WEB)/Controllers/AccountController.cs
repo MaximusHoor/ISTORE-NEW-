@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Business.Service;
 using Domain.EF_Models;
 using IStore_WEB_.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -16,12 +18,21 @@ namespace IStore_WEB_.Controllers
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly IEmailSender _emailSender;
-
-        public AccountController(SignInManager<User> signInManager, UserManager<User> userManager, IEmailSender emailSender)
+        private readonly HashService _hashService;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        public AccountController(SignInManager<User> signInManager, UserManager<User> userManager, IEmailSender emailSender, HashService hashService, RoleManager<IdentityRole> roleManager)
         {
             _emailSender = emailSender;
             _signInManager = signInManager;
             _userManager = userManager;
+            _hashService = hashService;
+            _roleManager = roleManager;
+        }
+
+        [AutoValidateAntiforgeryToken]
+        public async Task<IActionResult> LoginRegister()
+        {
+            return View();
         }
 
         [HttpPost]
@@ -31,11 +42,21 @@ namespace IStore_WEB_.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 var user = new User() { Email = model.Login, UserName = model.Login };
                 var result = await _userManager.CreateAsync(user, model.Password);
-
+               
                 if (result.Succeeded)
                 {
+                    if (await _roleManager.FindByNameAsync("user") == null)
+                    {
+                        var role = await _roleManager.CreateAsync(new IdentityRole("user"));
+                        if (role.Succeeded)
+                            await _userManager.AddToRoleAsync(user, "user");
+                    }
+                    else
+                        await _userManager.AddToRoleAsync(user, "user");
+
                     await _signInManager.SignInAsync(user, false);
 
                     if (!String.IsNullOrEmpty(ReturnUrl))
@@ -85,15 +106,16 @@ namespace IStore_WEB_.Controllers
                 {
                     if (!String.IsNullOrEmpty(ReturnUrl))
                     {
+                        var hash = await _hashService.GetProductsHashByUserLogin(model.Login);
                         if (ReturnUrl == "/")
                         {
-                            return RedirectToAction("Index", "Home");
+                            return RedirectToAction("Index", "Home", hash.ToString());
                         }
                         else
                         {
                             if (Url.IsLocalUrl(ReturnUrl))
                             {
-                                return Redirect(ReturnUrl);
+                                return Redirect(ReturnUrl + "#" + hash.ToString());
                             }
 
                         }

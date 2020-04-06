@@ -1,4 +1,31 @@
 ﻿$(function () {
+    //$.ajax({
+    //    type: 'POST',
+    //    url: '/Cart/TestOrder',
+    //    data: { parameters: JSON.stringify(new localList("IStoreProduct").items()) },
+    //    success: function (responce) {
+    //        debugger
+    //        var a = responce;
+    //    }
+    //});
+    var hash = window.location.hash;
+    var localProductsHash = new localList("IStoreProduct").getHashItems();
+    if (hash.replace("#", "") != "" && hash.replace("#", "")!= localProductsHash) {
+        $.ajax({
+            type: 'POST',
+            url: '/Cart/GetOrder',
+            success: function (responce) {
+                var res = JSON.parse(responce);
+                for (x in res) {
+                    new localList("IStoreProduct").add(res[x]);
+                }
+                window.location.href = window.location.href.replace(hash, "");
+            }
+        });
+    }
+    else if (hash.indexOf('#') != -1) {
+        window.location.href = window.location.href.replace(hash, "");
+    }
     MinicartCount();
     $(".cartpartial").on("click", function () {
         $.ajax({

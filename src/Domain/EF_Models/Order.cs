@@ -15,7 +15,7 @@ namespace Domain.EF_Models
         public DateTime Date { get; set; }
         public double Total { get; set; }
         public ICollection<OrderDetails> Products { get; set; }
-        public int? UserId { get; set; }
+        public string? UserId { get; set; }
         public User User { get; set; }
         public int? DeliveryId { get; set; }
         public Delivery Delivery { get; set; }

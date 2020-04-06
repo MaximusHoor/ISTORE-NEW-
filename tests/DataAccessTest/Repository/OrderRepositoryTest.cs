@@ -48,7 +48,7 @@ namespace DataAccessTest.Repository
                 Number = _number,
                 Date = _date,
                 Total = _total,
-                UserId = _userId,
+                //UserId = _userId,
                 //User = new User() { Id = (int)_userId },
                 DeliveryId = _deliveryId,
                 Delivery = new Delivery() { Id = (int)_deliveryId },
@@ -60,7 +60,7 @@ namespace DataAccessTest.Repository
             ContextSingleton.GetDatabaseContext().SaveChanges();
             // Assert
             Assert.AreNotEqual(0, order.Id, "Creating new record does not return id");
-            return (order.Id, order.UserId, order.DeliveryId);
+            return (order.Id, 2, order.DeliveryId);
         }
 
         private async Task Update(int id)

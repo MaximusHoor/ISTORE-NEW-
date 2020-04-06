@@ -213,3 +213,4 @@ C:\Users\admin\Pictures\ISTORE(NEW)\src\IStore(WEB)\IStore(WEB)\obj\Debug\netcor
 C:\Users\admin\Pictures\ISTORE(NEW)\src\IStore(WEB)\IStore(WEB)\obj\Debug\netcoreapp3.1\IStore(WEB).csproj.CopyComplete
 C:\Users\admin\Pictures\ISTORE(NEW)\src\IStore(WEB)\IStore(WEB)\obj\Debug\netcoreapp3.1\IStore(WEB).dll
 C:\Users\admin\Pictures\ISTORE(NEW)\src\IStore(WEB)\IStore(WEB)\obj\Debug\netcoreapp3.1\IStore(WEB).pdb
+C:\Users\admin\Pictures\ISTORE(NEW)\src\IStore(WEB)\IStore(WEB)\obj\Debug\netcoreapp3.1\Razor\Views\Account\LoginRegister.cshtml.g.cs

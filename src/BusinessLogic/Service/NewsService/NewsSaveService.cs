@@ -1,65 +1,59 @@
-﻿using Business.Infrastructure;
+﻿using Business.Service.FileService;
 using DataAccess.UnitOfWork;
 using Domain.EF_Models;
 using Domain.Infrastructure;
-using Microsoft.AspNetCore.Identity.UI.Services;
-using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Business.Service.NewsService
 {
-    public class NewsSenderService
+    public class NewsSaveService
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IEmailSender _emailSenderService;
-
-        public NewsSenderService(IUnitOfWork unitOfWork, IEmailSender emailSender)
+        private readonly ImageFileService _fileService;
+        private readonly ImageService _imageService;
+        public NewsSaveService(IUnitOfWork unitOfWork, ImageFileService fileService, ImageService imageService)
         {
             _unitOfWork = unitOfWork;
-            _emailSenderService = emailSender;
-
+            _fileService = fileService;
+            _imageService = imageService;
+        }
+        public async Task<OperationDetail> CreateAsync(News news)
+        {
+            var res = await _unitOfWork.NewsRepository.CreateAsync(news);
+            await _unitOfWork.SaveChangesAsync();
+            return res;
         }
 
-
-        public async Task<OperationDetail> AddObserver(string email)
+        public async Task<OperationDetail> CreateAsync(IFormCollection form)
         {
-            var subscriber = new Subscriber() { Email = email };
+            News news = null;
 
-            if ((await _unitOfWork.SubscriberRepository.FindByConditionAsync(x => x.Email == email)).Count != 0)
-            {
-                return new OperationDetail() { IsError = true, Message = "Email exists" };
-            }
+            if (form.Files.Count <= 1)
+                news = JsonConvert.DeserializeObject<News>((form).ToList()[0].Value);
             else
-            {
-                var res = await _unitOfWork.SubscriberRepository.CreateAsync(subscriber);
-                await _unitOfWork.SaveChangesAsync();
-                return res;
-            }
+                news = JsonConvert.DeserializeObject<News>((form).ToList()[1].Value);
+
+            news.PhotoPath = await _fileService.Save(await _imageService.ImageResizeAsync(form.Files[0], ".png", 20000, 300, 300));
+
+            var res = await _unitOfWork.NewsRepository.CreateAsync(news);
+            await _unitOfWork.SaveChangesAsync();
+            return res;
         }
 
-        public async Task<OperationDetail> NotifyObserver(News news)
+        public async Task<IReadOnlyCollection<News>> GetAllAsync()
         {
-            try
-            {
-                foreach (var item in await _unitOfWork.SubscriberRepository.GetAllAsync())
-                {
-                    await _emailSenderService.SendEmailAsync("", item.Email, news.Text);
-                }
-                return new OperationDetail() { IsError = false, Message = "Sending out" };
-            }
-            catch (Exception ex)
-            {
-                return new OperationDetail() { IsError = true, Message = ex.Message };
-            }
+            return await _unitOfWork.NewsRepository.GetAllAsync();
         }
 
-        public Task RemoveObserver(string email)
+        public async Task<News> GetByIdAsync(int id)
         {
-            //отписаться
-            throw new NotImplementedException();
+            return await _unitOfWork.NewsRepository.GetByIdAsync(id);
         }
     }
 }

@@ -19,9 +19,9 @@ namespace IStore_WEB_.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ProductService _productservice;
-        private readonly NewsSenserService _newsSenserService;
+        private readonly NewsSenderService _newsSenserService;
 
-        public HomeController(ILogger<HomeController> logger, ProductService productservice, NewsSenserService newsSenserService)
+        public HomeController(ILogger<HomeController> logger, ProductService productservice, NewsSenderService newsSenserService)
         {
             _logger = logger;
             _productservice = productservice;

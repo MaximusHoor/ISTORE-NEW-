@@ -3417,7 +3417,10 @@
         },
         "runtime": {
           "bin/placeholder/Business.dll": {}
-        }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "DataAccess/1.0.0": {
         "type": "project",
@@ -10570,27 +10573,20 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Crystal\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\admin\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Crystal\\Source\\Repos\\ISTORE-NEW-\\src\\IStore(WEB)\\IStore(WEB)\\IStore(WEB).csproj",
+      "projectUniqueName": "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\IStore(WEB)\\IStore(WEB)\\IStore(WEB).csproj",
       "projectName": "IStore(WEB)",
-      "projectPath": "C:\\Users\\Crystal\\Source\\Repos\\ISTORE-NEW-\\src\\IStore(WEB)\\IStore(WEB)\\IStore(WEB).csproj",
-      "packagesPath": "C:\\Users\\Crystal\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Crystal\\Source\\Repos\\ISTORE-NEW-\\src\\IStore(WEB)\\IStore(WEB)\\obj\\",
+      "projectPath": "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\IStore(WEB)\\IStore(WEB)\\IStore(WEB).csproj",
+      "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\IStore(WEB)\\IStore(WEB)\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Crystal\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -10602,11 +10598,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\Crystal\\Source\\Repos\\ISTORE-NEW-\\src\\BusinessLogic\\Business.csproj": {
-              "projectPath": "C:\\Users\\Crystal\\Source\\Repos\\ISTORE-NEW-\\src\\BusinessLogic\\Business.csproj"
+            "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\BusinessLogic\\Business.csproj": {
+              "projectPath": "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\BusinessLogic\\Business.csproj"
             },
-            "C:\\Users\\Crystal\\Source\\Repos\\ISTORE-NEW-\\src\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\Crystal\\Source\\Repos\\ISTORE-NEW-\\src\\Domain\\Domain.csproj"
+            "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\admin\\Pictures\\ISTORE(NEW)\\src\\Domain\\Domain.csproj"
             }
           }
         }
@@ -10683,7 +10679,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

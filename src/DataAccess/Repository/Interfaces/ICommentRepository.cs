@@ -13,5 +13,6 @@ namespace DataAccess.Repository.Interfaces
         Task<IReadOnlyCollection<Comment>> GetCommentsAllIncludedAsync();
         Task<IReadOnlyCollection<Comment>> FindByConditionAllIncludedAsync(Expression<Func<Comment, bool>> predicate);
         Task UpdateCommentLikesAsync(int commentId, int likesTotal, int dislikesTotal);
+        Task<OperationDetail> UpdateCommentAsync(Comment comment);
     }
 }

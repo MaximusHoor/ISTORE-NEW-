@@ -10,6 +10,8 @@ using Newtonsoft.Json;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting; //using Business.Service;
 using System;
+using AutoMapper;
+using IStore_WEB_.MapperProfile;
 
 namespace IStore_WEB_
 {
@@ -40,7 +42,16 @@ namespace IStore_WEB_
 
             }).AddEntityFrameworkStores<StoreContext>();
             BusinessConfiguration.ConfigureServices(services, Configuration);
+            services.AddAutoMapper(typeof(MappingProfile));
+            //var mappingConfig = new MapperConfiguration(mc =>
+            //{
+            //    mc.AddProfile(new MappingProfile());
+            //});
 
+            //IMapper mapper = mappingConfig.CreateMapper();
+            //services.AddSingleton(mapper);
+
+            services.AddMvc().SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
 
             services.AddAuthentication().AddCookie(op => op.LoginPath = "/login");
 

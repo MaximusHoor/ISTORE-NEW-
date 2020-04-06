@@ -1,4 +1,5 @@
-﻿using Business.Service;
+﻿using AutoMapper;
+using Business.Service;
 using Domain.EF_Models;
 using IStore_WEB_.Models;
 using Microsoft.AspNetCore.Identity;
@@ -22,11 +23,9 @@ namespace IStore_WEB_.Controllers
         private readonly LikeService _likeService;
         private readonly UserManager<User> _userManager;
         private readonly CategoryService _categoryService;
-        
-       
-        public ProductController(ILogger<ProductController> logger, ProductService productservice, 
-            ProductCharacteristicService productCharacteristicService, CommentService commentService, 
-            CategoryService categoryService, LikeService likeService, UserManager<User> userManager)
+        private readonly IMapper _mapper;
+
+        public ProductController(ILogger<ProductController> logger, ProductService productservice, ProductCharacteristicService productCharacteristicService, CommentService commentService, LikeService likeService,UserManager<User> userManager,IMapper mapper)
         {
             _logger = logger;
             _productservice = productservice;
@@ -35,6 +34,7 @@ namespace IStore_WEB_.Controllers
             this._productCharacteristicService = productCharacteristicService;
             _likeService = likeService;
             _userManager = userManager;
+            _mapper = mapper;
         }
 
         public async Task<IActionResult> Index()
@@ -69,7 +69,6 @@ namespace IStore_WEB_.Controllers
         }
         public async Task<IActionResult> Product(int id)
         {
-
             var res = await _productservice.GetByIdsync(id);
 
             return View("Product", res);
@@ -89,26 +88,36 @@ namespace IStore_WEB_.Controllers
         }
         public async Task<IActionResult> GetCommentsPartial(int id)
         {
-           
+
             var comments = await _commentService.GetCommentsByProductAsync(id);
-           // if (User.Identity.IsAuthenticated)
-          //  {
-              //  var authorizedUser = await _userManager.FindByNameAsync(User.Identity.Name);
+            // if (User.Identity.IsAuthenticated)
+            //  {
+            //  var authorizedUser = await _userManager.FindByNameAsync(User.Identity.Name);
+          //  var res = await _commentService.GetCommentAllIncludedAsync(1);
             var userId = "6cab4e64-cd04-4ba5-94d4-3c9b5ad2e78f";
                 ViewBag.Likes = await _likeService.GetLikedCommentsIdAsync(userId, id);
                 ViewBag.Dislikes = await _likeService.GetDislikedCommentsIdAsync(userId, id);
          //   }
-            return PartialView(comments);
+            return PartialView(_mapper.Map<List<CommentViewModel>>(comments.Take(5)));
         }
-        public ActionResult GetInputCommentPartial()
+        public async Task<IActionResult> GetSubComments(int parentId,int productId)
         {
+            var userId = "6cab4e64-cd04-4ba5-94d4-3c9b5ad2e78f";
+            ViewBag.Likes = await _likeService.GetLikedCommentsIdAsync(userId, productId);
+            ViewBag.Dislikes = await _likeService.GetDislikedCommentsIdAsync(userId, productId);
+            var subcoms = await _commentService.GetCommentAllIncludedAsync(parentId);
+            return PartialView("GetCommentsPartial", _mapper.Map<List<CommentViewModel>>(subcoms.Answers.Take(5)));
+        }
+
+        public ActionResult GetInputCommentPartial(string commentId)
+        {
+            ViewBag.CommentId = commentId;
             return PartialView();
         }
         [HttpPost]
         public async Task UpdateLikes(string localStorageResult)
         {
-            var res= JsonConvert.DeserializeObject<List<Like>>(localStorageResult);
-            await _likeService.ManageLikesAsync(res);
+            await _likeService.ManageLikesAsync(localStorageResult);
         }
         [HttpPost]
         public async Task UpdateLikesTotal(string localStorageResult)
@@ -116,6 +125,7 @@ namespace IStore_WEB_.Controllers
             var res = JsonConvert.DeserializeObject<List<Comment>>(localStorageResult);
             await _commentService.UpdateCommentLikesAsync(res);
         }
+
         [HttpPost]
         public async Task AddComment(string comment)
         {
@@ -134,10 +144,44 @@ namespace IStore_WEB_.Controllers
                 price = obj.RetailPrice,
                 image = obj.PreviewImage
             }));            
-        }        
+              
+    
+            await _commentService.UpdateCommentLikesAsync(localStorageResult);
+        }
+
+        public async Task<IActionResult> AddComment(string comment)
+        {
+            var commentReturned =  await _commentService.CreateCommentAsync(comment);
+            var res = _mapper.Map<CommentViewModel>(commentReturned);
+            if (User.Identity.IsAuthenticated)
+            {
+                var user = await _userManager.FindByEmailAsync(User.Identity.Name);
+                res.CurrentUserId = user.Id;
+            }
+            var userId = "6cab4e64-cd04-4ba5-94d4-3c9b5ad2e78f";
+            ViewBag.Likes = await _likeService.GetLikedCommentsIdAsync(userId, commentReturned.ProductId);
+            ViewBag.Dislikes = await _likeService.GetDislikedCommentsIdAsync(userId, commentReturned.ProductId);
+            return PartialView("GetCommentsPartial", new List<CommentViewModel> { res });
+        }
+        [HttpPost]     
+        public async Task<IActionResult> UpdateComment(string comment)
+        {
+            var commentReturned = await _commentService.UpdateCommentAsync(comment);
+            if (commentReturned.IsRemoved == true) return new EmptyResult();
+            var res = _mapper.Map<CommentViewModel>(commentReturned);
+            if (User.Identity.IsAuthenticated)
+            {
+                var user = await _userManager.FindByEmailAsync(User.Identity.Name);
+                res.CurrentUserId = user.Id;
+            }
+            var userId = "6cab4e64-cd04-4ba5-94d4-3c9b5ad2e78f";
+            ViewBag.Likes = await _likeService.GetLikedCommentsIdAsync(userId, commentReturned.ProductId);
+            ViewBag.Dislikes = await _likeService.GetDislikedCommentsIdAsync(userId, commentReturned.ProductId);
+            return PartialView("GetCommentsPartial", new List<CommentViewModel> { res });
+        }
+
+
+
     }
-
-
-
-
+  
 }

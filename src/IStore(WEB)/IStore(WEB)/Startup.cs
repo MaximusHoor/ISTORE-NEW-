@@ -10,6 +10,8 @@ using Newtonsoft.Json;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting; //using Business.Service;
 using System;
+using AutoMapper;
+using IStore_WEB_.MapperProfile;
 using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace IStore_WEB_
@@ -47,6 +49,10 @@ namespace IStore_WEB_
             services.AddTransient<IEmailSender,EmailSenderService>();
             services.Configure<EmailConfiramtionProviderOption>(op => op.TokenLifespan = TimeSpan.FromDays(5));
      
+            services.AddAutoMapper(typeof(MappingProfile));
+
+            services.AddMvc().SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
+
             services.AddAuthentication().AddCookie(op => op.LoginPath = "/login");
 
         }

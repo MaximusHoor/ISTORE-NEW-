@@ -30,7 +30,7 @@ namespace DataAccess.Repository
         }
         public async Task<IReadOnlyCollection<Comment>> GetCommentsAllIncludedAsync()
         {
-            return await this.Entities.Include(x => x.Product).Include(x => x.User).Include(x => x.Answers).ToListAsync().ConfigureAwait(false);
+            return await this.Entities.Where(x => x.IsRemoved == false).Include(x => x.Product).Include(x => x.User).Include(x => x.Answers).ToListAsync().ConfigureAwait(false);
         }
 
         public async Task<IReadOnlyCollection<Comment>> FindByConditionAllIncludedAsync(Expression<Func<Comment, bool>> predicate)
@@ -50,7 +50,26 @@ namespace DataAccess.Repository
             //    Log.Error(e, "Create Fatal Error");
             //    return new OperationDetail { IsError = true, Message = "Update Likes Total Fatal Error" };
             //}
-          
+        }
+        public async Task<OperationDetail> UpdateCommentAsync(Comment comment)
+        {
+            try
+            {
+            await this.Entities.Where(x => x.Id == comment.Id).
+                UpdateFromQueryAsync(x => new Comment
+                {
+                    IsRemoved = comment.IsRemoved,
+                    Raiting = comment.Raiting,
+                    Text = comment.Text,
+                    Date=comment.Date
+                }).ConfigureAwait(false);
+                return new OperationDetail() { IsError = false, Message = "Coment updated" };
+            }
+            catch (Exception e)
+            {
+                Log.Error(e, "Create Fatal Error");
+                return new OperationDetail { IsError = true, Message = "Update Comment Total Fatal Error" };
+            }
         }
     }
 }

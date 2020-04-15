@@ -534,9 +534,10 @@ jQuery(document).ready(function ($) {
             max: max,
             values: [value_min, value_max],
             slide: function (event, ui) {
-                var result = ' <span>' + unit + ui.values[0] + ' </span>  <span> ' + unit + ui.values[1] + '</span>';
+                var result = '<span class="from">' + unit + ui.values[0] + ' </span>' + '<span class="to"> ' + unit + ui.values[1] + '</span>';
                 // var result = label_result + " <span>" + unit + ui.values[0] + ' </span>  <span> ' + unit + ui.values[1] + '</span>';
                 t.closest('.price-slider-wrapper').find('.price-slider-amount').html(result);
+                CollectFilters();
             }
         });
     });

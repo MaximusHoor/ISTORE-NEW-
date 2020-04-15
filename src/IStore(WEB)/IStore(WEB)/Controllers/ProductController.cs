@@ -25,7 +25,7 @@ namespace IStore_WEB_.Controllers
         private readonly CategoryService _categoryService;
         private readonly IMapper _mapper;
 
-        public ProductController(ILogger<ProductController> logger, ProductService productservice, ProductCharacteristicService productCharacteristicService, CommentService commentService, LikeService likeService,UserManager<User> userManager,IMapper mapper)
+        public ProductController(ILogger<ProductController> logger, ProductService productservice, ProductCharacteristicService productCharacteristicService, CommentService commentService, LikeService likeService,UserManager<User> userManager,IMapper mapper, CategoryService categoryService)
         {
             _logger = logger;
             _productservice = productservice;
@@ -117,7 +117,7 @@ namespace IStore_WEB_.Controllers
         [HttpPost]
         public async Task UpdateLikes(string localStorageResult)
         {
-            await _likeService.ManageLikesAsync(localStorageResult);
+            //await _likeService.ManageLikesAsync(localStorageResult);
         }
         [HttpPost]
         public async Task UpdateLikesTotal(string localStorageResult)
@@ -133,6 +133,11 @@ namespace IStore_WEB_.Controllers
             res.Date = DateTime.Now;
             await _commentService.CreateCommentAsync(res);
         }
+        [HttpPost]
+        public async Task<IActionResult> GetProductsFromFilter(ProductsFilter filter)
+        {
+            return null;
+        }
 
         [HttpPost]
         public async Task<IActionResult> GetProducts (IList<string> filter)
@@ -146,39 +151,39 @@ namespace IStore_WEB_.Controllers
             }));            
               
     
-            await _commentService.UpdateCommentLikesAsync(localStorageResult);
+            //await _commentService.UpdateCommentLikesAsync(localStorageResult);
         }
 
-        public async Task<IActionResult> AddComment(string comment)
-        {
-            var commentReturned =  await _commentService.CreateCommentAsync(comment);
-            var res = _mapper.Map<CommentViewModel>(commentReturned);
-            if (User.Identity.IsAuthenticated)
-            {
-                var user = await _userManager.FindByEmailAsync(User.Identity.Name);
-                res.CurrentUserId = user.Id;
-            }
-            var userId = "6cab4e64-cd04-4ba5-94d4-3c9b5ad2e78f";
-            ViewBag.Likes = await _likeService.GetLikedCommentsIdAsync(userId, commentReturned.ProductId);
-            ViewBag.Dislikes = await _likeService.GetDislikedCommentsIdAsync(userId, commentReturned.ProductId);
-            return PartialView("GetCommentsPartial", new List<CommentViewModel> { res });
-        }
-        [HttpPost]     
-        public async Task<IActionResult> UpdateComment(string comment)
-        {
-            var commentReturned = await _commentService.UpdateCommentAsync(comment);
-            if (commentReturned.IsRemoved == true) return new EmptyResult();
-            var res = _mapper.Map<CommentViewModel>(commentReturned);
-            if (User.Identity.IsAuthenticated)
-            {
-                var user = await _userManager.FindByEmailAsync(User.Identity.Name);
-                res.CurrentUserId = user.Id;
-            }
-            var userId = "6cab4e64-cd04-4ba5-94d4-3c9b5ad2e78f";
-            ViewBag.Likes = await _likeService.GetLikedCommentsIdAsync(userId, commentReturned.ProductId);
-            ViewBag.Dislikes = await _likeService.GetDislikedCommentsIdAsync(userId, commentReturned.ProductId);
-            return PartialView("GetCommentsPartial", new List<CommentViewModel> { res });
-        }
+        //public async Task<IActionResult> AddComment(string comment)
+        //{
+        //    var commentReturned =  await _commentService.CreateCommentAsync(comment);
+        //    var res = _mapper.Map<CommentViewModel>(commentReturned);
+        //    if (User.Identity.IsAuthenticated)
+        //    {
+        //        var user = await _userManager.FindByEmailAsync(User.Identity.Name);
+        //        res.CurrentUserId = user.Id;
+        //    }
+        //    var userId = "6cab4e64-cd04-4ba5-94d4-3c9b5ad2e78f";
+        //    ViewBag.Likes = await _likeService.GetLikedCommentsIdAsync(userId, commentReturned.ProductId);
+        //    ViewBag.Dislikes = await _likeService.GetDislikedCommentsIdAsync(userId, commentReturned.ProductId);
+        //    return PartialView("GetCommentsPartial", new List<CommentViewModel> { res });
+        //}
+        //[HttpPost]     
+        //public async Task<IActionResult> UpdateComment(string comment)
+        //{
+        //    var commentReturned = await _commentService.UpdateCommentAsync(comment);
+        //    if (commentReturned.IsRemoved == true) return new EmptyResult();
+        //    var res = _mapper.Map<CommentViewModel>(commentReturned);
+        //    if (User.Identity.IsAuthenticated)
+        //    {
+        //        var user = await _userManager.FindByEmailAsync(User.Identity.Name);
+        //        res.CurrentUserId = user.Id;
+        //    }
+        //    var userId = "6cab4e64-cd04-4ba5-94d4-3c9b5ad2e78f";
+        //    ViewBag.Likes = await _likeService.GetLikedCommentsIdAsync(userId, commentReturned.ProductId);
+        //    ViewBag.Dislikes = await _likeService.GetDislikedCommentsIdAsync(userId, commentReturned.ProductId);
+        //    return PartialView("GetCommentsPartial", new List<CommentViewModel> { res });
+        //}
 
 
 

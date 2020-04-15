@@ -17,5 +17,9 @@ namespace IStore_WEB_.Controllers
             
 
         }
+        public IActionResult DeliveryInfo()
+        {
+            return View();
+        }
     }
 }
